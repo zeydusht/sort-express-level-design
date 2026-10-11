@@ -109,12 +109,16 @@ namespace Sortex.Game
             AddButton("Coins", Root + "Top/CoinsButton", Root + "Top/CoinsButton/Button/PressDownTransform");
         }
 
-        /// <summary>Out of time: the hourglass and 60 more seconds; out of space: the magic hat (the game's offer).</summary>
-        public void Show(bool timeUp, int coins)
+        public enum Reason { Time, Space, NoMatch }
+
+        /// <summary>Out of time: the hourglass and 60 more seconds. Out of space (no move left) or no match left: the magic
+        /// hat, which deals the shelves again (Play On runs it).</summary>
+        public void Show(Reason reason, int coins)
         {
-            SetTitle(Root + "Top/TitleRoot/InfoText", timeUp ? "Out of Time!" : "Out of Space!");
-            SetSprite(Ego + "Icon/EGOImage", timeUp ? "HourglassIcon256" : "MagicHatIcon256");
-            SetText(Ego + "EGOText", timeUp ? "Get " + ExtraSeconds + " more seconds!" : "Shuffle the shelves with a Magic Hat!");
+            bool time = reason == Reason.Time;
+            SetTitle(Root + "Top/TitleRoot/InfoText", time ? "Out of Time!" : reason == Reason.Space ? "Out of Space!" : "No More Matches!");
+            SetSprite(Ego + "Icon/EGOImage", time ? "HourglassIcon256" : "MagicHatIcon256");
+            SetText(Ego + "EGOText", time ? "Get " + ExtraSeconds + " more seconds!" : "Shuffle the shelves with a Magic Hat!");
             SetText(Root + "Top/CoinsButton/Button/PressDownTransform/Text", coins.ToString());
             SetVisible(true);
         }

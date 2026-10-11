@@ -308,6 +308,61 @@ static class CoreTests
         }
         Check(keepOk, "auto-fill keeps a hand-made front row and completes its types to threes");
 
+        // 16. boosters on a case level after some moves: vacuum takes one set, the magic hat keeps every item and leaves
+        //     ready matches, the painter turns whole sets into aliens
+        var bl = LevelData.FromJson(File.ReadAllText(Path.Combine(args[0], "Medium.json")));
+        bool vacOk = true, hatOk = true, paintOk = true;
+        var brng = new Random(5);
+        var bmoves = new System.Collections.Generic.List<int[]>();
+        for (int game = 0; game < 30; game++)
+        {
+            var bb = Board.FromLevel(bl, game + 1);
+            for (int i = 0; i < 25; i++)
+            {
+                bb.LegalMoves(bmoves);
+                if (bmoves.Count == 0) break;
+                var bmv = bmoves[brng.Next(bmoves.Count)];
+                if (bb.Move(bmv[0], bmv[1], bmv[2], bmv[3]).Won) break;
+            }
+            var v = bb.Clone(); var vr = new MoveResult();
+            if (v.Vacuum(new Random(game), vr))
+                vacOk &= vr.MatchedItems.Count == 3 && vr.MatchedItems.Select(x => x.Type).Distinct().Count() == 1 && v.RemainingItems == bb.RemainingItems - 3;
+            var h = bb.Clone(); var hr = new MoveResult();
+            if (h.Shuffle(new Random(game), hr))
+            {
+                var before = bb.Shelves.SelectMany(q => q.Layers).SelectMany(l => l).Where(x => x != null).Select(x => x.Uid).OrderBy(x => x).ToList();
+                var after = h.Shelves.SelectMany(q => q.Layers).SelectMany(l => l).Where(x => x != null).Select(x => x.Uid).OrderBy(x => x).ToList();
+                hatOk &= hr.Matched || before.SequenceEqual(after);
+                hatOk &= h.HasAnyMove() || h.IsWon;
+            }
+            var pnt = bb.Clone(); var pr = new MoveResult();
+            if (pnt.Paint(new Random(game), pr))
+            {
+                paintOk &= pr.Painted.Count > 0 && pr.Painted.Count <= 9 && pr.Painted.Count % 3 == 0;
+                var counts = pnt.Shelves.SelectMany(q => q.Layers).SelectMany(l => l).Where(x => x != null).GroupBy(x => x.Type);
+                paintOk &= counts.All(grp => grp.Count() % 3 == 0 || grp.Key.StartsWith("pinata"));
+            }
+        }
+        Check(vacOk, "vacuum takes the three copies of one type");
+        Check(hatOk, "magic hat keeps every item and leaves a move");
+        Check(paintOk, "painter turns whole sets into aliens");
+
+        // 17. no match left: one free slot, eight different items on the front rows, nothing can be dug out
+        var nm = new LevelData { name = "nomatch", timeLimit = 60 };
+        for (int k = 0; k < 3; k++) nm.shelves.Add(ShelfData.Create((k - 1) * 3.13f, 0, 3, 2));
+        string[] fronts = { "a", "b", "c", "d", "e", "f", "g", "h", null };
+        string[] backs = { "a", "a", "b", "b", "c", "c", "d", "d", "e" };
+        for (int k = 0; k < 9; k++)
+        {
+            if (fronts[k] != null) { var c = nm.shelves[k / 3].layers[0][k % 3]; c.it = 1; c.iid = "item_" + fronts[k] + "_red"; }
+            var cb = nm.shelves[k / 3].layers[1][k % 3]; cb.it = 1; cb.iid = "item_" + backs[k] + "_red";
+        }
+        var nb = Board.FromLevel(nm);
+        bool noMatch = nb.HasAnyMove() && !nb.MatchPossible();
+        // two more free slots: the first shelf's front fits elsewhere, so its back row (a, a, b) can be dug out
+        var nm2 = nm.Clone(); nm2.shelves[1].layers[0][1].Clear(); nm2.shelves[1].layers[0][2].Clear();
+        Check(noMatch && Board.FromLevel(nm2).MatchPossible(), "no match left is detected (and digging counts as a way out)");
+
         // 15. Problems(): what keeps a level from being published
         var okLevel = LevelData.FromJson(File.ReadAllText(Path.Combine(args[0], "Easy.json")));
         Check(okLevel.Problems().Count == 0, "case level has no problems");

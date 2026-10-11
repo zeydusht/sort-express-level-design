@@ -2,8 +2,8 @@
 //   top:    LevelNumber ("Level N" on the navy / red / purple plate), the Timer (dark track, green ring that runs
 //           down with the time and turns red in the last 30 seconds, cream digits) and the PauseButton
 //   bottom: the four boosters (vacuum, magic hat, painter, freeze) with their count badges, on a wooden plank
-// The boosters are 3D models in the game; their icons stand in for them here. They are not part of this
-// prototype (the case is about level design), so tapping one only tells that.
+// The boosters are 3D models in the game; their icons stand in for them here. Tapping one uses it (SortexGame:
+// UseBooster; the board side is in Core/BoardBoosters.cs); the freezer shows the game's frozen timer and frost.
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -23,6 +23,7 @@ namespace Sortex.Game
 
         static readonly Color Green = new Color(0.157f, 1f, 0.157f, 1f);
         static readonly Color Red = new Color(1f, 0.16f, 0.12f, 1f);
+        static readonly Color Ice = new Color(0.5f, 0.86f, 1f, 1f);
         int shownSeconds = -1;
 
         public LevelHud(Transform parent) : base(parent, "LevelHud", "Level/level", 1000)
@@ -36,6 +37,7 @@ namespace Sortex.Game
             ShowNode(Timer + "TextParent/MinuteText", false);
             ShowNode(Timer + "TextParent/SecondsText", false);
             SetTextBox(Digits, new Vector2(0f, 0f), new Vector2(1.0f, 0.3388f));
+            BuildFreeze();
             SetVisible(false);
         }
 
@@ -60,7 +62,7 @@ namespace Sortex.Game
 
         /// <summary>m:ss in the timer. The green ring around it runs down with the time left (clockwise from the top,
         /// like a clock hand), turns red in the last 30 seconds; the warning glow pulses in the last 10.</summary>
-        public void SetTime(float secondsLeft, float totalSeconds, bool running)
+        public void SetTime(float secondsLeft, float totalSeconds, bool running, bool frozen = false)
         {
             int s = Mathf.Max(0, Mathf.CeilToInt(secondsLeft));
             if (s != shownSeconds)
@@ -69,13 +71,13 @@ namespace Sortex.Game
                 SetText(Digits, (s / 60) + ":" + (s % 60).ToString("00"));
             }
             bool red = secondsLeft <= RedSeconds;
-            bool low = running && secondsLeft <= WarningSeconds;
+            bool low = running && !frozen && secondsLeft <= WarningSeconds;
             float pulse = low ? 0.5f + 0.5f * Mathf.Sin(Time.time * 8f) : 0f;
             var ring = SpriteAt(Timer + "NewTimerSetup/TimerFill");
             if (ring != null)
             {
                 float total = Mathf.Max(totalSeconds, secondsLeft, 1f);
-                SetRingFill(ring, Mathf.Clamp01(secondsLeft / total), red ? Color.Lerp(Red, Green, 0.12f * pulse) : Green);
+                SetRingFill(ring, Mathf.Clamp01(secondsLeft / total), frozen ? Ice : red ? Color.Lerp(Red, Green, 0.12f * pulse) : Green);
             }
             foreach (var side in new[] { "BaseLeft", "BaseRight" })
             {
@@ -177,11 +179,90 @@ namespace Sortex.Game
             return new Vector2(Mathf.Min(w * 0.5f, d), h);                                // top, left half
         }
 
-        /// <summary>The count badges of the four boosters.</summary>
+        /// <summary>The count badges of the four boosters (an empty booster is greyed out).</summary>
         public void SetBoosters(params int[] counts)
         {
             for (int i = 0; i < BoosterButtons.Length && i < counts.Length; i++)
+            {
                 SetText("BoosterContainer/" + BoosterButtons[i] + "/Badge/Counter/Text", counts[i].ToString());
+                var icon = SpriteAt("BoosterContainer/" + BoosterButtons[i] + "/Icon");
+                if (icon != null) icon.color = counts[i] > 0 ? Color.white : new Color(0.55f, 0.55f, 0.6f, 0.8f);
+            }
+        }
+
+        /// <summary>Where a booster stands on screen (the vacuum pulls the items there).</summary>
+        public Vector3 BoosterPosition(int index)
+        {
+            var t = Node("BoosterContainer/" + BoosterButtons[Mathf.Clamp(index, 0, BoosterButtons.Length - 1)]);
+            return t != null ? t.position : Vector3.zero;
+        }
+
+        // ================================================================== freezer
+        // The game's frozen timer (FreezeTimerBackground behind it, the icy FreezeTimerFrame over it) and the frost on the
+        // screen edges (FreezeEffectOverlay, the left half; the right half is the same picture mirrored).
+        SpriteRenderer freezeBack, freezeFrame, frostLeft, frostRight;
+
+        void BuildFreeze()
+        {
+            var setup = Node(Timer + "NewTimerSetup");
+            var ring = SpriteAt(Timer + "NewTimerSetup/TimerFill");
+            if (setup == null || ring == null) return;
+            int behind = ring.sortingOrder;
+            foreach (var n in new[] { "NewTimerSetup/TimerBase/TimerBaseLeft", "NewTimerSetup/TimerBase/TimerBaseRight", "NewTimerSetup/TimerInside" })
+            {
+                var sr = SpriteAt(Timer + n);
+                if (sr != null) behind = Mathf.Min(behind, sr.sortingOrder);
+            }
+            freezeBack = MakeSprite("FreezeTimerBackground", setup, 285, 278f, new Vector2(0.5f, 0.5f), Vector4.zero, behind - 1);
+            if (freezeBack != null) freezeBack.transform.localScale = new Vector3(1.03f, 1.2f, 1f);
+            freezeFrame = MakeSprite("FreezeTimerFrame", setup, 370, 278f, new Vector2(0.5f, 0.5f), Vector4.zero, ring.sortingOrder + 1);
+            if (freezeFrame != null)
+            {
+                freezeFrame.transform.localPosition = new Vector3(0f, -0.006f, 0f);
+                freezeFrame.transform.localScale = new Vector3(1.06f, 1.15f, 1f);
+            }
+            var border = new Vector4(456, 280, 0, 280);
+            frostLeft = MakeSprite("FreezeEffectOverlay", root, 472, 300f, new Vector2(1f, 0.5f), border, 990);
+            frostRight = MakeSprite("FreezeEffectOverlay", root, 472, 300f, new Vector2(1f, 0.5f), border, 990);
+            foreach (var f in new[] { frostLeft, frostRight })
+                if (f != null) f.drawMode = SpriteDrawMode.Sliced;
+            if (frostRight != null) frostRight.flipX = true;
+            SetFreeze(0f, 0.5625f);
+        }
+
+        SpriteRenderer MakeSprite(string key, Transform parent, int sourceWidth, float ppu, Vector2 pivot, Vector4 border, int order)
+        {
+            var tex = Resources.Load<Texture2D>(SortexArt.Root + "Level/" + key);
+            if (tex == null) return null;
+            tex.wrapMode = TextureWrapMode.Clamp;
+            float k = tex.width / (float)sourceWidth;     // Unity may store the PNG resized
+            var go = new GameObject(key);
+            go.transform.SetParent(parent, false);
+            var sr = go.AddComponent<SpriteRenderer>();
+            sr.sprite = Sprite.Create(tex, new Rect(0, 0, tex.width, tex.height), pivot, ppu * k, 0, SpriteMeshType.FullRect, border * k);
+            if (SortexArt.SpriteMaterial != null) sr.sharedMaterial = SortexArt.SpriteMaterial;
+            sr.sortingOrder = order;
+            return sr;
+        }
+
+        /// <summary>How frozen the timer looks (0 = normal, 1 = frozen; in between while it thaws).</summary>
+        public void SetFreeze(float amount, float aspect)
+        {
+            amount = Mathf.Clamp01(amount);
+            var c = new Color(1f, 1f, 1f, amount);
+            foreach (var sr in new[] { freezeBack, freezeFrame, frostLeft, frostRight })
+            {
+                if (sr == null) continue;
+                sr.enabled = amount > 0.001f;
+                sr.color = c;
+            }
+            float refH = ReferenceHeight(aspect);
+            foreach (var f in new[] { frostLeft, frostRight })
+            {
+                if (f == null) continue;
+                f.size = new Vector2(refWidth * 0.5f + 0.02f, refH + 0.1f);
+                f.transform.localPosition = Vector3.zero;
+            }
         }
     }
 }

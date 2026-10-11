@@ -53,6 +53,15 @@ namespace Sortex.Game
         bool endTimeUp;
         const string TimeUpReason = "Time's up!";
         const string StuckReason = "No moves left!";
+        const string NoMatchReason = "No match left!";
+
+        // boosters (LevelHud.BoosterNames order): vacuum, magic hat, painter, freezer
+        public const int StartBoosters = 3;
+        public const float FreezeSeconds = 20f;     // how long the freezer stops the timer
+        readonly int[] boosters = new int[4];
+        float freezeLeft;
+        float freezeLook;                           // 0..1, eases in and out
+        readonly System.Random boosterRng = new System.Random();
         const int Coins = 1000, WinCoins = 20;
 
         // input
@@ -111,8 +120,11 @@ namespace Sortex.Game
             }
             levelHud = new LevelHud(transform);
             levelHud.OnClick("Pause", Pause);
-            foreach (var b in LevelHud.BoosterNames)
-                levelHud.OnClick(b, () => hud.Toast("Boosters are not part of this prototype: the case is the levels.", Color.white));
+            for (int i = 0; i < LevelHud.BoosterNames.Length; i++)
+            {
+                int index = i;
+                levelHud.OnClick(LevelHud.BoosterNames[i], () => UseBooster(index));
+            }
             pauseDialog = new PauseDialog(transform);
             pauseDialog.OnClick("Continue", Resume);
             pauseDialog.OnClick("Close", Resume);
@@ -416,6 +428,8 @@ namespace Sortex.Game
             timeLeft = level.timeLimit;
             timeUsed = 0f;
             timerRunning = false;
+            freezeLeft = 0f;
+            freezeLook = 0f;
             endDelay = -1f;
             held = null;
             selected = dragging = false;
@@ -428,7 +442,8 @@ namespace Sortex.Game
                 // the game's own HUD; the uGUI layer only shows toasts and the result card
                 hud.ShowHome();
                 levelHud.SetLevel(current + 1, level.difficultyTag);
-                levelHud.SetBoosters(3, 3, 3, 3);
+                for (int i = 0; i < boosters.Length; i++) boosters[i] = StartBoosters;
+                levelHud.SetBoosters(boosters);
                 levelHud.SetTime(timeLeft, level.timeLimit, false);
                 levelHud.SetVisible(true);
             }
@@ -469,20 +484,112 @@ namespace Sortex.Game
             }
         }
 
-        /// <summary>Out of Time: 60 more seconds, the level goes on. Out of Space needs a booster the prototype has not.</summary>
+        /// <summary>The last chance, paid with coins: out of time = 60 more seconds; out of space or no match left = the
+        /// magic hat deals the shelves again (it does not use up the player's own magic hats).</summary>
         void PlayOn()
         {
-            if (!endTimeUp)
-            {
-                hud.Toast("Boosters are not part of this prototype: close this to finish the level.", Color.white);
-                return;
-            }
             outOfDialog.SetVisible(false);
             screenFrame = Time.frameCount;
-            timeLeft += OutOfDialog.ExtraSeconds;
-            timerRunning = true;
             endDelay = -1f;
             state = State.Playing;
+            if (endTimeUp)
+            {
+                timeLeft += OutOfDialog.ExtraSeconds;
+                timerRunning = true;
+                return;
+            }
+            timerRunning = timeLeft > 0f;
+            RunBooster(1, false);
+        }
+
+        // ================================================================== boosters
+        void UseBooster(int index)
+        {
+            if (state != State.Playing || paused || endDelay >= 0f || board == null) return;
+            if (boosters[index] <= 0)
+            {
+                hud.Toast("No " + BoosterLabel(index) + " left (the prototype gives " + StartBoosters + " of each per level).", Color.white);
+                return;
+            }
+            if (index == 3)
+            {
+                // freezer: the timer stops; using it again adds another round
+                boosters[index]--;
+                levelHud.SetBoosters(boosters);
+                freezeLeft += FreezeSeconds;
+                if (!timerRunning) timerRunning = true;
+                hud.Toast("Timer frozen for " + Mathf.RoundToInt(FreezeSeconds) + " s", SortexArt.LightBlue);
+                return;
+            }
+            if (RunBooster(index, true))
+            {
+                boosters[index]--;
+                levelHud.SetBoosters(boosters);
+            }
+        }
+
+        static string BoosterLabel(int index)
+        {
+            return index == 0 ? "vacuum" : index == 1 ? "magic hat" : index == 2 ? "painter" : "freezer";
+        }
+
+        /// <summary>Vacuum (0), magic hat (1) or painter (2) on the board, with its effect. False when it had nothing to do.</summary>
+        bool RunBooster(int index, bool fromHud)
+        {
+            if (held != null) CancelHold();
+            var r = new Sortex.Core.MoveResult();
+            bool done;
+            if (index == 0)
+            {
+                done = board.Vacuum(boosterRng, r);
+                if (done) view.FlyAway(r.MatchedItems, levelHud.BoosterPosition(0));
+            }
+            else if (index == 1)
+            {
+                done = board.Shuffle(boosterRng, r);
+                if (done && r.Matched) view.DelayPops(0.5f);
+            }
+            else
+            {
+                done = board.Paint(boosterRng, r);
+                if (done)
+                {
+                    view.PaintEffect(r.Painted);
+                    if (r.Matched) view.DelayPops(0.55f);    // let the aliens show before three of them pop
+                }
+            }
+            if (!done)
+            {
+                hud.Toast(index == 0 ? "Nothing on the front rows to vacuum" : index == 1 ? "Nothing to shuffle" : "Nothing to paint", Color.white);
+                return false;
+            }
+            if (!timerRunning && fromHud) timerRunning = true;
+            view.Sync(true);
+            if (index == 1) view.HatEffect(r.Shuffled);
+            view.PlayResult(r);
+            if (r.Matched && index != 0 && r.MatchedShelf >= 0) view.PlayMatch(r.MatchedShelf);
+            if (r.Unlocked.Count > 0) hud.Toast("Vault unlocked!", SortexArt.Orange);
+            CheckEnd(r);
+            return true;
+        }
+
+        /// <summary>After a move or a booster: won, or stuck (no move left, or no match can be made any more).</summary>
+        void CheckEnd(Sortex.Core.MoveResult r)
+        {
+            if (r.Won)
+            {
+                endWin = true;
+                endReason = "win";
+                endDelay = 0.7f;
+                timerRunning = false;
+            }
+            else if (r.Stuck || !board.MatchPossible())
+            {
+                endWin = false;
+                endReason = r.Stuck ? StuckReason : NoMatchReason;
+                endDelay = 0.7f;
+                timerRunning = false;
+            }
         }
 
         void ShowLose()
@@ -536,6 +643,9 @@ namespace Sortex.Game
                 PlayerPrefs.Save();
             }
             endTimeUp = !win && reason == TimeUpReason;
+            freezeLeft = 0f;
+            freezeLook = 0f;
+            if (levelHud.Ready) levelHud.SetFreeze(0f, Aspect);
             // the game's own dialogs: Level Completed, or the last chance (Out of Space / Out of Time) and then Level Failed
             LevelDialog dialog = win ? (LevelDialog)winDialog : outOfDialog;
             if (!dialog.Ready)
@@ -544,7 +654,7 @@ namespace Sortex.Game
                 return;
             }
             if (win) winDialog.Show(WinCoins, timeUsed);
-            else outOfDialog.Show(endTimeUp, Coins);
+            else outOfDialog.Show(endTimeUp ? OutOfDialog.Reason.Time : reason == NoMatchReason ? OutOfDialog.Reason.NoMatch : OutOfDialog.Reason.Space, Coins);
             dialog.Layout(cam, Aspect);
         }
 
@@ -621,7 +731,8 @@ namespace Sortex.Game
                 if (!freshScreen && !onHud && !paused && state == State.Playing) HandleInput();
                 if (timerRunning && !paused)
                 {
-                    timeLeft -= dt;
+                    if (freezeLeft > 0f) freezeLeft = Mathf.Max(0f, freezeLeft - dt);
+                    else timeLeft -= dt;
                     timeUsed += dt;
                     if (timeLeft <= 0f && endDelay < 0f)
                     {
@@ -636,7 +747,12 @@ namespace Sortex.Game
                 }
                 hud.SetTimer(timeLeft, timerRunning);
                 if (board != null) hud.SetProgress(board.TotalItems - board.RemainingItems, board.TotalItems);
-                if (levelHud.Visible) levelHud.SetTime(timeLeft, level.timeLimit, timerRunning && !paused);
+                if (levelHud.Visible)
+                {
+                    levelHud.SetTime(timeLeft, level.timeLimit, timerRunning && !paused, freezeLeft > 0f);
+                    freezeLook = Mathf.MoveTowards(freezeLook, freezeLeft > 0f ? 1f : 0f, dt * (freezeLeft > 0f ? 4f : 1.5f));
+                    levelHud.SetFreeze(freezeLook, Aspect);
+                }
             }
             if (view != null) view.Tick(dt);
             hud.Tick(dt);
@@ -892,20 +1008,7 @@ namespace Sortex.Game
                 else if (r.Released.Count > 0) hud.Toast("Piñata!", SortexArt.Orange);
                 else if (r.Revealed.Count > 0) hud.Toast("Mystery revealed!", SortexArt.Orange);
             }
-            if (r.Won)
-            {
-                endWin = true;
-                endReason = "win";
-                endDelay = 0.7f;
-                timerRunning = false;
-            }
-            else if (r.Stuck)
-            {
-                endWin = false;
-                endReason = StuckReason;
-                endDelay = 0.7f;
-                timerRunning = false;
-            }
+            CheckEnd(r);
         }
 
         void CancelHold()

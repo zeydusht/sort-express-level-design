@@ -60,6 +60,7 @@ namespace UnityEngine
     }
     public struct Vector4
     {
+        public static Vector4 operator *(Vector4 a, float b) { return a; }
         public float x, y, z, w;
         public Vector4(float x, float y, float z, float w) { this.x = x; this.y = y; this.z = z; this.w = w; }
         public static Vector4 zero { get { return new Vector4(); } }
@@ -224,6 +225,7 @@ namespace UnityEngine
         public Quaternion localRotation, rotation;
         public Transform parent;
         public void SetParent(Transform p, bool w) { }
+        public Vector3 InverseTransformPoint(Vector3 p) { return p; }
         public void Rotate(float x, float y, float z) { }
     }
     public class RectTransform : Transform

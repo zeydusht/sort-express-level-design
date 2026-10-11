@@ -152,11 +152,13 @@ namespace Sortex.Core
         public readonly List<int> FuseOpened = new List<int>();
         public readonly List<int> FerrisTurned = new List<int>();
         public bool IrisToggled;
+        public readonly List<Item> Painted = new List<Item>();      // painter booster: items that became aliens
+        public readonly List<Item> Shuffled = new List<Item>();     // magic hat: items that changed place
         public bool Won;
         public bool Stuck;
     }
 
-    public sealed class Board
+    public sealed partial class Board
     {
         public const float SlotWidth = 3.13f / 3f;   // world units, from Sort Express shelf spacing
         public const float ShelfHeight = 1f;
@@ -614,9 +616,18 @@ namespace Sortex.Core
             r.Matched = true;
             r.MatchedType = type;
             r.MatchedShelf = s.Index;
+            CountMatch(type, r);
+
+            Touch(s, r);
+            foreach (int n in s.Neighbors) Touch(Shelves[n], r);
+            return true;
+        }
+
+        /// <summary>A set of three is gone: counts it, opens locks one step, lights fuse box objectives.</summary>
+        void CountMatch(string type, MoveResult r)
+        {
             Matches++;
             RemainingItems -= 3;
-
             foreach (var other in Shelves)
             {
                 if (other.Locked)
@@ -637,10 +648,6 @@ namespace Sortex.Core
                     if (!other.FuseClosed) r.FuseOpened.Add(other.Index);
                 }
             }
-
-            Touch(s, r);
-            foreach (int n in s.Neighbors) Touch(Shelves[n], r);
-            return true;
         }
 
         /// <summary>A match on or next to a shelf reveals its mystery items.</summary>

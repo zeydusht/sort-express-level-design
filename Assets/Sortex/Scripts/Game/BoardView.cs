@@ -49,7 +49,17 @@ namespace Sortex.Game
             public int Layer;
             public int Shelf = -1;                 // shelf the item stands on (or is flying to)
             public bool Held;                      // picked up by the player: does not ride the conveyor
+            public string ShownType;               // the type its icon shows (the painter changes types)
         }
+
+        /// <summary>An item the vacuum pulls out: flies to the booster and shrinks away.</summary>
+        sealed class Flyer
+        {
+            public ItemView View;
+            public Vector3 From, To;
+            public float Age, Delay;
+        }
+        readonly List<Flyer> flyers = new List<Flyer>();
 
         sealed class ShelfView
         {
@@ -448,6 +458,7 @@ namespace Sortex.Game
             if (SortexArt.SpriteMaterial != null) v.Icon.sharedMaterial = SortexArt.SpriteMaterial;
             v.Icon.sprite = SortexArt.ItemSprite(it);
             v.ShowsMystery = it.Mystery;
+            v.ShownType = it.Type;
             v.Shadow = SortexArt.NewSprite("Shadow", v.Go.transform, SortexArt.Shadow, 19);
             v.Shadow.transform.localPosition = new Vector3(0f, -SortexArt.ItemSize * 0.5f + 0.02f, 0f);
             v.Shadow.transform.localScale = new Vector3(0.62f, 0.8f, 1f);   // slots are half as wide as the level spacing
@@ -514,9 +525,21 @@ namespace Sortex.Game
                             v.Speed = 12f;
                         }
 
+                        if (!v.ShowsMystery && !it.Mystery && v.ShownType != it.Type && it.Kind == ItemKind.Normal)
+                        {
+                            // painted: the item turns into an alien with a green flash
+                            v.ShownType = it.Type;
+                            v.Icon.sprite = SortexArt.Item(it.Type);
+                            if (animate && !hidden)
+                            {
+                                Flash(v.Target, new Color(0.45f, 1f, 0.35f, 0.95f));
+                                v.Go.transform.localScale = Vector3.one * v.TargetScale * 0.4f;
+                            }
+                        }
                         if (v.ShowsMystery && !it.Mystery)
                         {
                             v.ShowsMystery = false;          // revealed: the stone breaks and the item appears
+                            v.ShownType = it.Type;
                             v.Icon.sprite = SortexArt.Item(it.Type);
                             if (animate)
                             {
@@ -720,6 +743,82 @@ namespace Sortex.Game
             fx.Add(new Fx { Sr = puff, Life = 0.35f, StartScale = 0.8f * scale, EndScale = 2.2f * scale });
         }
 
+        // ------------------------------------------------------------------ boosters
+        /// <summary>Vacuum: the taken items fly to the booster button (world position) and shrink away.</summary>
+        public void FlyAway(IList<Item> taken, Vector3 worldTarget)
+        {
+            var to = root.InverseTransformPoint(worldTarget);
+            int n = 0;
+            foreach (var it in taken)
+            {
+                ItemView v;
+                if (!items.TryGetValue(it.Uid, out v)) continue;
+                items.Remove(it.Uid);
+                if (!v.Go.activeSelf) { Object.Destroy(v.Go); continue; }
+                SetOrder(v, 105);
+                v.Shadow.enabled = false;
+                flyers.Add(new Flyer { View = v, From = v.Go.transform.localPosition, To = to, Delay = n++ * 0.07f });
+                Flash(v.Go.transform.localPosition, new Color(0.7f, 0.9f, 1f, 0.8f));
+            }
+        }
+
+        /// <summary>Magic hat: sparkles over the board while the items glide to their new places.</summary>
+        public void HatEffect(IList<Item> moved)
+        {
+            var b = Bounds;
+            for (int i = 0; i < 26; i++)
+            {
+                var sp = SortexArt.NewSprite("HatSparkle", root, SortexArt.Sparkle, 111);
+                sp.transform.localPosition = new Vector3(Random.Range(b.xMin, b.xMax), Random.Range(b.yMin, b.yMax), 0f);
+                sp.color = i % 2 == 0 ? new Color(0.85f, 0.6f, 1f) : new Color(1f, 0.95f, 0.6f);
+                fx.Add(new Fx
+                {
+                    Sr = sp, Velocity = new Vector3(Random.Range(-0.6f, 0.6f), Random.Range(0.3f, 1.2f), 0f),
+                    Life = Random.Range(0.5f, 0.9f), StartScale = Random.Range(0.25f, 0.45f), EndScale = 0f, Spin = Random.Range(-360f, 360f)
+                });
+            }
+            foreach (var it in moved)
+            {
+                ItemView v;
+                if (!items.TryGetValue(it.Uid, out v) || !v.Go.activeSelf) continue;
+                v.Delay = Random.Range(0f, 0.18f);
+                v.Speed = 9f;
+                v.Go.transform.localScale *= 0.7f;
+            }
+        }
+
+        /// <summary>Painter: every painted item turns into an alien with a green flash. Call before Sync: aliens that
+        /// matched straight away are still on screen then, so they pop as aliens.</summary>
+        public void PaintEffect(IList<Item> painted)
+        {
+            foreach (var it in painted)
+            {
+                ItemView v;
+                if (!items.TryGetValue(it.Uid, out v)) continue;
+                v.ShownType = it.Type;
+                v.Icon.sprite = SortexArt.Item(it.Type);
+                if (!v.Go.activeSelf) continue;
+                var at = v.Go.transform.localPosition;
+                Burst(at, new Color(0.4f, 1f, 0.35f), 6);
+                Flash(at, new Color(0.45f, 1f, 0.35f, 0.95f));
+                v.Go.transform.localScale = Vector3.one * v.TargetScale * 0.4f;
+            }
+        }
+
+        /// <summary>The next Sync keeps items that disappear (matches made by a booster) for this long before they pop.</summary>
+        public void DelayPops(float seconds)
+        {
+            landPop = Mathf.Max(landPop, seconds);
+        }
+
+        void Flash(Vector3 at, Color color)
+        {
+            var glow = SortexArt.NewSprite("Flash", root, SortexArt.Glow, 110);
+            glow.transform.localPosition = at;
+            glow.color = color;
+            fx.Add(new Fx { Sr = glow, Life = 0.35f, StartScale = 0.5f, EndScale = 1.6f });
+        }
+
         public void PlayMatch(int shelf)
         {
             if (matchDelay > 0f)
@@ -845,6 +944,23 @@ namespace Sortex.Game
                     var due = new List<int>(queuedMatches);
                     queuedMatches.Clear();
                     foreach (int si in due) PlayMatch(si);
+                }
+            }
+            for (int i = flyers.Count - 1; i >= 0; i--)
+            {
+                var f = flyers[i];
+                if (f.Delay > 0f) { f.Delay -= dt; continue; }
+                f.Age += dt;
+                float t = Mathf.Clamp01(f.Age / 0.45f);
+                float e = t * t;
+                var tr = f.View.Go.transform;
+                tr.localPosition = Vector3.Lerp(f.From, f.To, e) + new Vector3(0f, Mathf.Sin(t * Mathf.PI) * 0.6f, 0f);
+                tr.localScale = Vector3.one * Mathf.Lerp(1f, 0.25f, e);
+                tr.Rotate(0f, 0f, 720f * dt);
+                if (t >= 1f)
+                {
+                    Object.Destroy(f.View.Go);
+                    flyers.RemoveAt(i);
                 }
             }
             for (int i = dying.Count - 1; i >= 0; i--)

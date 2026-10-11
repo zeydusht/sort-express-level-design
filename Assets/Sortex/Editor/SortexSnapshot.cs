@@ -6,7 +6,8 @@
 //     "width height level difficultyTag"              the home screen
 //     "width height level difficultyTag level:Easy"   Levels/Easy.json on the board with the level HUD
 //     "width height level difficultyTag pause:Easy"   the same with the pause dialog open
-//     time:Easy (25 s left: the red ring), win:Easy, space:Easy, timeup:Easy, lose:Easy (the level end dialogs)
+//     time:Easy (25 s left: the red ring), win:Easy, space:Easy, timeup:Easy, nomatch:Easy, lose:Easy (the level end dialogs)
+//     vacuum:Easy, hat:Easy, paint:Easy (the board after that booster), freeze:Easy (the frozen timer)
 //     "width height level difficultyTag editorhud"     the HUD picture of the Level Editor's game-screen template
 using System;
 using System.IO;
@@ -138,12 +139,19 @@ namespace Sortex.EditorTools
             if (ta == null) throw new Exception("Resources/Sortex/Levels/" + file + ".json is missing");
             var lv = Sortex.Core.LevelData.FromJson(ta.text);
             var board = Sortex.Core.Board.FromLevel(lv);
+            // a booster used on the fresh board: the picture shows the board after it
+            var used = new Sortex.Core.MoveResult();
+            var rng = new System.Random(3);
+            if (mode == "vacuum") board.Vacuum(rng, used);
+            else if (mode == "hat") board.Shuffle(rng, used);
+            else if (mode == "paint") board.Paint(rng, used);
             var view = new BoardView(holder, board, lv.difficultyTag);
             var hud = new LevelHud(holder);
             if (!hud.Ready) throw new Exception("Resources/Sortex/Level/level.json is missing");
             hud.SetLevel(number, tag);
             hud.SetBoosters(3, 3, 3, 3);
-            hud.SetTime(mode == "time" ? 25f : lv.timeLimit, lv.timeLimit, false);
+            hud.SetTime(mode == "time" ? 25f : lv.timeLimit, lv.timeLimit, false, mode == "freeze");
+            hud.SetFreeze(mode == "freeze" ? 1f : 0f, aspect);
             hud.SetVisible(true);
             float size;
             Vector2 center;
@@ -171,10 +179,16 @@ namespace Sortex.EditorTools
                 win.Show(20, 84f);
                 end = win;
             }
+            else if (mode == "nomatch")
+            {
+                var outOf = new OutOfDialog(holder);
+                outOf.Show(OutOfDialog.Reason.NoMatch, 1000);
+                end = outOf;
+            }
             else if (mode == "space" || mode == "timeup")
             {
                 var outOf = new OutOfDialog(holder);
-                outOf.Show(mode == "timeup", 1000);
+                outOf.Show(mode == "timeup" ? OutOfDialog.Reason.Time : OutOfDialog.Reason.Space, 1000);
                 end = outOf;
             }
             else if (mode == "lose")

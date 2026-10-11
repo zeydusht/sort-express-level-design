@@ -87,6 +87,7 @@ namespace Sortex.Game
         public static Sprite Item(string iid)
         {
             // item icons are 128 px; the visible object fills ~90% of the square
+            if (iid == Sortex.Core.Board.AlienType) return Get("Art/painter_alien", 128f / ItemSize);   // the painter's alien
             var s = Get("Items/" + iid, 128f / ItemSize);
             return s != null ? s : Get("Art/ui_circle", 128f / (ItemSize * 0.8f));
         }
