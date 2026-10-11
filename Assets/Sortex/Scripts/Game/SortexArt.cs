@@ -9,7 +9,7 @@ namespace Sortex.Game
     public static class SortexArt
     {
         public const string Root = "Sortex/";
-        public const float ItemSize = 0.84f;        // world units an item icon occupies (slot = 1.043)
+        public const float ItemSize = 0.92f;        // world units an item icon occupies (slot = 0.52 on screen; icons fill ~94% of it, like the game)
 
         static readonly Dictionary<string, Sprite> cache = new Dictionary<string, Sprite>();
         static Material spriteMaterial;

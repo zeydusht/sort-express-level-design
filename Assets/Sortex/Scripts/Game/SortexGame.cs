@@ -31,6 +31,9 @@ namespace Sortex.Game
         BoardView view;
         SortexHud hud;
         MainMenuView home;      // the game's own home screen (MainScene.prefab), the first thing a visitor sees
+        LevelHud levelHud;      // the game's level HUD (LevelSceneUI.prefab): level number, timer, pause, boosters
+        PauseDialog pauseDialog;// the game's pause dialog (LevelPauseDialog.prefab)
+        bool paused;
         bool levelList;         // the case level list (opened from the Packs tab) instead of the home screen
         int screenFrame = -1;   // frame a screen was opened in: the click that opened it must not also press what is under it
         Camera cam;
@@ -98,6 +101,19 @@ namespace Sortex.Game
             {
                 string label = other;
                 home.OnClick(other, () => hud.Toast(label + " is not part of this prototype. Packs lists every level.", Color.white));
+            }
+            levelHud = new LevelHud(transform);
+            levelHud.OnClick("Pause", Pause);
+            foreach (var b in LevelHud.BoosterNames)
+                levelHud.OnClick(b, () => hud.Toast("Boosters are not part of this prototype: the case is the levels.", Color.white));
+            pauseDialog = new PauseDialog(transform);
+            pauseDialog.OnClick("Continue", Resume);
+            pauseDialog.OnClick("Close", Resume);
+            pauseDialog.OnClick("Quit", () => { Resume(); ShowMenu(); });
+            foreach (var t in PauseDialog.Toggles)
+            {
+                string name = t;
+                pauseDialog.OnClick(name, () => pauseDialog.Toggle(name));
             }
 #if UNITY_EDITOR
             // a level sent from Sortex > Level Editor (▶ Play level)
@@ -219,6 +235,7 @@ namespace Sortex.Game
             state = State.Menu;
             levelList = false;
             screenFrame = Time.frameCount;
+            HideLevelScreens();
             ClearBoard();
             hud.ShowHome();
             int next = NextLevel;
@@ -233,6 +250,7 @@ namespace Sortex.Game
             state = State.Menu;
             levelList = true;
             home.SetVisible(false);
+            HideLevelScreens();
             ClearBoard();
             var cards = new List<LevelCardInfo>();
             for (int i = 0; i < Mathf.Min(levels.Count, menuLevels); i++)
@@ -384,13 +402,49 @@ namespace Sortex.Game
             held = null;
             selected = dragging = false;
             state = State.Playing;
-            hud.ShowGame(level.name, TierLabel(level).Replace(" tier", "").Replace(" (ld 0)", "").Replace(" (ld 10)", "").Replace(" (ld 20)", ""),
-                SortexArt.ThemeColor(level.difficultyTag), HintFor(board), ShowMenu, () => StartLevel(current));
+            paused = false;
+            pauseDialog.SetVisible(false);
+            if (levelHud.Ready)
+            {
+                // the game's own HUD; the uGUI layer only shows toasts and the result card
+                hud.ShowHome();
+                levelHud.SetLevel(current + 1, level.difficultyTag);
+                levelHud.SetBoosters(3, 3, 3, 3);
+                levelHud.SetTime(timeLeft, false);
+                levelHud.SetVisible(true);
+            }
+            else
+                hud.ShowGame(level.name, TierLabel(level).Replace(" tier", "").Replace(" (ld 0)", "").Replace(" (ld 10)", "").Replace(" (ld 20)", ""),
+                    SortexArt.ThemeColor(level.difficultyTag), HintFor(board), ShowMenu, () => StartLevel(current));
             hud.SetTimer(timeLeft, false);
             hud.SetProgress(0, board.TotalItems);
             hud.Toast("Timer starts with your first move", Color.white);
             lastScreen = Vector2Int.zero;
             FitCamera();
+        }
+
+        void HideLevelScreens()
+        {
+            paused = false;
+            levelHud.SetVisible(false);
+            pauseDialog.SetVisible(false);
+        }
+
+        void Pause()
+        {
+            if (state != State.Playing || paused || !pauseDialog.Ready) return;
+            if (held != null) CancelHold();
+            paused = true;
+            screenFrame = Time.frameCount;
+            pauseDialog.SetVisible(true);
+            pauseDialog.Layout(cam, Mathf.Max(0.3f, (float)Screen.width / Mathf.Max(1, Screen.height)));
+        }
+
+        void Resume()
+        {
+            paused = false;
+            screenFrame = Time.frameCount;
+            pauseDialog.SetVisible(false);
         }
 
         void ClearBoard()
@@ -444,10 +498,29 @@ namespace Sortex.Game
                     home.Pointer(p.press.wasPressedThisFrame, p.press.isPressed, p.press.wasReleasedThisFrame, wp, dt);
                 }
             }
-            if (state == State.Playing)
+            if (state == State.Playing && paused)
             {
-                if (!freshScreen) HandleInput();
-                if (timerRunning)
+                var p = Pointer.current;
+                if (p != null && !freshScreen)
+                {
+                    Vector2 sp = p.position.ReadValue();
+                    Vector3 wp = cam.ScreenToWorldPoint(new Vector3(sp.x, sp.y, 10f));
+                    pauseDialog.Pointer(p.press.wasPressedThisFrame, p.press.isPressed, p.press.wasReleasedThisFrame, wp, dt);
+                }
+            }
+            else if (state == State.Playing)
+            {
+                bool onHud = false;
+                var p = Pointer.current;
+                if (p != null && levelHud.Visible && !freshScreen)
+                {
+                    Vector2 sp = p.position.ReadValue();
+                    Vector3 wp = cam.ScreenToWorldPoint(new Vector3(sp.x, sp.y, 10f));
+                    // a press on the pause button or a booster belongs to the HUD, not to the shelves under it
+                    onHud = levelHud.Pointer(p.press.wasPressedThisFrame, p.press.isPressed, p.press.wasReleasedThisFrame, wp, dt);
+                }
+                if (!freshScreen && !onHud && !paused && state == State.Playing) HandleInput();
+                if (timerRunning && !paused)
                 {
                     timeLeft -= dt;
                     timeUsed += dt;
@@ -463,10 +536,24 @@ namespace Sortex.Game
                     if (endDelay < 0f) Finish(endWin, endReason);
                 }
                 hud.SetTimer(timeLeft, timerRunning);
-                hud.SetProgress(board.TotalItems - board.RemainingItems, board.TotalItems);
+                if (board != null) hud.SetProgress(board.TotalItems - board.RemainingItems, board.TotalItems);
+                if (levelHud.Visible) levelHud.SetTime(timeLeft, timerRunning && !paused);
             }
             if (view != null) view.Tick(dt);
             hud.Tick(dt);
+        }
+
+        /// <summary>Camera half height and centre for a board between the game's top bar and boosters: at least the
+        /// reference screen (4.6166 wide, refH tall), zoomed out until the shelves fit, filling the width.</summary>
+        public static void FitBoard(Rect b, float aspect, float refH, out float size, out Vector2 center)
+        {
+            float avail = Mathf.Max(0.3f, 1f - (LevelHud.BoardTop + LevelHud.BoardBottom) / refH);
+            const float marginX = 0.2f, marginY = 0.3f;   // shelf rims and items standing out of the top row
+            float sizeW = (b.width + 2f * marginX) / (2f * aspect);
+            float sizeH = (b.height + 2f * marginY) / (2f * avail);
+            size = Mathf.Max(refH * 0.5f, Mathf.Max(sizeW, sizeH));
+            float centerFrac = LevelHud.BoardBottom / refH + avail * 0.5f;
+            center = new Vector2(b.center.x, b.center.y + (0.5f - centerFrac) * 2f * size);
         }
 
         void FitCamera()
@@ -481,7 +568,13 @@ namespace Sortex.Game
             float aspect = Mathf.Max(0.3f, (float)Screen.width / Mathf.Max(1, Screen.height));
             float size;
             Vector2 center;
-            if (view != null)
+            if (view != null && levelHud.Ready && !levelList)
+            {
+                // like the game: the camera shows at least its reference screen (4.6166 wide) and zooms out until the
+                // shelves fit between the top bar and the boosters, filling the width with a thin margin
+                FitBoard(view.Bounds, aspect, levelHud.ReferenceHeight(aspect), out size, out center);
+            }
+            else if (view != null)
             {
                 float topFrac = Mathf.Clamp01(hud.TopPixels / Mathf.Max(1, Screen.height));
                 float botFrac = Mathf.Clamp01(hud.BottomPixels / Mathf.Max(1, Screen.height));
@@ -513,6 +606,8 @@ namespace Sortex.Game
             background.transform.position = new Vector3(center.x, center.y, 0f);
             shade.transform.position = new Vector3(center.x, center.y, 0f);
             shade.transform.localScale = new Vector3(w * 1.05f, h * 1.05f, 1f);
+            if (levelHud.Visible) levelHud.Follow(cam, aspect);
+            if (pauseDialog.Visible) pauseDialog.Layout(cam, aspect);
         }
 
         // ================================================================== input

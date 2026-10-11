@@ -1,15 +1,19 @@
-"""Rebuilds Sort Express' home screen from the game's own MainScene.prefab (AssetRipper export).
+"""Rebuilds Sort Express screens from the game's own prefabs (AssetRipper export): the home screen, the in-level
+HUD and the pause dialog.
 
-    python3 tools/make_main_menu.py <export Assets folder> <SortexIndex.tsv> <out Resources/Sortex/Menu> [preview.png]
+    python3 tools/make_main_menu.py <export Assets folder> <SortexIndex.tsv> <out folder> [preview.png] [--screen=menu|level|pause]
 
 The index (guid -> file) comes from Unity: Sortex > Tools > Index Asset Export (Editor/SortexExportIndex.cs).
 
-Reads the HomePage (background, LoadLevelButton, TopUI) and the NavigationBar of the prefab: every GameObject's
-local position / scale / rotation, its SpriteRenderer (sprite, sliced size, flip, colour, sorting order) and its
-SortingGroup, plus the TextMeshPro text boxes and their materials (face / outline colours). Writes
-  menu.json        the node tree per screen part + sprite table + text styles (read by Scripts/Game/MainMenuView.cs)
-  <Sprite>.png     every sprite cut out of its atlas
-and optionally renders a preview of a 1080 x 1920 phone screen with the same sorting rules as Unity.
+  menu   MainScene.prefab: HomePage (background, LoadLevelButton, TopUI) + NavigationBar  -> Resources/Sortex/Menu/menu.json
+  level  LevelSceneUI.prefab: TopUI (level number, timer, pause) + BoosterContainer      -> Resources/Sortex/Level/level.json
+  pause  LevelPauseDialog.prefab                                                          -> Resources/Sortex/Level/pause.json
+
+For every GameObject it keeps the local position / scale / rotation, its SpriteRenderer (sprite, sliced size, flip,
+colour, sorting order) and its SortingGroup, plus the TextMeshPro text boxes and their materials (face / outline
+colours). Writes the node tree per screen part + sprite table + text styles (read by Scripts/Game/PrefabScreen.cs)
+and every sprite cut out of its atlas, and optionally renders a 1080 x 1920 preview with Unity's sorting rules.
+The boosters are 3D models in the game; their 256 px icons (VacuumIcon256...) stand in for them here.
 """
 import json
 import math
@@ -24,15 +28,45 @@ from unity_yaml import load, ref  # noqa: E402
 
 REF_WIDTH = 4.616601        # the game's screen width in world units (its menu pages sit exactly this far apart)
 REF_HEIGHT = 10.0           # reference screen height (Foreground collider: 4.6166 x 10)
-PARTS = {
-    # name: (path in the prefab, anchor, offset from that screen edge in the reference screen)
-    'background': ('MainScene/MainSceneUIContainer/MainMenuContentContainer/HomePage/MainSceneBackground', 'center', 0.0),
-    'levelButton': ('MainScene/MainSceneUIContainer/MainMenuContentContainer/HomePage/LoadLevelButton', 'bottom', None),
-    'topUI': ('MainScene/MainSceneUIContainer/MainMenuContentContainer/HomePage/TopUI', 'top', None),
-    'navigation': ('MainScene/MainSceneUIContainer/NavigationBar', 'bottom', None),
+BOOSTERS = [('VacuumButton', 'VacuumIcon256'), ('ShuffleButton', 'MagicHatIcon256'),
+            ('PainterButton', 'PainterIcon256'), ('FreezeButton', 'FreezeIcon256')]
+SCREENS = {
+    'menu': dict(
+        prefab='MainScene.prefab', json='menu.json', jpg={'MainSceneBackground'},
+        source='Sort Express MainScene.prefab (HomePage + NavigationBar)',
+        # name: (path in the prefab, anchor: the screen edge the part keeps its distance to)
+        parts={
+            'background': ('MainScene/MainSceneUIContainer/MainMenuContentContainer/HomePage/MainSceneBackground', 'center'),
+            'levelButton': ('MainScene/MainSceneUIContainer/MainMenuContentContainer/HomePage/LoadLevelButton', 'bottom'),
+            'topUI': ('MainScene/MainSceneUIContainer/MainMenuContentContainer/HomePage/TopUI', 'top'),
+            'navigation': ('MainScene/MainSceneUIContainer/NavigationBar', 'bottom'),
+        },
+        container='MainScene/MainSceneUIContainer/MainMenuContentContainer',
+        extra=['PlayButtonHardLevel', 'PlayButtonHardLevelBackground', 'PlayButtonSuperHardLevel', 'PlayButtonSuperHardLevelBackground'],
+        skip={'LiveOpsContainer', 'LoadLevelButtonUpdateVisualParticle', 'Particles', 'NotificationBadge', 'Foreground'},
+        inject={}),
+    'level': dict(
+        prefab='LevelSceneUI.prefab', json='level.json', jpg=set(),
+        source='Sort Express LevelSceneUI.prefab (TopUI + BoosterContainer)',
+        parts={
+            'topUI': ('LevelSceneUI/TopUI', 'top'),
+            'boosters': ('LevelSceneUI/BoosterContainer', 'bottom'),
+        },
+        container=None,
+        extra=['LevelNumberBaseHard', 'LevelNumberBaseSuperHard'] + [icon for _, icon in BOOSTERS],
+        skip={'CollectibleCounterController', 'DebugButton', 'BoosterVacuum', 'BoosterShuffle', 'BoosterPainter',
+              'BoosterFreezer', 'FreezeTimerBackground', 'FreezeTimerFrame', 'TimerFreezeFill'},
+        # the 3D booster models -> their icons, behind the count badge
+        inject={'boosters': [('BoosterContainer/' + button, dict(name='Icon', pos=[0.0, 0.0, 0.0], scale=[1.05, 1.05],
+                                                                    sprite=dict(key=icon, layer=0, order=-1)))
+                             for button, icon in BOOSTERS]}),
+    'pause': dict(
+        prefab='LevelPauseDialog.prefab', json='pause.json', jpg=set(),
+        source='Sort Express LevelPauseDialog.prefab',
+        parts={'dialog': ('LevelPauseDialog', 'center')},
+        container=None, extra=[], skip={'Particles'}, inject={}),
 }
-EXTRA_SPRITES = ['PlayButtonHardLevel', 'PlayButtonHardLevelBackground', 'PlayButtonSuperHardLevel', 'PlayButtonSuperHardLevelBackground']
-SKIP = {'LiveOpsContainer', 'LoadLevelButtonUpdateVisualParticle', 'Particles', 'NotificationBadge', 'Foreground'}
+SKIP = set()
 
 
 def num(v, d=0.0):
@@ -167,23 +201,47 @@ def read_material(path):
                 underlayOffset=[flt('_UnderlayOffsetX'), flt('_UnderlayOffsetY')], dilate=flt('_FaceDilate'))
 
 
+def crop_sprite(export, index, atlases, info):
+    tex_path = os.path.join(export, index[info['texture']])
+    if tex_path not in atlases:
+        atlases[tex_path] = Image.open(tex_path).convert('RGBA')
+    atlas = atlases[tex_path]
+    x, y, w, h = info['textureRect']
+    top = atlas.height - (y + h)
+    if info['settings'] >> 2 & 15:
+        raise SystemExit(info['name'] + ': rotated atlas packing is not supported')
+    return atlas.crop((int(round(x)), int(round(top)), int(round(x + w)), int(round(top + h))))
+
+
 def main():
-    export, index_file, out_dir = sys.argv[1:4]
-    preview = sys.argv[4] if len(sys.argv) > 4 else None
+    global SKIP
+    args = [a for a in sys.argv[1:] if not a.startswith('--')]
+    screen = next((a.split('=', 1)[1] for a in sys.argv[1:] if a.startswith('--screen=')), 'menu')
+    cfg = SCREENS[screen]
+    SKIP = cfg['skip']
+    export, index_file, out_dir = args[0:3]
+    preview = args[3] if len(args) > 3 else None
     index = {}
     for line in open(index_file, encoding='utf-8'):
         guid, rel, _ = line.rstrip('\n').split('\t')
         index[guid] = rel
-    prefab = Prefab(os.path.join(export, 'GameObject', 'MainScene.prefab'))
+    prefab = Prefab(os.path.join(export, 'GameObject', cfg['prefab']))
 
     parts = {}
-    for key, (path, anchor, _) in PARTS.items():
+    for key, (path, anchor) in cfg['parts'].items():
         parts[key] = dict(anchor=anchor, nodes=prefab.nodes(prefab.find(path)))
-        # the HomePage parts share the sorting group of MainMenuContentContainer (the navigation bar draws above it)
-        container = 'MainScene/MainSceneUIContainer/MainMenuContentContainer'
-        if path.startswith(container + '/'):
+        # parts inside a shared sorting group (MainMenuContentContainer) keep it; the navigation bar draws above it
+        container = cfg.get('container')
+        if container and path.startswith(container + '/'):
             group = prefab.nodes(prefab.find(container))[0].get('group')
-            parts[key]['container'] = dict(name='MainMenuContentContainer', group=group)
+            parts[key]['container'] = dict(name=container.split('/')[-1], group=group)
+        for parent_path, node in cfg['inject'].get(key, []):
+            names = paths(parts[key]['nodes'])
+            parent = names.index(parent_path)
+            n = dict(name=node['name'], parent=parent, active=True, pos=list(node['pos']), scale=list(node['scale']), rot=0.0)
+            n['sprite'] = dict(key=node['sprite']['key'], color=[1, 1, 1, 1], flipX=False, flipY=False, drawMode=0,
+                               size=[1.0, 1.0], layer=node['sprite']['layer'], order=node['sprite']['order'], enabled=True)
+            parts[key]['nodes'].append(n)
 
     # anchors: distance of each part root from the screen edge it follows, in the 4.6166 x 10 reference screen
     for key, part in parts.items():
@@ -197,29 +255,23 @@ def main():
 
     os.makedirs(out_dir, exist_ok=True)
     sprites, styles, atlases = {}, {}, {}
+
+    def keep(name, info, img):
+        jpg = name in cfg['jpg']
+        if jpg:
+            img.convert('RGB').save(os.path.join(out_dir, name + '.jpg'), quality=90)
+        else:
+            img.save(os.path.join(out_dir, name + '.png'))
+        sprites[name] = dict(ppu=info['ppu'], pivot=info['pivot'], border=info['border'], width=img.width, height=img.height, jpg=jpg)
+
     for part in parts.values():
         for n in part['nodes']:
             s = n.get('sprite')
-            if s and s['guid'] in index:
+            if s and s.get('guid') in index:
                 info = read_sprite(os.path.join(export, index[s['guid']]))
                 s['key'] = info['name']
                 if info['name'] not in sprites:
-                    tex_path = os.path.join(export, index[info['texture']])
-                    if tex_path not in atlases:
-                        atlases[tex_path] = Image.open(tex_path).convert('RGBA')
-                    atlas = atlases[tex_path]
-                    x, y, w, h = info['textureRect']
-                    top = atlas.height - (y + h)
-                    img = atlas.crop((int(round(x)), int(round(top)), int(round(x + w)), int(round(top + h))))
-                    if info['settings'] >> 2 & 15:
-                        raise SystemExit(info['name'] + ': rotated atlas packing is not supported')
-                    if info['name'] == 'MainSceneBackground':
-                        img.convert('RGB').save(os.path.join(out_dir, info['name'] + '.jpg'), quality=90)
-                    else:
-                        img.save(os.path.join(out_dir, info['name'] + '.png'))
-                    sprites[info['name']] = dict(ppu=info['ppu'], pivot=info['pivot'], border=info['border'],
-                                                 width=img.width, height=img.height,
-                                                 jpg=info['name'] == 'MainSceneBackground')
+                    keep(info['name'], info, crop_sprite(export, index, atlases, info))
             t = n.get('text')
             if t:
                 mat = t.pop('material')
@@ -229,43 +281,50 @@ def main():
                     styles[t['style']] = m
                 else:
                     t['style'] = 'Default'
-    # variants the game swaps in at runtime: the play button of Hard and Super Hard levels
+    # sprites the game swaps in at runtime (Hard / Super Hard variants) and the booster icons
     by_name = {rel[len('Sprite/'):-len('.asset')]: rel for rel in index.values() if rel.startswith('Sprite/') and rel.endswith('.asset')}
-    for name in EXTRA_SPRITES:
+    for name in cfg['extra']:
         if name in sprites or name not in by_name:
+            if name not in by_name:
+                print('missing sprite', name)
             continue
         info = read_sprite(os.path.join(export, by_name[name]))
-        tex_path = os.path.join(export, index[info['texture']])
-        if tex_path not in atlases:
-            atlases[tex_path] = Image.open(tex_path).convert('RGBA')
-        atlas = atlases[tex_path]
-        x, y, w, h = info['textureRect']
-        top = atlas.height - (y + h)
-        img = atlas.crop((int(round(x)), int(round(top)), int(round(x + w)), int(round(top + h))))
-        img.save(os.path.join(out_dir, name + '.png'))
-        sprites[name] = dict(ppu=info['ppu'], pivot=info['pivot'], border=info['border'], width=img.width, height=img.height, jpg=False)
+        keep(name, info, crop_sprite(export, index, atlases, info))
     styles.setdefault('Default', dict(name='Default', face=[1, 1, 1, 1], outline=[0.0627, 0.2350, 0.6706, 1], outlineWidth=0.2,
                                       underlay=None, underlayOffset=[0, 0], dilate=0))
     for part in parts.values():
         for n in part['nodes']:
             if 'sprite' in n:
                 n['sprite'].pop('guid', None)
-    data = dict(source='Sort Express MainScene.prefab (HomePage + NavigationBar)', refWidth=REF_WIDTH, refHeight=REF_HEIGHT,
+    if screen == 'level':
+        level_extras(out_dir, sprites, parts)
+    data = dict(source=cfg['source'], refWidth=REF_WIDTH, refHeight=REF_HEIGHT,
                 font='Bango Pro', parts=parts, sprites=sprites, styles=styles)
-    json.dump(data, open(os.path.join(out_dir, 'menu.json'), 'w'), indent=1)
+    json.dump(data, open(os.path.join(out_dir, cfg['json']), 'w'), indent=1)
     print(len(sprites), 'sprites,', len(styles), 'text styles,', sum(len(p['nodes']) for p in parts.values()), 'nodes')
     if preview:
-        render(data, out_dir, os.path.join(export, 'Font', 'Bango Pro.otf'), preview)
+        render(data, out_dir, os.path.join(export, 'Font', 'Bango Pro.otf'), preview, screen)
 
 
 # ====================================================================== preview (same rules as MainMenuView.cs)
 TEXTS = {
-    'LoadLevelButton/Root/Button/PressDownTransform/DefaultText/ShadowText': 'Level 1',
-    'LoadLevelButton/Root/Button/PressDownTransform/DefaultText/BaseText': 'Level 1',
-    'TopUI/LivesButton/Button/PressDownTransform/LifeTimerContainer/Icon/IconText': '5',
-    'TopUI/LivesButton/Button/PressDownTransform/LifeTimerContainer/FullText': 'Full',
-    'TopUI/CoinsButton/Button/PressDownTransform/Text': '1000',
-    'NavigationBar/Root/HomeButton/Text': 'Home',
+    'menu': {
+        'LoadLevelButton/Root/Button/PressDownTransform/DefaultText/ShadowText': 'Level 1',
+        'LoadLevelButton/Root/Button/PressDownTransform/DefaultText/BaseText': 'Level 1',
+        'TopUI/LivesButton/Button/PressDownTransform/LifeTimerContainer/Icon/IconText': '5',
+        'TopUI/LivesButton/Button/PressDownTransform/LifeTimerContainer/FullText': 'Full',
+        'TopUI/CoinsButton/Button/PressDownTransform/Text': '1000',
+        'NavigationBar/Root/HomeButton/Text': 'Home',
+    },
+    'level': dict([
+        ('TopUI/LevelNumber/Root/Text', 'Level 263'),
+        ('TopUI/Timer/TextParent/:', '2:30')]
+        + [('BoosterContainer/%s/Badge/Counter/Text' % b, n) for (b, _), n in zip(BOOSTERS, ('14', '13', '8', '12'))]),
+    'pause': {
+        'LevelPauseDialog/Root/Ribbon/Text': 'Paused',
+        'LevelPauseDialog/Root/ContinueButton/Button/PressDownTransform/BaseText': 'Continue',
+        'LevelPauseDialog/Root/QuitButton/Button/PressDownTransform/BaseText': 'Quit',
+    },
 }
 HIDDEN = {'TopUI/LivesButton/Button/PressDownTransform/LifeTimerContainer/TimerText'}
 
@@ -281,10 +340,11 @@ def paths(nodes):
     return out
 
 
-def render(data, out_dir, font_path, out_file, width_px=1080, height_px=1920):
+def render(data, out_dir, font_path, out_file, screen='menu', width_px=1080, height_px=1920):
+    texts = TEXTS[screen]
     ppu_screen = width_px / data['refWidth']
     half_h = height_px / ppu_screen / 2
-    canvas = Image.new('RGBA', (width_px, height_px), (40, 60, 120, 255))
+    canvas = Image.new('RGBA', (width_px, height_px), (40, 60, 120, 255) if screen == 'menu' else (42, 75, 168, 255))
     items = []   # (sort key, draw callable)
     seq = [0]
 
@@ -309,12 +369,12 @@ def render(data, out_dir, font_path, out_file, width_px=1080, height_px=1920):
                       sx * n['scale'][0], sy * n['scale'][1], r + n['rot'])
                 visible[i] = visible[n['parent']] and n['active']
                 gpath = groups[n['parent']]
+            # one sequence number in hierarchy order for groups, sprites and texts (like PrefabScreen.cs)
             if 'group' in n:
                 gpath = gpath + ((n['group']['layer'], n['group']['order'], seq[0]),)
                 seq[0] += 1
             groups[i] = gpath
             world[i] = pm
-        for i, n in enumerate(nodes):
             if not visible[i] or names[i] in HIDDEN:
                 continue
             x, y, sx, sy, r = world[i]
@@ -323,7 +383,7 @@ def render(data, out_dir, font_path, out_file, width_px=1080, height_px=1920):
                 k = groups[i] + ((s['layer'], s['order'], seq[0]),)
                 seq[0] += 1
                 items.append((k, ('sprite', s, x, y, sx, sy)))
-            if 'text' in n and names[i] in TEXTS:
+            if 'text' in n and names[i] in texts:
                 t = dict(n['text'])
                 if n['name'] == 'ShadowText':
                     # like MainMenuView.cs: the shadow takes the darkened outline colour of its BaseText
@@ -333,7 +393,7 @@ def render(data, out_dir, font_path, out_file, width_px=1080, height_px=1920):
                     t['styleData'] = dict(face=dark, outline=dark, outlineWidth=bs.get('outlineWidth', 0.2), underlay=None)
                 k = groups[i] + ((t['layer'], t['order'], seq[0]),)
                 seq[0] += 1
-                items.append((k, ('text', t, x, y, sx, sy, TEXTS[names[i]])))
+                items.append((k, ('text', t, x, y, sx, sy, texts[names[i]])))
 
     def to_px(wx, wy):
         return width_px / 2 + wx * ppu_screen, height_px / 2 - wy * ppu_screen
@@ -438,6 +498,94 @@ def draw_text(canvas, text, style, cx, cy, w, h, font):
     d.text((ox, oy), text, font=f, fill=rgba(style['face']), stroke_width=stroke,
            stroke_fill=rgba(style['outline']) if style.get('outline') else None)
     canvas.alpha_composite(layer)
+
+
+# ====================================================================== level HUD pieces drawn here
+def level_extras(out_dir, sprites, parts):
+    """The timer's green ring and the booster plank are drawn by custom shaders / 3D models in the game:
+    TimerFill is a WhiteBox with a progress shader, the boosters stand on a wooden 3D shelf. Rebuilt as sprites:
+      TimerRing    the ring (white, tinted green by its node), cut exactly along TimerEmpty (the dark track it covers)
+      TimerInside  the see-through navy inside of the timer
+      BoosterPlank the wooden shelf under the boosters (colours sampled from a screenshot of the game)
+    """
+    import numpy as np
+    from PIL import ImageFilter
+    half = Image.open(os.path.join(out_dir, 'TimerEmpty.png')).convert('RGBA')
+    full = Image.new('RGBA', (half.width * 2, half.height))
+    full.paste(half, (0, 0))
+    full.paste(half.transpose(Image.FLIP_LEFT_RIGHT), (half.width, 0))
+    a = np.array(full.split()[3], dtype=float) / 255
+    h, w = a.shape
+    # outside = transparent pixels connected to the border; inside = the remaining transparent pixels
+    clear = a < 0.5
+    outside = np.zeros_like(clear)
+    stack = [(y, x) for y in range(h) for x in (0, w - 1)] + [(y, x) for x in range(w) for y in (0, h - 1)]
+    while stack:
+        y, x = stack.pop()
+        if y < 0 or x < 0 or y >= h or x >= w or outside[y, x] or not clear[y, x]:
+            continue
+        outside[y, x] = True
+        stack += [(y + 1, x), (y - 1, x), (y, x + 1), (y, x - 1)]
+    inside = clear & ~outside
+    yy = np.linspace(0, 1, h)[:, None] * np.ones((1, w))
+    top, bottom = np.array([255, 255, 255]), np.array([160, 160, 160])   # tinted green (or red) by the node colour
+    rgb = top[None, None, :] * (1 - yy[:, :, None]) + bottom[None, None, :] * yy[:, :, None]
+    ring = np.dstack([rgb, a * 255]).astype(np.uint8)
+    Image.fromarray(ring, 'RGBA').save(os.path.join(out_dir, 'TimerRing.png'))
+    m = Image.fromarray((inside * 255).astype(np.uint8)).filter(ImageFilter.MaxFilter(5)).filter(ImageFilter.GaussianBlur(1))
+    ins = Image.new('RGBA', (w, h), (10, 10, 60, 0))
+    ins.putalpha(m.point(lambda v: int(v * 0.45)))
+    ins.save(os.path.join(out_dir, 'TimerInside.png'))
+    base = sprites['TimerEmpty']
+    for name in ('TimerRing', 'TimerInside'):
+        sprites[name] = dict(ppu=base['ppu'], pivot=[0.5, base['pivot'][1]], border=[0, 0, 0, 0], width=w, height=h, jpg=False)
+
+    # wooden plank: top face (seen from above) + front face, rounded ends, soft shadow
+    ppu, ss = 278.0, 4
+    W, H = int(3.85 * ppu), int(0.46 * ppu)
+    top_h, front_h, r = 0.15 * ppu, 0.20 * ppu, 0.05 * ppu
+    img = Image.new('RGBA', (W * ss, H * ss), (0, 0, 0, 0))
+    d = ImageDraw.Draw(img)
+    y0 = 0.02 * ppu
+    shadow = Image.new('L', (W * ss, H * ss), 0)
+    ImageDraw.Draw(shadow).rounded_rectangle((10 * ss, (y0 + top_h + 0.06 * ppu) * ss, (W - 10) * ss, (H - 2) * ss), r * ss * 2, fill=120)
+    shadow = shadow.filter(ImageFilter.GaussianBlur(6 * ss))
+    img.paste(Image.new('RGBA', img.size, (8, 12, 40, 255)), (0, 0), shadow)
+    d.rounded_rectangle((4 * ss, (y0 + top_h - r) * ss, (W - 4) * ss, (y0 + top_h + front_h) * ss), r * ss, fill=(196, 124, 62, 255))
+    for i in range(int(front_h * ss)):
+        t = i / (front_h * ss)
+        c = tuple(int(v) for v in np.array([207, 129, 59]) * (1 - t) + np.array([158, 97, 71]) * t)
+        d.line((6 * ss, (y0 + top_h) * ss + i, (W - 6) * ss, (y0 + top_h) * ss + i), fill=c + (255,))
+    d.rounded_rectangle((2 * ss, y0 * ss, (W - 2) * ss, (y0 + top_h + 2) * ss), r * ss, fill=(156, 80, 48, 255))
+    rnd = np.random.RandomState(7)
+    for k in range(26):
+        yk = (y0 + 3 + rnd.rand() * (top_h - 6)) * ss
+        x0 = rnd.rand() * W * 0.8 * ss
+        x1 = x0 + (0.15 + rnd.rand() * 0.5) * W * ss
+        d.line((x0, yk, min(x1, (W - 8) * ss), yk + rnd.randn() * 2 * ss), fill=(128, 62, 36, 160), width=ss * 2)
+    for k in range(14):
+        yk = (y0 + top_h + 4 + rnd.rand() * (front_h - 8)) * ss
+        x0 = rnd.rand() * W * 0.8 * ss
+        x1 = x0 + (0.1 + rnd.rand() * 0.4) * W * ss
+        d.line((x0, yk, min(x1, (W - 8) * ss), yk + rnd.randn() * 1.5 * ss), fill=(170, 100, 48, 140), width=ss * 2)
+    d.line((6 * ss, (y0 + top_h) * ss, (W - 6) * ss, (y0 + top_h) * ss), fill=(222, 150, 80, 255), width=ss * 3)
+    img = img.resize((W, H), Image.LANCZOS)
+    img.save(os.path.join(out_dir, 'BoosterPlank.png'))
+    sprites['BoosterPlank'] = dict(ppu=ppu, pivot=[0.5, 0.5], border=[0, 0, 0, 0], width=W, height=H, jpg=False)
+
+    # wire them into the node tree
+    nodes = parts['topUI']['nodes']
+    names = paths(nodes)
+    fill = nodes[names.index('TopUI/Timer/NewTimerSetup/TimerFill')]
+    fill['scale'] = [1.0, 1.0]
+    fill['sprite'].update(key='TimerRing', drawMode=0, size=[w / base['ppu'], h / base['ppu']], color=[0.157, 1.0, 0.157, 1.0])
+    nodes.append(dict(name='TimerInside', parent=names.index('TopUI/Timer/NewTimerSetup'), active=True, pos=[0.0, 0.0, 0.0],
+                      scale=[1.0, 1.0], rot=0.0, sprite=dict(key='TimerInside', color=[1, 1, 1, 1], flipX=False, flipY=False,
+                                                              drawMode=0, size=[1.0, 1.0], layer=1, order=-6, enabled=True)))
+    nodes = parts['boosters']['nodes']
+    nodes.append(dict(name='Plank', parent=0, active=True, pos=[0.012, -0.115, 0.0], scale=[1.0, 1.0], rot=0.0,
+                      sprite=dict(key='BoosterPlank', color=[1, 1, 1, 1], flipX=False, flipY=False, drawMode=0,
+                                  size=[1.0, 1.0], layer=0, order=-2, enabled=True)))
 
 
 if __name__ == '__main__':

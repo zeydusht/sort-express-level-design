@@ -68,11 +68,16 @@ namespace UnityEngine
         public override bool Equals(object o) { return true; }
         public override int GetHashCode() { return 0; }
     }
+    public enum ColorSpace { Uninitialized = -1, Gamma = 0, Linear = 1 }
+    public static class QualitySettings { public static ColorSpace activeColorSpace { get { return ColorSpace.Linear; } } }
+
     public struct Color
     {
         public float r, g, b, a;
         public Color(float r, float g, float b, float a) { this.r = r; this.g = g; this.b = b; this.a = a; }
         public Color(float r, float g, float b) { this.r = r; this.g = g; this.b = b; a = 1; }
+        public Color linear { get { return this; } }
+        public static Color operator *(Color a, Color b) { return new Color(a.r * b.r, a.g * b.g, a.b * b.b, a.a * b.a); }
         public static Color white { get { return new Color(); } }
         public static Color magenta { get { return new Color(); } }
         public static Color clear { get { return new Color(); } }
@@ -131,7 +136,7 @@ namespace UnityEngine
         public static int Range(int a, int b) { return a; }
         public static float value { get { return 0; } }
     }
-    public static class Time { public static float time; public static float deltaTime; }
+    public static class Time { public static float time; public static float deltaTime; public static int frameCount; }
     public static class Screen { public static int width; public static int height; }
     public static class Debug
     {
@@ -140,7 +145,7 @@ namespace UnityEngine
         public static void LogError(object o) { }
         public static void LogException(Exception e) { }
     }
-    public static class Application { public static int targetFrameRate; public static string dataPath; public static bool isEditor; public static void OpenURL(string u) { } }
+    public static class Application { public static int targetFrameRate; public static string dataPath; public static bool isEditor, isPlaying; public static void OpenURL(string u) { } }
     public static class ColorUtility { public static bool TryParseHtmlString(string s, out Color c) { c = new Color(); return true; } }
     public static class Resources
     {

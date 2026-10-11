@@ -11,9 +11,10 @@ import sys
 import numpy as np
 from PIL import Image, ImageDraw, ImageEnhance, ImageFont
 
-PPU = 110                      # pixels per world unit in the picture
-SW = 3.13 / 3                  # slot width
-ITEM = 0.84
+PPU = int(os.environ.get('PPU', 110))                     # pixels per world unit in the picture
+XS = 0.5                       # the game draws level x at half scale (3-slot shelves 3.13 apart -> 1.565)
+SW = 3.13 / 3 * XS             # slot width
+ITEM = 0.92
 LIP_TOP = -0.44
 INNER_TOP = 0.465
 FRONT_Y = LIP_TOP + ITEM / 2 + 0.005
@@ -124,6 +125,8 @@ def render(level_path, out_path, res):
     panel_src = Image.open(os.path.join(art, 'ui_panel.png'))
 
     shelves = lv['s']
+    for sh in shelves:
+        sh['pos'] = dict(x=sh['pos']['x'] * XS, y=sh['pos']['y'])
     minx = min(s['pos']['x'] - s['sicw'] * SW / 2 for s in shelves)
     maxx = max(s['pos']['x'] + s['sicw'] * SW / 2 for s in shelves)
     miny = min(s['pos']['y'] - 0.5 for s in shelves)

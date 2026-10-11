@@ -161,7 +161,7 @@ Tahta sabitken her seferinde tek bir kolu değiştirip simülasyonla ölçtüm (
 Level Editor'de kaydedilen her level oyunun menüsünde **MY LEVELS** altında oynanabiliyor. Aşağıdaki tablo yayınlama sırasında (Sortex → 3. Publish to GitHub) her level 1000 simüle oyuncuyla oynatılarak otomatik yazılıyor; kazanılamayan (3'ün katı olmayan) levellar yayınlanmıyor.
 
 <!-- MY-LEVELS:START -->
-_Bu tablo **Sortex → 3. Publish to GitHub** ile otomatik güncelleniyor (son: 2026-10-11 12:20)._
+_Bu tablo **Sortex → 3. Publish to GitHub** ile otomatik güncelleniyor (son: 2026-10-11 13:01)._
 
 | Level | Tier | Raf | Item | Tür | Süre | Engeller | Simüle kazanma (1000 oyuncu) | Hedef bant | Kayıp: süre / hamle kalmadı | Çözücü |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -194,7 +194,7 @@ _Bu tablo **Sortex → 3. Publish to GitHub** ile otomatik güncelleniyor (son: 
 
 ### Çalıştırma (Unity 6000.6.4f1, URP 2D, Input System)
 1. Projeyi Unity Hub ile aç. İlk açılışta `Sortex` menüsü sahneyi (`Assets/Scenes/SortexGame.unity`), sprite materyalini ve WebGL ayarlarını kendisi kuruyor (elle: **Sortex → 1. Setup Project**).
-2. **Play** ile test et. Oyun, Sort Express'in kendi ana menüsüyle açılıyor: yeşil **Level N** butonu sıradaki leveli oynatır (Easy → Medium → Hard → editörle kaydedilenler; kazandıkça ilerler), alttaki **Packs** sekmesi tüm levelları listeler. Sürükle-bırak (fare/dokunmatik) veya önce iteme, sonra hedef rafa dokun.
+2. **Play** ile test et. Oyun, Sort Express'in kendi ana menüsüyle açılıyor: yeşil **Level N** butonu sıradaki leveli oynatır (Easy → Medium → Hard → editörle kaydedilenler; kazandıkça ilerler), alttaki **Packs** sekmesi tüm levelları listeler. Sürükle-bırak (fare/dokunmatik) veya önce iteme, sonra hedef rafa dokun. Sağ üstteki pause butonu oyunun pause penceresini açar (**Continue** devam, **Quit** ana menü).
 3. **Sortex → 2. Build WebGL (docs)** komutu oyunu `docs/` klasörüne derler (gzip + tarayıcıda açma desteği, GitHub Pages'ta header ayarı gerektirmez). GitHub Pages bu klasörü yayınlıyor (*Settings → Pages → Deploy from a branch → `main` / `/docs`*).
 4. **Sortex → 3. Publish to GitHub** (Level Editor'de **⬆ Publish**) tek adımda her şeyi yapıyor: kaydedilen levelları 1000 simüle oyuncuyla oynatıp README'deki tabloyu ve menü kartlarını günceller, WebGL'i derler, commit edip GitHub'a gönderir. Site 1–2 dakika içinde güncellenir. İlk gönderimde GitHub girişi için bir pencere açılır. Adımlar `Logs/SortexPublish.log` dosyasına yazılır.
 
@@ -205,6 +205,13 @@ Açılış ekranı, oyunun `MainScene.prefab` dosyasından birebir kuruluyor (`T
 - Hard levelda buton oyundaki gibi kırmızı "Hard Level", Super Hard'da mor "Super Hard" oluyor (`PlayButtonHardLevel`, `PlayButtonSuperHardLevel`).
 - Ekran genişliği oyundaki gibi 4,6166 birim (menü sayfaları bu aralıkla dizili); üst bar üst kenara, buton ve alt bar alt kenara göre yerleşiyor.
 - Prefab'daki MonoBehaviour'lar export'ta boş geldiği için yazıların içeriği (Level N, Full, 1000) ve etkinlik (LiveOps) şeritleri koddan geliyor; etkinlik ikonları yok.
+
+### Level ekranı (oyunun kendisinden)
+- **Ölçek:** Level dosyaları 3 slotlu rafları 3,13, satırları 1 birim aralıkla koyuyor; oyun yatay ekseni yarı ölçekte çiziyor (3 slotlu raf ekranda ≈ 1,6 × 1). Bu oran oyunun ekran görüntüsünden ölçüldü (satır aralığı / raf aralığı) ve `BoardView.XS = 0.5` ile uygulanıyor. Model ve simülasyon level dosyasındaki sayılarla çalışmaya devam ediyor; yalnızca çizim sıkışıyor. Raf sprite'ları oyunun `BaseShelf.prefab` modelinden bu oranla yeniden üretildi (`Tools/render_shelf.py`).
+- **Kamera:** Oyundaki gibi en az 4,6166 birim genişliği gösteriyor ve raflar üst bar ile booster'lar arasına sığana kadar uzaklaşıyor. Raflar ekranın genişliğini ince bir payla dolduruyor.
+- **Üst bar ve booster'lar:** `LevelSceneUI.prefab`'dan (`Resources/Sortex/Level/level.json`, `Scripts/Game/LevelHud.cs`): tier'a göre lacivert / kırmızı / mor "Level N" plakası, yeşil çerçeveli süre (son 10 saniyede kırmızı, uyarı ışığı yanıp söner) ve pause butonu. Alttaki dört booster (vakum, sihirli şapka, boya tabancası, dondurucu) oyunda 3D model; burada oyunun ikonlarıyla duruyor ve prototipin parçası değil (dokununca bilgi verir). Sürenin yeşil halkası (oyunda shader) ve booster rafı (oyunda 3D) sprite olarak yeniden çizildi.
+- **Pause penceresi:** `LevelPauseDialog.prefab`'dan (`Resources/Sortex/Level/pause.json`, `Scripts/Game/PauseDialog.cs`): "Paused" şeridi, müzik / ses / titreşim / ipucu düğmeleri, **Continue** ve **Quit**. Pause açıkken süre durur.
+- Üç ekranı da (`menu`, `level`, `pause`) aynı kod kuruyor: `Scripts/Game/PrefabScreen.cs`.
 
 ### Level Editor (Unity içinde)
 **Sortex → Level Editor** (Ctrl+Shift+L) ile açılıyor. Leveller oyunun kendi JSON formatında kaydediliyor.
@@ -275,10 +282,10 @@ Orijinal levellerin simülasyonu (60 oyuncu, booster yok): L4, 6, 11, 31, 81, 91
 | `sim/Sim.cs` | Komut satırından simülasyon. Çözücü ve oyuncu modeli `Assets/Sortex/Scripts/Core/Simulator.cs` içinde, editörle ortak (`mcs -optimize+ -out:Tools/sim/sim.exe Assets/Sortex/Scripts/Core/*.cs Tools/sim/Sim.cs`) |
 | `sensitivity.py`, `plot_levers.py` | Kol duyarlılık çalışması ve grafiği |
 | `render_level.py` | Level JSON'ını oyundaki görünümüyle PNG'ye çizer |
-| `make_main_menu.py`, `unity_yaml.py` | Oyunun `MainScene.prefab`'ından ana menüyü çıkarır (düğüm ağacı, sprite'lar, yazı stilleri) ve bir önizleme PNG'si çizer. GUID → dosya eşlemesi için Unity'de **Sortex → Tools → Index Asset Export** |
+| `make_main_menu.py`, `unity_yaml.py` | Oyunun prefab'larından ekranları çıkarır (düğüm ağacı, sprite'lar, yazı stilleri) ve bir önizleme PNG'si çizer: `--screen=menu` (`MainScene.prefab`), `--screen=level` (`LevelSceneUI.prefab`), `--screen=pause` (`LevelPauseDialog.prefab`). GUID → dosya eşlemesi için Unity'de **Sortex → Tools → Index Asset Export** |
 | `make_sprites.py`, `meshrender.py` | Raf, kilit, buz, shutter ve cargo door sprite'ları. Kilit kapısı APK'daki `obstacle_lock_main_*` mesh'lerinden. |
 | `make_obstacles.py` | Piñata, yumurta, döner kapı, iris ve fuse box sprite'ları (oyunun tutorial görsellerinden kesilip temizlenir) |
-| `render_shelf.py`, `prefab_dump.py` | Oyunun kendi `BaseShelf.prefab` modelinden raf sprite'ları |
+| `render_shelf.py`, `prefab_dump.py` | Oyunun kendi `BaseShelf.prefab` modelinden raf sprite'ları (slot = level aralığının yarısı) |
 | `tests/CoreTests.cs` | Kural kodu için regresyon testleri (JSON gidiş-dönüş, shutter, frozen, kilit, raf içi kaydırma, hareketli raf, piñata, fuse box, iris, döner kapı, yumurta, geniş raf, item generator, auto-fill) |
 | `results/` | Simülasyon raporları (`report.json`, `sensitivity.json`) ve tier analizi (`tier_stats.json`) |
 

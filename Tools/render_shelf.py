@@ -4,7 +4,9 @@ The prefab is a 3D box: bottom/top planks, side walls, a back wall and rounded f
 It is rendered with a perspective camera in front of the shelf (like the game's camera), in two layers:
   shelf_w<N>_back.png   inside of the box (back wall, floor, ceiling, inner walls)  -> drawn behind items
   shelf_w<N>_front.png  front rim (faces looking at the camera)                     -> drawn over items
-for N = 1, 3, 4, 5, 6 slots (slot = 3.13 / 3 world units, shelf height = 1 unit). 128 pixels per unit.
+for N = 1, 3, 4, 5, 6 slots (slot = 3.13 / 3 / 2 world units, shelf height = 1 unit). 128 pixels per unit.
+The levels place 3-slot shelves 3.13 apart and rows 1 apart; the game draws x at half that scale (a 3-slot shelf
+is about 1.6 x 1 on screen), so the slot here is half the level spacing.
 
     python3 tools/render_shelf.py <ExportedProject/Assets> <out_dir>
 """
@@ -22,7 +24,7 @@ from prefab_dump import build  # noqa: E402
 
 PPU = 128
 SS = 4
-SLOT = 3.13 / 3
+SLOT = 3.13 / 3 * 0.5          # world units per slot (level x spacing x 0.5)
 D = 7.0                      # camera distance in front of the shelf's front plane
 FRONT_Z = -0.75              # z of the front plane in prefab space
 

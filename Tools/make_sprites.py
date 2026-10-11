@@ -106,7 +106,7 @@ def shelf_back():
 
 # --------------------------------------------------------------------------- lock door
 def lock_door():
-    W, H = 800, 256          # covers a 3-slot shelf interior (3.13 x 1.0 world units at 256 ppu)
+    W, H = 400, 256          # covers a 3-slot shelf interior (1.565 x 1.0 world units at 256 ppu; the game draws x at half the level scale)
     w, h = W * SS, H * SS
     img = canvas(W, H)
     r = 26 * SS
@@ -114,8 +114,8 @@ def lock_door():
     paste_masked(img, body, rrect_mask(w, h, r))
     d = ImageDraw.Draw(img)
     # brushed lines
-    for i in range(18):
-        x = int(w * (i + 0.5) / 18)
+    for i in range(9):
+        x = int(w * (i + 0.5) / 9)
         d.line((x, 10 * SS, x, h - 10 * SS), fill=(255, 255, 255, 18), width=2 * SS)
     # inner bevel panel
     d.rounded_rectangle((16 * SS, 16 * SS, w - 16 * SS, h - 16 * SS), 18 * SS, outline=(90, 102, 128, 255), width=3 * SS)
@@ -130,7 +130,7 @@ def lock_door():
     for y in (70, H - 70):
         d.rounded_rectangle((0, (y - 18) * SS, 22 * SS, (y + 18) * SS), 6 * SS, fill=(74, 84, 110, 255))
     # dial: dark circle + ring (inside_circle mesh), counter text is drawn in the game on top of it
-    cx, cy, R = w // 2, h // 2, 92 * SS
+    cx, cy, R = w // 2 - 22 * SS, h // 2, 76 * SS
     d.ellipse((cx - R - 10 * SS, cy - R - 10 * SS, cx + R + 10 * SS, cy + R + 10 * SS), fill=(96, 108, 136, 255))
     d.ellipse((cx - R, cy - R, cx + R, cy + R), fill=(38, 48, 74, 255))
     for k in range(24):  # dial ticks
@@ -139,17 +139,10 @@ def lock_door():
         d.line((cx + r1 * math.cos(a), cy + r1 * math.sin(a), cx + r2 * math.cos(a), cy + r2 * math.sin(a)),
                fill=(150, 162, 190, 255), width=3 * SS)
     # gold lever (handle_01 mesh) on the right side of the dial
-    hx = cx + R + 70 * SS
-    d.rounded_rectangle((hx - 22 * SS, cy - 64 * SS, hx + 22 * SS, cy + 64 * SS), 20 * SS, fill=(178, 120, 20, 255))
-    d.rounded_rectangle((hx - 16 * SS, cy - 58 * SS, hx + 12 * SS, cy + 52 * SS), 16 * SS, fill=(240, 176, 48, 255))
-    d.rounded_rectangle((hx - 10 * SS, cy - 50 * SS, hx - 2 * SS, cy + 30 * SS), 4 * SS, fill=(255, 222, 140, 255))
-    # padlock symbol on the left
-    lx, ly = cx - R - 90 * SS, cy + 6 * SS
-    d.arc((lx - 30 * SS, ly - 72 * SS, lx + 30 * SS, ly - 6 * SS), 180, 360, fill=(60, 70, 96, 255), width=12 * SS)
-    d.rounded_rectangle((lx - 44 * SS, ly - 34 * SS, lx + 44 * SS, ly + 40 * SS), 12 * SS, fill=(240, 176, 48, 255),
-                        outline=(178, 120, 20, 255), width=4 * SS)
-    d.ellipse((lx - 9 * SS, ly - 8 * SS, lx + 9 * SS, ly + 10 * SS), fill=(110, 70, 10, 255))
-    d.rectangle((lx - 4 * SS, ly + 4 * SS, lx + 4 * SS, ly + 24 * SS), fill=(110, 70, 10, 255))
+    hx = cx + R + 56 * SS
+    d.rounded_rectangle((hx - 18 * SS, cy - 56 * SS, hx + 18 * SS, cy + 56 * SS), 16 * SS, fill=(178, 120, 20, 255))
+    d.rounded_rectangle((hx - 13 * SS, cy - 51 * SS, hx + 9 * SS, cy + 45 * SS), 13 * SS, fill=(240, 176, 48, 255))
+    d.rounded_rectangle((hx - 8 * SS, cy - 44 * SS, hx - 2 * SS, cy + 26 * SS), 3 * SS, fill=(255, 222, 140, 255))
     return down(img)
 
 
@@ -292,8 +285,8 @@ def frozen_ice():
 
 
 def shutter():
-    """Orange roller shutter that closes a shelf for good (3-slot interior, 3.13 x 1 units at 256 ppu)."""
-    W, H = 800, 256
+    """Orange roller shutter that closes a shelf for good (3-slot interior, 1.565 x 1 units at 256 ppu)."""
+    W, H = 400, 256
     w, h = W * SS, H * SS
     img = canvas(W, H)
     paste_masked(img, vgrad(w, h, hexc('#FFC15A'), hexc('#E2771C')), rrect_mask(w, h, 18 * SS))
@@ -311,7 +304,7 @@ def shutter():
 
 def cargo_door():
     """Purple cargo door behind the front row: the rows behind it are hidden."""
-    W, H = 800, 256
+    W, H = 400, 256
     w, h = W * SS, H * SS
     img = canvas(W, H)
     paste_masked(img, vgrad(w, h, hexc('#6D4BD6'), hexc('#3E2A92')), rrect_mask(w, h, 18 * SS))
@@ -322,7 +315,7 @@ def cargo_door():
     for cx in (w * 0.18, w * 0.82):  # chevrons
         sgn = -1 if cx < w / 2 else 1
         for k in range(2):
-            ox = cx + sgn * k * 26 * SS
+            ox = cx + sgn * k * 22 * SS
             d.line((ox - sgn * 18 * SS, h * 0.32, ox, h * 0.5, ox - sgn * 18 * SS, h * 0.68), fill=(170, 150, 255, 255), width=8 * SS)
     d.rounded_rectangle((0, 0, w - 1, h - 1), 18 * SS, outline=(30, 18, 80, 255), width=5 * SS)
     return down(img)

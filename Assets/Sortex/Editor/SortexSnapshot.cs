@@ -1,7 +1,11 @@
-// Renders the home screen (MainMenuView) to a PNG without entering Play mode, to check it at phone size.
+// Renders the home screen (MainMenuView) or a level with the game's HUD to a PNG without entering Play mode,
+// to check them at phone size.
 //
 //   Sortex > Tools > Snapshot Home Screen     -> Logs/SortexSnapshot.png (1080 x 1920, "Level 1")
-//   or create Logs/SortexSnapshot.request with "width height level difficultyTag" (works while Unity is in the background)
+//   or create Logs/SortexSnapshot.request (works while Unity is in the background) with
+//     "width height level difficultyTag"              the home screen
+//     "width height level difficultyTag level:Easy"   Levels/Easy.json on the board with the level HUD
+//     "width height level difficultyTag pause:Easy"   the same with the pause dialog open
 using System;
 using System.IO;
 using Sortex.Game;
@@ -43,7 +47,8 @@ namespace Sortex.EditorTools
             int h = args.Length > 1 ? int.Parse(args[1]) : 1920;
             int level = args.Length > 2 ? int.Parse(args[2]) : 1;
             int tag = args.Length > 3 ? int.Parse(args[3]) : 0;
-            Snapshot(w, h, level, tag, Path.Combine(Logs, "SortexSnapshot.png"));
+            string screen = args.Length > 4 ? args[4] : "menu";
+            Snapshot(w, h, level, tag, Path.Combine(Logs, "SortexSnapshot.png"), screen);
         }
 
         [MenuItem("Sortex/Tools/Snapshot Home Screen", false, 41)]
@@ -54,7 +59,7 @@ namespace Sortex.EditorTools
             EditorUtility.RevealInFinder(path);
         }
 
-        public static void Snapshot(int width, int height, int level, int difficultyTag, string path)
+        public static void Snapshot(int width, int height, int level, int difficultyTag, string path, string screen = "menu")
         {
             var holder = new GameObject("SortexSnapshot");
             RenderTexture rt = null;
@@ -70,12 +75,18 @@ namespace Sortex.EditorTools
                 cam.nearClipPlane = 0.1f;
                 cam.farClipPlane = 100f;
 
-                var menu = new MainMenuView(holder.transform);
-                if (!menu.Ready) throw new Exception("Resources/Sortex/Menu/menu.json is missing");
-                menu.SetLevel(level, difficultyTag);
-                menu.SetWallet(5, 1000);
-                menu.SetVisible(true);
-                menu.Layout(cam, (float)width / height);
+                float aspect = (float)width / height;
+                if (screen.StartsWith("level:") || screen.StartsWith("pause:"))
+                    BuildLevel(holder.transform, cam, aspect, level, difficultyTag, screen.Substring(6), screen.StartsWith("pause:"));
+                else
+                {
+                    var menu = new MainMenuView(holder.transform);
+                    if (!menu.Ready) throw new Exception("Resources/Sortex/Menu/menu.json is missing");
+                    menu.SetLevel(level, difficultyTag);
+                    menu.SetWallet(5, 1000);
+                    menu.SetVisible(true);
+                    menu.Layout(cam, aspect);
+                }
 
                 rt = new RenderTexture(width, height, 24, RenderTextureFormat.ARGB32);
                 cam.targetTexture = rt;
@@ -89,7 +100,7 @@ namespace Sortex.EditorTools
                 cam.targetTexture = null;
                 Directory.CreateDirectory(Path.GetDirectoryName(path));
                 File.WriteAllBytes(path, tex.EncodeToPNG());
-                Debug.Log("Sortex: home screen snapshot written to " + path);
+                Debug.Log("Sortex: " + screen + " snapshot written to " + path);
             }
             catch (Exception e)
             {
@@ -101,6 +112,41 @@ namespace Sortex.EditorTools
                 UnityEngine.Object.DestroyImmediate(holder);
                 if (rt != null) UnityEngine.Object.DestroyImmediate(rt);
                 if (tex != null) UnityEngine.Object.DestroyImmediate(tex);
+            }
+        }
+
+        /// <summary>A level as the game shows it: board, background, level HUD (and the pause dialog).</summary>
+        static void BuildLevel(Transform holder, Camera cam, float aspect, int number, int tag, string file, bool pause)
+        {
+            var ta = Resources.Load<TextAsset>(SortexArt.Root + "Levels/" + file);
+            if (ta == null) throw new Exception("Resources/Sortex/Levels/" + file + ".json is missing");
+            var lv = Sortex.Core.LevelData.FromJson(ta.text);
+            var board = Sortex.Core.Board.FromLevel(lv);
+            var view = new BoardView(holder, board, lv.difficultyTag);
+            var hud = new LevelHud(holder);
+            if (!hud.Ready) throw new Exception("Resources/Sortex/Level/level.json is missing");
+            hud.SetLevel(number, tag);
+            hud.SetBoosters(3, 3, 3, 3);
+            hud.SetTime(lv.timeLimit, false);
+            hud.SetVisible(true);
+            float size;
+            Vector2 center;
+            SortexGame.FitBoard(view.Bounds, aspect, hud.ReferenceHeight(aspect), out size, out center);
+            cam.orthographicSize = size;
+            cam.transform.position = new Vector3(center.x, center.y, -10f);
+            var bg = SortexArt.NewSprite("Background", holder, SortexArt.BackgroundGradient, -100);
+            if (bg.sprite != null)
+            {
+                var bs = bg.sprite.bounds.size;
+                bg.transform.localScale = new Vector3(size * 2f * aspect / bs.x * 1.02f, size * 2f / bs.y * 1.02f, 1f);
+            }
+            bg.transform.position = new Vector3(center.x, center.y, 0f);
+            hud.Follow(cam, aspect);
+            if (pause)
+            {
+                var dialog = new PauseDialog(holder);
+                dialog.SetVisible(true);
+                dialog.Layout(cam, aspect);
             }
         }
     }

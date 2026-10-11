@@ -1,0 +1,3590 @@
+{
+ "source": "Sort Express LevelSceneUI.prefab (TopUI + BoosterContainer)",
+ "refWidth": 4.616601,
+ "refHeight": 10.0,
+ "font": "Bango Pro",
+ "parts": {
+  "topUI": {
+   "anchor": "top",
+   "nodes": [
+    {
+     "name": "TopUI",
+     "parent": -1,
+     "active": true,
+     "pos": [
+      0.0,
+      4.85,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "PauseButton",
+     "parent": 0,
+     "active": true,
+     "pos": [
+      1.8597,
+      -0.9350999,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "Button",
+     "parent": 1,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "PressDownTransform",
+     "parent": 2,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "BaseLeft",
+     "parent": 3,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       0.26618704,
+       0.5647482
+      ],
+      "layer": 1,
+      "order": 30,
+      "enabled": true,
+      "key": "PauseButton"
+     }
+    },
+    {
+     "name": "BaseRight",
+     "parent": 3,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       0.26618704,
+       0.5647482
+      ],
+      "layer": 1,
+      "order": 30,
+      "enabled": true,
+      "key": "PauseButton"
+     }
+    },
+    {
+     "name": "PauseIcon",
+     "parent": 3,
+     "active": true,
+     "pos": [
+      0.0,
+      0.032,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       0.19424461,
+       0.20143884
+      ],
+      "layer": 1,
+      "order": 31,
+      "enabled": true,
+      "key": "PauseIcon"
+     }
+    },
+    {
+     "name": "Timer",
+     "parent": 0,
+     "active": true,
+     "pos": [
+      0.0,
+      -0.9000001,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "group": {
+      "layer": 1,
+      "order": 30
+     }
+    },
+    {
+     "name": "NewTimerSetup",
+     "parent": 7,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "Warning",
+     "parent": 8,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "BaseLeft",
+     "parent": 9,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       0.8,
+       0.0,
+       0.0,
+       0.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.57,
+       0.43165466
+      ],
+      "layer": 1,
+      "order": 9,
+      "enabled": true,
+      "key": "TimerGlow"
+     }
+    },
+    {
+     "name": "BaseRight",
+     "parent": 9,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       0.8,
+       0.0,
+       0.0,
+       0.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.57,
+       0.43165466
+      ],
+      "layer": 1,
+      "order": 9,
+      "enabled": true,
+      "key": "TimerGlow"
+     }
+    },
+    {
+     "name": "TimerBase",
+     "parent": 8,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "TimerBaseLeft",
+     "parent": 12,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       1.2338129,
+       0.5539568
+      ],
+      "layer": 1,
+      "order": -5,
+      "enabled": true,
+      "key": "TimerEmpty"
+     }
+    },
+    {
+     "name": "TimerBaseRight",
+     "parent": 12,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       1.2338129,
+       0.5539568
+      ],
+      "layer": 1,
+      "order": -5,
+      "enabled": true,
+      "key": "TimerEmpty"
+     }
+    },
+    {
+     "name": "TimerFill",
+     "parent": 8,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       0.157,
+       1.0,
+       0.157,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       1.2805755395683454,
+       0.5971223021582733
+      ],
+      "layer": 1,
+      "order": 10,
+      "enabled": true,
+      "key": "TimerRing"
+     }
+    },
+    {
+     "name": "TextParent",
+     "parent": 7,
+     "active": true,
+     "pos": [
+      0.0,
+      -0.012,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "MinuteText",
+     "parent": 16,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       0.3785,
+       0.3388
+      ],
+      "anchored": [
+       -0.125,
+       0.0
+      ],
+      "layer": 1,
+      "order": 15,
+      "style": "Dark Blue Outline 2"
+     }
+    },
+    {
+     "name": ":",
+     "parent": 16,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       0.5835,
+       0.3388
+      ],
+      "anchored": [
+       -0.075442836,
+       0.0
+      ],
+      "layer": 1,
+      "order": 15,
+      "style": "Dark Blue Outline 2"
+     }
+    },
+    {
+     "name": "SecondsText",
+     "parent": 16,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       0.5064,
+       0.3388
+      ],
+      "anchored": [
+       -0.03730002,
+       0.0
+      ],
+      "layer": 1,
+      "order": 15,
+      "style": "Dark Blue Outline 2"
+     }
+    },
+    {
+     "name": "LevelNumber",
+     "parent": 0,
+     "active": true,
+     "pos": [
+      -1.567,
+      -0.913,
+      0.0
+     ],
+     "scale": [
+      0.86,
+      0.86
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "Root",
+     "parent": 20,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "BaseLeft",
+     "parent": 21,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.65,
+       0.4172662
+      ],
+      "layer": 1,
+      "order": 30,
+      "enabled": true,
+      "key": "LevelNumberBaseDefault"
+     }
+    },
+    {
+     "name": "BaseRight",
+     "parent": 21,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.65,
+       0.4172662
+      ],
+      "layer": 1,
+      "order": 30,
+      "enabled": true,
+      "key": "LevelNumberBaseDefault"
+     }
+    },
+    {
+     "name": "Text",
+     "parent": 21,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       1.1617,
+       0.2787
+      ],
+      "anchored": [
+       0.0,
+       -0.013
+      ],
+      "layer": 1,
+      "order": 31,
+      "style": "Dark Blue Outline 2"
+     }
+    },
+    {
+     "name": "TimerInside",
+     "parent": 8,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "key": "TimerInside",
+      "color": [
+       1,
+       1,
+       1,
+       1
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       1.0,
+       1.0
+      ],
+      "layer": 1,
+      "order": -6,
+      "enabled": true
+     }
+    }
+   ],
+   "offset": -0.15
+  },
+  "boosters": {
+   "anchor": "bottom",
+   "nodes": [
+    {
+     "name": "BoosterContainer",
+     "parent": -1,
+     "active": true,
+     "pos": [
+      0.0,
+      -4.17,
+      1.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "BaseLeft",
+     "parent": 0,
+     "active": false,
+     "pos": [
+      0.0,
+      0.0,
+      1.2609999
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       1.9895148,
+       0.68
+      ],
+      "layer": 1,
+      "order": -1,
+      "enabled": true,
+      "key": "LevelNumberBaseDefault"
+     }
+    },
+    {
+     "name": "BaseRight",
+     "parent": 0,
+     "active": false,
+     "pos": [
+      0.0,
+      0.0,
+      1.2609999
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       1.9895148,
+       0.68
+      ],
+      "layer": 1,
+      "order": -1,
+      "enabled": true,
+      "key": "LevelNumberBaseDefault"
+     }
+    },
+    {
+     "name": "VacuumButton",
+     "parent": 0,
+     "active": true,
+     "pos": [
+      -1.31,
+      0.366,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "Badge",
+     "parent": 3,
+     "active": true,
+     "pos": [
+      0.293,
+      -0.3930003,
+      -1.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "Lock",
+     "parent": 4,
+     "active": false,
+     "pos": [
+      -0.351,
+      -0.081,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "BaseLeft",
+     "parent": 5,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      0.75,
+      0.75
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.47122303,
+       0.3381295
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "GoTopButton"
+     }
+    },
+    {
+     "name": "BaseRight",
+     "parent": 5,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      0.75,
+      0.75
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.47122303,
+       0.3381295
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "GoTopButton"
+     }
+    },
+    {
+     "name": "Text",
+     "parent": 5,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       0.4212,
+       0.1761
+      ],
+      "anchored": [
+       -0.002,
+       -0.01
+      ],
+      "layer": 1,
+      "order": 0,
+      "style": "Dark Blue Outline 2 Bold"
+     }
+    },
+    {
+     "name": "Icon",
+     "parent": 5,
+     "active": true,
+     "pos": [
+      0.338,
+      0.1066,
+      0.0
+     ],
+     "scale": [
+      0.7,
+      0.7
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       0.61,
+       0.85
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "LockIcon"
+     }
+    },
+    {
+     "name": "Counter",
+     "parent": 4,
+     "active": true,
+     "pos": [
+      -0.0432,
+      0.025,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "Base",
+     "parent": 10,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "BaseLeft",
+     "parent": 11,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      0.81438,
+      0.81438
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       0.2,
+       0.2
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "BoosterOrangeBadge"
+     }
+    },
+    {
+     "name": "BaseRight",
+     "parent": 11,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      0.81438,
+      0.81438
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       0.2,
+       0.2
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "BoosterOrangeBadge"
+     }
+    },
+    {
+     "name": "Text",
+     "parent": 10,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       0.2844,
+       0.2209
+      ],
+      "anchored": [
+       0.0,
+       0.008
+      ],
+      "layer": 1,
+      "order": 10,
+      "style": "Dark Red Outline"
+     }
+    },
+    {
+     "name": "Add",
+     "parent": 4,
+     "active": false,
+     "pos": [
+      -0.0432,
+      0.025,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "Base",
+     "parent": 15,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "BaseLeft",
+     "parent": 16,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      0.81438,
+      0.81438
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       0.2,
+       0.2
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "PreLevelBoosterGreenBadge"
+     }
+    },
+    {
+     "name": "BaseRight",
+     "parent": 16,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      0.81438,
+      0.81438
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       0.2,
+       0.2
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "PreLevelBoosterGreenBadge"
+     }
+    },
+    {
+     "name": "Icon",
+     "parent": 16,
+     "active": true,
+     "pos": [
+      0.003,
+      0.02,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       0.2,
+       0.2
+      ],
+      "layer": 1,
+      "order": 1,
+      "enabled": true,
+      "key": "PlusIcon"
+     }
+    },
+    {
+     "name": "Free",
+     "parent": 4,
+     "active": false,
+     "pos": [
+      -0.351,
+      -0.081,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "BaseLeft",
+     "parent": 20,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      0.75,
+      0.75
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.471223,
+       0.3381295
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "BoosterStateBarGreen"
+     }
+    },
+    {
+     "name": "BaseRight",
+     "parent": 20,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      0.75,
+      0.75
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.471223,
+       0.3381295
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "BoosterStateBarGreen"
+     }
+    },
+    {
+     "name": "Text",
+     "parent": 20,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       0.4955,
+       0.1761
+      ],
+      "anchored": [
+       0.0,
+       -0.005
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Dark Green Outline 1"
+     }
+    },
+    {
+     "name": "ShuffleButton",
+     "parent": 0,
+     "active": true,
+     "pos": [
+      -0.4,
+      0.366,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "Badge",
+     "parent": 24,
+     "active": true,
+     "pos": [
+      0.293,
+      -0.3930003,
+      -1.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "Lock",
+     "parent": 25,
+     "active": false,
+     "pos": [
+      -0.308,
+      -0.081,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "BaseLeft",
+     "parent": 26,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      0.75,
+      0.75
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.47122303,
+       0.3381295
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "GoTopButton"
+     }
+    },
+    {
+     "name": "BaseRight",
+     "parent": 26,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      0.75,
+      0.75
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.47122303,
+       0.3381295
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "GoTopButton"
+     }
+    },
+    {
+     "name": "Text",
+     "parent": 26,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       0.4212,
+       0.1761
+      ],
+      "anchored": [
+       -0.0019998774,
+       -0.01
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Dark Blue Outline 2 Bold"
+     }
+    },
+    {
+     "name": "Icon",
+     "parent": 26,
+     "active": true,
+     "pos": [
+      0.338,
+      0.1066,
+      0.0
+     ],
+     "scale": [
+      0.7,
+      0.7
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       0.61,
+       0.85
+      ],
+      "layer": 1,
+      "order": 1,
+      "enabled": true,
+      "key": "LockIcon"
+     }
+    },
+    {
+     "name": "Counter",
+     "parent": 25,
+     "active": true,
+     "pos": [
+      -0.07,
+      0.025,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "Base",
+     "parent": 31,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "BaseLeft",
+     "parent": 32,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      0.81438,
+      0.81438
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       0.2,
+       0.2
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "BoosterOrangeBadge"
+     }
+    },
+    {
+     "name": "BaseRight",
+     "parent": 32,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      0.81438,
+      0.81438
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       0.2,
+       0.2
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "BoosterOrangeBadge"
+     }
+    },
+    {
+     "name": "Text",
+     "parent": 31,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       0.2844,
+       0.2209
+      ],
+      "anchored": [
+       0.0,
+       0.008
+      ],
+      "layer": 1,
+      "order": 10,
+      "style": "Dark Red Outline"
+     }
+    },
+    {
+     "name": "Add",
+     "parent": 25,
+     "active": false,
+     "pos": [
+      -0.07,
+      0.025,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "Base",
+     "parent": 36,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "BaseLeft",
+     "parent": 37,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      0.81438,
+      0.81438
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       0.2,
+       0.2
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "BoosterGreenBadge"
+     }
+    },
+    {
+     "name": "BaseRight",
+     "parent": 37,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      0.81438,
+      0.81438
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       0.2,
+       0.2
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "BoosterGreenBadge"
+     }
+    },
+    {
+     "name": "Icon",
+     "parent": 37,
+     "active": true,
+     "pos": [
+      0.003,
+      0.02,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       0.2,
+       0.2
+      ],
+      "layer": 1,
+      "order": 1,
+      "enabled": true,
+      "key": "PlusIcon"
+     }
+    },
+    {
+     "name": "Free",
+     "parent": 25,
+     "active": false,
+     "pos": [
+      -0.291,
+      -0.081,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "BaseLeft",
+     "parent": 41,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      0.75,
+      0.75
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.471223,
+       0.3381295
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "BoosterStateBarGreen"
+     }
+    },
+    {
+     "name": "BaseRight",
+     "parent": 41,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      0.75,
+      0.75
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.471223,
+       0.3381295
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "BoosterStateBarGreen"
+     }
+    },
+    {
+     "name": "Text",
+     "parent": 41,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       0.4955,
+       0.1761
+      ],
+      "anchored": [
+       0.0,
+       -0.005
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Dark Green Outline 1"
+     }
+    },
+    {
+     "name": "PainterButton",
+     "parent": 0,
+     "active": true,
+     "pos": [
+      0.4660001,
+      0.366,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "Badge",
+     "parent": 45,
+     "active": true,
+     "pos": [
+      0.293,
+      -0.3930003,
+      -1.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "Lock",
+     "parent": 46,
+     "active": false,
+     "pos": [
+      -0.277,
+      -0.081,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "BaseLeft",
+     "parent": 47,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      0.75,
+      0.75
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.47122303,
+       0.3381295
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "GoTopButton"
+     }
+    },
+    {
+     "name": "BaseRight",
+     "parent": 47,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      0.75,
+      0.75
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.47122303,
+       0.3381295
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "GoTopButton"
+     }
+    },
+    {
+     "name": "Text",
+     "parent": 47,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       0.4212,
+       0.1761
+      ],
+      "anchored": [
+       -0.0019998774,
+       -0.01
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Dark Blue Outline 2 Bold"
+     }
+    },
+    {
+     "name": "Icon",
+     "parent": 47,
+     "active": true,
+     "pos": [
+      0.338,
+      0.1066,
+      0.0
+     ],
+     "scale": [
+      0.7,
+      0.7
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       0.61,
+       0.85
+      ],
+      "layer": 1,
+      "order": 1,
+      "enabled": true,
+      "key": "LockIcon"
+     }
+    },
+    {
+     "name": "Counter",
+     "parent": 46,
+     "active": true,
+     "pos": [
+      -0.0632,
+      0.025,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "Base",
+     "parent": 52,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "BaseLeft",
+     "parent": 53,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      0.81438,
+      0.81438
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       0.2,
+       0.2
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "BoosterOrangeBadge"
+     }
+    },
+    {
+     "name": "BaseRight",
+     "parent": 53,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      0.81438,
+      0.81438
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       0.2,
+       0.2
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "BoosterOrangeBadge"
+     }
+    },
+    {
+     "name": "Text",
+     "parent": 52,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       0.2844,
+       0.2209
+      ],
+      "anchored": [
+       0.0,
+       0.008
+      ],
+      "layer": 1,
+      "order": 10,
+      "style": "Dark Red Outline"
+     }
+    },
+    {
+     "name": "Add",
+     "parent": 46,
+     "active": false,
+     "pos": [
+      -0.0632,
+      0.025,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "Base",
+     "parent": 57,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "BaseLeft",
+     "parent": 58,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      0.81438,
+      0.81438
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       0.2,
+       0.2
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "PreLevelBoosterGreenBadge"
+     }
+    },
+    {
+     "name": "BaseRight",
+     "parent": 58,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      0.81438,
+      0.81438
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       0.2,
+       0.2
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "PreLevelBoosterGreenBadge"
+     }
+    },
+    {
+     "name": "Icon",
+     "parent": 58,
+     "active": true,
+     "pos": [
+      0.003,
+      0.02,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       0.2,
+       0.2
+      ],
+      "layer": 1,
+      "order": 1,
+      "enabled": true,
+      "key": "PlusIcon"
+     }
+    },
+    {
+     "name": "Free",
+     "parent": 46,
+     "active": false,
+     "pos": [
+      -0.247,
+      -0.081,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "BaseLeft",
+     "parent": 62,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      0.75,
+      0.75
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.471223,
+       0.3381295
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "BoosterStateBarGreen"
+     }
+    },
+    {
+     "name": "BaseRight",
+     "parent": 62,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      0.75,
+      0.75
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.471223,
+       0.3381295
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "BoosterStateBarGreen"
+     }
+    },
+    {
+     "name": "Text",
+     "parent": 62,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       0.4955,
+       0.1761
+      ],
+      "anchored": [
+       0.0,
+       -0.005
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Dark Green Outline 1"
+     }
+    },
+    {
+     "name": "FreezeButton",
+     "parent": 0,
+     "active": true,
+     "pos": [
+      1.336,
+      0.366,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "Badge",
+     "parent": 66,
+     "active": true,
+     "pos": [
+      0.24,
+      -0.393,
+      -1.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "Lock",
+     "parent": 67,
+     "active": false,
+     "pos": [
+      -0.248,
+      -0.081,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "BaseLeft",
+     "parent": 68,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      0.75,
+      0.75
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.47122303,
+       0.3381295
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "GoTopButton"
+     }
+    },
+    {
+     "name": "BaseRight",
+     "parent": 68,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      0.75,
+      0.75
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.47122303,
+       0.3381295
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "GoTopButton"
+     }
+    },
+    {
+     "name": "Text",
+     "parent": 68,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       0.4212,
+       0.1761
+      ],
+      "anchored": [
+       -0.0019998774,
+       -0.01
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Dark Blue Outline 2 Bold"
+     }
+    },
+    {
+     "name": "Icon",
+     "parent": 68,
+     "active": true,
+     "pos": [
+      0.338,
+      0.1066,
+      0.0
+     ],
+     "scale": [
+      0.7,
+      0.7
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       0.61,
+       0.85
+      ],
+      "layer": 1,
+      "order": 1,
+      "enabled": true,
+      "key": "LockIcon"
+     }
+    },
+    {
+     "name": "Counter",
+     "parent": 67,
+     "active": true,
+     "pos": [
+      0.004,
+      0.025,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "Base",
+     "parent": 73,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "BaseLeft",
+     "parent": 74,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      0.81438,
+      0.81438
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       0.2,
+       0.2
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "BoosterOrangeBadge"
+     }
+    },
+    {
+     "name": "BaseRight",
+     "parent": 74,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      0.81438,
+      0.81438
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       0.2,
+       0.2
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "BoosterOrangeBadge"
+     }
+    },
+    {
+     "name": "Text",
+     "parent": 73,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       0.2844,
+       0.2209
+      ],
+      "anchored": [
+       0.0,
+       0.008
+      ],
+      "layer": 1,
+      "order": 10,
+      "style": "Dark Red Outline"
+     }
+    },
+    {
+     "name": "Add",
+     "parent": 67,
+     "active": false,
+     "pos": [
+      0.004,
+      0.025,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "Base",
+     "parent": 78,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "BaseLeft",
+     "parent": 79,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      0.81438,
+      0.81438
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       0.2,
+       0.2
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "PreLevelBoosterGreenBadge"
+     }
+    },
+    {
+     "name": "BaseRight",
+     "parent": 79,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      0.81438,
+      0.81438
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       0.2,
+       0.2
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "PreLevelBoosterGreenBadge"
+     }
+    },
+    {
+     "name": "Icon",
+     "parent": 79,
+     "active": true,
+     "pos": [
+      0.003,
+      0.02,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       0.2,
+       0.2
+      ],
+      "layer": 1,
+      "order": 1,
+      "enabled": true,
+      "key": "PlusIcon"
+     }
+    },
+    {
+     "name": "Free",
+     "parent": 67,
+     "active": false,
+     "pos": [
+      -0.236,
+      -0.081,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "BaseLeft",
+     "parent": 83,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      0.75,
+      0.75
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.471223,
+       0.3381295
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "BoosterStateBarGreen"
+     }
+    },
+    {
+     "name": "BaseRight",
+     "parent": 83,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      0.75,
+      0.75
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.471223,
+       0.3381295
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "BoosterStateBarGreen"
+     }
+    },
+    {
+     "name": "Text",
+     "parent": 83,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       0.4955,
+       0.1761
+      ],
+      "anchored": [
+       0.0,
+       -0.005
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Dark Green Outline 1"
+     }
+    },
+    {
+     "name": "Icon",
+     "parent": 3,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.05,
+      1.05
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "key": "VacuumIcon256",
+      "color": [
+       1,
+       1,
+       1,
+       1
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       1.0,
+       1.0
+      ],
+      "layer": 0,
+      "order": -1,
+      "enabled": true
+     }
+    },
+    {
+     "name": "Icon",
+     "parent": 24,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.05,
+      1.05
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "key": "MagicHatIcon256",
+      "color": [
+       1,
+       1,
+       1,
+       1
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       1.0,
+       1.0
+      ],
+      "layer": 0,
+      "order": -1,
+      "enabled": true
+     }
+    },
+    {
+     "name": "Icon",
+     "parent": 45,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.05,
+      1.05
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "key": "PainterIcon256",
+      "color": [
+       1,
+       1,
+       1,
+       1
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       1.0,
+       1.0
+      ],
+      "layer": 0,
+      "order": -1,
+      "enabled": true
+     }
+    },
+    {
+     "name": "Icon",
+     "parent": 66,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.05,
+      1.05
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "key": "FreezeIcon256",
+      "color": [
+       1,
+       1,
+       1,
+       1
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       1.0,
+       1.0
+      ],
+      "layer": 0,
+      "order": -1,
+      "enabled": true
+     }
+    },
+    {
+     "name": "Plank",
+     "parent": 0,
+     "active": true,
+     "pos": [
+      0.012,
+      -0.115,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "key": "BoosterPlank",
+      "color": [
+       1,
+       1,
+       1,
+       1
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       1.0,
+       1.0
+      ],
+      "layer": 0,
+      "order": -2,
+      "enabled": true
+     }
+    }
+   ],
+   "offset": 0.83
+  }
+ },
+ "sprites": {
+  "PauseButton": {
+   "ppu": 278.0,
+   "pivot": [
+    1.0,
+    0.5
+   ],
+   "border": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "width": 62,
+   "height": 134,
+   "jpg": false
+  },
+  "PauseIcon": {
+   "ppu": 278.0,
+   "pivot": [
+    0.5,
+    0.5
+   ],
+   "border": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "width": 48,
+   "height": 46,
+   "jpg": false
+  },
+  "TimerGlow": {
+   "ppu": 278.0,
+   "pivot": [
+    1.0,
+    0.5
+   ],
+   "border": [
+    28.0,
+    0.0,
+    1.0,
+    0.0
+   ],
+   "width": 30,
+   "height": 120,
+   "jpg": false
+  },
+  "TimerEmpty": {
+   "ppu": 278.0,
+   "pivot": [
+    1.0,
+    0.5
+   ],
+   "border": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "width": 178,
+   "height": 166,
+   "jpg": false
+  },
+  "WhiteBox": {
+   "ppu": 100.0,
+   "pivot": [
+    0.5,
+    0.5
+   ],
+   "border": [
+    4.0,
+    4.0,
+    4.0,
+    4.0
+   ],
+   "width": 10,
+   "height": 10,
+   "jpg": false
+  },
+  "LevelNumberBaseDefault": {
+   "ppu": 278.0,
+   "pivot": [
+    1.0,
+    0.5
+   ],
+   "border": [
+    120.0,
+    57.0,
+    1.0,
+    57.0
+   ],
+   "width": 122,
+   "height": 116,
+   "jpg": false
+  },
+  "GoTopButton": {
+   "ppu": 278.0,
+   "pivot": [
+    1.0,
+    0.5
+   ],
+   "border": [
+    129.0,
+    46.0,
+    1.0,
+    46.0
+   ],
+   "width": 131,
+   "height": 94,
+   "jpg": false
+  },
+  "LockIcon": {
+   "ppu": 278.0,
+   "pivot": [
+    0.5,
+    0.5
+   ],
+   "border": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "width": 119,
+   "height": 149,
+   "jpg": false
+  },
+  "BoosterOrangeBadge": {
+   "ppu": 278.0,
+   "pivot": [
+    1.0,
+    0.5
+   ],
+   "border": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "width": 74,
+   "height": 148,
+   "jpg": false
+  },
+  "PreLevelBoosterGreenBadge": {
+   "ppu": 278.0,
+   "pivot": [
+    1.0,
+    0.5
+   ],
+   "border": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "width": 74,
+   "height": 148,
+   "jpg": false
+  },
+  "PlusIcon": {
+   "ppu": 278.0,
+   "pivot": [
+    0.5,
+    0.5
+   ],
+   "border": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "width": 48,
+   "height": 48,
+   "jpg": false
+  },
+  "BoosterStateBarGreen": {
+   "ppu": 278.0,
+   "pivot": [
+    1.0,
+    0.52
+   ],
+   "border": [
+    129.0,
+    47.0,
+    1.0,
+    47.0
+   ],
+   "width": 131,
+   "height": 97,
+   "jpg": false
+  },
+  "BoosterGreenBadge": {
+   "ppu": 278.0,
+   "pivot": [
+    1.0,
+    0.5
+   ],
+   "border": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "width": 74,
+   "height": 148,
+   "jpg": false
+  },
+  "LevelNumberBaseHard": {
+   "ppu": 278.0,
+   "pivot": [
+    1.0,
+    0.5
+   ],
+   "border": [
+    121.0,
+    57.0,
+    0.0,
+    57.0
+   ],
+   "width": 122,
+   "height": 116,
+   "jpg": false
+  },
+  "LevelNumberBaseSuperHard": {
+   "ppu": 278.0,
+   "pivot": [
+    1.0,
+    0.5
+   ],
+   "border": [
+    121.0,
+    57.0,
+    0.0,
+    57.0
+   ],
+   "width": 122,
+   "height": 116,
+   "jpg": false
+  },
+  "VacuumIcon256": {
+   "ppu": 278.0,
+   "pivot": [
+    0.5,
+    0.5
+   ],
+   "border": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "width": 256,
+   "height": 256,
+   "jpg": false
+  },
+  "MagicHatIcon256": {
+   "ppu": 278.0,
+   "pivot": [
+    0.5,
+    0.5
+   ],
+   "border": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "width": 256,
+   "height": 256,
+   "jpg": false
+  },
+  "PainterIcon256": {
+   "ppu": 278.0,
+   "pivot": [
+    0.5,
+    0.5
+   ],
+   "border": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "width": 256,
+   "height": 256,
+   "jpg": false
+  },
+  "FreezeIcon256": {
+   "ppu": 278.0,
+   "pivot": [
+    0.5,
+    0.5
+   ],
+   "border": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "width": 256,
+   "height": 256,
+   "jpg": false
+  },
+  "TimerRing": {
+   "ppu": 278.0,
+   "pivot": [
+    0.5,
+    0.5
+   ],
+   "border": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "width": 356,
+   "height": 166,
+   "jpg": false
+  },
+  "TimerInside": {
+   "ppu": 278.0,
+   "pivot": [
+    0.5,
+    0.5
+   ],
+   "border": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "width": 356,
+   "height": 166,
+   "jpg": false
+  },
+  "BoosterPlank": {
+   "ppu": 278.0,
+   "pivot": [
+    0.5,
+    0.5
+   ],
+   "border": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "width": 1070,
+   "height": 127,
+   "jpg": false
+  }
+ },
+ "styles": {
+  "Dark Blue Outline 2": {
+   "name": "Bango Pro SDF - Dark Blue Outline 2",
+   "face": [
+    0.9765,
+    0.9597,
+    0.9179,
+    1.0
+   ],
+   "outline": [
+    0.0105,
+    0.0,
+    0.2,
+    1.0
+   ],
+   "outlineWidth": 0.15,
+   "underlay": [
+    0.0118,
+    0.0,
+    0.2,
+    1.0
+   ],
+   "underlayOffset": [
+    0.0,
+    -0.33
+   ],
+   "dilate": 0.0
+  },
+  "Dark Blue Outline 2 Bold": {
+   "name": "Bango Pro SDF - Dark Blue Outline 2 Bold",
+   "face": [
+    0.9765,
+    0.9597,
+    0.9179,
+    1.0
+   ],
+   "outline": [
+    0.0105,
+    0.0,
+    0.2,
+    1.0
+   ],
+   "outlineWidth": 0.248,
+   "underlay": [
+    0.0118,
+    0.0,
+    0.2,
+    1.0
+   ],
+   "underlayOffset": [
+    0.0,
+    -0.835
+   ],
+   "dilate": 0.195
+  },
+  "Dark Red Outline": {
+   "name": "Bango Pro SDF - Dark Red Outline",
+   "face": [
+    0.9765,
+    0.9597,
+    0.9179,
+    1.0
+   ],
+   "outline": [
+    0.6706,
+    0.0627,
+    0.0627,
+    1.0
+   ],
+   "outlineWidth": 0.15,
+   "underlay": [
+    0.502,
+    0.0745,
+    0.0745,
+    1.0
+   ],
+   "underlayOffset": [
+    0.0,
+    -0.33
+   ],
+   "dilate": 0.0
+  },
+  "Dark Green Outline 1": {
+   "name": "Bango Pro SDF - Dark Green Outline 1",
+   "face": [
+    0.9765,
+    0.9597,
+    0.9179,
+    1.0
+   ],
+   "outline": [
+    0.0824,
+    0.549,
+    0.0549,
+    1.0
+   ],
+   "outlineWidth": 0.15,
+   "underlay": [
+    0.0588,
+    0.4,
+    0.0392,
+    1.0
+   ],
+   "underlayOffset": [
+    0.0,
+    -0.33
+   ],
+   "dilate": 0.0
+  },
+  "Default": {
+   "name": "Default",
+   "face": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "outline": [
+    0.0627,
+    0.235,
+    0.6706,
+    1
+   ],
+   "outlineWidth": 0.2,
+   "underlay": null,
+   "underlayOffset": [
+    0,
+    0
+   ],
+   "dilate": 0
+  }
+ }
+}

@@ -18,7 +18,12 @@ namespace Sortex.Game
 {
     public sealed class BoardView
     {
-        const float SW = Board.SlotWidth;
+        // The levels place 3-slot shelves 3.13 apart and rows 1 apart; the game draws x at half that scale, so a
+        // 3-slot shelf is about 1.6 x 1 on screen (measured on a screenshot of the game: row pitch / shelf pitch).
+        // The model keeps the level's numbers; only the view squeezes x.
+        public const float XS = 0.5f;
+        const float SW = Board.SlotWidth * XS;
+        static float VX(float levelX) { return levelX * XS; }
         const float LipTop = -0.44f;                 // where items stand, relative to the shelf centre
         const float InnerTop = 0.465f;
         const float FrontY = LipTop + SortexArt.ItemSize * 0.5f + 0.005f;
@@ -121,7 +126,7 @@ namespace Sortex.Game
         public Vector3 SlotPosition(int shelf, int slot, int layer)
         {
             var s = board.Shelves[shelf];
-            float x = s.X - InnerWidth(s) * 0.5f + SW * (slot + 0.5f);
+            float x = VX(s.X) - InnerWidth(s) * 0.5f + SW * (slot + 0.5f);
             float y = s.Y + (layer == 0 ? FrontY : BackY);
             return new Vector3(x, y, 0f);
         }
@@ -135,16 +140,16 @@ namespace Sortex.Game
             for (int i = 0; i < board.Shelves.Count; i++)
             {
                 var s = board.Shelves[i];
-                if (s.Moving && (Mathf.Abs(p.x) > visibleHalf || Conveyor.Hidden(s.X, s.Width, visibleHalf))) continue;
+                if (s.Moving && (Mathf.Abs(p.x) > VX(visibleHalf) || Conveyor.Hidden(s.X, s.Width, visibleHalf))) continue;
                 float hw = InnerWidth(s) * 0.5f;
-                float dx = Mathf.Max(0f, Mathf.Abs(p.x - s.X) - hw);
+                float dx = Mathf.Max(0f, Mathf.Abs(p.x - VX(s.X)) - hw);
                 float dy = Mathf.Max(0f, Mathf.Abs(p.y - s.Y) - 0.5f);
                 float d = dx + dy;
                 if (d <= tolerance && d < best)
                 {
                     best = d;
                     shelf = i;
-                    slot = Mathf.Clamp(Mathf.FloorToInt((p.x - (s.X - hw)) / SW), 0, s.Width - 1);
+                    slot = Mathf.Clamp(Mathf.FloorToInt((p.x - (VX(s.X) - hw)) / SW), 0, s.Width - 1);
                 }
             }
             return shelf >= 0;
@@ -168,16 +173,16 @@ namespace Sortex.Game
                 float hw = InnerWidth(s) * 0.5f;
                 if (!s.Moving)
                 {
-                    minX = Mathf.Min(minX, s.X - hw);
-                    maxX = Mathf.Max(maxX, s.X + hw);
+                    minX = Mathf.Min(minX, VX(s.X) - hw);
+                    maxX = Mathf.Max(maxX, VX(s.X) + hw);
                 }
                 minY = Mathf.Min(minY, s.Y - 0.5f);
                 maxY = Mathf.Max(maxY, s.Y + 0.5f);
             }
             if (conveyors.Count > 0)
             {
-                minX = Mathf.Min(minX, -visibleHalf);
-                maxX = Mathf.Max(maxX, visibleHalf);
+                minX = Mathf.Min(minX, -VX(visibleHalf));
+                maxX = Mathf.Max(maxX, VX(visibleHalf));
             }
             if (board.Shelves.Count == 0) minX = maxX = minY = maxY = 0f;
             Bounds = Rect.MinMaxRect(minX, minY, maxX, maxY);
@@ -187,7 +192,7 @@ namespace Sortex.Game
                 var sv = new ShelfView { Shelf = s };
                 sv.Root = new GameObject("Shelf " + s.Index).transform;
                 sv.Root.SetParent(root, false);
-                sv.Root.localPosition = new Vector3(s.X, s.Y, 0f);
+                sv.Root.localPosition = new Vector3(VX(s.X), s.Y, 0f);
                 float iw = InnerWidth(s);
 
                 // cabinet body behind the shelf: one plate per shelf so any shape (cross, diamond...) works
@@ -211,24 +216,24 @@ namespace Sortex.Game
                 {
                     sv.Cargo = SortexArt.NewSprite("CargoDoor", sv.Root, SortexArt.CargoDoor, 5);
                     sv.Cargo.transform.localPosition = new Vector3(0f, LipTop + innerH * 0.5f, 0f);
-                    sv.Cargo.transform.localScale = new Vector3(iw / 3.125f, innerH, 1f);
+                    sv.Cargo.transform.localScale = new Vector3(iw / 1.5625f, innerH, 1f);
                     sv.CargoText = Badge(sv.Root, new Vector3(iw * 0.5f - 0.17f, 0.36f, 0f), new Color(0.43f, 0.29f, 0.84f), out sv.CargoBadge);
                 }
                 if (s.Shutter)
                 {
                     sv.ShutterHint = SortexArt.NewSprite("ShutterHint", sv.Root, SortexArt.ShutterSprite, 31);
                     sv.ShutterHint.transform.localPosition = new Vector3(0f, InnerTop - 0.03f, 0f);
-                    sv.ShutterHint.transform.localScale = new Vector3(iw / 3.125f, 0.06f, 1f);
+                    sv.ShutterHint.transform.localScale = new Vector3(iw / 1.5625f, 0.06f, 1f);
                     sv.Shutter = SortexArt.NewSprite("Shutter", sv.Root, SortexArt.ShutterSprite, 38);
                     sv.Shutter.transform.localPosition = new Vector3(0f, LipTop + innerH * 0.5f, 0f);
-                    sv.Shutter.transform.localScale = new Vector3(iw / 3.125f, innerH, 1f);
+                    sv.Shutter.transform.localScale = new Vector3(iw / 1.5625f, innerH, 1f);
                     sv.Shutter.gameObject.SetActive(false);
                 }
                 if (s.Locked)
                 {
                     sv.Door = SortexArt.NewSprite("LockDoor", sv.Root, SortexArt.LockDoor, 40);
                     sv.Door.transform.localPosition = new Vector3(0f, LipTop + innerH * 0.5f, 0f);
-                    sv.Door.transform.localScale = new Vector3(iw / 3.125f, innerH, 1f);
+                    sv.Door.transform.localScale = new Vector3(iw / 1.5625f, innerH, 1f);
                     sv.DoorText = SortexArt.NewText("Count", sv.Door.transform, s.LockCount.ToString(), 0.42f, Color.white, 41);
                     sv.DoorText.transform.localScale = new Vector3(1f / sv.Door.transform.localScale.x, 1f / innerH, 1f);
                     sv.DoorText.transform.localPosition = new Vector3(0f, 0.01f, 0f);
@@ -272,17 +277,17 @@ namespace Sortex.Game
         {
             const float mouthCentre = 0.047f;    // pipe_mouth.png: the rim ellipse is 6 px right of the sprite centre
             const float bodyStart = 0.20f;       // where the plain pipe takes over, measured from the rim
-            float length = row.Loop + 2f;
+            float length = VX(row.Loop) + 2f;
             float y = row.Y - 0.02f;
             for (int side = -1; side <= 1; side += 2)
             {
                 var mouth = SortexArt.NewSprite("TunnelMouth", root, SortexArt.PipeMouth, 61);
                 mouth.flipX = side > 0;
-                mouth.transform.localPosition = new Vector3(side * (visibleHalf + mouthCentre), y, 0f);
+                mouth.transform.localPosition = new Vector3(side * (VX(visibleHalf) + mouthCentre), y, 0f);
                 var body = SortexArt.NewSprite("Tunnel", root, SortexArt.PipeBody, 60);
                 float bodyWidth = body.sprite != null ? body.sprite.bounds.size.x : 0.25f;
                 body.transform.localScale = new Vector3(length / bodyWidth, 1f, 1f);
-                body.transform.localPosition = new Vector3(side * (visibleHalf + bodyStart + length * 0.5f), y, 0f);
+                body.transform.localPosition = new Vector3(side * (VX(visibleHalf) + bodyStart + length * 0.5f), y, 0f);
             }
         }
 
@@ -343,6 +348,7 @@ namespace Sortex.Game
             v.ShowsMystery = it.Mystery;
             v.Shadow = SortexArt.NewSprite("Shadow", v.Go.transform, SortexArt.Shadow, 19);
             v.Shadow.transform.localPosition = new Vector3(0f, -SortexArt.ItemSize * 0.5f + 0.02f, 0f);
+            v.Shadow.transform.localScale = new Vector3(0.62f, 0.8f, 1f);   // slots are half as wide as the level spacing
             if (it.Frozen)
             {
                 v.Ice = SortexArt.NewSprite("Ice", v.Go.transform, SortexArt.Ice, 22);
@@ -595,7 +601,7 @@ namespace Sortex.Game
         public void PlayMatch(int shelf)
         {
             var s = board.Shelves[shelf];
-            var c = new Vector3(s.X, s.Y + FrontY, 0f);
+            var c = new Vector3(VX(s.X), s.Y + FrontY, 0f);
             var glow = SortexArt.NewSprite("MatchGlow", root, SortexArt.Glow, 110);
             glow.transform.localPosition = c;
             glow.color = new Color(1f, 0.86f, 0.4f, 0.9f);
@@ -818,9 +824,9 @@ namespace Sortex.Game
                 {
                     var s = board.Shelves[si];
                     float nx = Conveyor.Wrap(s.X + row.Velocity * dt, row.Loop);
-                    float dx = nx - s.X;
+                    float dx = VX(nx - s.X);
                     s.X = nx;
-                    shelves[si].Root.localPosition = new Vector3(nx, s.Y, 0f);
+                    shelves[si].Root.localPosition = new Vector3(VX(nx), s.Y, 0f);
                     if (dx == 0f) continue;
                     foreach (var v in items.Values)
                     {
