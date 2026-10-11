@@ -237,7 +237,7 @@ namespace Sortex.Game
 
             var foot = Txt(col, "Footer",
                 (ownHeader ? "" : "Levels you save with Sortex > Level Editor show up here.\n") +
-                "Built in Unity from the Sort Express level data (2150 levels analysed).\nEvery case level is checked by a solver and 300 simulated players.",
+                "Built in Unity from the Sort Express level data (2150 levels analysed).\nEvery level is checked by a solver and 1000 simulated players.",
                 28, new Color(0.7f, 0.78f, 0.95f, 0.9f), TextAnchor.MiddleCenter);
             Place(foot.rectTransform, new Vector2(0.5f, 1f), new Vector2(0f, y + 120f), new Vector2(980f, 150f));
             col.sizeDelta = new Vector2(1000f, -y + 80f);

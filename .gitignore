@@ -51,5 +51,5 @@ Tools/sim/*.exe
 /Unity.2D.Welcome.csproj
 *.slnx
 
-# publish requests (Sortex > 3. Publish to GitHub can be triggered by this file)
+# legacy publish request location (now Logs/SortexPublish.request, already ignored)
 /SortexPublish.request

@@ -7,8 +7,8 @@
 //   3. git add / commit / push to github.com/zeydusht/sort-express-level-design. The first push asks for a
 //      GitHub sign-in (Git Credential Manager window); after that it is silent.
 //
-// The same publish can be requested by creating the file SortexPublish.request in the project folder
-// ("no-build" inside skips step 2). Progress is written to Logs/SortexPublish.log.
+// The same publish can be requested by creating the file Logs/SortexPublish.request (works while Unity is in the
+// background; "no-build" inside skips step 2). Progress is written to Logs/SortexPublish.log.
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -46,7 +46,7 @@ namespace Sortex.EditorTools
 
         static string Root { get { return Directory.GetParent(Application.dataPath).FullName; } }
         static string StatusFile { get { return Path.Combine(Path.Combine(Root, "Logs"), "SortexPublish.log"); } }
-        static string RequestFile { get { return Path.Combine(Root, "SortexPublish.request"); } }
+        static string RequestFile { get { return Path.Combine(Path.Combine(Root, "Logs"), "SortexPublish.request"); } }
 
         static SortexPublish()
         {
@@ -70,9 +70,8 @@ namespace Sortex.EditorTools
             {
                 return;
             }
-            bool build = mode != "no-build";
-            running = true;
-            EditorApplication.delayCall += () => Run(false, build);
+            // straight from the update loop: delayCall waits for a repaint, which never comes while Unity is in the background
+            Run(false, mode != "no-build");
         }
 
         // ================================================================== entry points
