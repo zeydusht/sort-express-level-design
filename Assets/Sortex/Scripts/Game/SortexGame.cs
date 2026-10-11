@@ -32,6 +32,7 @@ namespace Sortex.Game
         SortexHud hud;
         MainMenuView home;      // the game's own home screen (MainScene.prefab), the first thing a visitor sees
         bool levelList;         // the case level list (opened from the Packs tab) instead of the home screen
+        int screenFrame = -1;   // frame a screen was opened in: the click that opened it must not also press what is under it
         Camera cam;
         Transform world;
         SpriteRenderer background, shade;
@@ -217,6 +218,7 @@ namespace Sortex.Game
             }
             state = State.Menu;
             levelList = false;
+            screenFrame = Time.frameCount;
             ClearBoard();
             hud.ShowHome();
             int next = NextLevel;
@@ -367,6 +369,7 @@ namespace Sortex.Game
 
         void StartLevel(int index)
         {
+            screenFrame = Time.frameCount;
             home.SetVisible(false);
             levelList = false;
             current = Mathf.Clamp(index, 0, levels.Count - 1);
@@ -430,7 +433,8 @@ namespace Sortex.Game
             float dt = Time.deltaTime;
             FitCamera();   // cheap; keeps the board framed when the browser window or the UI scale changes
 
-            if (state == State.Menu && !levelList && home.Ready)
+            bool freshScreen = Time.frameCount <= screenFrame;
+            if (state == State.Menu && !levelList && home.Ready && !freshScreen)
             {
                 var p = Pointer.current;
                 if (p != null)
@@ -442,7 +446,7 @@ namespace Sortex.Game
             }
             if (state == State.Playing)
             {
-                HandleInput();
+                if (!freshScreen) HandleInput();
                 if (timerRunning)
                 {
                     timeLeft -= dt;

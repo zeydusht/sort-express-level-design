@@ -158,12 +158,49 @@ namespace Sortex.EditorTools
             if (report.summary.result == BuildResult.Succeeded)
             {
                 File.WriteAllText(Path.Combine(outDir, ".nojekyll"), "");
+                PatchIndexHtml(Path.Combine(outDir, "index.html"));
                 Debug.Log("Sortex: WebGL build ready in " + outDir + " (" + (report.summary.totalSize / (1024 * 1024)) + " MB)");
                 if (reveal) EditorUtility.RevealInFinder(outDir);
                 return true;
             }
             Debug.LogError("Sortex: WebGL build failed (" + report.summary.result + "). Is the WebGL module installed in Unity Hub?");
             return false;
+        }
+
+        // Unity's default template shows a fixed 450 x 800 canvas on desktop browsers, which a laptop window cuts at the
+        // top and bottom (the game's top bar and navigation bar). This turns it into a phone-shaped 9:16 window that
+        // always fits the browser window, on a dark page without the Unity footer. Phones keep the full-screen canvas.
+        const string FitMarker = "/* sortex-fit */";
+
+        public static void PatchIndexHtml(string path)
+        {
+            if (!File.Exists(path)) return;
+            string html = File.ReadAllText(path);
+            if (html.Contains(FitMarker)) return;
+            var desktop = new System.Text.RegularExpressions.Regex(
+                "fullscreenContainer\\.style\\.width = \"\\d+px\";\\s*fullscreenContainer\\.style\\.height = \"\\d+px\";");
+            if (!desktop.IsMatch(html))
+            {
+                Debug.LogWarning("Sortex: index.html has an unexpected layout, left as built.");
+                return;
+            }
+            const string fit = FitMarker + @"
+        // Desktop: a phone-shaped (9:16) window that always fits the browser window
+        document.querySelector(""#unity-footer"").style.display = ""none"";
+        var sortexFit = function () {
+          var h = Math.max(320, Math.min(window.innerHeight - 24, 1100));
+          var w = Math.round(h * 9 / 16);
+          if (w > window.innerWidth - 24) { w = Math.max(180, window.innerWidth - 24); h = Math.round(w * 16 / 9); }
+          fullscreenContainer.style.width = w + ""px"";
+          fullscreenContainer.style.height = h + ""px"";
+        };
+        sortexFit();
+        window.addEventListener(""resize"", sortexFit);";
+            html = desktop.Replace(html, fit, 1);
+            html = html.Replace("<title>Unity Web Player | ", "<title>");
+            html = html.Replace("</head>",
+                "  <style>html, body { background: #15122b; overflow: hidden } .unity-desktop #unity-canvas { border-radius: 14px }</style>\n  </head>");
+            File.WriteAllText(path, html);
         }
     }
 }
