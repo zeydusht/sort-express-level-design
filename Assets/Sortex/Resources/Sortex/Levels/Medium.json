@@ -82,8 +82,7 @@
        "it": 0
       },
       {
-       "it": 1,
-       "iid": "item_apple_green"
+       "it": 0
       }
      ]
     }
@@ -169,29 +168,13 @@
        "iid": "item_can_red"
       }
      ]
-    },
-    {
-     "rd": [
-      {
-       "it": 1,
-       "iid": "item_babydino_green"
-      },
-      {
-       "it": 1,
-       "iid": "item_apple_green"
-      },
-      {
-       "it": 1,
-       "iid": "item_camera_blue"
-      }
-     ]
     }
    ],
    "isd": false,
    "icn": false,
    "icl": false,
    "lmc": 0,
-   "pd": 4,
+   "pd": 3,
    "scd": [
     {
      "cmd": 0,
@@ -325,7 +308,8 @@
        "iid": "item_baloon_yellowbolts"
       },
       {
-       "it": 0
+       "it": 1,
+       "iid": "item_cerealbox_yellow"
       },
       {
        "it": 0
@@ -528,20 +512,13 @@
        "iid": "item_camera_red"
       }
      ]
-    },
-    {
-     "rd": [
-      {
-       "it": 0
-      }
-     ]
     }
    ],
    "isd": false,
    "icn": false,
    "icl": false,
    "lmc": 0,
-   "pd": 4,
+   "pd": 3,
    "scd": [
     {
      "cmd": 0,
@@ -587,28 +564,13 @@
        "iid": "item_ball_basketorange"
       }
      ]
-    },
-    {
-     "rd": [
-      {
-       "it": 1,
-       "iid": "item_cerealbox_yellow"
-      }
-     ]
-    },
-    {
-     "rd": [
-      {
-       "it": 0
-      }
-     ]
     }
    ],
    "isd": false,
    "icn": false,
    "icl": false,
    "lmc": 0,
-   "pd": 4,
+   "pd": 2,
    "scd": [
     {
      "cmd": 0,
@@ -646,7 +608,8 @@
        "iid": "item_beartotem_default"
       },
       {
-       "it": 0
+       "it": 1,
+       "iid": "item_apple_green"
       },
       {
        "it": 1,
@@ -921,45 +884,16 @@
    ]
   },
   {
-   "id": "339dd1d7-4446-d45d-ad45-074d0c0a4314",
+   "id": "070b7e62-4108-5216-953b-4c678a2bc65d",
    "gid": "1",
    "csb": true,
    "pos": {
-    "x": -1.565,
-    "y": 0
+    "x": -6.26,
+    "y": -0.5
    },
-   "im": false,
+   "im": true,
    "sicw": 3,
    "si": [
-    {
-     "rd": [
-      {
-       "it": 0
-      },
-      {
-       "it": 1,
-       "iid": "item_beartotem_default"
-      },
-      {
-       "it": 0
-      }
-     ]
-    },
-    {
-     "rd": [
-      {
-       "it": 1,
-       "iid": "item_boxingglove_red"
-      },
-      {
-       "it": 0
-      },
-      {
-       "it": 1,
-       "iid": "item_cactus_pink"
-      }
-     ]
-    },
     {
      "rd": [
       {
@@ -968,24 +902,11 @@
       },
       {
        "it": 1,
-       "iid": "item_balloondog_pink"
+       "iid": "item_camera_red"
       },
       {
        "it": 1,
        "iid": "item_cerealbox_yellow"
-      }
-     ]
-    },
-    {
-     "rd": [
-      {
-       "it": 0
-      },
-      {
-       "it": 0
-      },
-      {
-       "it": 0
       }
      ]
     }
@@ -994,7 +915,7 @@
    "icn": false,
    "icl": false,
    "lmc": 0,
-   "pd": 4,
+   "pd": 1,
    "scd": [
     {
      "cmd": 0,
@@ -1012,23 +933,86 @@
      "cmd": 0,
      "crd": 0
     }
-   ]
+   ],
+   "mv": {
+    "x": 1.0,
+    "y": 0.0
+   },
+   "ms": 1.0
   },
   {
-   "id": "072628a0-6a19-a984-7024-30ef2d8b43d4",
+   "id": "93fddc3e-b86d-5113-bf79-3de5fc3e25d0",
    "gid": "1",
    "csb": true,
    "pos": {
-    "x": 1.565,
-    "y": 0
+    "x": -3.13,
+    "y": -0.5
    },
-   "im": false,
+   "im": true,
    "sicw": 3,
    "si": [
     {
      "rd": [
       {
-       "it": 0
+       "it": 1,
+       "iid": "item_boxingglove_red"
+      },
+      {
+       "it": 1,
+       "iid": "item_beartotem_default"
+      },
+      {
+       "it": 1,
+       "iid": "item_apple_green"
+      }
+     ]
+    }
+   ],
+   "isd": false,
+   "icn": false,
+   "icl": false,
+   "lmc": 0,
+   "pd": 1,
+   "scd": [
+    {
+     "cmd": 0,
+     "crd": 2
+    },
+    {
+     "cmd": 0,
+     "crd": 1
+    },
+    {
+     "cmd": 0,
+     "crd": 3
+    },
+    {
+     "cmd": 0,
+     "crd": 0
+    }
+   ],
+   "mv": {
+    "x": 1.0,
+    "y": 0.0
+   },
+   "ms": 1.0
+  },
+  {
+   "id": "04126d79-b4d2-5fe5-8658-2618934581f8",
+   "gid": "1",
+   "csb": true,
+   "pos": {
+    "x": 0.0,
+    "y": -0.5
+   },
+   "im": true,
+   "sicw": 3,
+   "si": [
+    {
+     "rd": [
+      {
+       "it": 1,
+       "iid": "item_babydino_green"
       },
       {
        "it": 1,
@@ -1039,56 +1023,13 @@
        "iid": "item_backpack_wfaceorange"
       }
      ]
-    },
-    {
-     "rd": [
-      {
-       "it": 0
-      },
-      {
-       "it": 0
-      },
-      {
-       "it": 1,
-       "iid": "item_boxingglove_blue"
-      }
-     ]
-    },
-    {
-     "rd": [
-      {
-       "it": 1,
-       "iid": "item_camera_red"
-      },
-      {
-       "it": 0
-      },
-      {
-       "it": 1,
-       "iid": "item_bowlingpin_red"
-      }
-     ]
-    },
-    {
-     "rd": [
-      {
-       "it": 0
-      },
-      {
-       "it": 1,
-       "iid": "item_balloondog_blue"
-      },
-      {
-       "it": 0
-      }
-     ]
     }
    ],
    "isd": false,
    "icn": false,
    "icl": false,
    "lmc": 0,
-   "pd": 4,
+   "pd": 1,
    "scd": [
     {
      "cmd": 0,
@@ -1106,7 +1047,126 @@
      "cmd": 0,
      "crd": 0
     }
-   ]
+   ],
+   "mv": {
+    "x": 1.0,
+    "y": 0.0
+   },
+   "ms": 1.0
+  },
+  {
+   "id": "755d2bbf-196b-5834-83c3-6dcb33c76b1a",
+   "gid": "1",
+   "csb": true,
+   "pos": {
+    "x": 3.13,
+    "y": -0.5
+   },
+   "im": true,
+   "sicw": 3,
+   "si": [
+    {
+     "rd": [
+      {
+       "it": 1,
+       "iid": "item_balloondog_pink"
+      },
+      {
+       "it": 1,
+       "iid": "item_cactus_pink"
+      },
+      {
+       "it": 1,
+       "iid": "item_boxingglove_blue"
+      }
+     ]
+    }
+   ],
+   "isd": false,
+   "icn": false,
+   "icl": false,
+   "lmc": 0,
+   "pd": 1,
+   "scd": [
+    {
+     "cmd": 0,
+     "crd": 2
+    },
+    {
+     "cmd": 0,
+     "crd": 1
+    },
+    {
+     "cmd": 0,
+     "crd": 3
+    },
+    {
+     "cmd": 0,
+     "crd": 0
+    }
+   ],
+   "mv": {
+    "x": 1.0,
+    "y": 0.0
+   },
+   "ms": 1.0
+  },
+  {
+   "id": "569d03a3-17b7-5751-8775-4d828092e874",
+   "gid": "1",
+   "csb": true,
+   "pos": {
+    "x": 6.26,
+    "y": -0.5
+   },
+   "im": true,
+   "sicw": 3,
+   "si": [
+    {
+     "rd": [
+      {
+       "it": 1,
+       "iid": "item_bowlingpin_red"
+      },
+      {
+       "it": 1,
+       "iid": "item_balloondog_blue"
+      },
+      {
+       "it": 1,
+       "iid": "item_camera_blue"
+      }
+     ]
+    }
+   ],
+   "isd": false,
+   "icn": false,
+   "icl": false,
+   "lmc": 0,
+   "pd": 1,
+   "scd": [
+    {
+     "cmd": 0,
+     "crd": 2
+    },
+    {
+     "cmd": 0,
+     "crd": 1
+    },
+    {
+     "cmd": 0,
+     "crd": 3
+    },
+    {
+     "cmd": 0,
+     "crd": 0
+    }
+   ],
+   "mv": {
+    "x": 1.0,
+    "y": 0.0
+   },
+   "ms": 1.0
   }
  ],
  "ig": [],

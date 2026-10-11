@@ -106,6 +106,24 @@ static class CoreTests
         Check(Math.Abs(rows[0].Loop - 15.65f) < 1e-3, "loop length = 5 shelves");
         Check(Math.Abs(Conveyor.Wrap(6.26f + 3.13f, rows[0].Loop) - (-6.26f)) < 1e-3, "a shelf leaving right comes back left");
         Check(Conveyor.Hidden(6.26f, 3, half) && !Conveyor.Hidden(3.13f, 3, half), "outer shelves start inside the pipes");
+        // the simulator's clock: where a moving shelf is after t seconds (the row slides from the start, 1 unit/s)
+        var cl = new LevelData { name = "conveyor clock", timeLimit = 60 };
+        for (int i = -2; i <= 2; i++)
+        {
+            var cs = ShelfData.Create(i * 3.13f, -2f, 3, 1);
+            cs.moving = true;
+            cs.moveDir = 1;
+            cs.moveSpeed = 1f;
+            cs.layers[0][0] = new SlotData { it = SlotData.Normal, iid = "c" + (i + 2) };
+            cl.shelves.Add(cs);
+        }
+        var cstat = ShelfData.Create(0f, 1f, 3, 1);
+        cl.shelves.Add(cstat);
+        var bc = Board.FromLevel(cl);
+        Check(bc.HasConveyors && Math.Abs(bc.Shelves[0].Loop - 15.65f) < 1e-3, "board keeps the conveyor loop");
+        Check(!bc.OnScreen(4, 0) && bc.OnScreen(3, 0) && bc.OnScreen(5, 0), "at the start the outer shelves are in the pipes, static ones on screen");
+        Check(bc.OnScreen(4, 6.26) && !bc.OnScreen(3, 6.26), "after 6.26 s the right shelf has left and the next one came out");
+        Check(bc.OnScreen(0, 3.13) && bc.OnScreen(0, 3.13 + 15.65 * 3), "the row loops: same picture every loop");
 
         // 6. pinatas: three of a colour burst, what was inside drops into their slots and can match again
         var pl = new LevelData { name = "pinata", timeLimit = 60 };

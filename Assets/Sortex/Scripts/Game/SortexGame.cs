@@ -31,6 +31,7 @@ namespace Sortex.Game
         BoardView view;
         SortexHud hud;
         MainMenuView home;      // the game's own home screen (MainScene.prefab), the first thing a visitor sees
+        LevelSelectDialog levelSelect;  // the level list over the home screen (Level button, Packs tab)
         LevelHud levelHud;      // the game's level HUD (LevelSceneUI.prefab): level number, timer, pause, boosters
         PauseDialog pauseDialog;// the game's pause dialog (LevelPauseDialog.prefab)
         WinDialog winDialog;    // the game's level end screens (LevelWinDialog, NoMoreMatchesPanel, LevelLoseDialog)
@@ -110,14 +111,23 @@ namespace Sortex.Game
             hud = new SortexHud(transform);
             home = new MainMenuView(transform);
             home.SetVisible(false);
-            home.OnClick("Play", PlayNext);
-            home.OnClick("Packs", ShowLevels);
+            // the Level button and the Packs tab open the level select (the case levels and the editor's levels)
+            home.OnClick("Play", ShowLevelSelect);
+            home.OnClick("Packs", ShowLevelSelect);
             home.OnClick("Home", () => { });
             foreach (var other in new[] { "Shop", "Leaderboard", "Settings", "Lives", "Coins", "Profile" })
             {
                 string label = other;
-                home.OnClick(other, () => hud.Toast(label + " is not part of this prototype. Packs lists every level.", Color.white));
+                home.OnClick(other, () => hud.Toast(label + " is not part of this prototype. Tap Level to pick a level.", Color.white));
             }
+            levelSelect = new LevelSelectDialog(transform);
+            for (int i = 0; i < LevelSelectDialog.MaxRows; i++)
+            {
+                int index = i;
+                levelSelect.OnClick("Row" + i, () => StartLevel(index));
+                levelSelect.OnClick("Play" + i, () => StartLevel(index));
+            }
+            levelSelect.OnClick("Close", CloseLevelSelect);
             levelHud = new LevelHud(transform);
             levelHud.OnClick("Pause", Pause);
             for (int i = 0; i < LevelHud.BoosterNames.Length; i++)
@@ -250,11 +260,6 @@ namespace Sortex.Game
 
         const string ProgressKey = "Sortex.NextLevel";
 
-        void PlayNext()
-        {
-            StartLevel(NextLevel);
-        }
-
         void ShowMenu()
         {
             if (!home.Ready)
@@ -266,6 +271,7 @@ namespace Sortex.Game
             levelList = false;
             screenFrame = Time.frameCount;
             HideLevelScreens();
+            levelSelect.SetVisible(false);
             ClearBoard();
             hud.ShowHome();
             int next = NextLevel;
@@ -273,6 +279,46 @@ namespace Sortex.Game
             home.SetWallet(5, 1000);
             home.SetVisible(true);
             FitCamera();
+        }
+
+        /// <summary>The level select over the home screen: one row per level (the case levels, then the editor's).</summary>
+        void ShowLevelSelect()
+        {
+            if (!levelSelect.Ready)
+            {
+                ShowLevels();
+                return;
+            }
+            if (state != State.Menu || levelList) ShowMenu();
+            screenFrame = Time.frameCount;
+            int rows = Mathf.Min(Mathf.Min(levels.Count, menuLevels), LevelSelectDialog.MaxRows);
+            levelSelect.SetRowCount(rows);
+            for (int i = 0; i < rows; i++)
+            {
+                var lv = levels[i];
+                string tier = lv.difficultyTag >= 20 ? "Super Hard" : lv.difficultyTag >= 10 ? "Hard Level" : "Normal";
+                levelSelect.SetRow(i, i + 1, lv.name, tier + "  ·  " + Clock(lv.timeLimit), lv.difficultyTag, Won(lv));
+            }
+            levelSelect.Show();
+            levelSelect.Layout(cam, Aspect);
+        }
+
+        void CloseLevelSelect()
+        {
+            screenFrame = Time.frameCount;
+            levelSelect.SetVisible(false);
+        }
+
+        static string Clock(int seconds)
+        {
+            return (seconds / 60) + ":" + (seconds % 60).ToString("00");
+        }
+
+        const string WonKey = "Sortex.Won.";
+
+        static bool Won(LevelData lv)
+        {
+            return PlayerPrefs.GetInt(WonKey + lv.name, 0) == 1;
         }
 
         void ShowLevels()
@@ -419,6 +465,7 @@ namespace Sortex.Game
         {
             screenFrame = Time.frameCount;
             home.SetVisible(false);
+            levelSelect.SetVisible(false);
             levelList = false;
             current = Mathf.Clamp(index, 0, levels.Count - 1);
             level = levels[current];
@@ -637,6 +684,11 @@ namespace Sortex.Game
             timerRunning = false;
             screenFrame = Time.frameCount;
             if (held != null) CancelHold();
+            if (win)
+            {
+                PlayerPrefs.SetInt(WonKey + level.name, 1);
+                PlayerPrefs.Save();
+            }
             if (win && current == NextLevel && current < menuLevels)
             {
                 PlayerPrefs.SetInt(ProgressKey, current + 1 < Mathf.Min(levels.Count, menuLevels) ? current + 1 : 0);
@@ -692,7 +744,9 @@ namespace Sortex.Game
                 {
                     Vector2 sp = p.position.ReadValue();
                     Vector3 wp = cam.ScreenToWorldPoint(new Vector3(sp.x, sp.y, 10f));
-                    home.Pointer(p.press.wasPressedThisFrame, p.press.isPressed, p.press.wasReleasedThisFrame, wp, dt);
+                    // the level select sits over the home screen and takes the presses while it is open
+                    PrefabScreen top = levelSelect.Visible ? (PrefabScreen)levelSelect : home;
+                    top.Pointer(p.press.wasPressedThisFrame, p.press.isPressed, p.press.wasReleasedThisFrame, wp, dt);
                 }
             }
             var end = state == State.Result ? EndDialog : null;
@@ -778,6 +832,7 @@ namespace Sortex.Game
             if (state == State.Menu && !levelList && home.Ready)
             {
                 home.Layout(cam);
+                if (levelSelect.Visible) levelSelect.Layout(cam, Mathf.Max(0.3f, (float)Screen.width / Mathf.Max(1, Screen.height)));
                 return;
             }
             float aspect = Mathf.Max(0.3f, (float)Screen.width / Mathf.Max(1, Screen.height));

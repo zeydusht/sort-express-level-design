@@ -9,6 +9,7 @@
 //     time:Easy (25 s left: the red ring), win:Easy, space:Easy, timeup:Easy, nomatch:Easy, lose:Easy (the level end dialogs)
 //     vacuum:Easy, hat:Easy, paint:Easy (the board after that booster), freeze:Easy (the frozen timer)
 //     "width height level difficultyTag editorhud"     the HUD picture of the Level Editor's game-screen template
+//     "width height level difficultyTag levels"        the home screen with the level select open
 using System;
 using System.IO;
 using Sortex.Game;
@@ -103,6 +104,7 @@ namespace Sortex.EditorTools
                     menu.SetWallet(5, 1000);
                     menu.SetVisible(true);
                     menu.Layout(cam, aspect);
+                    if (screen == "levels") BuildLevelSelect(holder.transform, cam, aspect);
                 }
 
                 rt = new RenderTexture(width, height, 24, RenderTextureFormat.ARGB32);
@@ -130,6 +132,31 @@ namespace Sortex.EditorTools
                 if (rt != null) UnityEngine.Object.DestroyImmediate(rt);
                 if (tex != null) UnityEngine.Object.DestroyImmediate(tex);
             }
+        }
+
+        /// <summary>The level select as the game fills it: the case levels, then the editor's levels.</summary>
+        static void BuildLevelSelect(Transform holder, Camera cam, float aspect)
+        {
+            var dialog = new LevelSelectDialog(holder);
+            if (!dialog.Ready) throw new Exception("Resources/Sortex/Menu/levels.json is missing");
+            var files = new System.Collections.Generic.List<string> { "Easy", "Medium", "Hard" };
+            var own = new System.Collections.Generic.List<string>();
+            foreach (var ta in Resources.LoadAll<TextAsset>(SortexArt.Root + "Levels"))
+                if (ta.name != "report" && !files.Contains(ta.name)) own.Add(ta.name);
+            own.Sort(SortexGame.NaturalCompare);
+            files.AddRange(own);
+            int rows = Math.Min(files.Count, LevelSelectDialog.MaxRows);
+            dialog.SetRowCount(rows);
+            for (int i = 0; i < rows; i++)
+            {
+                var lv = Sortex.Core.LevelData.FromJson(Resources.Load<TextAsset>(SortexArt.Root + "Levels/" + files[i]).text);
+                string name = string.IsNullOrEmpty(lv.name) || lv.name == "Level" ? files[i] : lv.name;
+                string tier = lv.difficultyTag >= 20 ? "Super Hard" : lv.difficultyTag >= 10 ? "Hard Level" : "Normal";
+                dialog.SetRow(i, i + 1, name, tier + "  ·  " + (lv.timeLimit / 60) + ":" + (lv.timeLimit % 60).ToString("00"),
+                    lv.difficultyTag, i == 0);
+            }
+            dialog.Show();
+            dialog.Layout(cam, aspect);
         }
 
         /// <summary>A level as the game shows it: board, background, level HUD (and the pause dialog).</summary>

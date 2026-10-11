@@ -70,6 +70,7 @@ namespace Sortex.Core
         public bool Cargo;
         public bool Moving;
         public float Velocity;     // moving shelves: signed speed in world units per second
+        public float Loop;         // moving shelves: length of the row's loop (a shelf comes back after Loop / |Velocity| s)
         public bool Ferris;
         public int FerrisStages;   // stages at the start (one lamp each)
         public bool Iris;
@@ -115,7 +116,7 @@ namespace Sortex.Core
             var s = new Shelf
             {
                 Index = Index, Id = Id, Gid = Gid, X = X, Y = Y, Width = Width, Locked = Locked, LockCount = LockCount,
-                Shutter = Shutter, Closed = Closed, Cargo = Cargo, Moving = Moving, Velocity = Velocity,
+                Shutter = Shutter, Closed = Closed, Cargo = Cargo, Moving = Moving, Velocity = Velocity, Loop = Loop,
                 Ferris = Ferris, FerrisStages = FerrisStages, Iris = Iris, IrisClosed = IrisClosed
             };
             s.FuseItems.AddRange(FuseItems);
@@ -457,7 +458,7 @@ namespace Sortex.Core
             var b = new Board
             {
                 TotalItems = TotalItems, RemainingItems = RemainingItems, Matches = Matches, Moves = Moves,
-                GeneratedItems = GeneratedItems, nextUid = nextUid
+                GeneratedItems = GeneratedItems, nextUid = nextUid, VisibleHalf = VisibleHalf, HasConveyors = HasConveyors
             };
             foreach (var s in Shelves) b.Shelves.Add(s.Clone());
             return b;
@@ -487,20 +488,40 @@ namespace Sortex.Core
             }
         }
 
-        /// <summary>Moving rows loop: the last shelf of a row also touches the first one.</summary>
+        /// <summary>Half width of the screen the moving rows slide through (see Conveyor).</summary>
+        public float VisibleHalf = Conveyor.ScreenHalfWidth;
+        /// <summary>The level has moving shelves.</summary>
+        public bool HasConveyors;
+
+        /// <summary>Moving rows loop: the last shelf of a row also touches the first one. Also keeps each moving
+        /// shelf's loop length, so OnScreen can tell where it is at a given time.</summary>
         void LinkConveyorEnds()
         {
             var xs = new List<float>(); var ys = new List<float>(); var ws = new List<int>();
             var mv = new List<bool>(); var vs = new List<float>();
             foreach (var s in Shelves) { xs.Add(s.X); ys.Add(s.Y); ws.Add(s.Width); mv.Add(s.Moving); vs.Add(s.Velocity); }
             float half = Conveyor.VisibleHalfWidth(xs, ws, mv);
+            VisibleHalf = half;
             foreach (var row in Conveyor.Rows(xs, ys, ws, mv, vs, half))
             {
+                HasConveyors = true;
+                foreach (int i in row.Shelves) Shelves[i].Loop = row.Loop;
                 if (row.Shelves.Count < 3) continue;
                 int a = row.Shelves[0], c = row.Shelves[row.Shelves.Count - 1];
                 if (!Shelves[a].Neighbors.Contains(c)) Shelves[a].Neighbors.Add(c);
                 if (!Shelves[c].Neighbors.Contains(a)) Shelves[c].Neighbors.Add(a);
             }
+        }
+
+        /// <summary>Whether a shelf is on screen (not inside a tunnel) the given seconds after the level started. The
+        /// moving rows slide from the first frame, like the game's; static shelves are always on screen. The game's view
+        /// moves the shelves itself, so this is for the simulator, which plays without a view.</summary>
+        public bool OnScreen(int shelf, double seconds)
+        {
+            var s = Shelves[shelf];
+            if (!s.Moving || s.Loop <= 0f) return true;
+            float x = Conveyor.Wrap((float)(s.X + s.Velocity * seconds), s.Loop);
+            return !Conveyor.Hidden(x, s.Width, VisibleHalf);
         }
 
         bool ValidSlot(int shelf, int slot)

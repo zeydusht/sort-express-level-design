@@ -9,14 +9,14 @@
 | | **Easy** | **Medium** | **Hard** |
 |---|---|---|---|
 | Sort Express'teki karşılığı | Normal (`ld 0`) | Hard (`ld 10`) | Super Hard (`ld 20`) |
-| Raf / ön slot / katman | 9 / 27 / 3 | 12 (2 tekli) / 32 / 4 | 16 (4 tekli) / 40 / 4 |
+| Raf / ön slot / katman | 9 / 27 / 3 | 15 (2 tekli, 5 hareketli) / 41 / 4 | 16 (4 tekli) / 40 / 4 |
 | Item / tür | 66 / 22 | 84 / 28 | 108 / 36 |
 | Renk varyantlı (benzer) tür | 0 | 16 | 34 |
-| Ön sırada boş slot | 6 / 27 | 10 / 32 | 13 / 37 |
-| Engel | yok | 2 Frozen item (**yeni mekanik**) | 5 eşleşmelik kilit + 6 Mystery item + 2 Frozen |
+| Ön sırada boş slot | 6 / 27 | 5 / 41 | 13 / 37 |
+| Engel | yok | 2 Frozen item (**yeni mekanik**) + 5 raflık hareketli sıra | 5 eşleşmelik kilit + 6 Mystery item + 2 Frozen |
 | Süre | 100 sn (1,52 sn/item) | 150 sn (1,79 sn/item) | 200 sn (1,85 sn/item) |
 | Çözülebilir mi? (çözücü) | ✔ 43 hamle | ✔ 71 hamle | ✔ 87 hamle |
-| **Simüle kazanma oranı** (1000 oyuncu) | **%95** | **%61** | **%35** |
+| **Simüle kazanma oranı** (1000 oyuncu) | **%95** | **%62** | **%35** |
 | Hedef bant | %88–100 | %50–75 | %20–45 |
 | Kaybın ana nedeni | hamle kalmaması (%5) | süre (%31) | süre (%39) + hamle kalmaması (%26) |
 
@@ -140,13 +140,14 @@ Tahta sabitken her seferinde tek bir kolu değiştirip simülasyonla ölçtüm (
 ### Medium: tek yeni mekanik (Hard tier)
 - **Hedef:** Oyuncuyu düşündürmek ama yıldırmamak. Hedef %50–75.
 - Verideki kurala uygun olarak **tek yeni mekanik: Frozen item** (buz içinde, yerinden oynamaz, diğer ikisi onun yanına getirilir). Eşleri bilerek ulaşılabilir yerde, ama oyuncunun önce o raftaki diğer itemleri boşaltması gerekiyor. Mini bir planlama bulmacası.
+- **Hareketli raf sırası** (Moving Shelf): tahtanın altında 5 raflık bir sıra, oyundaki en yaygın kurguyla (sabit rafların 1,5 birim altında, 1 birim/sn; veride hareketli sıralı 419 levelin 413'ünde hız 1). Ekranda ortadaki 3 raf görünür, ikisi borularda bekler. Oyunda level 11'de öğretiliyor, frozen'dan (21) önce. Yani burada bilinen bir mekanik yeni olanla birleşiyor; "her levelde tek yeni mekanik" kuralı bozulmuyor. Sıranın 15 slotu dolu başlıyor: park yeri vermiyor, aranan item borudan çıkana kadar beklemek gerekebiliyor.
 - 2 tekli raf (her katmanda tek item). Bunlar hem park yeri hem de kazılması gereken bir yığın.
-- Ön sıra daha boş (%68 doluluk, Easy'de %78). Bu benim tercihim: gerçek oyunda boş slot payı tier'lar arasında %16–18 civarında, ama tahtalar daha derin ve itemler sıralar içinde kümeleniyor. Bizim 3–4 katmanlı tahtamızda engel ve tür artarken oyuncuya manevra alanı bırakılmazsa level "hamle kalmadı" ile bitiyor.
+- Ön sırada 5 boş slot var, hepsi sabit raflarda. Hareketli sıra eski alt sıranın yerine geldi ve onun itemlerini taşıyor. İlk denemede level kolaylaştı (%70): alt sıranın derindeki itemleri öne çıkınca kazılacak katman azaldı. Bant ortasına dönmek için arka katmanlardan iki item ön sıradaki boşluklara alındı (boş slot 7 → 5). Sonuç hareketli sırasız eski Medium ile aynı zorluk ve aynı kayıp karışımı.
 - **Algısal zorluk:** 16 türün renk ikizi var (kırmızı/mavi kamera, turuncu/mavi çanta…). Hızlı bakışta karıştırılıyor.
 - Üçlüler daha dağınık (aynı katman %60, komşu katman %30).
 - Süre 1,79 sn/item. Veride olduğu gibi Easy'den *daha fazla* sn/item.
 - Kilit bilerek yok: simülasyonda kilit + frozen birlikte kazanmayı %38'e düşürüyordu (bant altı). Kilit Hard'a kaldı.
-- **Sonuç: %61 kazanma** (süre 2,5 katı olsa %78; kayıpların çoğu süre).
+- **Sonuç: %62 kazanma** (süre 2,5 katı olsa %86; kayıpların çoğu süre: %31 süre, %7 hamle kalmadı). İki farklı tohumla 1000'er oyuncu: %61,7 ve %61,9.
 
 ### Hard: kombinasyon ve bilgi kısıtı (Super Hard tier)
 - **Hedef:** Gerçek bir "boss level": iyi oyuncu kazanır, ortalama oyuncu 2–3 denemede. Hedef %20–45.
@@ -158,14 +159,16 @@ Tahta sabitken her seferinde tek bir kolu değiştirip simülasyonla ölçtüm (
 - **Sonuç: %35 kazanma.** Kayıpların bir kısmı "hamle kalmadı" (%26). Burada tahta doluyor, oyuncunun sırayı düşünmesi gerekiyor.
 
 ### Editörle tasarladığım levellar
-Level Editor'de kaydedilen her level oyunun menüsünde **MY LEVELS** altında oynanabiliyor. Aşağıdaki tablo yayınlama sırasında (Sortex → 3. Publish to GitHub) her level 1000 simüle oyuncuyla oynatılarak otomatik yazılıyor; kazanılamayan (3'ün katı olmayan) levellar yayınlanmıyor.
+Level Editor'de kaydedilen her level oyunun level seçim ekranında, case levellarının altında listeleniyor (ekranda en fazla 5 satır).
+
+**Unnecessarily Hard** bilerek aşırı zor kurduğum bölüm: 8 raf, 90 item, 30 tür, ön sırada neredeyse hiç boş yer yok. Simüle oyuncuların hiçbiri booster'sız bitiremiyor ve çözücü 20.000 düğümde bir çözüm bulamıyor. Seçim ekranında son satırda, mor Super Hard etiketiyle duruyor: adıyla dikkat çeken, oyuncuyu meydan okumaya çağıran bir bölüm. Booster'lar ve tıkanınca gelen Play On (sihirli şapka) ile ilerlenebiliyor. Aşağıdaki tablo yayınlama sırasında (Sortex → 3. Publish to GitHub) her level 1000 simüle oyuncuyla oynatılarak otomatik yazılıyor; kazanılamayan (3'ün katı olmayan) levellar yayınlanmıyor.
 
 <!-- MY-LEVELS:START -->
-_Bu tablo **Sortex → 3. Publish to GitHub** ile otomatik güncelleniyor (son: 2026-10-11 22:45)._
+_Bu tablo **Sortex → 3. Publish to GitHub** ile otomatik güncelleniyor (son: 2026-10-11 23:41)._
 
 | Level | Tier | Raf | Item | Tür | Süre | Engeller | Simüle kazanma (1000 oyuncu) | Hedef bant | Kayıp: süre / hamle kalmadı | Çözücü |
 |---|---|---|---|---|---|---|---|---|---|---|
-| Level 1 | Normal | 8 | 90 | 30 | 230 sn (2,56 sn/item) | geniş raf 1, frozen 1 | **%0** | %88–100 (daha zor) | %0 / %100 | kanıt yok |
+| Unnecessarily Hard | Super Hard | 8 | 90 | 30 | 230 sn (2,56 sn/item) | geniş raf 1, frozen 1 | **%0** | %20–45 (daha zor) | %0 / %100 | kanıt yok |
 <!-- MY-LEVELS:END -->
 
 ## 4. Doğrulama: çözücü + simüle oyuncu
@@ -179,6 +182,7 @@ _Bu tablo **Sortex → 3. Publish to GitHub** ile otomatik güncelleniyor (son: 
   - Beceri 0,35–0,9 arasında dağılıyor ve karar gürültüsünü (softmax sıcaklığı) belirliyor.
   - Hamle süresi = 0,40 sn + 0,015 sn × ekrandaki tür sayısı (+0,5 sn iyi hamle yoksa), beceriyle ölçekleniyor.
 - **Seçim:** Her zorluk için aynı tarifle 24 aday tahta üretildi. Hepsi 300 oyuncuyla oynatıldı, bandın ortasına en yakın olan seçildi. Seçilenler 1000 oyuncuyla yeniden ölçüldü (tablodaki sayılar).
+- **Hareketli raflar:** Raflar oyundaki gibi level başından itibaren kayıyor. Simüle oyuncu her hamlede yalnızca o an ekranda olan rafları görüyor ve kullanıyor; aradığı raf borudaysa bekliyor (`Board.OnScreen`).
 - **Booster yok:** Simüle oyuncular booster, revive ya da Final Duo seri ödülü kullanmıyor. Gerçek oyunda bunlar kazanma oranını yükseltir, bu yüzden bantlar "saf tahta zorluğu" olarak okunmalı.
 - **Sınır:** Model gerçek oyuncu değil. Mutlak oranlar değil, **sıralama ve kolların göreli etkisi** güvenilir kısım. Bir sonraki adım gerçek playtest ile kalibrasyon: ilk denemede kazanma, level başına deneme sayısı, kazanma süresi dağılımı, başarısızlık sonrası çıkış oranı.
 
@@ -194,7 +198,7 @@ _Bu tablo **Sortex → 3. Publish to GitHub** ile otomatik güncelleniyor (son: 
 
 ### Çalıştırma (Unity 6000.6.4f1, URP 2D, Input System)
 1. Projeyi Unity Hub ile aç. İlk açılışta `Sortex` menüsü sahneyi (`Assets/Scenes/SortexGame.unity`), sprite materyalini ve WebGL ayarlarını kendisi kuruyor (elle: **Sortex → 1. Setup Project**).
-2. **Play** ile test et. Oyun, Sort Express'in kendi ana menüsüyle açılıyor: yeşil **Level N** butonu sıradaki leveli oynatır (Easy → Medium → Hard → editörle kaydedilenler; kazandıkça ilerler), alttaki **Packs** sekmesi tüm levelları listeler. Sürükle-bırak (fare/dokunmatik) veya önce iteme, sonra hedef rafa dokun. Sağ üstteki pause butonu oyunun pause penceresini açar (**Continue** devam, **Quit** ana menü).
+2. **Play** ile test et. Oyun, Sort Express'in kendi ana menüsüyle açılıyor: yeşil **Level N** butonu (ve alttaki **Packs** sekmesi) level seçim ekranını açar: Easy, Medium, Hard ve editörle kaydedilenler (Unnecessarily Hard). Butondaki numara sıradaki kazanılmamış leveli gösterir. Sürükle-bırak (fare/dokunmatik) veya önce iteme, sonra hedef rafa dokun. Sağ üstteki pause butonu oyunun pause penceresini açar (**Continue** devam, **Quit** ana menü).
 3. **Sortex → 2. Build WebGL (docs)** komutu oyunu `docs/` klasörüne derler (gzip + tarayıcıda açma desteği, GitHub Pages'ta header ayarı gerektirmez). GitHub Pages bu klasörü yayınlıyor (*Settings → Pages → Deploy from a branch → `main` / `/docs`*).
 4. **Sortex → 3. Publish to GitHub** (Level Editor'de **⬆ Publish**) tek adımda her şeyi yapıyor: kaydedilen levelları 1000 simüle oyuncuyla oynatıp README'deki tabloyu ve menü kartlarını günceller, WebGL'i derler, commit edip GitHub'a gönderir. Site 1–2 dakika içinde güncellenir. İlk gönderimde GitHub girişi için bir pencere açılır. Adımlar `Logs/SortexPublish.log` dosyasına yazılır.
 
@@ -205,6 +209,12 @@ Açılış ekranı, oyunun `MainScene.prefab` dosyasından birebir kuruluyor (`T
 - Hard levelda buton oyundaki gibi kırmızı "Hard Level", Super Hard'da mor "Super Hard" oluyor (`PlayButtonHardLevel`, `PlayButtonSuperHardLevel`).
 - Ekran genişliği oyundaki gibi 4,6166 birim (menü sayfaları bu aralıkla dizili); üst bar üst kenara, buton ve alt bar alt kenara göre yerleşiyor.
 - Prefab'daki MonoBehaviour'lar export'ta boş geldiği için yazıların içeriği (Level N, Full, 1000) ve etkinlik (LiveOps) şeritleri koddan geliyor; etkinlik ikonları yok.
+
+### Level seçim ekranı (oyunun parçalarından)
+Sort Express'te bir level listesi yok (Packs sayfası kartlarını APK export'unda olmayan bir prefab'dan dolduruyor). Seçim ekranı bu yüzden oyunun zaten kullandığı parçalardan kuruldu (`Tools/make_level_select.py` → `Resources/Sortex/Menu/levels.json`, çizen kod `Scripts/Game/LevelSelectDialog.cs`):
+- Pause penceresinin (`LevelPauseDialog.prefab`) mavi pop-up paneli, turuncu kulaklı "Levels" şeridi ve kapatma butonu. Panel satır sayısına göre uzayıp kısalıyor.
+- Her level için pause penceresinin açık mavi iç paneli; solda level HUD'undaki numara plakası (lacivert / kırmızı / mor), ortada adı ve altında tier ile süre, sağda ana ekranın Level butonu **Play** olarak (Normal yeşil, Hard kırmızı, Super Hard mor). Kazanılan levelda plakanın köşesinde tik.
+- Yazılar oyunun fontu Bango Pro ile, oyunun kendi yazı stillerinde (pop-up başlığı, lacivert konturlu krem, düz lacivert). Arkada ana ekran karartılmış olarak görünüyor; X ana ekrana döner.
 
 ### Level ekranı (oyunun kendisinden)
 - **Ölçek:** Level dosyaları 3 slotlu rafları 3,13, satırları 1 birim aralıkla koyuyor; oyun yatay ekseni yarı ölçekte çiziyor (3 slotlu raf ekranda ≈ 1,6 × 1). Bu oran oyunun ekran görüntüsünden ölçüldü (satır aralığı / raf aralığı) ve `BoardView.XS = 0.5` ile uygulanıyor. Model ve simülasyon level dosyasındaki sayılarla çalışmaya devam ediyor; yalnızca çizim sıkışıyor. Raf sprite'ları oyunun `BaseShelf.prefab` modelinden bu oranla yeniden üretildi (`Tools/render_shelf.py`).
@@ -226,7 +236,7 @@ Açılış ekranı, oyunun `MainScene.prefab` dosyasından birebir kuruluyor (`T
   - "Eşleşme kalmadı" kontrolü (`Board.MatchPossible`): hiçbir türün üç kopyası ön sıralarda bir araya getirilemiyorsa ve hiçbir rafın ön sırası boş yerlere taşınıp arkası açılamıyorsa level tıkanmış sayılır. Kendi kendine değişen tahtalarda (hareketli raf, iris, döner kapı) bu kontrol yapılmaz, yalnızca "hamle kalmadı" geçerli.
   - Sonra `LevelLoseDialog.prefab`: kırık kalpli "Level Failed", bir sonraki deneme için booster seçimi (prototipte bilgi verir), **Try Again** (leveli baştan açar) ve **X** (ana menü).
   - Prefab'larda yazı olmadığı için (oyun onları koddan, dile göre dolduruyor) başlıklar ve teklif cümleleri prototipin kendi metni. Kazanma penceresindeki reklamlı ikinci buton ve seri (streak) paneli yok.
-- Bütün ekranları (`menu`, `level`, `pause`, `win`, `nomore`, `lose`) aynı kod kuruyor: `Scripts/Game/PrefabScreen.cs`.
+- Bütün ekranları (`menu`, `levels`, `level`, `pause`, `win`, `nomore`, `lose`) aynı kod kuruyor: `Scripts/Game/PrefabScreen.cs`.
 
 ### Level Editor (Unity içinde)
 **Sortex → Level Editor** (Ctrl+Shift+L) ile açılıyor. Leveller oyunun kendi JSON formatında kaydediliyor.
@@ -241,11 +251,11 @@ Açılış ekranı, oyunun `MainScene.prefab` dosyasından birebir kuruluyor (`T
 - **Elle başla, gerisini doldur:** ön sırayı (ya da ilk birkaç sırayı) elle kurduysan **Keep my items in** o sıraları korur: Auto-fill onlara dokunmaz, oradaki türleri arka sıralarda üçe tamamlar ve yeni türleri yalnızca arkaya dağıtır. Arkası boşken ön sırada item varsa bu ayar kendiliğinden seçili gelir. Her yeni tohum (Seed) arkayı yeniden dağıtır; elle kurduğun kısım aynı kalır. *nothing* seçiliyken Fill her itemi değiştirmeden önce sorar.
 - **Simulate:** aynı çözücü ve simüle oyuncular editörün içinde, arka planda çalışır. Sonuçta kazanma oranı, bant kontrolü, kayıp tipleri ve ortalama süre görünür.
 - **▶ Play level:** leveli doğrudan Play modunda açar. Kaydetmek gerekmez. Game sekmesi otomatik olarak 1080×1920 dikey telefon ekranına geçer.
-- **Save:** yeni level `Level 1`, `Level 2`… adıyla `Resources/Sortex/Levels` içine kaydedilir. Oyunun menüsünde **MY LEVELS** başlığı altında sırayla listelenir.
+- **Save:** yeni level `Level 1`, `Level 2`… adıyla `Resources/Sortex/Levels` içine kaydedilir. Oyunun level seçim ekranında case levellarının altında sırayla listelenir.
 - **⬆ Publish:** kaydedilen levelları simüle eder, README'deki "Editörle tasarladığım levellar" tablosunu yazar, WebGL'i derler ve GitHub'a gönderir (bölüm 6, Çalıştırma 4).
 - **Silmek:** `Open ▾ → Delete "Level N"…` açık olan kendi levelini siler (Easy / Medium / Hard silinemez). Bir sonraki Publish README tablosunu ve menüyü günceller.
 - **Kayıtlı leveli açmak:** `Open ▾` menüsü kayıtlı levelleri listeler. Project penceresinde bir level `.json` dosyasına sağ tıklayıp **Open in Sortex Level Editor** de olur (çift tıklamak dosyayı metin olarak açar). Açtıktan sonra `▶ Play level`.
-- **Oyunun orijinal levelleri:** `Open ▾ → From file…` ile APK'dan çıkan `Level00091_0.json` gibi bir dosya seçilir ve `▶ Play level` ile oynanır. Item generator'lı levellerde üretilen slotlar editörde **G** olarak görünür, itemler level başlarken dağıtılır. `Save As…` ile `Levels` klasörüne kaydedilen level MY LEVELS'a da girer.
+- **Oyunun orijinal levelleri:** `Open ▾ → From file…` ile APK'dan çıkan `Level00091_0.json` gibi bir dosya seçilir ve `▶ Play level` ile oynanır. Item generator'lı levellerde üretilen slotlar editörde **G** olarak görünür, itemler level başlarken dağıtılır. `Save As…` ile `Levels` klasörüne kaydedilen level seçim ekranına da girer.
 
 ### Boş sayfadan Super Hard (editörde)
 Sol panel artık her satırda gerçek oyunun bu tier için medyanını, altında da 25.–75. yüzdelik aralığını ve en sık kullanılan engelleri gösteriyor.
@@ -255,7 +265,7 @@ Sol panel artık her satırda gerçek oyunun bu tier için medyanını, altında
 3. **Engel:** 1–2 tür yeter. Oyunda en sık olanlar shutter (4 raf) ve cargo door (2 raf). Kilit kullanacaksan küçük tut (aşağıdaki tablo). Iris ve yumurta super hard'da kullanılmıyor.
 4. **Auto-fill → Super Hard.** Güncel oyuna benzesin istersen *Colour twins* ≈ 0,25 (oyunun ilk 100 levelinde ≈ 0,9). Frozen ya da mystery istemiyorsan 0 yap.
 5. **Süre:** ~1,4 sn/item ile başla (144 item → 200 sn). Oyunun medyanı 1,11 sn ama simüle oyuncu gerçek oyuncudan yavaş.
-6. **Fill & tune** (en az 12 tohum) %20–45 bandını hedefler. **Simulate** (1000 oyuncu) ile doğrula, **▶ Play level** ile oyna, **Save** ile MY LEVELS'a ekle.
+6. **Fill & tune** (en az 12 tohum) %20–45 bandını hedefler. **Simulate** (1000 oyuncu) ile doğrula, **▶ Play level** ile oyna, **Save** ile seçim ekranına ekle.
 
 Bu tarifi simülatörde denedim (8 tohum, 200 oyuncu, 1,4 sn/item, ~144–156 item):
 
@@ -278,7 +288,7 @@ Kurallar tek bir dosyada (`Assets/Sortex/Scripts/Core/Board.cs`). Oyun, editör 
 | Lock (`lmc`) | Raf, tahtada N eşleşme yapılana kadar kapalı. Kilidin üstündeki sayaç her eşleşmede azalır. |
 | Item Generator (`it -1`, `ig`) | Gruptaki (`gid`) rafların **G** slotlarını, sonra arkalarına yeni sıraları dalga dalga (`isg`) doldurur. Her slot için tür, dalganın ağırlıklarıyla çekilir: `slw` aynı sırada olan bir tür, `blw` öndeki sırada olan bir tür, `rw` herhangi bir tür; `ssp` ağırlıkların kullanılma olasılığı. Hazır üçlü oluşturmaz, fuse box'a kendi hedefini koymaz. *Varsayım: ağırlıkların anlamı.* |
 | Single / Wide Shelf (`sicw`) | Tekli raf sadece park yeri ve yığın. Geniş rafta **yan yana** üç aynı item patlar, item raf içinde kaydırılabilir. *Varsayım: tutorial görselinden.* |
-| Moving Shelf (`im`) | Sıra yana kayar, borulardan girip çıkar. Sadece ekrandaki raflar kullanılabilir. |
+| Moving Shelf (`im`) | Sıra yana kayar, borulardan girip çıkar. Sadece ekrandaki raflar kullanılabilir (simüle oyuncu için de). |
 | Frozen Item (`ib`) | Yerinden oynamaz. Diğer ikisi yanına getirilir, eşleşince buz kırılır. |
 | Cargo Door (`isdp`) | Ön sıranın arkası görünmez. |
 | Shutter (`icl`) | Raf boşalınca kalıcı olarak kapanır. |
@@ -303,9 +313,10 @@ Orijinal levellerin simülasyonu (60 oyuncu, booster yok): L4, 6, 11, 31, 81, 91
 | `make_main_menu.py`, `unity_yaml.py` | Oyunun prefab'larından ekranları çıkarır (düğüm ağacı, sprite'lar, yazı stilleri) ve bir önizleme PNG'si çizer: `--screen=menu` (`MainScene.prefab`), `--screen=level` (`LevelSceneUI.prefab`), `--screen=pause` (`LevelPauseDialog.prefab`), `--screen=win` / `nomore` / `lose` (level sonu pencereleri). GUID → dosya eşlemesi için Unity'de **Sortex → Tools → Index Asset Export** |
 | `make_sprites.py`, `meshrender.py` | Raf çıtası, dolabın üst yüzü, kilit, buz, shutter ve cargo door sprite'ları. Kilit kapısı APK'daki `obstacle_lock_main_*` mesh'lerinden. |
 | `make_obstacles.py` | Piñata, yumurta, döner kapı, iris ve fuse box sprite'ları (oyunun tutorial görsellerinden kesilip temizlenir) |
+| `make_level_select.py` | Level seçim ekranını oyunun pause penceresi, ana ekranın Level butonu ve level HUD'unun numara plakasından birleştirir (`Resources/Sortex/Menu/levels.json`) |
 | `make_booster_art.py`, `meshrender_textured.py` | Boya tabancasının uzaylısı (oyunun 3D modeli dokusuyla, item ikonu olarak) ve dondurucunun buz görselleri (oyunun atlasından) |
 | `render_shelf.py`, `prefab_dump.py` | Oyunun kendi `BaseShelf.prefab` modelinden raf sprite'ları (slot = level aralığının yarısı) |
-| `tests/CoreTests.cs` | Kural kodu için regresyon testleri (JSON gidiş-dönüş, shutter, frozen, kilit, raf içi kaydırma, hareketli raf, piñata, fuse box, iris, döner kapı, yumurta, geniş raf, item generator, auto-fill, elle kurulan sıraları koruyan auto-fill, dört booster, "eşleşme kalmadı" kontrolü) |
+| `tests/CoreTests.cs` | Kural kodu için regresyon testleri (JSON gidiş-dönüş, shutter, frozen, kilit, raf içi kaydırma, hareketli raf ve simülatörün raf saati, piñata, fuse box, iris, döner kapı, yumurta, geniş raf, item generator, auto-fill, elle kurulan sıraları koruyan auto-fill, dört booster, "eşleşme kalmadı" kontrolü) |
 | `results/` | Simülasyon raporları (`report.json`, `sensitivity.json`) ve tier analizi (`tier_stats.json`) |
 
 ### Level formatı

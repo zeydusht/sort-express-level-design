@@ -276,7 +276,7 @@ namespace Sortex.EditorTools
                 Directory.CreateDirectory(LevelsDir);
                 string suggested = string.IsNullOrEmpty(level.name) || level.name == "New Level" ? NextLevelName() : Safe(level.name);
                 path = EditorUtility.SaveFilePanelInProject("Save level", suggested, "json",
-                    "Levels in Resources/Sortex/Levels show up in the game menu under MY LEVELS.", LevelsDir);
+                    "Levels in Resources/Sortex/Levels show up in the game's level select (the Level button).", LevelsDir);
                 if (string.IsNullOrEmpty(path)) return false;
                 if (string.IsNullOrEmpty(level.name) || level.name == "New Level") level.name = Path.GetFileNameWithoutExtension(path);
             }
@@ -287,7 +287,7 @@ namespace Sortex.EditorTools
             dirty = false;
             EditorPrefs.SetString(LastLevelKey, path);
             bool inGame = path.Replace('\\', '/').Contains("Resources/Sortex/Levels");
-            status = "Saved " + Path.GetFileName(path) + (inGame ? "  ->  in the game menu under MY LEVELS (press Play)." : "");
+            status = "Saved " + Path.GetFileName(path) + (inGame ? "  ->  in the game's level select (press Play, then Level)." : "");
             return true;
         }
 
@@ -573,7 +573,7 @@ namespace Sortex.EditorTools
                     "2. Set rows (+ Row / − Row next to the row tabs), lock, shutter, cargo door or moving on a shelf.\n" +
                     "3. Paint items row by row (1-9 switch rows), or Auto-fill with a recipe.\n" +
                     "4. Fix the warnings, then Simulate: aim for the band of the tier.\n" +
-                    "5. ▶ Play level to try it. Save keeps it as \"Level N\" and the game menu lists it under MY LEVELS.", MessageType.None);
+                    "5. ▶ Play level to try it. Save keeps it as \"Level N\" and the game's level select lists it.", MessageType.None);
 
             // level settings
             GUILayout.Label("Level", EditorStyles.boldLabel);

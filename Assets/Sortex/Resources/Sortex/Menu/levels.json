@@ -1,0 +1,6373 @@
+{
+ "source": "Level select: Sort Express LevelPauseDialog + MainScene LoadLevelButton + LevelSceneUI LevelNumber (tools/make_level_select.py)",
+ "refWidth": 4.616601,
+ "refHeight": 10.0,
+ "font": "Bango Pro",
+ "parts": {
+  "dialog": {
+   "anchor": "center",
+   "offset": 0.0,
+   "nodes": [
+    {
+     "name": "LevelSelect",
+     "parent": -1,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "group": {
+      "layer": 3,
+      "order": 100
+     }
+    },
+    {
+     "name": "Foreground",
+     "parent": 0,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.1
+     ],
+     "scale": [
+      4.616601,
+      10.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "SpriteRenderer",
+     "parent": 1,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       0.0,
+       0.0,
+       0.0,
+       0.9882
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       1.0,
+       1.0
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "White"
+     }
+    },
+    {
+     "name": "Root",
+     "parent": 0,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "BaseLeft",
+     "parent": 3,
+     "active": true,
+     "pos": [
+      0.0,
+      -2.011,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       2.294964,
+       3.55
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "PopUpBackground"
+     }
+    },
+    {
+     "name": "BaseRight",
+     "parent": 3,
+     "active": true,
+     "pos": [
+      0.0,
+      -2.011,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       2.294964,
+       3.55
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "PopUpBackground"
+     }
+    },
+    {
+     "name": "Ribbon",
+     "parent": 3,
+     "active": true,
+     "pos": [
+      0.0,
+      1.8540001,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "BaseLeft",
+     "parent": 6,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       2.3453238,
+       1.676259
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "PopUpHeader"
+     }
+    },
+    {
+     "name": "BaseRight",
+     "parent": 6,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       2.3453238,
+       1.676259
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "PopUpHeader"
+     }
+    },
+    {
+     "name": "Text",
+     "parent": 6,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       3.1092,
+       0.8663
+      ],
+      "anchored": [
+       0.0,
+       0.28
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Pop Up Base"
+     }
+    },
+    {
+     "name": "CloseButton",
+     "parent": 3,
+     "active": true,
+     "pos": [
+      1.795,
+      2.377,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "group": {
+      "layer": 1,
+      "order": 0
+     }
+    },
+    {
+     "name": "BaseLeft",
+     "parent": 10,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.05,
+      1.05
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       0.2877698,
+       0.5611511
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "CloseButtonBackground"
+     }
+    },
+    {
+     "name": "BaseRight",
+     "parent": 10,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.05,
+      1.05
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       0.2877698,
+       0.5611511
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "CloseButtonBackground"
+     }
+    },
+    {
+     "name": "FrameLeft",
+     "parent": 10,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       0.2877698,
+       0.5611511
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "CloseButtonFrame"
+     }
+    },
+    {
+     "name": "FrameRight",
+     "parent": 10,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       0.2877698,
+       0.5611511
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "CloseButtonFrame"
+     }
+    },
+    {
+     "name": "Button",
+     "parent": 10,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "PressDownTransform",
+     "parent": 15,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "BaseLeft",
+     "parent": 16,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       0.20503597,
+       0.41366908
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "CloseButton"
+     }
+    },
+    {
+     "name": "BaseRight",
+     "parent": 16,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       0.20503597,
+       0.41366908
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "CloseButton"
+     }
+    },
+    {
+     "name": "CloseIcon",
+     "parent": 16,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       0.23381294,
+       0.24820144
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "CloseIcon"
+     }
+    },
+    {
+     "name": "Level0",
+     "parent": 3,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "group": {
+      "layer": 1,
+      "order": 1
+     }
+    },
+    {
+     "name": "PanelLeft",
+     "parent": 20,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      0.8,
+      0.8
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "key": "PopUpBackgroundLt",
+      "color": [
+       1,
+       1,
+       1,
+       1
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       2.5749999999999997,
+       1.4499999999999997
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true
+     }
+    },
+    {
+     "name": "PanelRight",
+     "parent": 20,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      0.8,
+      0.8
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "key": "PopUpBackgroundLt",
+      "color": [
+       1,
+       1,
+       1,
+       1
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       2.5749999999999997,
+       1.4499999999999997
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true
+     }
+    },
+    {
+     "name": "Number",
+     "parent": 20,
+     "active": true,
+     "pos": [
+      -1.62,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      0.9,
+      0.9
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "BaseLeft",
+     "parent": 23,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.44,
+       0.4172662
+      ],
+      "layer": 1,
+      "order": 30,
+      "enabled": true,
+      "key": "LevelNumberBaseDefault"
+     }
+    },
+    {
+     "name": "BaseRight",
+     "parent": 23,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.44,
+       0.4172662
+      ],
+      "layer": 1,
+      "order": 30,
+      "enabled": true,
+      "key": "LevelNumberBaseDefault"
+     }
+    },
+    {
+     "name": "Text",
+     "parent": 23,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       0.62,
+       0.3
+      ],
+      "anchored": [
+       0.0,
+       -0.013
+      ],
+      "layer": 1,
+      "order": 31,
+      "style": "Dark Blue Outline 2"
+     }
+    },
+    {
+     "name": "Name",
+     "parent": 20,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       1.86,
+       0.4
+      ],
+      "anchored": [
+       -0.19,
+       0.15
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Dark Blue Outline 3",
+      "align": "left"
+     }
+    },
+    {
+     "name": "Info",
+     "parent": 20,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       1.86,
+       0.24
+      ],
+      "anchored": [
+       -0.19,
+       -0.23
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Dark Blue Default",
+      "align": "left"
+     }
+    },
+    {
+     "name": "Check",
+     "parent": 20,
+     "active": true,
+     "pos": [
+      -1.33,
+      -0.27,
+      0.0
+     ],
+     "scale": [
+      0.85,
+      0.85
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "key": "CheckIcon",
+      "color": [
+       1,
+       1,
+       1,
+       1
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       1,
+       1
+      ],
+      "layer": 1,
+      "order": 5,
+      "enabled": true
+     }
+    },
+    {
+     "name": "Play",
+     "parent": 20,
+     "active": true,
+     "pos": [
+      1.42,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      0.5,
+      0.5
+     ],
+     "rot": 0.0,
+     "group": {
+      "layer": 1,
+      "order": 2
+     }
+    },
+    {
+     "name": "Root",
+     "parent": 30,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "BackgroundLeft",
+     "parent": 31,
+     "active": true,
+     "pos": [
+      0.0,
+      0.021,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       1.15,
+       0.9532374
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "PlayButtonBackground"
+     }
+    },
+    {
+     "name": "BackgroundRight",
+     "parent": 31,
+     "active": true,
+     "pos": [
+      0.0,
+      0.021,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       1.15,
+       0.9532374
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "PlayButtonBackground"
+     }
+    },
+    {
+     "name": "FrameLeft",
+     "parent": 31,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       1.24,
+       1.1870503
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "PlayButtonFrame"
+     }
+    },
+    {
+     "name": "FrameRight",
+     "parent": 31,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       1.24,
+       1.1870503
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "PlayButtonFrame"
+     }
+    },
+    {
+     "name": "Button",
+     "parent": 31,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "PressDownTransform",
+     "parent": 36,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "BaseLeft",
+     "parent": 37,
+     "active": true,
+     "pos": [
+      0.0,
+      0.021,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       1.14,
+       0.97482014
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "PlayButton"
+     }
+    },
+    {
+     "name": "BaseRight",
+     "parent": 37,
+     "active": true,
+     "pos": [
+      0.0,
+      0.021,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       1.14,
+       0.97482014
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "PlayButton"
+     }
+    },
+    {
+     "name": "DefaultText",
+     "parent": 37,
+     "active": true,
+     "pos": [
+      0.0,
+      -0.029,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "ShadowText",
+     "parent": 40,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       1.8536,
+       0.69
+      ],
+      "anchored": [
+       0.0,
+       0.025
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Play Button Bold"
+     }
+    },
+    {
+     "name": "BaseText",
+     "parent": 40,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       1.8536,
+       0.69
+      ],
+      "anchored": [
+       0.0,
+       0.06399983
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Play Button Default"
+     }
+    },
+    {
+     "name": "HardText",
+     "parent": 37,
+     "active": false,
+     "pos": [
+      0.0,
+      -0.029,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "ShadowText",
+     "parent": 43,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       1.8536,
+       0.364
+      ],
+      "anchored": [
+       0.0,
+       0.172
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Play Button Bold"
+     }
+    },
+    {
+     "name": "BaseText",
+     "parent": 43,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       1.8536,
+       0.364
+      ],
+      "anchored": [
+       0.0,
+       0.1926
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Play Button Hard"
+     }
+    },
+    {
+     "name": "HardLevelText",
+     "parent": 43,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "ShadowText",
+     "parent": 46,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       1.8536,
+       0.3221
+      ],
+      "anchored": [
+       0.0,
+       -0.159
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Play Button Bold"
+     }
+    },
+    {
+     "name": "BaseText",
+     "parent": 46,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       1.8536,
+       0.3221
+      ],
+      "anchored": [
+       0.0,
+       -0.1407
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Play Button Hard"
+     }
+    },
+    {
+     "name": "SuperHardLevel",
+     "parent": 37,
+     "active": false,
+     "pos": [
+      0.0,
+      -0.029,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "ShadowText",
+     "parent": 49,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       1.8536,
+       0.364
+      ],
+      "anchored": [
+       0.0,
+       0.172
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Play Button Bold"
+     }
+    },
+    {
+     "name": "BaseText",
+     "parent": 49,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       1.8536,
+       0.364
+      ],
+      "anchored": [
+       0.0,
+       0.1926
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Play Button Super Hard"
+     }
+    },
+    {
+     "name": "SuperHardText",
+     "parent": 49,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "ShadowText",
+     "parent": 52,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       1.8536,
+       0.3221
+      ],
+      "anchored": [
+       0.0,
+       -0.159
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Play Button Bold"
+     }
+    },
+    {
+     "name": "BaseText",
+     "parent": 52,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       1.8536,
+       0.3221
+      ],
+      "anchored": [
+       0.0,
+       -0.1407
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Play Button Super Hard"
+     }
+    },
+    {
+     "name": "PackLevel",
+     "parent": 37,
+     "active": false,
+     "pos": [
+      0.0,
+      -0.029,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "ShadowText",
+     "parent": 55,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       1.8536,
+       0.364
+      ],
+      "anchored": [
+       0.0,
+       0.172
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Play Button Bold"
+     }
+    },
+    {
+     "name": "BaseText",
+     "parent": 55,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       1.8536,
+       0.364
+      ],
+      "anchored": [
+       0.0,
+       0.1926
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Play Button Pack"
+     }
+    },
+    {
+     "name": "PackNameText",
+     "parent": 55,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "ShadowText",
+     "parent": 58,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       1.8536,
+       0.3221
+      ],
+      "anchored": [
+       0.0,
+       -0.159
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Play Button Bold"
+     }
+    },
+    {
+     "name": "BaseText",
+     "parent": 58,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       1.8536,
+       0.3221
+      ],
+      "anchored": [
+       0.0,
+       -0.1407
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Play Button Pack"
+     }
+    },
+    {
+     "name": "Level1",
+     "parent": 3,
+     "active": true,
+     "pos": [
+      0.0,
+      -1.32,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "group": {
+      "layer": 1,
+      "order": 1
+     }
+    },
+    {
+     "name": "PanelLeft",
+     "parent": 61,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      0.8,
+      0.8
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "key": "PopUpBackgroundLt",
+      "color": [
+       1,
+       1,
+       1,
+       1
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       2.5749999999999997,
+       1.4499999999999997
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true
+     }
+    },
+    {
+     "name": "PanelRight",
+     "parent": 61,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      0.8,
+      0.8
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "key": "PopUpBackgroundLt",
+      "color": [
+       1,
+       1,
+       1,
+       1
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       2.5749999999999997,
+       1.4499999999999997
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true
+     }
+    },
+    {
+     "name": "Number",
+     "parent": 61,
+     "active": true,
+     "pos": [
+      -1.62,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      0.9,
+      0.9
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "BaseLeft",
+     "parent": 64,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.44,
+       0.4172662
+      ],
+      "layer": 1,
+      "order": 30,
+      "enabled": true,
+      "key": "LevelNumberBaseDefault"
+     }
+    },
+    {
+     "name": "BaseRight",
+     "parent": 64,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.44,
+       0.4172662
+      ],
+      "layer": 1,
+      "order": 30,
+      "enabled": true,
+      "key": "LevelNumberBaseDefault"
+     }
+    },
+    {
+     "name": "Text",
+     "parent": 64,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       0.62,
+       0.3
+      ],
+      "anchored": [
+       0.0,
+       -0.013
+      ],
+      "layer": 1,
+      "order": 31,
+      "style": "Dark Blue Outline 2"
+     }
+    },
+    {
+     "name": "Name",
+     "parent": 61,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       1.86,
+       0.4
+      ],
+      "anchored": [
+       -0.19,
+       0.15
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Dark Blue Outline 3",
+      "align": "left"
+     }
+    },
+    {
+     "name": "Info",
+     "parent": 61,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       1.86,
+       0.24
+      ],
+      "anchored": [
+       -0.19,
+       -0.23
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Dark Blue Default",
+      "align": "left"
+     }
+    },
+    {
+     "name": "Check",
+     "parent": 61,
+     "active": true,
+     "pos": [
+      -1.33,
+      -0.27,
+      0.0
+     ],
+     "scale": [
+      0.85,
+      0.85
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "key": "CheckIcon",
+      "color": [
+       1,
+       1,
+       1,
+       1
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       1,
+       1
+      ],
+      "layer": 1,
+      "order": 5,
+      "enabled": true
+     }
+    },
+    {
+     "name": "Play",
+     "parent": 61,
+     "active": true,
+     "pos": [
+      1.42,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      0.5,
+      0.5
+     ],
+     "rot": 0.0,
+     "group": {
+      "layer": 1,
+      "order": 2
+     }
+    },
+    {
+     "name": "Root",
+     "parent": 71,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "BackgroundLeft",
+     "parent": 72,
+     "active": true,
+     "pos": [
+      0.0,
+      0.021,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       1.15,
+       0.9532374
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "PlayButtonBackground"
+     }
+    },
+    {
+     "name": "BackgroundRight",
+     "parent": 72,
+     "active": true,
+     "pos": [
+      0.0,
+      0.021,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       1.15,
+       0.9532374
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "PlayButtonBackground"
+     }
+    },
+    {
+     "name": "FrameLeft",
+     "parent": 72,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       1.24,
+       1.1870503
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "PlayButtonFrame"
+     }
+    },
+    {
+     "name": "FrameRight",
+     "parent": 72,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       1.24,
+       1.1870503
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "PlayButtonFrame"
+     }
+    },
+    {
+     "name": "Button",
+     "parent": 72,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "PressDownTransform",
+     "parent": 77,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "BaseLeft",
+     "parent": 78,
+     "active": true,
+     "pos": [
+      0.0,
+      0.021,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       1.14,
+       0.97482014
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "PlayButton"
+     }
+    },
+    {
+     "name": "BaseRight",
+     "parent": 78,
+     "active": true,
+     "pos": [
+      0.0,
+      0.021,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       1.14,
+       0.97482014
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "PlayButton"
+     }
+    },
+    {
+     "name": "DefaultText",
+     "parent": 78,
+     "active": true,
+     "pos": [
+      0.0,
+      -0.029,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "ShadowText",
+     "parent": 81,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       1.8536,
+       0.69
+      ],
+      "anchored": [
+       0.0,
+       0.025
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Play Button Bold"
+     }
+    },
+    {
+     "name": "BaseText",
+     "parent": 81,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       1.8536,
+       0.69
+      ],
+      "anchored": [
+       0.0,
+       0.06399983
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Play Button Default"
+     }
+    },
+    {
+     "name": "HardText",
+     "parent": 78,
+     "active": false,
+     "pos": [
+      0.0,
+      -0.029,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "ShadowText",
+     "parent": 84,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       1.8536,
+       0.364
+      ],
+      "anchored": [
+       0.0,
+       0.172
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Play Button Bold"
+     }
+    },
+    {
+     "name": "BaseText",
+     "parent": 84,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       1.8536,
+       0.364
+      ],
+      "anchored": [
+       0.0,
+       0.1926
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Play Button Hard"
+     }
+    },
+    {
+     "name": "HardLevelText",
+     "parent": 84,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "ShadowText",
+     "parent": 87,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       1.8536,
+       0.3221
+      ],
+      "anchored": [
+       0.0,
+       -0.159
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Play Button Bold"
+     }
+    },
+    {
+     "name": "BaseText",
+     "parent": 87,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       1.8536,
+       0.3221
+      ],
+      "anchored": [
+       0.0,
+       -0.1407
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Play Button Hard"
+     }
+    },
+    {
+     "name": "SuperHardLevel",
+     "parent": 78,
+     "active": false,
+     "pos": [
+      0.0,
+      -0.029,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "ShadowText",
+     "parent": 90,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       1.8536,
+       0.364
+      ],
+      "anchored": [
+       0.0,
+       0.172
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Play Button Bold"
+     }
+    },
+    {
+     "name": "BaseText",
+     "parent": 90,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       1.8536,
+       0.364
+      ],
+      "anchored": [
+       0.0,
+       0.1926
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Play Button Super Hard"
+     }
+    },
+    {
+     "name": "SuperHardText",
+     "parent": 90,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "ShadowText",
+     "parent": 93,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       1.8536,
+       0.3221
+      ],
+      "anchored": [
+       0.0,
+       -0.159
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Play Button Bold"
+     }
+    },
+    {
+     "name": "BaseText",
+     "parent": 93,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       1.8536,
+       0.3221
+      ],
+      "anchored": [
+       0.0,
+       -0.1407
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Play Button Super Hard"
+     }
+    },
+    {
+     "name": "PackLevel",
+     "parent": 78,
+     "active": false,
+     "pos": [
+      0.0,
+      -0.029,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "ShadowText",
+     "parent": 96,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       1.8536,
+       0.364
+      ],
+      "anchored": [
+       0.0,
+       0.172
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Play Button Bold"
+     }
+    },
+    {
+     "name": "BaseText",
+     "parent": 96,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       1.8536,
+       0.364
+      ],
+      "anchored": [
+       0.0,
+       0.1926
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Play Button Pack"
+     }
+    },
+    {
+     "name": "PackNameText",
+     "parent": 96,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "ShadowText",
+     "parent": 99,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       1.8536,
+       0.3221
+      ],
+      "anchored": [
+       0.0,
+       -0.159
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Play Button Bold"
+     }
+    },
+    {
+     "name": "BaseText",
+     "parent": 99,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       1.8536,
+       0.3221
+      ],
+      "anchored": [
+       0.0,
+       -0.1407
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Play Button Pack"
+     }
+    },
+    {
+     "name": "Level2",
+     "parent": 3,
+     "active": true,
+     "pos": [
+      0.0,
+      -2.64,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "group": {
+      "layer": 1,
+      "order": 1
+     }
+    },
+    {
+     "name": "PanelLeft",
+     "parent": 102,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      0.8,
+      0.8
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "key": "PopUpBackgroundLt",
+      "color": [
+       1,
+       1,
+       1,
+       1
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       2.5749999999999997,
+       1.4499999999999997
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true
+     }
+    },
+    {
+     "name": "PanelRight",
+     "parent": 102,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      0.8,
+      0.8
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "key": "PopUpBackgroundLt",
+      "color": [
+       1,
+       1,
+       1,
+       1
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       2.5749999999999997,
+       1.4499999999999997
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true
+     }
+    },
+    {
+     "name": "Number",
+     "parent": 102,
+     "active": true,
+     "pos": [
+      -1.62,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      0.9,
+      0.9
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "BaseLeft",
+     "parent": 105,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.44,
+       0.4172662
+      ],
+      "layer": 1,
+      "order": 30,
+      "enabled": true,
+      "key": "LevelNumberBaseDefault"
+     }
+    },
+    {
+     "name": "BaseRight",
+     "parent": 105,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.44,
+       0.4172662
+      ],
+      "layer": 1,
+      "order": 30,
+      "enabled": true,
+      "key": "LevelNumberBaseDefault"
+     }
+    },
+    {
+     "name": "Text",
+     "parent": 105,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       0.62,
+       0.3
+      ],
+      "anchored": [
+       0.0,
+       -0.013
+      ],
+      "layer": 1,
+      "order": 31,
+      "style": "Dark Blue Outline 2"
+     }
+    },
+    {
+     "name": "Name",
+     "parent": 102,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       1.86,
+       0.4
+      ],
+      "anchored": [
+       -0.19,
+       0.15
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Dark Blue Outline 3",
+      "align": "left"
+     }
+    },
+    {
+     "name": "Info",
+     "parent": 102,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       1.86,
+       0.24
+      ],
+      "anchored": [
+       -0.19,
+       -0.23
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Dark Blue Default",
+      "align": "left"
+     }
+    },
+    {
+     "name": "Check",
+     "parent": 102,
+     "active": true,
+     "pos": [
+      -1.33,
+      -0.27,
+      0.0
+     ],
+     "scale": [
+      0.85,
+      0.85
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "key": "CheckIcon",
+      "color": [
+       1,
+       1,
+       1,
+       1
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       1,
+       1
+      ],
+      "layer": 1,
+      "order": 5,
+      "enabled": true
+     }
+    },
+    {
+     "name": "Play",
+     "parent": 102,
+     "active": true,
+     "pos": [
+      1.42,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      0.5,
+      0.5
+     ],
+     "rot": 0.0,
+     "group": {
+      "layer": 1,
+      "order": 2
+     }
+    },
+    {
+     "name": "Root",
+     "parent": 112,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "BackgroundLeft",
+     "parent": 113,
+     "active": true,
+     "pos": [
+      0.0,
+      0.021,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       1.15,
+       0.9532374
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "PlayButtonBackground"
+     }
+    },
+    {
+     "name": "BackgroundRight",
+     "parent": 113,
+     "active": true,
+     "pos": [
+      0.0,
+      0.021,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       1.15,
+       0.9532374
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "PlayButtonBackground"
+     }
+    },
+    {
+     "name": "FrameLeft",
+     "parent": 113,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       1.24,
+       1.1870503
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "PlayButtonFrame"
+     }
+    },
+    {
+     "name": "FrameRight",
+     "parent": 113,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       1.24,
+       1.1870503
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "PlayButtonFrame"
+     }
+    },
+    {
+     "name": "Button",
+     "parent": 113,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "PressDownTransform",
+     "parent": 118,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "BaseLeft",
+     "parent": 119,
+     "active": true,
+     "pos": [
+      0.0,
+      0.021,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       1.14,
+       0.97482014
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "PlayButton"
+     }
+    },
+    {
+     "name": "BaseRight",
+     "parent": 119,
+     "active": true,
+     "pos": [
+      0.0,
+      0.021,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       1.14,
+       0.97482014
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "PlayButton"
+     }
+    },
+    {
+     "name": "DefaultText",
+     "parent": 119,
+     "active": true,
+     "pos": [
+      0.0,
+      -0.029,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "ShadowText",
+     "parent": 122,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       1.8536,
+       0.69
+      ],
+      "anchored": [
+       0.0,
+       0.025
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Play Button Bold"
+     }
+    },
+    {
+     "name": "BaseText",
+     "parent": 122,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       1.8536,
+       0.69
+      ],
+      "anchored": [
+       0.0,
+       0.06399983
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Play Button Default"
+     }
+    },
+    {
+     "name": "HardText",
+     "parent": 119,
+     "active": false,
+     "pos": [
+      0.0,
+      -0.029,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "ShadowText",
+     "parent": 125,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       1.8536,
+       0.364
+      ],
+      "anchored": [
+       0.0,
+       0.172
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Play Button Bold"
+     }
+    },
+    {
+     "name": "BaseText",
+     "parent": 125,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       1.8536,
+       0.364
+      ],
+      "anchored": [
+       0.0,
+       0.1926
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Play Button Hard"
+     }
+    },
+    {
+     "name": "HardLevelText",
+     "parent": 125,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "ShadowText",
+     "parent": 128,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       1.8536,
+       0.3221
+      ],
+      "anchored": [
+       0.0,
+       -0.159
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Play Button Bold"
+     }
+    },
+    {
+     "name": "BaseText",
+     "parent": 128,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       1.8536,
+       0.3221
+      ],
+      "anchored": [
+       0.0,
+       -0.1407
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Play Button Hard"
+     }
+    },
+    {
+     "name": "SuperHardLevel",
+     "parent": 119,
+     "active": false,
+     "pos": [
+      0.0,
+      -0.029,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "ShadowText",
+     "parent": 131,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       1.8536,
+       0.364
+      ],
+      "anchored": [
+       0.0,
+       0.172
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Play Button Bold"
+     }
+    },
+    {
+     "name": "BaseText",
+     "parent": 131,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       1.8536,
+       0.364
+      ],
+      "anchored": [
+       0.0,
+       0.1926
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Play Button Super Hard"
+     }
+    },
+    {
+     "name": "SuperHardText",
+     "parent": 131,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "ShadowText",
+     "parent": 134,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       1.8536,
+       0.3221
+      ],
+      "anchored": [
+       0.0,
+       -0.159
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Play Button Bold"
+     }
+    },
+    {
+     "name": "BaseText",
+     "parent": 134,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       1.8536,
+       0.3221
+      ],
+      "anchored": [
+       0.0,
+       -0.1407
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Play Button Super Hard"
+     }
+    },
+    {
+     "name": "PackLevel",
+     "parent": 119,
+     "active": false,
+     "pos": [
+      0.0,
+      -0.029,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "ShadowText",
+     "parent": 137,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       1.8536,
+       0.364
+      ],
+      "anchored": [
+       0.0,
+       0.172
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Play Button Bold"
+     }
+    },
+    {
+     "name": "BaseText",
+     "parent": 137,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       1.8536,
+       0.364
+      ],
+      "anchored": [
+       0.0,
+       0.1926
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Play Button Pack"
+     }
+    },
+    {
+     "name": "PackNameText",
+     "parent": 137,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "ShadowText",
+     "parent": 140,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       1.8536,
+       0.3221
+      ],
+      "anchored": [
+       0.0,
+       -0.159
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Play Button Bold"
+     }
+    },
+    {
+     "name": "BaseText",
+     "parent": 140,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       1.8536,
+       0.3221
+      ],
+      "anchored": [
+       0.0,
+       -0.1407
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Play Button Pack"
+     }
+    },
+    {
+     "name": "Level3",
+     "parent": 3,
+     "active": true,
+     "pos": [
+      0.0,
+      -3.96,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "group": {
+      "layer": 1,
+      "order": 1
+     }
+    },
+    {
+     "name": "PanelLeft",
+     "parent": 143,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      0.8,
+      0.8
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "key": "PopUpBackgroundLt",
+      "color": [
+       1,
+       1,
+       1,
+       1
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       2.5749999999999997,
+       1.4499999999999997
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true
+     }
+    },
+    {
+     "name": "PanelRight",
+     "parent": 143,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      0.8,
+      0.8
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "key": "PopUpBackgroundLt",
+      "color": [
+       1,
+       1,
+       1,
+       1
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       2.5749999999999997,
+       1.4499999999999997
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true
+     }
+    },
+    {
+     "name": "Number",
+     "parent": 143,
+     "active": true,
+     "pos": [
+      -1.62,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      0.9,
+      0.9
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "BaseLeft",
+     "parent": 146,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.44,
+       0.4172662
+      ],
+      "layer": 1,
+      "order": 30,
+      "enabled": true,
+      "key": "LevelNumberBaseDefault"
+     }
+    },
+    {
+     "name": "BaseRight",
+     "parent": 146,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.44,
+       0.4172662
+      ],
+      "layer": 1,
+      "order": 30,
+      "enabled": true,
+      "key": "LevelNumberBaseDefault"
+     }
+    },
+    {
+     "name": "Text",
+     "parent": 146,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       0.62,
+       0.3
+      ],
+      "anchored": [
+       0.0,
+       -0.013
+      ],
+      "layer": 1,
+      "order": 31,
+      "style": "Dark Blue Outline 2"
+     }
+    },
+    {
+     "name": "Name",
+     "parent": 143,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       1.86,
+       0.4
+      ],
+      "anchored": [
+       -0.19,
+       0.15
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Dark Blue Outline 3",
+      "align": "left"
+     }
+    },
+    {
+     "name": "Info",
+     "parent": 143,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       1.86,
+       0.24
+      ],
+      "anchored": [
+       -0.19,
+       -0.23
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Dark Blue Default",
+      "align": "left"
+     }
+    },
+    {
+     "name": "Check",
+     "parent": 143,
+     "active": true,
+     "pos": [
+      -1.33,
+      -0.27,
+      0.0
+     ],
+     "scale": [
+      0.85,
+      0.85
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "key": "CheckIcon",
+      "color": [
+       1,
+       1,
+       1,
+       1
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       1,
+       1
+      ],
+      "layer": 1,
+      "order": 5,
+      "enabled": true
+     }
+    },
+    {
+     "name": "Play",
+     "parent": 143,
+     "active": true,
+     "pos": [
+      1.42,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      0.5,
+      0.5
+     ],
+     "rot": 0.0,
+     "group": {
+      "layer": 1,
+      "order": 2
+     }
+    },
+    {
+     "name": "Root",
+     "parent": 153,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "BackgroundLeft",
+     "parent": 154,
+     "active": true,
+     "pos": [
+      0.0,
+      0.021,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       1.15,
+       0.9532374
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "PlayButtonBackground"
+     }
+    },
+    {
+     "name": "BackgroundRight",
+     "parent": 154,
+     "active": true,
+     "pos": [
+      0.0,
+      0.021,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       1.15,
+       0.9532374
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "PlayButtonBackground"
+     }
+    },
+    {
+     "name": "FrameLeft",
+     "parent": 154,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       1.24,
+       1.1870503
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "PlayButtonFrame"
+     }
+    },
+    {
+     "name": "FrameRight",
+     "parent": 154,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       1.24,
+       1.1870503
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "PlayButtonFrame"
+     }
+    },
+    {
+     "name": "Button",
+     "parent": 154,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "PressDownTransform",
+     "parent": 159,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "BaseLeft",
+     "parent": 160,
+     "active": true,
+     "pos": [
+      0.0,
+      0.021,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       1.14,
+       0.97482014
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "PlayButton"
+     }
+    },
+    {
+     "name": "BaseRight",
+     "parent": 160,
+     "active": true,
+     "pos": [
+      0.0,
+      0.021,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       1.14,
+       0.97482014
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "PlayButton"
+     }
+    },
+    {
+     "name": "DefaultText",
+     "parent": 160,
+     "active": true,
+     "pos": [
+      0.0,
+      -0.029,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "ShadowText",
+     "parent": 163,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       1.8536,
+       0.69
+      ],
+      "anchored": [
+       0.0,
+       0.025
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Play Button Bold"
+     }
+    },
+    {
+     "name": "BaseText",
+     "parent": 163,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       1.8536,
+       0.69
+      ],
+      "anchored": [
+       0.0,
+       0.06399983
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Play Button Default"
+     }
+    },
+    {
+     "name": "HardText",
+     "parent": 160,
+     "active": false,
+     "pos": [
+      0.0,
+      -0.029,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "ShadowText",
+     "parent": 166,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       1.8536,
+       0.364
+      ],
+      "anchored": [
+       0.0,
+       0.172
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Play Button Bold"
+     }
+    },
+    {
+     "name": "BaseText",
+     "parent": 166,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       1.8536,
+       0.364
+      ],
+      "anchored": [
+       0.0,
+       0.1926
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Play Button Hard"
+     }
+    },
+    {
+     "name": "HardLevelText",
+     "parent": 166,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "ShadowText",
+     "parent": 169,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       1.8536,
+       0.3221
+      ],
+      "anchored": [
+       0.0,
+       -0.159
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Play Button Bold"
+     }
+    },
+    {
+     "name": "BaseText",
+     "parent": 169,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       1.8536,
+       0.3221
+      ],
+      "anchored": [
+       0.0,
+       -0.1407
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Play Button Hard"
+     }
+    },
+    {
+     "name": "SuperHardLevel",
+     "parent": 160,
+     "active": false,
+     "pos": [
+      0.0,
+      -0.029,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "ShadowText",
+     "parent": 172,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       1.8536,
+       0.364
+      ],
+      "anchored": [
+       0.0,
+       0.172
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Play Button Bold"
+     }
+    },
+    {
+     "name": "BaseText",
+     "parent": 172,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       1.8536,
+       0.364
+      ],
+      "anchored": [
+       0.0,
+       0.1926
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Play Button Super Hard"
+     }
+    },
+    {
+     "name": "SuperHardText",
+     "parent": 172,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "ShadowText",
+     "parent": 175,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       1.8536,
+       0.3221
+      ],
+      "anchored": [
+       0.0,
+       -0.159
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Play Button Bold"
+     }
+    },
+    {
+     "name": "BaseText",
+     "parent": 175,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       1.8536,
+       0.3221
+      ],
+      "anchored": [
+       0.0,
+       -0.1407
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Play Button Super Hard"
+     }
+    },
+    {
+     "name": "PackLevel",
+     "parent": 160,
+     "active": false,
+     "pos": [
+      0.0,
+      -0.029,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "ShadowText",
+     "parent": 178,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       1.8536,
+       0.364
+      ],
+      "anchored": [
+       0.0,
+       0.172
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Play Button Bold"
+     }
+    },
+    {
+     "name": "BaseText",
+     "parent": 178,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       1.8536,
+       0.364
+      ],
+      "anchored": [
+       0.0,
+       0.1926
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Play Button Pack"
+     }
+    },
+    {
+     "name": "PackNameText",
+     "parent": 178,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "ShadowText",
+     "parent": 181,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       1.8536,
+       0.3221
+      ],
+      "anchored": [
+       0.0,
+       -0.159
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Play Button Bold"
+     }
+    },
+    {
+     "name": "BaseText",
+     "parent": 181,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       1.8536,
+       0.3221
+      ],
+      "anchored": [
+       0.0,
+       -0.1407
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Play Button Pack"
+     }
+    },
+    {
+     "name": "Level4",
+     "parent": 3,
+     "active": true,
+     "pos": [
+      0.0,
+      -5.28,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "group": {
+      "layer": 1,
+      "order": 1
+     }
+    },
+    {
+     "name": "PanelLeft",
+     "parent": 184,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      0.8,
+      0.8
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "key": "PopUpBackgroundLt",
+      "color": [
+       1,
+       1,
+       1,
+       1
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       2.5749999999999997,
+       1.4499999999999997
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true
+     }
+    },
+    {
+     "name": "PanelRight",
+     "parent": 184,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      0.8,
+      0.8
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "key": "PopUpBackgroundLt",
+      "color": [
+       1,
+       1,
+       1,
+       1
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       2.5749999999999997,
+       1.4499999999999997
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true
+     }
+    },
+    {
+     "name": "Number",
+     "parent": 184,
+     "active": true,
+     "pos": [
+      -1.62,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      0.9,
+      0.9
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "BaseLeft",
+     "parent": 187,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.44,
+       0.4172662
+      ],
+      "layer": 1,
+      "order": 30,
+      "enabled": true,
+      "key": "LevelNumberBaseDefault"
+     }
+    },
+    {
+     "name": "BaseRight",
+     "parent": 187,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.44,
+       0.4172662
+      ],
+      "layer": 1,
+      "order": 30,
+      "enabled": true,
+      "key": "LevelNumberBaseDefault"
+     }
+    },
+    {
+     "name": "Text",
+     "parent": 187,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       0.62,
+       0.3
+      ],
+      "anchored": [
+       0.0,
+       -0.013
+      ],
+      "layer": 1,
+      "order": 31,
+      "style": "Dark Blue Outline 2"
+     }
+    },
+    {
+     "name": "Name",
+     "parent": 184,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       1.86,
+       0.4
+      ],
+      "anchored": [
+       -0.19,
+       0.15
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Dark Blue Outline 3",
+      "align": "left"
+     }
+    },
+    {
+     "name": "Info",
+     "parent": 184,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       1.86,
+       0.24
+      ],
+      "anchored": [
+       -0.19,
+       -0.23
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Dark Blue Default",
+      "align": "left"
+     }
+    },
+    {
+     "name": "Check",
+     "parent": 184,
+     "active": true,
+     "pos": [
+      -1.33,
+      -0.27,
+      0.0
+     ],
+     "scale": [
+      0.85,
+      0.85
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "key": "CheckIcon",
+      "color": [
+       1,
+       1,
+       1,
+       1
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       1,
+       1
+      ],
+      "layer": 1,
+      "order": 5,
+      "enabled": true
+     }
+    },
+    {
+     "name": "Play",
+     "parent": 184,
+     "active": true,
+     "pos": [
+      1.42,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      0.5,
+      0.5
+     ],
+     "rot": 0.0,
+     "group": {
+      "layer": 1,
+      "order": 2
+     }
+    },
+    {
+     "name": "Root",
+     "parent": 194,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "BackgroundLeft",
+     "parent": 195,
+     "active": true,
+     "pos": [
+      0.0,
+      0.021,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       1.15,
+       0.9532374
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "PlayButtonBackground"
+     }
+    },
+    {
+     "name": "BackgroundRight",
+     "parent": 195,
+     "active": true,
+     "pos": [
+      0.0,
+      0.021,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       1.15,
+       0.9532374
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "PlayButtonBackground"
+     }
+    },
+    {
+     "name": "FrameLeft",
+     "parent": 195,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       1.24,
+       1.1870503
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "PlayButtonFrame"
+     }
+    },
+    {
+     "name": "FrameRight",
+     "parent": 195,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       1.24,
+       1.1870503
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "PlayButtonFrame"
+     }
+    },
+    {
+     "name": "Button",
+     "parent": 195,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "PressDownTransform",
+     "parent": 200,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "BaseLeft",
+     "parent": 201,
+     "active": true,
+     "pos": [
+      0.0,
+      0.021,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       1.14,
+       0.97482014
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "PlayButton"
+     }
+    },
+    {
+     "name": "BaseRight",
+     "parent": 201,
+     "active": true,
+     "pos": [
+      0.0,
+      0.021,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       1.14,
+       0.97482014
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "PlayButton"
+     }
+    },
+    {
+     "name": "DefaultText",
+     "parent": 201,
+     "active": true,
+     "pos": [
+      0.0,
+      -0.029,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "ShadowText",
+     "parent": 204,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       1.8536,
+       0.69
+      ],
+      "anchored": [
+       0.0,
+       0.025
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Play Button Bold"
+     }
+    },
+    {
+     "name": "BaseText",
+     "parent": 204,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       1.8536,
+       0.69
+      ],
+      "anchored": [
+       0.0,
+       0.06399983
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Play Button Default"
+     }
+    },
+    {
+     "name": "HardText",
+     "parent": 201,
+     "active": false,
+     "pos": [
+      0.0,
+      -0.029,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "ShadowText",
+     "parent": 207,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       1.8536,
+       0.364
+      ],
+      "anchored": [
+       0.0,
+       0.172
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Play Button Bold"
+     }
+    },
+    {
+     "name": "BaseText",
+     "parent": 207,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       1.8536,
+       0.364
+      ],
+      "anchored": [
+       0.0,
+       0.1926
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Play Button Hard"
+     }
+    },
+    {
+     "name": "HardLevelText",
+     "parent": 207,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "ShadowText",
+     "parent": 210,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       1.8536,
+       0.3221
+      ],
+      "anchored": [
+       0.0,
+       -0.159
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Play Button Bold"
+     }
+    },
+    {
+     "name": "BaseText",
+     "parent": 210,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       1.8536,
+       0.3221
+      ],
+      "anchored": [
+       0.0,
+       -0.1407
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Play Button Hard"
+     }
+    },
+    {
+     "name": "SuperHardLevel",
+     "parent": 201,
+     "active": false,
+     "pos": [
+      0.0,
+      -0.029,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "ShadowText",
+     "parent": 213,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       1.8536,
+       0.364
+      ],
+      "anchored": [
+       0.0,
+       0.172
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Play Button Bold"
+     }
+    },
+    {
+     "name": "BaseText",
+     "parent": 213,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       1.8536,
+       0.364
+      ],
+      "anchored": [
+       0.0,
+       0.1926
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Play Button Super Hard"
+     }
+    },
+    {
+     "name": "SuperHardText",
+     "parent": 213,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "ShadowText",
+     "parent": 216,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       1.8536,
+       0.3221
+      ],
+      "anchored": [
+       0.0,
+       -0.159
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Play Button Bold"
+     }
+    },
+    {
+     "name": "BaseText",
+     "parent": 216,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       1.8536,
+       0.3221
+      ],
+      "anchored": [
+       0.0,
+       -0.1407
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Play Button Super Hard"
+     }
+    },
+    {
+     "name": "PackLevel",
+     "parent": 201,
+     "active": false,
+     "pos": [
+      0.0,
+      -0.029,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "ShadowText",
+     "parent": 219,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       1.8536,
+       0.364
+      ],
+      "anchored": [
+       0.0,
+       0.172
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Play Button Bold"
+     }
+    },
+    {
+     "name": "BaseText",
+     "parent": 219,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       1.8536,
+       0.364
+      ],
+      "anchored": [
+       0.0,
+       0.1926
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Play Button Pack"
+     }
+    },
+    {
+     "name": "PackNameText",
+     "parent": 219,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "ShadowText",
+     "parent": 222,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       1.8536,
+       0.3221
+      ],
+      "anchored": [
+       0.0,
+       -0.159
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Play Button Bold"
+     }
+    },
+    {
+     "name": "BaseText",
+     "parent": 222,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       1.8536,
+       0.3221
+      ],
+      "anchored": [
+       0.0,
+       -0.1407
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Play Button Pack"
+     }
+    }
+   ]
+  }
+ },
+ "sprites": {
+  "CheckIcon": {
+   "ppu": 278.0,
+   "pivot": [
+    0.5,
+    0.5
+   ],
+   "border": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "width": 73,
+   "height": 65,
+   "jpg": false
+  },
+  "CloseButton": {
+   "ppu": 278.0,
+   "pivot": [
+    1.0,
+    0.5
+   ],
+   "border": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "width": 73,
+   "height": 146,
+   "jpg": false
+  },
+  "CloseButtonBackground": {
+   "ppu": 278.0,
+   "pivot": [
+    1.0,
+    0.5
+   ],
+   "border": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "width": 71,
+   "height": 140,
+   "jpg": false
+  },
+  "CloseButtonFrame": {
+   "ppu": 278.0,
+   "pivot": [
+    1.0,
+    0.5302013
+   ],
+   "border": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "width": 98,
+   "height": 201,
+   "jpg": false
+  },
+  "CloseIcon": {
+   "ppu": 278.0,
+   "pivot": [
+    0.5,
+    0.5
+   ],
+   "border": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "width": 72,
+   "height": 76,
+   "jpg": false
+  },
+  "LevelNumberBaseDefault": {
+   "ppu": 278.0,
+   "pivot": [
+    1.0,
+    0.5
+   ],
+   "border": [
+    120.0,
+    57.0,
+    1.0,
+    57.0
+   ],
+   "width": 122,
+   "height": 116,
+   "jpg": false
+  },
+  "LevelNumberBaseHard": {
+   "ppu": 278.0,
+   "pivot": [
+    1.0,
+    0.5
+   ],
+   "border": [
+    121.0,
+    57.0,
+    0.0,
+    57.0
+   ],
+   "width": 122,
+   "height": 116,
+   "jpg": false
+  },
+  "LevelNumberBaseSuperHard": {
+   "ppu": 278.0,
+   "pivot": [
+    1.0,
+    0.5
+   ],
+   "border": [
+    121.0,
+    57.0,
+    0.0,
+    57.0
+   ],
+   "width": 122,
+   "height": 116,
+   "jpg": false
+  },
+  "PlayButton": {
+   "ppu": 278.0,
+   "pivot": [
+    1.0,
+    0.5
+   ],
+   "border": [
+    309.0,
+    0.0,
+    1.0,
+    0.0
+   ],
+   "width": 311,
+   "height": 271,
+   "jpg": false
+  },
+  "PlayButtonBackground": {
+   "ppu": 278.0,
+   "pivot": [
+    1.0,
+    0.5
+   ],
+   "border": [
+    306.0,
+    0.0,
+    1.0,
+    0.0
+   ],
+   "width": 308,
+   "height": 265,
+   "jpg": false
+  },
+  "PlayButtonFrame": {
+   "ppu": 278.0,
+   "pivot": [
+    1.0,
+    0.5
+   ],
+   "border": [
+    337.0,
+    1.0,
+    1.0,
+    1.0
+   ],
+   "width": 339,
+   "height": 330,
+   "jpg": false
+  },
+  "PlayButtonHardLevel": {
+   "ppu": 278.0,
+   "pivot": [
+    1.0,
+    0.5
+   ],
+   "border": [
+    310.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "width": 311,
+   "height": 271,
+   "jpg": false
+  },
+  "PlayButtonHardLevelBackground": {
+   "ppu": 278.0,
+   "pivot": [
+    1.0,
+    0.5
+   ],
+   "border": [
+    307.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "width": 308,
+   "height": 265,
+   "jpg": false
+  },
+  "PlayButtonSuperHardLevel": {
+   "ppu": 278.0,
+   "pivot": [
+    1.0,
+    0.5
+   ],
+   "border": [
+    310.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "width": 311,
+   "height": 271,
+   "jpg": false
+  },
+  "PlayButtonSuperHardLevelBackground": {
+   "ppu": 278.0,
+   "pivot": [
+    1.0,
+    0.5
+   ],
+   "border": [
+    307.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "width": 308,
+   "height": 265,
+   "jpg": false
+  },
+  "PopUpBackground": {
+   "ppu": 278.0,
+   "pivot": [
+    1.0,
+    0.0
+   ],
+   "border": [
+    91.0,
+    262.0,
+    1.0,
+    1.0
+   ],
+   "width": 638,
+   "height": 276,
+   "jpg": false
+  },
+  "PopUpBackgroundLt": {
+   "ppu": 278.0,
+   "pivot": [
+    1.0,
+    0.5
+   ],
+   "border": [
+    227.0,
+    200.0,
+    1.0,
+    200.0
+   ],
+   "width": 229,
+   "height": 435,
+   "jpg": false
+  },
+  "PopUpHeader": {
+   "ppu": 278.0,
+   "pivot": [
+    1.0,
+    0.5
+   ],
+   "border": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "width": 652,
+   "height": 466,
+   "jpg": false
+  },
+  "White": {
+   "ppu": 1.0,
+   "pivot": [
+    0.5,
+    0.5
+   ],
+   "border": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "width": 1,
+   "height": 1,
+   "jpg": false
+  }
+ },
+ "styles": {
+  "Pop Up Base": {
+   "name": "Bango Pro SDF - Pop Up Base",
+   "face": [
+    0.9765,
+    0.9597,
+    0.9179,
+    1.0
+   ],
+   "outline": [
+    0.0422,
+    0.1582,
+    0.451,
+    1.0
+   ],
+   "outlineWidth": 0.175,
+   "underlay": [
+    0.0745,
+    0.2099,
+    0.502,
+    1.0
+   ],
+   "underlayOffset": [
+    0.0,
+    -0.63
+   ],
+   "dilate": 0.0
+  },
+  "Dark Blue Outline 2": {
+   "name": "Bango Pro SDF - Dark Blue Outline 2",
+   "face": [
+    0.9765,
+    0.9597,
+    0.9179,
+    1.0
+   ],
+   "outline": [
+    0.0105,
+    0.0,
+    0.2,
+    1.0
+   ],
+   "outlineWidth": 0.15,
+   "underlay": [
+    0.0118,
+    0.0,
+    0.2,
+    1.0
+   ],
+   "underlayOffset": [
+    0.0,
+    -0.33
+   ],
+   "dilate": 0.0
+  },
+  "Dark Blue Outline 3": {
+   "name": "Bango Pro SDF - Dark Blue Outline 3",
+   "face": [
+    0.9765,
+    0.9597,
+    0.9179,
+    1.0
+   ],
+   "outline": [
+    0.0,
+    0.0706,
+    0.3569,
+    1.0
+   ],
+   "outlineWidth": 0.15,
+   "underlay": [
+    0.0039,
+    0.051,
+    0.2706,
+    1.0
+   ],
+   "underlayOffset": [
+    0.0,
+    -0.33
+   ],
+   "dilate": 0.09
+  },
+  "Dark Blue Default": {
+   "name": "Bango Pro SDF - Dark Blue Default",
+   "face": [
+    0.0745,
+    0.2122,
+    0.5,
+    1.0
+   ],
+   "outline": null,
+   "outlineWidth": 0.0,
+   "underlay": null,
+   "underlayOffset": [
+    0.0,
+    -0.514
+   ],
+   "dilate": 0.0
+  },
+  "Play Button Bold": {
+   "name": "Bango Pro SDF - Play Button Bold",
+   "face": [
+    1.0,
+    1.0,
+    1.0,
+    1.0
+   ],
+   "outline": null,
+   "outlineWidth": 0.0,
+   "underlay": null,
+   "underlayOffset": [
+    0.0,
+    -1.0
+   ],
+   "dilate": 0.238
+  },
+  "Play Button Default": {
+   "name": "Bango Pro SDF - Play Button Default",
+   "face": [
+    0.9765,
+    0.9597,
+    0.9179,
+    1.0
+   ],
+   "outline": [
+    0.0824,
+    0.549,
+    0.0549,
+    1.0
+   ],
+   "outlineWidth": 0.2,
+   "underlay": null,
+   "underlayOffset": [
+    0.0,
+    -0.4
+   ],
+   "dilate": 0.0
+  },
+  "Play Button Hard": {
+   "name": "Bango Pro SDF - Play Button Hard",
+   "face": [
+    0.9765,
+    0.9597,
+    0.9179,
+    1.0
+   ],
+   "outline": [
+    0.5529,
+    0.0588,
+    0.0588,
+    1.0
+   ],
+   "outlineWidth": 0.2,
+   "underlay": null,
+   "underlayOffset": [
+    0.0,
+    -0.4
+   ],
+   "dilate": 0.0
+  },
+  "Play Button Super Hard": {
+   "name": "Bango Pro SDF - Play Button Super Hard",
+   "face": [
+    0.9765,
+    0.9597,
+    0.9179,
+    1.0
+   ],
+   "outline": [
+    0.3647,
+    0.0549,
+    0.549,
+    1.0
+   ],
+   "outlineWidth": 0.2,
+   "underlay": null,
+   "underlayOffset": [
+    0.0,
+    -0.4
+   ],
+   "dilate": 0.0
+  },
+  "Play Button Pack": {
+   "name": "Bango Pro SDF - Play Button Pack",
+   "face": [
+    0.9765,
+    0.9597,
+    0.9179,
+    1.0
+   ],
+   "outline": [
+    0.0902,
+    0.5569,
+    0.8,
+    1.0
+   ],
+   "outlineWidth": 0.2,
+   "underlay": null,
+   "underlayOffset": [
+    0.0,
+    -0.4
+   ],
+   "dilate": 0.0
+  },
+  "Default": {
+   "name": "Default",
+   "face": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "outline": [
+    0.0627,
+    0.235,
+    0.6706,
+    1
+   ],
+   "outlineWidth": 0.2,
+   "underlay": null,
+   "underlayOffset": [
+    0,
+    0
+   ],
+   "dilate": 0
+  }
+ },
+ "rows": 5,
+ "rowStep": 1.32
+}

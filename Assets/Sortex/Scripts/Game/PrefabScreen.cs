@@ -36,6 +36,7 @@ namespace Sortex.Game
             public Transform Node;
             public Vector2 Size;
             public string Style;
+            public bool Left;              // left-aligned in its box (the game's texts are centred; the level list's are not)
             public int Order;
             public TextMesh Face;
             public readonly List<TextMesh> Layers = new List<TextMesh>();   // outline / underlay copies
@@ -172,7 +173,8 @@ namespace Sortex.Game
                         {
                             Node = t,
                             Size = new Vector2(F(MiniJson.Arr(text, "size"), 0), F(MiniJson.Arr(text, "size"), 1)),
-                            Style = MiniJson.Str(text, "style", "Default")
+                            Style = MiniJson.Str(text, "style", "Default"),
+                            Left = MiniJson.Str(text, "align", "center") == "left"
                         };
                         texts[path] = box;
                         AddEntry(t, text, null, null, box);
@@ -419,30 +421,42 @@ namespace Sortex.Game
         float Fit(TextBox box, string value)
         {
             float k;
+            // several lines (a long level name) share the box height
+            var lines = value.Split('\n');
             float em = box.Size.y * 0.95f * (textScale.TryGetValue(PathOf(box.Node), out k) ? k : 1f);
-            font.RequestCharactersInTexture(value, FontPixels);
+            if (lines.Length > 1) em /= lines.Length * 1.1f;
+            float widest = 0f;
+            foreach (var line in lines) widest = Mathf.Max(widest, EmWidth(line));
+            float width = widest * em;
+            if (width > box.Size.x * 0.98f && width > 0f) em *= box.Size.x * 0.98f / width;
+            return em;
+        }
+
+        /// <summary>Width of one line of text in the game's font, in ems.</summary>
+        protected float EmWidth(string line)
+        {
+            if (font == null || string.IsNullOrEmpty(line)) return 0f;
+            font.RequestCharactersInTexture(line, FontPixels);
             float advance = 0f;
-            foreach (char ch in value)
+            foreach (char ch in line)
             {
                 CharacterInfo ci;
                 if (font.GetCharacterInfo(ch, out ci, FontPixels)) advance += ci.advance;
             }
-            float width = advance / FontPixels * em;
-            if (width > box.Size.x * 0.98f && width > 0f) em *= box.Size.x * 0.98f / width;
-            return em;
+            return advance / FontPixels;
         }
 
         TextMesh MakeText(TextBox box, string name, string value, Color color, int orderOffset, Vector2 offset, float em)
         {
             var go = new GameObject(name);
             go.transform.SetParent(box.Node, false);
-            go.transform.localPosition = new Vector3(offset.x, offset.y, 0f);
+            go.transform.localPosition = new Vector3(offset.x - (box.Left ? box.Size.x * 0.5f : 0f), offset.y, 0f);
             var tm = go.AddComponent<TextMesh>();
             tm.font = font;
             tm.fontSize = FontPixels;
             tm.characterSize = em * 10f / FontPixels;
-            tm.anchor = TextAnchor.MiddleCenter;
-            tm.alignment = TextAlignment.Center;
+            tm.anchor = box.Left ? TextAnchor.MiddleLeft : TextAnchor.MiddleCenter;
+            tm.alignment = box.Left ? TextAlignment.Left : TextAlignment.Center;
             // TextMesh passes its colour to the shader as is: in a linear-colour project it has to be linearised first,
             // or every text comes out lighter than the TextMeshPro colours of the game (navy "Full" turns light blue)
             tm.color = QualitySettings.activeColorSpace == ColorSpace.Linear ? color.linear : color;
@@ -470,6 +484,17 @@ namespace Sortex.Game
             var c = MiniJson.Arr(style, key);
             if (c == null || c.Count < 3) return fallback;
             return new Color(F(c, 0), F(c, 1), F(c, 2), F(c, 3, 1f));
+        }
+
+        /// <summary>Gives a text another of the screen's styles (e.g. the Play button's green / red / purple outline).</summary>
+        protected void SetStyle(string path, string style)
+        {
+            TextBox box;
+            if (!texts.TryGetValue(path, out box) || box.Style == style) return;
+            box.Style = style;
+            string v = box.Value;
+            box.Value = null;
+            if (v != null) SetText(path, v);
         }
 
         public void SetSprite(string path, string key)

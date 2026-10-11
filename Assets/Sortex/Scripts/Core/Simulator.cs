@@ -224,10 +224,19 @@ namespace Sortex.Core
         }
 
         // ================================================================== player model
+        double clock;   // seconds since the start of the game being played (moving shelves)
+
+        /// <summary>The player sees (and can use) the shelf right now: moving shelves inside a tunnel are out of sight.</summary>
+        bool OnScreen(Board b, int shelf)
+        {
+            return oracle || b.OnScreen(shelf, clock);
+        }
+
         string Visible(Board b, int shelf, int slot)
         {
             var it = b.Shelves[shelf].Front[slot];
             if (it == null) return null;
+            if (!OnScreen(b, shelf)) return "?off" + it.Uid;
             return it.Mystery && !oracle ? "?" + it.Uid : it.Type;
         }
 
@@ -256,12 +265,23 @@ namespace Sortex.Core
                 if (++guard > 2000) return new Outcome { Reason = "loop", Time = t, Moves = b.Moves, Progress = Prog(b) };
 
                 b.LegalMoves(moves);
+                clock = t;
+                if (b.HasConveyors && !oracle)
+                {
+                    // only the shelves on screen can be used; when every move needs a shelf that is in a tunnel, wait
+                    moves.RemoveAll(m => !OnScreen(b, m[0]) || !OnScreen(b, m[2]));
+                    if (moves.Count == 0)
+                    {
+                        t += 0.5;
+                        continue;
+                    }
+                }
 
                 // what the player can see: front rows (mystery hidden) + the row right behind (not behind cargo doors)
                 var visibleBack = new Dictionary<string, int>();
                 foreach (var s in b.Shelves)
                 {
-                    if (!SeesBehind(s)) continue;
+                    if (!SeesBehind(s) || !OnScreen(b, s.Index)) continue;
                     for (int li = 1; li < s.Layers.Count && (li == 1 || oracle); li++)
                         foreach (var it in s.Layers[li])
                             if (it != null && (!it.Mystery || oracle))
@@ -274,6 +294,8 @@ namespace Sortex.Core
 
                 var frontCount = new Dictionary<string, int>();
                 foreach (var s in b.Shelves)
+                {
+                    if (!OnScreen(b, s.Index)) continue;
                     foreach (var it in s.Front)
                         if (it != null && (!it.Mystery || oracle))
                         {
@@ -281,6 +303,7 @@ namespace Sortex.Core
                             frontCount.TryGetValue(it.Type, out n);
                             frontCount[it.Type] = n + 1;
                         }
+                }
 
                 var scored = new List<KeyValuePair<int[], double>>();
                 double best = double.MinValue;
