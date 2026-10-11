@@ -70,12 +70,12 @@
   "solverNodes":20001,
   "winRate":0,
   "winRelaxedTimer":0,
-  "stuck":0.997,
-  "timeout":0.003,
+  "stuck":1,
+  "timeout":0,
   "avgMovesWin":0,
   "avgTimeWin":0,
   "avgProgressLoss":0.166,
-  "timeLimit":230,
+  "timeLimit":150,
   "players":1000
  }
 }

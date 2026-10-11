@@ -164,11 +164,11 @@ Level Editor'de kaydedilen her level oyunun level seçim ekranında, case levell
 **Unnecessarily Hard** bilerek aşırı zor kurduğum bölüm: 8 raf, 90 item, 30 tür, ön sırada neredeyse hiç boş yer yok. Simüle oyuncuların hiçbiri booster'sız bitiremiyor ve çözücü 20.000 düğümde bir çözüm bulamıyor. Seçim ekranında son satırda, mor Super Hard etiketiyle duruyor: adıyla dikkat çeken, oyuncuyu meydan okumaya çağıran bir bölüm. Booster'lar ve tıkanınca gelen Play On (sihirli şapka) ile ilerlenebiliyor. Aşağıdaki tablo yayınlama sırasında (Sortex → 3. Publish to GitHub) her level 1000 simüle oyuncuyla oynatılarak otomatik yazılıyor; kazanılamayan (3'ün katı olmayan) levellar yayınlanmıyor.
 
 <!-- MY-LEVELS:START -->
-_Bu tablo **Sortex → 3. Publish to GitHub** ile otomatik güncelleniyor (son: 2026-10-11 23:41)._
+_Bu tablo **Sortex → 3. Publish to GitHub** ile otomatik güncelleniyor (son: 2026-10-12 00:44)._
 
 | Level | Tier | Raf | Item | Tür | Süre | Engeller | Simüle kazanma (1000 oyuncu) | Hedef bant | Kayıp: süre / hamle kalmadı | Çözücü |
 |---|---|---|---|---|---|---|---|---|---|---|
-| Unnecessarily Hard | Super Hard | 8 | 90 | 30 | 230 sn (2,56 sn/item) | geniş raf 1, frozen 1 | **%0** | %20–45 (daha zor) | %0 / %100 | kanıt yok |
+| Unnecessarily Hard | Super Hard | 8 | 90 | 30 | 150 sn (1,67 sn/item) | geniş raf 1, frozen 1 | **%0** | %20–45 (daha zor) | %0 / %100 | kanıt yok |
 <!-- MY-LEVELS:END -->
 
 ## 4. Doğrulama: çözücü + simüle oyuncu

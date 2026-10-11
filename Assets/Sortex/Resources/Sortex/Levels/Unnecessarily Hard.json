@@ -4,7 +4,7 @@
  "tid":0,
  "lt":1,
  "ld":20,
- "tl":230,
+ "tl":150,
  "osb":false,
  "sir":1.5625,
  "s":[
@@ -28,7 +28,7 @@
      "rd":[{"it":1,"iid":"item_springriderdragon_pink"},{"it":0},{"it":1,"iid":"item_anchor_yellow"}]
     },
     {
-     "rd":[{"it":1,"iid":"item_airballoon_default"},{"it":1,"iid":"item_drinkme_purple"},{"it":1,"iid":"item_yogamat_blue"}]
+     "rd":[{"it":1,"iid":"item_airballoon_default"},{"it":1,"iid":"item_drinkme_purple"},{"it":0}]
     },
     {
      "rd":[{"it":1,"iid":"item_springriderdragon_green"},{"it":0},{"it":1,"iid":"item_acetone_green"}]
@@ -66,7 +66,7 @@
      "rd":[{"it":0},{"it":1,"iid":"item_doublecake_pink"},{"it":1,"iid":"item_doublecake_pink"}]
     },
     {
-     "rd":[{"it":1,"iid":"item_drinkme_purple"},{"it":0},{"it":1,"iid":"item_perfume_blue"}]
+     "rd":[{"it":1,"iid":"item_drinkme_purple"},{"it":1,"iid":"item_yogamat_blue"},{"it":1,"iid":"item_perfume_blue"}]
     },
     {
      "rd":[{"it":1,"iid":"item_springriderdragon_orange"},{"it":1,"iid":"item_springriderdragon_green"},{"it":0}]
