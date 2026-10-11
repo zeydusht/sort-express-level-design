@@ -113,6 +113,10 @@ namespace Sortex.Game
 
         /// <summary>Front rim of the real shelf model: drawn over the items.</summary>
         public static Sprite ShelfRim(int slots) { return Get("Art/shelf_w" + ShelfArtWidth(slots) + "_front", 128f); }
+
+        /// <summary>One bar of the shared shelf frame (0.08 thick, rounded ends, 9-sliced along its length).</summary>
+        public const float TubeThickness = 0.08f;
+        public static Sprite ShelfTube { get { return Get("Art/shelf_tube", 40f / TubeThickness, new Vector4(20, 0, 20, 0)); } }
         // ------------------------------------------------------------------ mystery items
         // Sort Express draws a mystery item as a grey stone "sculpture": the item's convex hull mesh
         // (item_*_hull.prefab) with MysteryItemTexture and a "?" in front (MysteryItemQuestionMark.prefab).

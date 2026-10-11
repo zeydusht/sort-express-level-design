@@ -45,6 +45,7 @@ namespace Sortex.Game
             public bool ShowsMystery;
             public float Shake;                    // seconds of shake left
             public float Dying = -1f;              // >= 0 while popping
+            public float PopDelay;                 // matched item still flying into its slot before it pops
             public int Layer;
             public int Shelf = -1;                 // shelf the item stands on (or is flying to)
             public bool Held;                      // picked up by the player: does not ride the conveyor
@@ -101,6 +102,10 @@ namespace Sortex.Game
         readonly List<Fx> fx = new List<Fx>();
         List<ConveyorRow> conveyors = new List<ConveyorRow>();
         float visibleHalf = Conveyor.ScreenHalfWidth;
+        float landPop;                             // set by Land(): the next Sync lets a match wait for the item to land
+        float matchDelay;                          // PlayMatch waits this long (the dropped item lands first)
+        readonly List<int> queuedMatches = new List<int>();
+        float queuedMatchTime;
 
         public Rect Bounds { get; private set; }
         public bool HasConveyors { get { return conveyors.Count > 0; } }
@@ -201,14 +206,15 @@ namespace Sortex.Game
                 plate.color = SortexArt.Cabinet;
 
                 // the game's own shelf model (BaseShelf.prefab), pre-rendered: inside behind the items, rim in front
+                // static shelves share one frame of bars (BuildFrame); a moving shelf carries its own rim
                 var inside = SortexArt.NewSprite("Inside", sv.Root, SortexArt.ShelfInside(s.Width), 0);
-                var rim = SortexArt.NewSprite("Rim", sv.Root, SortexArt.ShelfRim(s.Width), 30);
+                var rim = s.Moving ? SortexArt.NewSprite("Rim", sv.Root, SortexArt.ShelfRim(s.Width), 30) : null;
                 int artWidth = SortexArt.ShelfArtWidth(s.Width);
                 if (artWidth != s.Width)
                 {
                     float sx = (iw + 0.30f) / (artWidth * SW + 0.30f);
                     inside.transform.localScale = new Vector3(sx, 1f, 1f);
-                    rim.transform.localScale = new Vector3(sx, 1f, 1f);
+                    if (rim != null) rim.transform.localScale = new Vector3(sx, 1f, 1f);
                 }
 
                 float innerH = InnerTop - LipTop;
@@ -270,6 +276,66 @@ namespace Sortex.Game
             }
 
             foreach (var row in conveyors) BuildTunnels(row);
+            BuildFrame();
+        }
+
+        /// <summary>
+        /// The frame of the static shelves, like the game draws it: neighbouring shelves share one bar (a single line
+        /// between two compartments, T-joints where rows meet). Every shelf edge becomes a segment; collinear
+        /// segments that touch are merged into one bar.
+        /// </summary>
+        void BuildFrame()
+        {
+            var horizontal = new List<Vector3>();   // (y, x0, x1)
+            var vertical = new List<Vector3>();     // (x, y0, y1)
+            foreach (var s in board.Shelves)
+            {
+                if (s.Moving) continue;
+                float cx = VX(s.X), hw = InnerWidth(s) * 0.5f;
+                float top = s.Y + 0.5f, bottom = s.Y - 0.5f;
+                horizontal.Add(new Vector3(top, cx - hw, cx + hw));
+                horizontal.Add(new Vector3(bottom, cx - hw, cx + hw));
+                vertical.Add(new Vector3(cx - hw, bottom, top));
+                vertical.Add(new Vector3(cx + hw, bottom, top));
+            }
+            var frame = new GameObject("Frame").transform;
+            frame.SetParent(root, false);
+            const float t = SortexArt.TubeThickness;
+            // vertical bars under the horizontal ones: the rows' bars run through the joints
+            foreach (var seg in MergeSegments(vertical))
+            {
+                var bar = SortexArt.NewSliced("Wall", frame, SortexArt.ShelfTube, new Vector2(seg.z - seg.y + t, t), 30);
+                bar.transform.localPosition = new Vector3(seg.x, (seg.y + seg.z) * 0.5f, 0f);
+                bar.transform.localRotation = Quaternion.Euler(0f, 0f, 90f);
+            }
+            foreach (var seg in MergeSegments(horizontal))
+            {
+                var bar = SortexArt.NewSliced("Plank", frame, SortexArt.ShelfTube, new Vector2(seg.z - seg.y + t, t), 31);
+                bar.transform.localPosition = new Vector3((seg.y + seg.z) * 0.5f, seg.x, 0f);
+            }
+        }
+
+        /// <summary>Merges segments (line, start, end) on the same line that overlap or touch.</summary>
+        static List<Vector3> MergeSegments(List<Vector3> segments)
+        {
+            const float eps = 0.01f;
+            segments.Sort((a, b) => Mathf.Abs(a.x - b.x) > eps ? a.x.CompareTo(b.x) : a.y.CompareTo(b.y));
+            var merged = new List<Vector3>();
+            foreach (var s in segments)
+            {
+                if (merged.Count > 0)
+                {
+                    var last = merged[merged.Count - 1];
+                    if (Mathf.Abs(last.x - s.x) <= eps && s.y <= last.z + eps)
+                    {
+                        last.z = Mathf.Max(last.z, s.z);
+                        merged[merged.Count - 1] = last;
+                        continue;
+                    }
+                }
+                merged.Add(s);
+            }
+            return merged;
         }
 
         /// <summary>The pipes at both screen edges that moving shelves slide into (MovingShelves1xPipeHorizontal).</summary>
@@ -404,11 +470,11 @@ namespace Sortex.Game
                             v.Go.transform.localPosition = v.Target;
                             v.Go.transform.localScale = animate ? Vector3.zero : Vector3.one * v.TargetScale;
                             v.Icon.color = v.TargetTint;
-                            v.Delay = animate ? 0.22f : 0f;
+                            v.Delay = animate ? 0.22f + landPop : 0f;
                         }
                         else if (animate && oldLayer == 1 && li == 0)
                         {
-                            v.Delay = 0.16f;                // the row moves forward after the match pop
+                            v.Delay = 0.16f + landPop;      // the row moves forward after the match pop
                             v.Speed = 12f;
                         }
 
@@ -468,10 +534,30 @@ namespace Sortex.Game
             {
                 if (alive.Contains(kv.Key) || kv.Value.Dying >= 0f) continue;
                 kv.Value.Dying = 0f;
+                kv.Value.PopDelay = landPop;
                 SetOrder(kv.Value, 24);
                 dying.Add(kv.Value);
             }
             foreach (var d in dying) items.Remove(d.Item.Uid);
+            matchDelay = landPop;
+            landPop = 0f;
+        }
+
+        /// <summary>
+        /// The dropped item flies into the slot it was put on. When the drop makes a match, the next Sync keeps the
+        /// three items until it has landed, then they pop (and the match effect plays) - like the game, where the third
+        /// item sits down before the match.
+        /// </summary>
+        public void Land(Item it, int shelf, int slot, bool matches)
+        {
+            ItemView v;
+            if (!items.TryGetValue(it.Uid, out v)) return;
+            v.Target = SlotPosition(shelf, slot, 0);
+            v.TargetScale = 1f;
+            v.Speed = 26f;
+            v.Delay = 0f;
+            v.Held = false;
+            landPop = matches ? 0.13f : 0f;
         }
 
         void UpdateObstacles(ShelfView sv, bool animate)
@@ -600,16 +686,23 @@ namespace Sortex.Game
 
         public void PlayMatch(int shelf)
         {
+            if (matchDelay > 0f)
+            {
+                queuedMatches.Add(shelf);
+                queuedMatchTime = matchDelay;
+                matchDelay = 0f;
+                return;
+            }
             var s = board.Shelves[shelf];
             var c = new Vector3(VX(s.X), s.Y + FrontY, 0f);
             var glow = SortexArt.NewSprite("MatchGlow", root, SortexArt.Glow, 110);
             glow.transform.localPosition = c;
             glow.color = new Color(1f, 0.86f, 0.4f, 0.9f);
-            fx.Add(new Fx { Sr = glow, Life = 0.4f, StartScale = 1.2f, EndScale = 3.4f });
+            fx.Add(new Fx { Sr = glow, Life = 0.4f, StartScale = 0.8f, EndScale = 2.2f });
             for (int i = 0; i < 9; i++)
             {
                 var sp = SortexArt.NewSprite("Sparkle", root, SortexArt.Sparkle, 111);
-                sp.transform.localPosition = c + new Vector3(Random.Range(-1.1f, 1.1f), Random.Range(-0.2f, 0.2f), 0f);
+                sp.transform.localPosition = c + new Vector3(Random.Range(-0.55f, 0.55f), Random.Range(-0.2f, 0.2f), 0f);
                 sp.color = i % 3 == 0 ? new Color(1f, 0.95f, 0.6f) : Color.white;
                 float a = Random.Range(0f, Mathf.PI * 2f);
                 fx.Add(new Fx
@@ -708,9 +801,25 @@ namespace Sortex.Game
             MoveConveyors(dt);
             foreach (var v in items.Values) Animate(v, dt);
 
+            if (queuedMatches.Count > 0)
+            {
+                queuedMatchTime -= dt;
+                if (queuedMatchTime <= 0f)
+                {
+                    var due = new List<int>(queuedMatches);
+                    queuedMatches.Clear();
+                    foreach (int si in due) PlayMatch(si);
+                }
+            }
             for (int i = dying.Count - 1; i >= 0; i--)
             {
                 var v = dying[i];
+                if (v.PopDelay > 0f)
+                {
+                    v.PopDelay -= dt;
+                    Animate(v, dt);                 // still flying into its slot
+                    continue;
+                }
                 v.Dying += dt;
                 float t = v.Dying / 0.28f;
                 float s = t < 0.35f ? Mathf.Lerp(1f, 1.25f, t / 0.35f) : Mathf.Lerp(1.25f, 0f, (t - 0.35f) / 0.65f);

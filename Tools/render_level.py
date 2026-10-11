@@ -111,6 +111,19 @@ def mystery_stone(icon, art):
     return out
 
 
+def horizontal_tube(src, length, thick):
+    """The frame bar sprite scaled to a thickness, stretched to a length with its round ends kept."""
+    k = thick / src.height
+    cap = max(1, int(round(src.height / 2 * k)))
+    scaled = src.resize((max(2, int(round(src.width * k))), thick), Image.LANCZOS)
+    out = Image.new('RGBA', (max(length, 2 * cap), thick), (0, 0, 0, 0))
+    out.paste(scaled.crop((0, 0, cap, thick)), (0, 0))
+    out.paste(scaled.crop((scaled.width - cap, 0, scaled.width, thick)), (out.width - cap, 0))
+    mid = scaled.crop((cap, 0, scaled.width - cap, thick)).resize((max(1, out.width - 2 * cap), thick), Image.LANCZOS)
+    out.paste(mid, (cap, 0))
+    return out
+
+
 def render(level_path, out_path, res):
     lv = json.load(open(level_path))
     art = os.path.join(res, 'Art')
@@ -168,8 +181,6 @@ def render(level_path, out_path, res):
         b = Image.open(os.path.join(art, 'shelf_w%d_back.png' % wa)).resize((int((iw + 0.30) * PPU), int(1.30 * PPU)), Image.LANCZOS)
         bx, by = px(X - (iw + 0.30) / 2, Y + 0.65)
         layers['back'].alpha_composite(b, (bx, by))
-        f = Image.open(os.path.join(art, 'shelf_w%d_front.png' % wa)).resize((int((iw + 0.30) * PPU), int(1.30 * PPU)), Image.LANCZOS)
-        layers['frame'].alpha_composite(f, (bx, by))
 
         lay = [l['rd'] for l in s['si']]
         while len(lay) > 1 and all(c.get('it') != 1 for c in lay[0]):
@@ -210,6 +221,37 @@ def render(level_path, out_path, res):
             font = ImageFont.truetype(FONT, int(0.42 * PPU))
             x, y = px(X, Y + (LIP_TOP + INNER_TOP) / 2 + 0.01)
             dd.text((x, y), str(s.get('lmc', 0)), font=font, fill=(255, 255, 255, 255), anchor='mm')
+
+    # one shared frame of bars, like BoardView.BuildFrame: collinear shelf edges that touch become one bar
+    tube_src = Image.open(os.path.join(art, 'shelf_tube.png')).convert('RGBA')
+    T = 0.08
+
+    def merge(segs):
+        segs = sorted(segs, key=lambda q: (round(q[0], 2), q[1]))
+        out = []
+        for q in segs:
+            if out and abs(out[-1][0] - q[0]) <= 0.01 and q[1] <= out[-1][2] + 0.01:
+                out[-1] = (out[-1][0], out[-1][1], max(out[-1][2], q[2]))
+            else:
+                out.append(q)
+        return out
+
+    hs, vs = [], []
+    for sh in shelves:
+        X, Y, iw = sh['pos']['x'], sh['pos']['y'], sh['sicw'] * SW
+        hs += [(Y + 0.5, X - iw / 2, X + iw / 2), (Y - 0.5, X - iw / 2, X + iw / 2)]
+        vs += [(X - iw / 2, Y - 0.5, Y + 0.5), (X + iw / 2, Y - 0.5, Y + 0.5)]
+    th = max(2, int(round(T * PPU)))
+    for line, a, b in merge(vs):
+        length = int(round((b - a + T) * PPU))
+        bar = horizontal_tube(tube_src, length, th).rotate(90, expand=True)
+        x, y = px(line, (a + b) / 2)
+        layers['frame'].alpha_composite(bar, (x - bar.width // 2, y - bar.height // 2))
+    for line, a, b in merge(hs):
+        length = int(round((b - a + T) * PPU))
+        bar = horizontal_tube(tube_src, length, th)
+        x, y = px((a + b) / 2, line)
+        layers['frame'].alpha_composite(bar, (x - bar.width // 2, y - bar.height // 2))
 
     for k in ('back', 'items_back', 'items', 'frame', 'door'):
         img.alpha_composite(layers[k])

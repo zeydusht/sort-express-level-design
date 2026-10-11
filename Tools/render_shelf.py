@@ -4,6 +4,7 @@ The prefab is a 3D box: bottom/top planks, side walls, a back wall and rounded f
 It is rendered with a perspective camera in front of the shelf (like the game's camera), in two layers:
   shelf_w<N>_back.png   inside of the box (back wall, floor, ceiling, inner walls)  -> drawn behind items
   shelf_w<N>_front.png  front rim (faces looking at the camera)                     -> drawn over items
+                        (only on moving shelves: static shelves share one frame of bars, see BoardView)
 for N = 1, 3, 4, 5, 6 slots (slot = 3.13 / 3 / 2 world units, shelf height = 1 unit). 128 pixels per unit.
 The levels place 3-slot shelves 3.13 apart and rows 1 apart; the game draws x at half that scale (a 3-slot shelf
 is about 1.6 x 1 on screen), so the slot here is half the level spacing.
@@ -25,6 +26,7 @@ from prefab_dump import build  # noqa: E402
 PPU = 128
 SS = 4
 SLOT = 3.13 / 3 * 0.5          # world units per slot (level x spacing x 0.5)
+TUBE = 0.08                    # thickness of the shared frame bars (make_sprites.py shelf_tube)
 D = 7.0                      # camera distance in front of the shelf's front plane
 FRONT_Z = -0.75              # z of the front plane in prefab space
 
@@ -150,6 +152,13 @@ def render(parts, slots, out_dir):
             grown = im.filter(ImageFilter.MaxFilter(5))
             im = Image.alpha_composite(grown, im)
         if name == 'back':
+            # neighbouring shelves share one frame bar (BoardView draws the frame for the whole board): the inside
+            # stops under the middle of that bar, so it never shows on the other side of it
+            half_w, half_h = slots * SLOT / 2 + TUBE / 2, 0.5 + TUBE / 2
+            keep = Image.new('L', im.size, 0)
+            ImageDraw.Draw(keep).rectangle(((W / 2 - half_w) * PPU, (H / 2 - half_h) * PPU,
+                                            (W / 2 + half_w) * PPU - 1, (H / 2 + half_h) * PPU - 1), fill=255)
+            im.putalpha(Image.composite(im.split()[3], Image.new('L', im.size, 0), keep))
             # soft shadow at the top of the inside (AmbientShadowTop in the real prefab)
             shade = Image.new('L', im.size, 0)
             sd = ImageDraw.Draw(shade)

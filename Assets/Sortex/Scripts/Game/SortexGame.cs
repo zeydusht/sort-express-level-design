@@ -780,6 +780,7 @@ namespace Sortex.Game
                 return;
             }
             view.Release(moved);
+            view.Land(moved, s, slot, r.Matched);
             view.Sync(true);
             view.PlayResult(r);
             if (r.Matched)

@@ -161,7 +161,7 @@ Tahta sabitken her seferinde tek bir kolu değiştirip simülasyonla ölçtüm (
 Level Editor'de kaydedilen her level oyunun menüsünde **MY LEVELS** altında oynanabiliyor. Aşağıdaki tablo yayınlama sırasında (Sortex → 3. Publish to GitHub) her level 1000 simüle oyuncuyla oynatılarak otomatik yazılıyor; kazanılamayan (3'ün katı olmayan) levellar yayınlanmıyor.
 
 <!-- MY-LEVELS:START -->
-_Bu tablo **Sortex → 3. Publish to GitHub** ile otomatik güncelleniyor (son: 2026-10-11 13:22)._
+_Bu tablo **Sortex → 3. Publish to GitHub** ile otomatik güncelleniyor (son: 2026-10-11 13:49)._
 
 | Level | Tier | Raf | Item | Tür | Süre | Engeller | Simüle kazanma (1000 oyuncu) | Hedef bant | Kayıp: süre / hamle kalmadı | Çözücü |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -209,6 +209,9 @@ Açılış ekranı, oyunun `MainScene.prefab` dosyasından birebir kuruluyor (`T
 ### Level ekranı (oyunun kendisinden)
 - **Ölçek:** Level dosyaları 3 slotlu rafları 3,13, satırları 1 birim aralıkla koyuyor; oyun yatay ekseni yarı ölçekte çiziyor (3 slotlu raf ekranda ≈ 1,6 × 1). Bu oran oyunun ekran görüntüsünden ölçüldü (satır aralığı / raf aralığı) ve `BoardView.XS = 0.5` ile uygulanıyor. Model ve simülasyon level dosyasındaki sayılarla çalışmaya devam ediyor; yalnızca çizim sıkışıyor. Raf sprite'ları oyunun `BaseShelf.prefab` modelinden bu oranla yeniden üretildi (`Tools/render_shelf.py`).
 - **Kamera:** Oyundaki gibi en az 4,6166 birim genişliği gösteriyor ve raflar üst bar ile booster'lar arasına sığana kadar uzaklaşıyor. Raflar ekranın genişliğini ince bir payla dolduruyor.
+- **Raf çerçevesi:** Oyunda yan yana ve üst üste gelen raflar tek bir çıtayı paylaşıyor (iki bölme arasında tek çizgi, satırların birleştiği yerde T birleşimi). Burada da sabit rafların kenarları birleştirilip tek çıta olarak çiziliyor (`BoardView.BuildFrame`); çıta kalınlığı ve renk profili oyunun ekran görüntüsünden ölçüldü. Hareketli raflar kendi çerçevesini taşıyor.
+- **Arka plan:** Oyunun level arka planı: üstte ve altta koyu lacivert, ortada parlak mavi, hafif çapraz ışık huzmeleri (renkler ekran görüntüsünden).
+- **Eşleşme:** Üçüncü item bırakıldığında önce boş slota oturuyor, sonra üçü birden patlıyor ve arkadaki sıra öne geliyor.
 - **Üst bar ve booster'lar:** `LevelSceneUI.prefab`'dan (`Resources/Sortex/Level/level.json`, `Scripts/Game/LevelHud.cs`): tier'a göre lacivert / kırmızı / mor "Level N" plakası, yeşil çerçeveli süre (son 10 saniyede kırmızı, uyarı ışığı yanıp söner) ve pause butonu. Alttaki dört booster (vakum, sihirli şapka, boya tabancası, dondurucu) oyunda 3D model; burada oyunun ikonlarıyla duruyor ve prototipin parçası değil (dokununca bilgi verir). Sürenin yeşil halkası (oyunda shader) ve booster rafı (oyunda 3D) sprite olarak yeniden çizildi.
 - **Pause penceresi:** `LevelPauseDialog.prefab`'dan (`Resources/Sortex/Level/pause.json`, `Scripts/Game/PauseDialog.cs`): "Paused" şeridi, müzik / ses / titreşim / ipucu düğmeleri, **Continue** ve **Quit**. Pause açıkken süre durur.
 - Üç ekranı da (`menu`, `level`, `pause`) aynı kod kuruyor: `Scripts/Game/PrefabScreen.cs`.

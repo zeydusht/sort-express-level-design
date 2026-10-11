@@ -322,8 +322,51 @@ def cargo_door():
 
 
 def bg_gradient():
-    W, H = 64, 512
-    return vgrad(W, H, hexc('#3A62C7'), hexc('#1E3A8C'))
+    """The level background of the live game (sampled from a screenshot, 1170 x 2532): dark navy at the top and
+    bottom, bright blue in the middle, with a few soft diagonal light streaks. Stretched over the whole view."""
+    import numpy as np
+    W, H = 256, 1024
+    stops = [(0.00, (15, 20, 93)), (0.07, (22, 34, 104)), (0.14, (29, 50, 130)), (0.21, (34, 64, 150)),
+             (0.28, (37, 76, 162)), (0.36, (40, 82, 172)), (0.50, (42, 84, 175)), (0.64, (42, 83, 174)),
+             (0.71, (39, 77, 165)), (0.78, (34, 67, 152)), (0.85, (28, 52, 133)), (0.92, (23, 37, 113)),
+             (1.00, (15, 18, 86))]
+    ys = np.linspace(0, 1, H)
+    col = np.zeros((H, 3))
+    for c in range(3):
+        col[:, c] = np.interp(ys, [t for t, _ in stops], [v[c] for _, v in stops])
+    img = np.repeat(col[:, None, :], W, axis=1)
+    # soft diagonal streaks falling from the top left (the screen is ~2.2x taller than wide: y in screen widths)
+    xx = np.linspace(0, 1, W)[None, :]
+    yy = np.linspace(0, 2.16, H)[:, None]
+    u = xx * 0.8 + yy * 0.6                          # distance along the streak normal
+    light = np.zeros((H, W))
+    for centre, width, strength in ((0.35, 0.10, 0.07), (0.62, 0.05, 0.05), (0.95, 0.14, 0.06), (1.35, 0.07, 0.04)):
+        light += strength * np.exp(-((u - centre) / width) ** 2)
+    img = img + light[:, :, None] * np.array([120, 150, 210])[None, None, :]
+    img = np.clip(img, 0, 255).astype(np.uint8)
+    out = Image.fromarray(img, 'RGB').convert('RGBA')
+    return out
+
+
+def shelf_tube():
+    """One bar of the shelf frame: a light blue tube with rounded ends (profile sampled from the game, where
+    neighbouring shelves share one bar). 9-sliced horizontally; vertical bars are the same sprite turned 90 degrees.
+    40 px thick = 0.08 world units (500 ppu): the prefab's 0.065 walls plus their bevel as the game shows them."""
+    import numpy as np
+    T, L = 40, 160
+    profile = [(116, 144, 184), (170, 205, 245), (205, 236, 255), (230, 249, 255), (220, 249, 255), (208, 243, 255),
+               (200, 238, 255), (195, 233, 255), (186, 223, 254), (172, 207, 250), (150, 183, 232), (116, 144, 184)]
+    ys = np.linspace(0, 1, T * SS)
+    pts = np.linspace(0, 1, len(profile))
+    rgb = np.stack([np.interp(ys, pts, [p[c] for p in profile]) for c in range(3)], axis=1)
+    img = np.zeros((T * SS, L * SS, 4))
+    img[:, :, :3] = rgb[:, None, :]
+    mask = Image.new('L', (L * SS, T * SS), 0)
+    ImageDraw.Draw(mask).rounded_rectangle((0, 0, L * SS - 1, T * SS - 1), T * SS // 2, fill=255)
+    img[:, :, 3] = np.array(mask)
+    out = Image.fromarray(img.astype(np.uint8), 'RGBA')
+    return down(out)
+
 
 
 if __name__ == '__main__':
@@ -344,4 +387,5 @@ if __name__ == '__main__':
     shutter().save(os.path.join(out, 'shutter.png'))
     cargo_door().save(os.path.join(out, 'cargo_door.png'))
     bg_gradient().save(os.path.join(out, 'bg_gradient.png'))
+    shelf_tube().save(os.path.join(out, 'shelf_tube.png'))
     print('sprites written to', out)
