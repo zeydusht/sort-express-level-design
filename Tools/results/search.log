@@ -1,0 +1,75 @@
+easy 100 solvable win 1.00 relaxed 1.00 stuck 0.00 timeout 0.00 OK
+easy 101 solvable win 0.94 relaxed 0.94 stuck 0.06 timeout 0.00 OK
+easy 102 solvable win 1.00 relaxed 1.00 stuck 0.00 timeout 0.00 OK
+easy 103 solvable win 1.00 relaxed 1.00 stuck 0.00 timeout 0.00 OK
+easy 104 solvable win 0.97 relaxed 0.97 stuck 0.03 timeout 0.00 OK
+easy 105 solvable win 0.97 relaxed 0.97 stuck 0.03 timeout 0.00 OK
+easy 106 solvable win 0.99 relaxed 0.99 stuck 0.01 timeout 0.00 OK
+easy 107 solvable win 1.00 relaxed 1.00 stuck 0.00 timeout 0.00 OK
+easy 108 solvable win 1.00 relaxed 1.00 stuck 0.00 timeout 0.00 OK
+easy 109 solvable win 0.99 relaxed 0.99 stuck 0.01 timeout 0.01 OK
+easy 110 solvable win 1.00 relaxed 1.00 stuck 0.00 timeout 0.00 OK
+easy 111 solvable win 0.96 relaxed 0.96 stuck 0.03 timeout 0.02 OK
+easy 112 solvable win 1.00 relaxed 1.00 stuck 0.00 timeout 0.00 OK
+easy 113 solvable win 1.00 relaxed 1.00 stuck 0.00 timeout 0.00 OK
+easy 114 solvable win 1.00 relaxed 1.00 stuck 0.00 timeout 0.00 OK
+easy 115 solvable win 1.00 relaxed 1.00 stuck 0.00 timeout 0.00 OK
+easy 116 solvable win 0.99 relaxed 1.00 stuck 0.00 timeout 0.00 OK
+easy 117 solvable win 0.98 relaxed 0.98 stuck 0.02 timeout 0.00 OK
+easy 118 solvable win 1.00 relaxed 1.00 stuck 0.00 timeout 0.00 OK
+easy 119 solvable win 1.00 relaxed 1.00 stuck 0.00 timeout 0.00 OK
+easy 120 solvable win 0.99 relaxed 0.99 stuck 0.01 timeout 0.00 OK
+easy 121 solvable win 1.00 relaxed 1.00 stuck 0.00 timeout 0.00 OK
+easy 122 solvable win 0.95 relaxed 0.96 stuck 0.03 timeout 0.02 OK
+easy 123 solvable win 1.00 relaxed 1.00 stuck 0.00 timeout 0.00 OK
+PICKED easy {'name': 'Easy', 'items': 66, 'types': 22, 'shelves': 9, 'badTypes': 0, 'solvable': True, 'solverMoves': 45, 'solverNodes': 0, 'winRate': 0.937, 'winRelaxedTimer': 0.937, 'stuck': 0.063, 'timeout': 0, 'avgMovesWin': 55, 'avgTimeWin': 32.016, 'avgProgressLoss': 0.349, 'timeLimit': 100, 'seed': 101}
+medium 200 solvable win 0.69 relaxed 0.80 stuck 0.14 timeout 0.16 OK
+medium 201 solvable win 0.80 relaxed 0.87 stuck 0.08 timeout 0.12 
+medium 202 solvable win 0.82 relaxed 0.89 stuck 0.08 timeout 0.10 
+medium 203 solvable win 0.45 relaxed 0.59 stuck 0.19 timeout 0.36 
+medium 204 solvable win 0.39 relaxed 0.57 stuck 0.18 timeout 0.43 
+medium 205 solvable win 0.94 relaxed 0.97 stuck 0.02 timeout 0.04 
+medium 206 solvable win 0.55 relaxed 0.67 stuck 0.23 timeout 0.23 OK
+medium 207 solvable win 0.83 relaxed 0.91 stuck 0.06 timeout 0.11 
+medium 208 solvable win 0.99 relaxed 0.99 stuck 0.01 timeout 0.01 
+medium 209 solvable win 0.98 relaxed 0.99 stuck 0.01 timeout 0.02 
+medium 210 solvable win 0.57 relaxed 0.81 stuck 0.07 timeout 0.36 OK
+medium 211 solvable win 0.86 relaxed 0.93 stuck 0.02 timeout 0.12 
+medium 212 solvable win 0.77 relaxed 0.86 stuck 0.08 timeout 0.15 
+medium 213 solvable win 0.97 relaxed 0.99 stuck 0.01 timeout 0.01 
+medium 214 solvable win 0.95 relaxed 0.97 stuck 0.02 timeout 0.02 
+medium 215 solvable win 0.96 relaxed 0.98 stuck 0.02 timeout 0.02 
+medium 216 solvable win 0.87 relaxed 0.92 stuck 0.03 timeout 0.11 
+medium 217 solvable win 0.71 relaxed 0.84 stuck 0.06 timeout 0.23 OK
+medium 218 solvable win 0.53 relaxed 0.76 stuck 0.03 timeout 0.44 OK
+medium 219 solvable win 0.86 relaxed 0.95 stuck 0.03 timeout 0.11 
+medium 220 solvable win 0.80 relaxed 0.89 stuck 0.03 timeout 0.17 
+medium 221 solvable win 0.23 relaxed 0.72 stuck 0.02 timeout 0.75 
+medium 222 solvable win 0.90 relaxed 0.97 stuck 0.01 timeout 0.09 
+medium 223 solvable win 0.73 relaxed 0.77 stuck 0.09 timeout 0.18 OK
+PICKED medium {'name': 'Medium', 'items': 84, 'types': 28, 'shelves': 12, 'badTypes': 0, 'solvable': True, 'solverMoves': 70, 'solverNodes': 0, 'winRate': 0.57, 'winRelaxedTimer': 0.807, 'stuck': 0.073, 'timeout': 0.357, 'avgMovesWin': 125.45, 'avgTimeWin': 91.527, 'avgProgressLoss': 0.657, 'timeLimit': 150, 'seed': 210}
+hard 300 solvable win 0.53 relaxed 0.61 stuck 0.28 timeout 0.19 
+hard 301 solvable win 0.18 relaxed 0.23 stuck 0.52 timeout 0.30 
+hard 302 solvable win 0.42 relaxed 0.51 stuck 0.43 timeout 0.15 OK
+hard 303 solvable win 0.03 relaxed 0.06 stuck 0.77 timeout 0.20 
+hard 304 solvable win 0.41 relaxed 0.60 stuck 0.23 timeout 0.36 OK
+hard 305 solvable win 0.50 relaxed 0.60 stuck 0.21 timeout 0.29 
+hard 306 solvable win 0.54 relaxed 0.63 stuck 0.30 timeout 0.16 
+hard 307 solvable win 0.11 relaxed 0.17 stuck 0.77 timeout 0.11 
+hard 308 solvable win 0.71 relaxed 0.86 stuck 0.07 timeout 0.22 
+hard 309 solvable win 0.43 relaxed 0.58 stuck 0.34 timeout 0.23 OK
+hard 310 solvable win 0.63 relaxed 0.67 stuck 0.33 timeout 0.04 
+hard 311 solvable win 0.25 relaxed 0.43 stuck 0.27 timeout 0.48 OK
+hard 312 solvable win 0.84 relaxed 0.89 stuck 0.10 timeout 0.06 
+hard 313 solvable win 0.17 relaxed 0.25 stuck 0.37 timeout 0.47 
+hard 314 solvable win 0.49 relaxed 0.63 stuck 0.22 timeout 0.29 
+hard 315 solvable win 0.22 relaxed 0.31 stuck 0.60 timeout 0.18 OK
+hard 316 solvable win 0.01 relaxed 0.03 stuck 0.61 timeout 0.39 
+hard 317 solvable win 0.33 relaxed 0.48 stuck 0.26 timeout 0.41 OK
+hard 318 solvable win 0.62 relaxed 0.75 stuck 0.22 timeout 0.16 
+hard 319 solvable win 0.07 relaxed 0.15 stuck 0.44 timeout 0.49 
+hard 320 solvable win 0.00 relaxed 0.00 stuck 0.97 timeout 0.03 
+hard 321 solvable win 0.24 relaxed 0.39 stuck 0.27 timeout 0.49 OK
+hard 322 solvable win 0.14 relaxed 0.16 stuck 0.79 timeout 0.07 
+hard 323 solvable win 0.12 relaxed 0.22 stuck 0.41 timeout 0.47 
+PICKED hard {'name': 'Hard', 'items': 108, 'types': 36, 'shelves': 16, 'badTypes': 0, 'solvable': True, 'solverMoves': 86, 'solverNodes': 0, 'winRate': 0.33, 'winRelaxedTimer': 0.483, 'stuck': 0.26, 'timeout': 0.41, 'avgMovesWin': 156.778, 'avgTimeWin': 120.248, 'avgProgressLoss': 0.345, 'timeLimit': 200, 'seed': 317}

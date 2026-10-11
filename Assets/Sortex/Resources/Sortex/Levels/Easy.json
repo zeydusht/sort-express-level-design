@@ -1,0 +1,758 @@
+{
+ "nm": "Easy",
+ "as": [
+  0
+ ],
+ "tid": 0,
+ "lt": 1,
+ "ld": 0,
+ "tl": 100,
+ "osb": false,
+ "sir": 1.5625,
+ "s": [
+  {
+   "id": "b8a1abcd-1a69-16c7-4da4-f9fc3c6da5d7",
+   "gid": "1",
+   "csb": true,
+   "pos": {
+    "x": -3.13,
+    "y": 2
+   },
+   "im": false,
+   "sicw": 3,
+   "si": [
+    {
+     "rd": [
+      {
+       "it": 0
+      },
+      {
+       "it": 1,
+       "iid": "item_chefhat_white"
+      },
+      {
+       "it": 1,
+       "iid": "item_book_blueclouds"
+      }
+     ]
+    },
+    {
+     "rd": [
+      {
+       "it": 0
+      },
+      {
+       "it": 1,
+       "iid": "item_cactus_green"
+      },
+      {
+       "it": 1,
+       "iid": "item_birdhouse_default"
+      }
+     ]
+    },
+    {
+     "rd": [
+      {
+       "it": 1,
+       "iid": "item_burger_default"
+      },
+      {
+       "it": 1,
+       "iid": "item_abacus_red"
+      },
+      {
+       "it": 1,
+       "iid": "item_bowlingpin_red"
+      }
+     ]
+    }
+   ],
+   "isd": false,
+   "icn": false,
+   "icl": false,
+   "lmc": 0,
+   "pd": 3,
+   "scd": [
+    {
+     "cmd": 0,
+     "crd": 2
+    },
+    {
+     "cmd": 0,
+     "crd": 1
+    },
+    {
+     "cmd": 0,
+     "crd": 3
+    },
+    {
+     "cmd": 0,
+     "crd": 0
+    }
+   ]
+  },
+  {
+   "id": "26d71b18-1640-4a4a-9c80-290475c53fcf",
+   "gid": "1",
+   "csb": true,
+   "pos": {
+    "x": 0.0,
+    "y": 2
+   },
+   "im": false,
+   "sicw": 3,
+   "si": [
+    {
+     "rd": [
+      {
+       "it": 1,
+       "iid": "item_book_blueclouds"
+      },
+      {
+       "it": 1,
+       "iid": "item_cheesecake_default"
+      },
+      {
+       "it": 1,
+       "iid": "item_cerealbox_yellow"
+      }
+     ]
+    },
+    {
+     "rd": [
+      {
+       "it": 1,
+       "iid": "item_bigben_default"
+      },
+      {
+       "it": 1,
+       "iid": "item_cactus_green"
+      },
+      {
+       "it": 1,
+       "iid": "item_babydino_green"
+      }
+     ]
+    },
+    {
+     "rd": [
+      {
+       "it": 1,
+       "iid": "item_boxingglove_red"
+      },
+      {
+       "it": 1,
+       "iid": "item_baloon_yellowbolts"
+      },
+      {
+       "it": 1,
+       "iid": "item_burger_default"
+      }
+     ]
+    }
+   ],
+   "isd": false,
+   "icn": false,
+   "icl": false,
+   "lmc": 0,
+   "pd": 3,
+   "scd": [
+    {
+     "cmd": 0,
+     "crd": 2
+    },
+    {
+     "cmd": 0,
+     "crd": 1
+    },
+    {
+     "cmd": 0,
+     "crd": 3
+    },
+    {
+     "cmd": 0,
+     "crd": 0
+    }
+   ]
+  },
+  {
+   "id": "78566d13-d10a-c22e-c555-74303dbd9e1a",
+   "gid": "1",
+   "csb": true,
+   "pos": {
+    "x": 3.13,
+    "y": 2
+   },
+   "im": false,
+   "sicw": 3,
+   "si": [
+    {
+     "rd": [
+      {
+       "it": 1,
+       "iid": "item_cerealbox_yellow"
+      },
+      {
+       "it": 1,
+       "iid": "item_chefhat_white"
+      },
+      {
+       "it": 0
+      }
+     ]
+    },
+    {
+     "rd": [
+      {
+       "it": 1,
+       "iid": "item_camera_red"
+      },
+      {
+       "it": 1,
+       "iid": "item_bowlingpin_red"
+      },
+      {
+       "it": 0
+      }
+     ]
+    },
+    {
+     "rd": [
+      {
+       "it": 1,
+       "iid": "item_balloondog_pink"
+      },
+      {
+       "it": 1,
+       "iid": "item_ball_basketorange"
+      },
+      {
+       "it": 1,
+       "iid": "item_burger_default"
+      }
+     ]
+    }
+   ],
+   "isd": false,
+   "icn": false,
+   "icl": false,
+   "lmc": 0,
+   "pd": 3,
+   "scd": [
+    {
+     "cmd": 0,
+     "crd": 2
+    },
+    {
+     "cmd": 0,
+     "crd": 1
+    },
+    {
+     "cmd": 0,
+     "crd": 3
+    },
+    {
+     "cmd": 0,
+     "crd": 0
+    }
+   ]
+  },
+  {
+   "id": "793864a8-a63b-19fe-00a4-c69711e8044e",
+   "gid": "1",
+   "csb": true,
+   "pos": {
+    "x": -3.13,
+    "y": 1
+   },
+   "im": false,
+   "sicw": 3,
+   "si": [
+    {
+     "rd": [
+      {
+       "it": 1,
+       "iid": "item_backpack_wfaceorange"
+      },
+      {
+       "it": 0
+      },
+      {
+       "it": 1,
+       "iid": "item_chefhat_white"
+      }
+     ]
+    },
+    {
+     "rd": [
+      {
+       "it": 1,
+       "iid": "item_beartotem_default"
+      },
+      {
+       "it": 1,
+       "iid": "item_apple_green"
+      },
+      {
+       "it": 1,
+       "iid": "item_ball_basketorange"
+      }
+     ]
+    },
+    {
+     "rd": [
+      {
+       "it": 0
+      },
+      {
+       "it": 0
+      },
+      {
+       "it": 1,
+       "iid": "item_anchor_blue"
+      }
+     ]
+    }
+   ],
+   "isd": false,
+   "icn": false,
+   "icl": false,
+   "lmc": 0,
+   "pd": 3,
+   "scd": [
+    {
+     "cmd": 0,
+     "crd": 2
+    },
+    {
+     "cmd": 0,
+     "crd": 1
+    },
+    {
+     "cmd": 0,
+     "crd": 3
+    },
+    {
+     "cmd": 0,
+     "crd": 0
+    }
+   ]
+  },
+  {
+   "id": "4034e666-87cf-b4cf-c977-41b02232e4f9",
+   "gid": "1",
+   "csb": true,
+   "pos": {
+    "x": 0.0,
+    "y": 1
+   },
+   "im": false,
+   "sicw": 3,
+   "si": [
+    {
+     "rd": [
+      {
+       "it": 1,
+       "iid": "item_ball_basketorange"
+      },
+      {
+       "it": 1,
+       "iid": "item_cheesecake_default"
+      },
+      {
+       "it": 1,
+       "iid": "item_boxingglove_red"
+      }
+     ]
+    },
+    {
+     "rd": [
+      {
+       "it": 1,
+       "iid": "item_bigben_default"
+      },
+      {
+       "it": 1,
+       "iid": "item_birdhouse_default"
+      },
+      {
+       "it": 1,
+       "iid": "item_bigben_default"
+      }
+     ]
+    },
+    {
+     "rd": [
+      {
+       "it": 0
+      },
+      {
+       "it": 1,
+       "iid": "item_anchor_blue"
+      },
+      {
+       "it": 1,
+       "iid": "item_bowlingpin_red"
+      }
+     ]
+    }
+   ],
+   "isd": false,
+   "icn": false,
+   "icl": false,
+   "lmc": 0,
+   "pd": 3,
+   "scd": [
+    {
+     "cmd": 0,
+     "crd": 2
+    },
+    {
+     "cmd": 0,
+     "crd": 1
+    },
+    {
+     "cmd": 0,
+     "crd": 3
+    },
+    {
+     "cmd": 0,
+     "crd": 0
+    }
+   ]
+  },
+  {
+   "id": "c3068701-efe8-4c2a-a23b-90eb974d1f3f",
+   "gid": "1",
+   "csb": true,
+   "pos": {
+    "x": 3.13,
+    "y": 1
+   },
+   "im": false,
+   "sicw": 3,
+   "si": [
+    {
+     "rd": [
+      {
+       "it": 1,
+       "iid": "item_backpack_wfaceorange"
+      },
+      {
+       "it": 1,
+       "iid": "item_birdhouse_default"
+      },
+      {
+       "it": 1,
+       "iid": "item_boxingglove_red"
+      }
+     ]
+    },
+    {
+     "rd": [
+      {
+       "it": 1,
+       "iid": "item_beartotem_default"
+      },
+      {
+       "it": 1,
+       "iid": "item_cactus_green"
+      },
+      {
+       "it": 1,
+       "iid": "item_apple_green"
+      }
+     ]
+    },
+    {
+     "rd": [
+      {
+       "it": 1,
+       "iid": "item_carnivaltent_default"
+      },
+      {
+       "it": 1,
+       "iid": "item_balloondog_pink"
+      },
+      {
+       "it": 1,
+       "iid": "item_carnivaltent_default"
+      }
+     ]
+    }
+   ],
+   "isd": false,
+   "icn": false,
+   "icl": false,
+   "lmc": 0,
+   "pd": 3,
+   "scd": [
+    {
+     "cmd": 0,
+     "crd": 2
+    },
+    {
+     "cmd": 0,
+     "crd": 1
+    },
+    {
+     "cmd": 0,
+     "crd": 3
+    },
+    {
+     "cmd": 0,
+     "crd": 0
+    }
+   ]
+  },
+  {
+   "id": "984f32ce-de58-1265-7354-d9e5ce0fa200",
+   "gid": "1",
+   "csb": true,
+   "pos": {
+    "x": -3.13,
+    "y": 0
+   },
+   "im": false,
+   "sicw": 3,
+   "si": [
+    {
+     "rd": [
+      {
+       "it": 1,
+       "iid": "item_cerealbox_yellow"
+      },
+      {
+       "it": 1,
+       "iid": "item_camera_red"
+      },
+      {
+       "it": 1,
+       "iid": "item_cheesecake_default"
+      }
+     ]
+    },
+    {
+     "rd": [
+      {
+       "it": 1,
+       "iid": "item_apple_green"
+      },
+      {
+       "it": 1,
+       "iid": "item_axe_default"
+      },
+      {
+       "it": 1,
+       "iid": "item_axe_default"
+      }
+     ]
+    },
+    {
+     "rd": [
+      {
+       "it": 1,
+       "iid": "item_balloondog_pink"
+      },
+      {
+       "it": 1,
+       "iid": "item_abacus_red"
+      },
+      {
+       "it": 0
+      }
+     ]
+    }
+   ],
+   "isd": false,
+   "icn": false,
+   "icl": false,
+   "lmc": 0,
+   "pd": 3,
+   "scd": [
+    {
+     "cmd": 0,
+     "crd": 2
+    },
+    {
+     "cmd": 0,
+     "crd": 1
+    },
+    {
+     "cmd": 0,
+     "crd": 3
+    },
+    {
+     "cmd": 0,
+     "crd": 0
+    }
+   ]
+  },
+  {
+   "id": "c6e2ca24-40f7-ee42-84a2-40b839a8176e",
+   "gid": "1",
+   "csb": true,
+   "pos": {
+    "x": 0.0,
+    "y": 0
+   },
+   "im": false,
+   "sicw": 3,
+   "si": [
+    {
+     "rd": [
+      {
+       "it": 1,
+       "iid": "item_camera_red"
+      },
+      {
+       "it": 0
+      },
+      {
+       "it": 0
+      }
+     ]
+    },
+    {
+     "rd": [
+      {
+       "it": 0
+      },
+      {
+       "it": 1,
+       "iid": "item_axe_default"
+      },
+      {
+       "it": 1,
+       "iid": "item_babydino_green"
+      }
+     ]
+    },
+    {
+     "rd": [
+      {
+       "it": 1,
+       "iid": "item_anchor_blue"
+      },
+      {
+       "it": 1,
+       "iid": "item_carnivaltent_default"
+      },
+      {
+       "it": 1,
+       "iid": "item_babydino_green"
+      }
+     ]
+    }
+   ],
+   "isd": false,
+   "icn": false,
+   "icl": false,
+   "lmc": 0,
+   "pd": 3,
+   "scd": [
+    {
+     "cmd": 0,
+     "crd": 2
+    },
+    {
+     "cmd": 0,
+     "crd": 1
+    },
+    {
+     "cmd": 0,
+     "crd": 3
+    },
+    {
+     "cmd": 0,
+     "crd": 0
+    }
+   ]
+  },
+  {
+   "id": "6735281d-6313-9d7f-ed1b-55b40acce13b",
+   "gid": "1",
+   "csb": true,
+   "pos": {
+    "x": 3.13,
+    "y": 0
+   },
+   "im": false,
+   "sicw": 3,
+   "si": [
+    {
+     "rd": [
+      {
+       "it": 0
+      },
+      {
+       "it": 1,
+       "iid": "item_backpack_wfaceorange"
+      },
+      {
+       "it": 1,
+       "iid": "item_book_blueclouds"
+      }
+     ]
+    },
+    {
+     "rd": [
+      {
+       "it": 0
+      },
+      {
+       "it": 1,
+       "iid": "item_beartotem_default"
+      },
+      {
+       "it": 0
+      }
+     ]
+    },
+    {
+     "rd": [
+      {
+       "it": 1,
+       "iid": "item_abacus_red"
+      },
+      {
+       "it": 1,
+       "iid": "item_baloon_yellowbolts"
+      },
+      {
+       "it": 1,
+       "iid": "item_baloon_yellowbolts"
+      }
+     ]
+    }
+   ],
+   "isd": false,
+   "icn": false,
+   "icl": false,
+   "lmc": 0,
+   "pd": 3,
+   "scd": [
+    {
+     "cmd": 0,
+     "crd": 2
+    },
+    {
+     "cmd": 0,
+     "crd": 1
+    },
+    {
+     "cmd": 0,
+     "crd": 3
+    },
+    {
+     "cmd": 0,
+     "crd": 0
+    }
+   ]
+  }
+ ],
+ "ig": [],
+ "igd": null,
+ "sfss": false
+}
