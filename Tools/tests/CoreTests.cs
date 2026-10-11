@@ -1,6 +1,7 @@
 // Small regression tests for the shared rules code:  mono coretests.exe <levels dir>
 using System;
 using System.IO;
+using System.Linq;
 using Sortex.Core;
 
 static class CoreTests
@@ -286,6 +287,26 @@ static class CoreTests
             }
         }
         Check(fuseOk, "auto-fill: fuse objectives are items outside the box, generator dropped");
+
+        // 15. auto-fill behind a front row filled by hand: the row stays, its types are completed to threes
+        bool keepOk = true;
+        for (int seed = 1; seed <= 20; seed++)
+        {
+            var kl = new LevelData { name = "keep", timeLimit = 120 };
+            for (int k = 0; k < 9; k++) kl.shelves.Add(ShelfData.Create((k % 3 - 1) * 3.13f, 2 - k / 3, 3, 3));
+            string[] hand = { "item_m0_red", "item_m0_red", "item_m1_red", "item_m2_red", null, "item_m2_red", "item_m3_red", "item_m3_red", "item_m3_red" };
+            for (int k = 0; k < hand.Length; k++)
+                if (hand[k] != null) { var c = kl.shelves[k / 3].layers[0][k % 3]; c.it = 1; c.iid = hand[k]; }
+            string front = string.Join("|", kl.shelves.Select(q => string.Join(",", q.layers[0].Select(c => c.iid))).ToArray());
+            var rk = new FillRecipe { Seed = seed, KeepRows = 1, BackFill = 0.8, Frozen = 1, Mystery = 2 };
+            rk.Types = LevelGenerator.MaxTypes(kl, rk);
+            if (LevelGenerator.Fill(kl, rk, LevelGenerator.PickNewTypes(cat, kl, rk, new Random(seed))) != null) { keepOk = false; continue; }
+            if (front != string.Join("|", kl.shelves.Select(q => string.Join(",", q.layers[0].Select(c => c.iid))).ToArray())) keepOk = false;
+            if (kl.shelves.Any(q => q.layers[0].Any(c => c.frozen || c.mystery))) keepOk = false;
+            var byType = kl.shelves.SelectMany(q => q.layers).SelectMany(l => l).Where(c => c.IsItem).GroupBy(c => c.iid).ToList();
+            if (byType.Any(grp => grp.Count() % 3 != 0) || byType.Count != rk.Types) keepOk = false;
+        }
+        Check(keepOk, "auto-fill keeps a hand-made front row and completes its types to threes");
 
         // 15. Problems(): what keeps a level from being published
         var okLevel = LevelData.FromJson(File.ReadAllText(Path.Combine(args[0], "Easy.json")));

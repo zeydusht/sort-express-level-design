@@ -772,8 +772,26 @@ namespace Sortex.EditorTools
 
         void DrawAutoFill(int tier)
         {
-            showFill = EditorGUILayout.Foldout(showFill, "Auto-fill (keeps the shelves, replaces the items)", true);
+            showFill = EditorGUILayout.Foldout(showFill, "Auto-fill (keeps the shelves, deals the items)", true);
             if (!showFill) return;
+
+            // rows filled by hand: the front rows that hold items while every row behind them is still empty
+            int handRows = HandFilledRows();
+            if (!keepTouched && handRows > 0 && recipe.KeepRows == 0) recipe.KeepRows = handRows;
+            int maxRowsAll = level.shelves.Count == 0 ? 1 : level.shelves.Max(s => s.layers.Count);
+            var keepNames = new string[maxRowsAll];
+            keepNames[0] = "nothing (replace every item)";
+            for (int i = 1; i < maxRowsAll; i++) keepNames[i] = i == 1 ? "row 1 (front)" : "rows 1–" + i;
+            int keepNow = EditorGUILayout.Popup(new GUIContent("Keep my items in",
+                    "Rows you filled by hand stay exactly as they are. Auto-fill completes their types to threes in the rows " +
+                    "behind and deals new types only there. 'nothing' replaces every item."),
+                Mathf.Clamp(recipe.KeepRows, 0, maxRowsAll - 1), keepNames.Select(n => new GUIContent(n)).ToArray());
+            if (keepNow != recipe.KeepRows) { recipe.KeepRows = keepNow; keepTouched = true; }
+            var kept = LevelGenerator.KeptCounts(level, recipe.KeepRows);
+            int completions = LevelGenerator.Completions(kept);
+            if (recipe.KeepRows > 0)
+                GUILayout.Label("Kept: " + kept.Values.Sum() + " items, " + kept.Count + " types" +
+                                (completions > 0 ? "  ·  +" + completions + " copies complete them to threes" : ""), EditorStyles.miniLabel);
             EditorGUILayout.BeginHorizontal();
             if (GUILayout.Button("Normal", EditorStyles.miniButtonLeft)) Preset(0);
             if (GUILayout.Button("Hard", EditorStyles.miniButtonMid)) Preset(1);
@@ -782,11 +800,16 @@ namespace Sortex.EditorTools
 
             int cap = LevelGenerator.Capacity(level, recipe);
             EditorGUILayout.BeginHorizontal();
-            recipe.Types = EditorGUILayout.IntSlider("Item types", recipe.Types, 1, Mathf.Max(3, Math.Min(120, catalog.Count)));
-            if (GUILayout.Button("max", EditorStyles.miniButton, GUILayout.Width(34))) recipe.Types = Math.Max(1, cap / 3);
+            recipe.Types = EditorGUILayout.IntSlider(new GUIContent("Item types", "Types in the whole level, the kept ones included."),
+                recipe.Types, 1, Mathf.Max(3, Math.Min(120, catalog.Count)));
+            if (GUILayout.Button("max", EditorStyles.miniButton, GUILayout.Width(34))) recipe.Types = Math.Max(1, LevelGenerator.MaxTypes(level, recipe));
             EditorGUILayout.EndHorizontal();
-            GUILayout.Label(recipe.Types * 3 + " items, room for " + cap + " with these fill ratios", recipe.Types * 3 > cap ? EditorStyles.boldLabel : EditorStyles.miniLabel);
+            int toDeal = Math.Max(0, recipe.Types - kept.Count) * 3 + completions;
+            GUILayout.Label(toDeal + " items to deal" + (recipe.KeepRows > 0 ? " behind the kept rows" : "") + ", room for " + cap + " with these fill ratios",
+                toDeal > cap ? EditorStyles.boldLabel : EditorStyles.miniLabel);
+            GUI.enabled = recipe.KeepRows == 0;
             recipe.FrontFill = EditorGUILayout.Slider(new GUIContent("Front row fill", "Share of the front row holding items (rest = breathing room). Real game: ~0.80 normal, ~0.68 super hard."), (float)recipe.FrontFill, 0.3f, 1f);
+            GUI.enabled = true;
             recipe.BackFill = EditorGUILayout.Slider("Back rows fill", (float)recipe.BackFill, 0.3f, 1f);
             GUILayout.Label("Where the 3 copies of a type go", EditorStyles.miniBoldLabel);
             recipe.SameLayer = EditorGUILayout.Slider("  same row", (float)recipe.SameLayer, 0f, 1f);
@@ -803,7 +826,14 @@ namespace Sortex.EditorTools
 
             GUI.enabled = worker == null && catalog.Count > 0;
             EditorGUILayout.BeginHorizontal();
-            if (GUILayout.Button("Fill")) { Fill(recipe.Seed, true); Bail(); }
+            if (GUILayout.Button("Fill"))
+            {
+                if (recipe.KeepRows > 0 || !level.shelves.Any(sh => sh.layers.Any(l => l.Any(c => c != null && c.IsFilled))) ||
+                    EditorUtility.DisplayDialog("Auto-fill", "Replace every item on the board? (Ctrl+Z brings them back.)\n\n" +
+                                                "To keep the rows you filled by hand, pick them in 'Keep my items in'.", "Replace all", "Cancel"))
+                    Fill(recipe.Seed, true);
+                Bail();
+            }
             tuneSeeds = EditorGUILayout.IntField(tuneSeeds, GUILayout.Width(30));
             if (GUILayout.Button(new GUIContent("Fill & tune", "Tries this many seeds, simulates each and keeps the one closest to the middle of the tier's band.")))
             {
@@ -834,7 +864,21 @@ namespace Sortex.EditorTools
                 case 1: r.FrontFill = 0.68; r.BackFill = 0.78; r.SameLayer = 0.60; r.Adjacent = 0.30; r.Random = 0.10; r.AllowPairs = false; r.LookAlike = 0.55; r.Frozen = 2; r.Mystery = 0; break;
                 default: r.FrontFill = 0.66; r.BackFill = 0.75; r.SameLayer = 0.50; r.Adjacent = 0.38; r.Random = 0.12; r.AllowPairs = false; r.LookAlike = 0.9; r.Frozen = 2; r.Mystery = 6; break;
             }
-            r.Types = Math.Max(1, LevelGenerator.Capacity(level, r) / 3);
+            r.Types = Math.Max(1, LevelGenerator.MaxTypes(level, r));
+        }
+
+        bool keepTouched;
+
+        /// <summary>How many front rows hold items while every row behind them is empty (rows filled by hand before an
+        /// auto-fill); 0 when the board is empty or already filled to the back.</summary>
+        int HandFilledRows()
+        {
+            int maxRows = level.shelves.Count == 0 ? 0 : level.shelves.Max(s => s.layers.Count);
+            int last = -1;
+            for (int li = 0; li < maxRows; li++)
+                if (level.shelves.Any(s => li < s.layers.Count && s.layers[li].Any(c => c != null && c.IsFilled))) last = li;
+            if (last < 0 || last >= maxRows - 1) return 0;
+            return last + 1;
         }
 
         void Fill(int seed, bool record)
@@ -842,7 +886,7 @@ namespace Sortex.EditorTools
             var r = recipe.Clone();
             r.Seed = seed;
             var copy = level.Clone();
-            var types = LevelGenerator.PickTypes(catalog, r.Types, r.LookAlike, new System.Random(seed));
+            var types = LevelGenerator.PickNewTypes(catalog, copy, r, new System.Random(seed));
             string err = LevelGenerator.Fill(copy, r, types);
             if (err != null)
             {
@@ -853,7 +897,8 @@ namespace Sortex.EditorTools
             if (record) BeginEdit();
             level = copy;
             recipe.Seed = seed;
-            status = "Filled with seed " + seed + ": " + types.Count + " types.";
+            status = "Filled with seed " + seed + ": " + types.Count + " new types" + (r.KeepRows > 0 ? " behind your " + (r.KeepRows == 1 ? "front row" : r.KeepRows + " rows") : "") +
+                     ". Another seed gives another deal.";
         }
 
         void DrawSimulation(int tier)
@@ -953,7 +998,7 @@ namespace Sortex.EditorTools
                         var lv = layout.Clone();
                         var r = r0.Clone();
                         r.Seed = seed;
-                        var types = LevelGenerator.PickTypes(cat, r.Types, r.LookAlike, new System.Random(seed));
+                        var types = LevelGenerator.PickNewTypes(cat, lv, r, new System.Random(seed));
                         string err = LevelGenerator.Fill(lv, r, types);
                         if (err != null) { error = err; break; }
                         int idx = i;

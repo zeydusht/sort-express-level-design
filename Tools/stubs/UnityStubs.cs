@@ -563,6 +563,7 @@ namespace UnityEditor
         public static string TextField(string v, GUIStyle s, params GUILayoutOption[] o) { return v; }
         public static int Popup(string label, int i, string[] options) { return i; }
         public static int Popup(int i, string[] options, GUIStyle s, params GUILayoutOption[] o) { return i; }
+        public static int Popup(GUIContent label, int i, GUIContent[] options, params GUILayoutOption[] o) { return i; }
         public static int IntField(string label, int v) { return v; }
         public static int IntField(int v, params GUILayoutOption[] o) { return v; }
         public static float FloatField(string label, float v) { return v; }

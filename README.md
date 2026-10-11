@@ -161,9 +161,11 @@ Tahta sabitken her seferinde tek bir kolu değiştirip simülasyonla ölçtüm (
 Level Editor'de kaydedilen her level oyunun menüsünde **MY LEVELS** altında oynanabiliyor. Aşağıdaki tablo yayınlama sırasında (Sortex → 3. Publish to GitHub) her level 1000 simüle oyuncuyla oynatılarak otomatik yazılıyor; kazanılamayan (3'ün katı olmayan) levellar yayınlanmıyor.
 
 <!-- MY-LEVELS:START -->
-_Bu tablo **Sortex → 3. Publish to GitHub** ile otomatik güncelleniyor (son: 2026-10-11 15:45)._
+_Bu tablo **Sortex → 3. Publish to GitHub** ile otomatik güncelleniyor (son: 2026-10-11 18:51)._
 
-Henüz editörle kaydedilmiş level yok.
+| Level | Tier | Raf | Item | Tür | Süre | Engeller | Simüle kazanma (1000 oyuncu) | Hedef bant | Kayıp: süre / hamle kalmadı | Çözücü |
+|---|---|---|---|---|---|---|---|---|---|---|
+| Level 1 | Normal | 8 | 90 | 30 | 230 sn (2,56 sn/item) | geniş raf 1, frozen 1 | **%0** | %88–100 (daha zor) | %0 / %100 | kanıt yok |
 <!-- MY-LEVELS:END -->
 
 ## 4. Doğrulama: çözücü + simüle oyuncu
@@ -229,6 +231,7 @@ Açılış ekranı, oyunun `MainScene.prefab` dosyasından birebir kuruluyor (`T
 - **Itemler:** paletten seçilip (projedeki tüm `item_*.png`) slota boyanır. Sıralar arasında 1–9 tuşlarıyla geçilir, Shift+tık bir rafın sırasını tümden doldurur. Frozen ve Mystery araçları itemi işaretler. **Piñata** aracı seçilen renkte bir piñata koyar, içine paletteki itemi yerleştirir (köşedeki küçük ikon). **Egg** aracı ejderha yumurtası koyar. Paletteki kırmızı sayaç 3'ün katı olmayan türleri gösterir (piñata renkleri ve içlerindeki itemler dahil).
 - **Kontroller:** 3'ün katı kuralı, ulaşılamayan frozen item, boş shutter, açılamayacak kilit, tahtada olmayan fuse box hedefi, üst üste binen raf. Sol panelde tahta sayıları, gerçek oyunun aynı tier medyanlarıyla yan yana.
 - **Auto-fill:** rafları sen çizersin, itemleri tarif yerleştirir (tür sayısı, ön/arka doluluk, üçlülerin dağılımı, renk ikizi oranı, frozen/mystery sayısı). Normal / Hard / Super Hard hazır ayarları case levellarının tarifleri. **Fill & tune** birkaç tohum dener, her birini simüle eder ve tier bandının ortasına en yakın olanı bırakır.
+- **Elle başla, gerisini doldur:** ön sırayı (ya da ilk birkaç sırayı) elle kurduysan **Keep my items in** o sıraları korur: Auto-fill onlara dokunmaz, oradaki türleri arka sıralarda üçe tamamlar ve yeni türleri yalnızca arkaya dağıtır. Arkası boşken ön sırada item varsa bu ayar kendiliğinden seçili gelir. Her yeni tohum (Seed) arkayı yeniden dağıtır; elle kurduğun kısım aynı kalır. *nothing* seçiliyken Fill her itemi değiştirmeden önce sorar.
 - **Simulate:** aynı çözücü ve simüle oyuncular editörün içinde, arka planda çalışır. Sonuçta kazanma oranı, bant kontrolü, kayıp tipleri ve ortalama süre görünür.
 - **▶ Play level:** leveli doğrudan Play modunda açar. Kaydetmek gerekmez. Game sekmesi otomatik olarak 1080×1920 dikey telefon ekranına geçer.
 - **Save:** yeni level `Level 1`, `Level 2`… adıyla `Resources/Sortex/Levels` içine kaydedilir. Oyunun menüsünde **MY LEVELS** başlığı altında sırayla listelenir.
