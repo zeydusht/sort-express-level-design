@@ -117,6 +117,9 @@ namespace Sortex.Game
         /// <summary>One bar of the shared shelf frame (0.08 thick, rounded ends, 9-sliced along its length).</summary>
         public const float TubeThickness = 0.08f;
         public static Sprite ShelfTube { get { return Get("Art/shelf_tube", 40f / TubeThickness, new Vector4(20, 0, 20, 0)); } }
+        /// <summary>The cabinet's top face above uncovered top edges: 0.125 tall from the bar's middle (cabinet_top.png).</summary>
+        public const float CabinetTopHeight = 0.125f;
+        public static Sprite CabinetTop { get { return Get("Art/cabinet_top", 50f / CabinetTopHeight, new Vector4(24, 0, 24, 0)); } }
         // ------------------------------------------------------------------ mystery items
         // Sort Express draws a mystery item as a grey stone "sculpture": the item's convex hull mesh
         // (item_*_hull.prefab) with MysteryItemTexture and a "?" in front (MysteryItemQuestionMark.prefab).

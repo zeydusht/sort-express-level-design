@@ -2,6 +2,7 @@
 //   Menu/menu.json    the home screen (MainScene.prefab)          -> MainMenuView
 //   Level/level.json  the level HUD (LevelSceneUI.prefab)         -> LevelHud
 //   Level/pause.json  the pause dialog (LevelPauseDialog.prefab)  -> PauseDialog
+//   Level/win.json, nomore.json, lose.json   the level end dialogs -> LevelEndDialogs.cs
 //
 // The json keeps every GameObject's local position / scale / rotation, its SpriteRenderer (sprite, 9-slice size,
 // flip, colour, sorting order) and SortingGroup, and the TextMeshPro boxes with the face / outline colours of their
@@ -349,8 +350,31 @@ namespace Sortex.Game
                 outlineWidth = (float)MiniJson.Num(baseStyle, "outlineWidth", 0.2);
                 underlay = Color.clear;
             }
-
             float em = Fit(box, value);
+            float layerRing = 0f;
+            int layer = TitleLayer(path);
+            if (layer > 0)
+            {
+                // The dialogs' big titles stack four copies of the text (Bottom2, Bottom1, Center, Main): the three
+                // under Main use a fat (dilated) white material and are tinted from code. Here: a white rim (Center),
+                // the header's outline colour (Bottom1) and its darker underlay colour as the drop (Bottom2).
+                TextBox main;
+                var mainStyle = texts.TryGetValue(path.Substring(0, path.LastIndexOf('/')) + "/Main", out main) ? StyleOf(main.Style) : style;
+                Color o = ColorOf(mainStyle, "outline", new Color(0.06f, 0.24f, 0.67f));
+                Color u = ColorOf(mainStyle, "underlay", o * 0.8f);
+                face = layer == 3 ? Color.white : layer == 2 ? o : new Color(u.r * 0.8f, u.g * 0.8f, u.b * 0.8f, 1f);
+                outline = face;
+                underlay = Color.clear;
+                layerRing = em * 0.085f;
+                outlineWidth = 0f;
+            }
+
+            if (layer > 0)
+            {
+                box.Face = MakeText(box, "Face", value, face, 3, Vector2.zero, em);
+                AddRing(box, value, face, Vector2.zero, layerRing, 2, em);
+                return;
+            }
             box.Face = MakeText(box, "Face", value, face, 3, Vector2.zero, em);
             float stroke = outline.a > 0f ? em * outlineWidth * 0.35f : 0f;
             if (underlay.a > 0f)
@@ -359,6 +383,16 @@ namespace Sortex.Game
                 AddRing(box, value, underlay, new Vector2(F(uo, 0), F(uo, 1)) * em * 0.08f, stroke, 1, em);
             }
             if (stroke > 0f) AddRing(box, value, outline, Vector2.zero, stroke, 2, em);
+        }
+
+        /// <summary>3 = Center, 2 = Bottom1, 1 = Bottom2 of a layered dialog title (a sibling "Main" exists); else 0.</summary>
+        int TitleLayer(string path)
+        {
+            int cut = path.LastIndexOf('/');
+            if (cut < 0) return 0;
+            string name = path.Substring(cut + 1);
+            int layer = name == "Center" ? 3 : name == "Bottom1" ? 2 : name == "Bottom2" ? 1 : 0;
+            return layer > 0 && texts.ContainsKey(path.Substring(0, cut) + "/Main") ? layer : 0;
         }
 
         static void Kill(GameObject go)

@@ -33,6 +33,9 @@ namespace Sortex.Game
         MainMenuView home;      // the game's own home screen (MainScene.prefab), the first thing a visitor sees
         LevelHud levelHud;      // the game's level HUD (LevelSceneUI.prefab): level number, timer, pause, boosters
         PauseDialog pauseDialog;// the game's pause dialog (LevelPauseDialog.prefab)
+        WinDialog winDialog;    // the game's level end screens (LevelWinDialog, NoMoreMatchesPanel, LevelLoseDialog)
+        OutOfDialog outOfDialog;
+        LoseDialog loseDialog;
         bool paused;
         bool levelList;         // the case level list (opened from the Packs tab) instead of the home screen
         int screenFrame = -1;   // frame a screen was opened in: the click that opened it must not also press what is under it
@@ -47,6 +50,10 @@ namespace Sortex.Game
         float endDelay = -1f;
         bool endWin;
         string endReason;
+        bool endTimeUp;
+        const string TimeUpReason = "Time's up!";
+        const string StuckReason = "No moves left!";
+        const int Coins = 1000, WinCoins = 20;
 
         // input
         Item held;
@@ -115,6 +122,17 @@ namespace Sortex.Game
                 string name = t;
                 pauseDialog.OnClick(name, () => pauseDialog.Toggle(name));
             }
+            winDialog = new WinDialog(transform);
+            winDialog.OnClick("Continue", ShowMenu);
+            outOfDialog = new OutOfDialog(transform);
+            outOfDialog.OnClick("PlayOn", PlayOn);
+            outOfDialog.OnClick("Close", ShowLose);
+            outOfDialog.OnClick("Coins", () => hud.Toast("The shop is not part of this prototype.", Color.white));
+            loseDialog = new LoseDialog(transform);
+            loseDialog.OnClick("TryAgain", () => StartLevel(current));
+            loseDialog.OnClick("Close", ShowMenu);
+            foreach (var b in LoseDialog.BoosterNames)
+                loseDialog.OnClick(b, () => hud.Toast("Boosters are not part of this prototype: the case is the levels.", Color.white));
 #if UNITY_EDITOR
             // a level sent from Sortex > Level Editor (▶ Play level)
             string test = UnityEditor.SessionState.GetString("Sortex.TestLevel", "");
@@ -404,13 +422,14 @@ namespace Sortex.Game
             state = State.Playing;
             paused = false;
             pauseDialog.SetVisible(false);
+            HideEndDialogs();
             if (levelHud.Ready)
             {
                 // the game's own HUD; the uGUI layer only shows toasts and the result card
                 hud.ShowHome();
                 levelHud.SetLevel(current + 1, level.difficultyTag);
                 levelHud.SetBoosters(3, 3, 3, 3);
-                levelHud.SetTime(timeLeft, false);
+                levelHud.SetTime(timeLeft, level.timeLimit, false);
                 levelHud.SetVisible(true);
             }
             else
@@ -428,7 +447,58 @@ namespace Sortex.Game
             paused = false;
             levelHud.SetVisible(false);
             pauseDialog.SetVisible(false);
+            HideEndDialogs();
         }
+
+        void HideEndDialogs()
+        {
+            winDialog.SetVisible(false);
+            outOfDialog.SetVisible(false);
+            loseDialog.SetVisible(false);
+        }
+
+        /// <summary>The level end dialog that is open (null while playing).</summary>
+        LevelDialog EndDialog
+        {
+            get
+            {
+                if (winDialog.Visible) return winDialog;
+                if (outOfDialog.Visible) return outOfDialog;
+                if (loseDialog.Visible) return loseDialog;
+                return null;
+            }
+        }
+
+        /// <summary>Out of Time: 60 more seconds, the level goes on. Out of Space needs a booster the prototype has not.</summary>
+        void PlayOn()
+        {
+            if (!endTimeUp)
+            {
+                hud.Toast("Boosters are not part of this prototype: close this to finish the level.", Color.white);
+                return;
+            }
+            outOfDialog.SetVisible(false);
+            screenFrame = Time.frameCount;
+            timeLeft += OutOfDialog.ExtraSeconds;
+            timerRunning = true;
+            endDelay = -1f;
+            state = State.Playing;
+        }
+
+        void ShowLose()
+        {
+            outOfDialog.SetVisible(false);
+            screenFrame = Time.frameCount;
+            if (!loseDialog.Ready)
+            {
+                LegacyResult(false, endTimeUp ? TimeUpReason : StuckReason);
+                return;
+            }
+            loseDialog.Show();
+            loseDialog.Layout(cam, Aspect);
+        }
+
+        static float Aspect { get { return Mathf.Max(0.3f, (float)Screen.width / Mathf.Max(1, Screen.height)); } }
 
         void Pause()
         {
@@ -458,13 +528,30 @@ namespace Sortex.Game
         {
             state = State.Result;
             timerRunning = false;
+            screenFrame = Time.frameCount;
             if (held != null) CancelHold();
-            int cleared = board.TotalItems - board.RemainingItems;
             if (win && current == NextLevel && current < menuLevels)
             {
                 PlayerPrefs.SetInt(ProgressKey, current + 1 < Mathf.Min(levels.Count, menuLevels) ? current + 1 : 0);
                 PlayerPrefs.Save();
             }
+            endTimeUp = !win && reason == TimeUpReason;
+            // the game's own dialogs: Level Completed, or the last chance (Out of Space / Out of Time) and then Level Failed
+            LevelDialog dialog = win ? (LevelDialog)winDialog : outOfDialog;
+            if (!dialog.Ready)
+            {
+                LegacyResult(win, reason);
+                return;
+            }
+            if (win) winDialog.Show(WinCoins, timeUsed);
+            else outOfDialog.Show(endTimeUp, Coins);
+            dialog.Layout(cam, Aspect);
+        }
+
+        /// <summary>The prototype's own result card (only when the dialogs' json is missing).</summary>
+        void LegacyResult(bool win, string reason)
+        {
+            int cleared = board.TotalItems - board.RemainingItems;
             if (win)
             {
                 string body = "Cleared " + board.TotalItems + " items in " + Mathf.CeilToInt(timeUsed) + " s\n" +
@@ -498,6 +585,18 @@ namespace Sortex.Game
                     home.Pointer(p.press.wasPressedThisFrame, p.press.isPressed, p.press.wasReleasedThisFrame, wp, dt);
                 }
             }
+            var end = state == State.Result ? EndDialog : null;
+            if (end != null)
+            {
+                var p = Pointer.current;
+                if (p != null && !freshScreen)
+                {
+                    Vector2 sp = p.position.ReadValue();
+                    Vector3 wp = cam.ScreenToWorldPoint(new Vector3(sp.x, sp.y, 10f));
+                    end.Pointer(p.press.wasPressedThisFrame, p.press.isPressed, p.press.wasReleasedThisFrame, wp, dt);
+                }
+                if (levelHud.Visible) levelHud.SetTime(timeLeft, level.timeLimit, false);
+            }
             if (state == State.Playing && paused)
             {
                 var p = Pointer.current;
@@ -527,7 +626,7 @@ namespace Sortex.Game
                     if (timeLeft <= 0f && endDelay < 0f)
                     {
                         timeLeft = 0f;
-                        Finish(false, "Time's up!");
+                        Finish(false, TimeUpReason);
                     }
                 }
                 if (endDelay >= 0f)
@@ -537,7 +636,7 @@ namespace Sortex.Game
                 }
                 hud.SetTimer(timeLeft, timerRunning);
                 if (board != null) hud.SetProgress(board.TotalItems - board.RemainingItems, board.TotalItems);
-                if (levelHud.Visible) levelHud.SetTime(timeLeft, timerRunning && !paused);
+                if (levelHud.Visible) levelHud.SetTime(timeLeft, level.timeLimit, timerRunning && !paused);
             }
             if (view != null) view.Tick(dt);
             hud.Tick(dt);
@@ -608,6 +707,8 @@ namespace Sortex.Game
             shade.transform.localScale = new Vector3(w * 1.05f, h * 1.05f, 1f);
             if (levelHud.Visible) levelHud.Follow(cam, aspect);
             if (pauseDialog.Visible) pauseDialog.Layout(cam, aspect);
+            var end = EndDialog;
+            if (end != null) end.Layout(cam, aspect);
         }
 
         // ================================================================== input
@@ -801,7 +902,7 @@ namespace Sortex.Game
             else if (r.Stuck)
             {
                 endWin = false;
-                endReason = "No moves left!";
+                endReason = StuckReason;
                 endDelay = 0.7f;
                 timerRunning = false;
             }

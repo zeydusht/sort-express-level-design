@@ -1,0 +1,1176 @@
+{
+ "source": "Sort Express LevelWinDialog.prefab",
+ "refWidth": 4.616601,
+ "refHeight": 10.0,
+ "font": "Bango Pro",
+ "parts": {
+  "dialog": {
+   "anchor": "center",
+   "nodes": [
+    {
+     "name": "LevelWinDialog",
+     "parent": -1,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "group": {
+      "layer": 3,
+      "order": 100
+     }
+    },
+    {
+     "name": "Background",
+     "parent": 0,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.1
+     ],
+     "scale": [
+      4.62203,
+      10.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "SpriteRenderer",
+     "parent": 1,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       0.0,
+       0.0,
+       0.0,
+       0.9882
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       1.0,
+       1.0
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "White_0"
+     }
+    },
+    {
+     "name": "Root",
+     "parent": 0,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "group": {
+      "layer": 1,
+      "order": 1
+     }
+    },
+    {
+     "name": "Base",
+     "parent": 3,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "BigTitleName",
+     "parent": 4,
+     "active": true,
+     "pos": [
+      0.0,
+      2.38,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "group": {
+      "layer": 1,
+      "order": 0
+     }
+    },
+    {
+     "name": "Bottom2",
+     "parent": 5,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       3.8421,
+       0.805
+      ],
+      "anchored": [
+       0.0,
+       0.325
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Default Bold"
+     }
+    },
+    {
+     "name": "Bottom1",
+     "parent": 5,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       3.8421,
+       0.805
+      ],
+      "anchored": [
+       0.0,
+       0.366
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Default Bold"
+     }
+    },
+    {
+     "name": "Center",
+     "parent": 5,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       3.8421,
+       0.805
+      ],
+      "anchored": [
+       0.0,
+       0.38800156
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Default Bold"
+     }
+    },
+    {
+     "name": "Main",
+     "parent": 5,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       3.8421,
+       0.805
+      ],
+      "anchored": [
+       0.0,
+       0.39900112
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Orange Header"
+     }
+    },
+    {
+     "name": "Reward",
+     "parent": 4,
+     "active": true,
+     "pos": [
+      0.0,
+      0.7620002,
+      0.0
+     ],
+     "scale": [
+      1.515377,
+      1.515377
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "Coin",
+     "parent": 10,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "group": {
+      "layer": 1,
+      "order": 0
+     }
+    },
+    {
+     "name": "Root",
+     "parent": 11,
+     "active": true,
+     "pos": [
+      0.032,
+      -0.02,
+      0.0
+     ],
+     "scale": [
+      1.1190963,
+      1.1190963
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "CoinIcon",
+     "parent": 12,
+     "active": true,
+     "pos": [
+      -0.028,
+      0.0815,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       0.94244605,
+       0.8093525
+      ],
+      "layer": 1,
+      "order": 1,
+      "enabled": true,
+      "key": "CoinPile256"
+     }
+    },
+    {
+     "name": "Text",
+     "parent": 12,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      0.8935782,
+      0.8935782
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       0.8336,
+       0.4812
+      ],
+      "anchored": [
+       -0.028594501,
+       -0.3788772
+      ],
+      "layer": 1,
+      "order": 2,
+      "style": "Dark Red Outline"
+     }
+    },
+    {
+     "name": "Ribbon",
+     "parent": 12,
+     "active": true,
+     "pos": [
+      -0.028594505,
+      -0.01965872,
+      0.0
+     ],
+     "scale": [
+      0.8935782,
+      0.8935782
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "Right",
+     "parent": 15,
+     "active": true,
+     "pos": [
+      0.0,
+      -0.258,
+      0.0
+     ],
+     "scale": [
+      -1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "Back",
+     "parent": 16,
+     "active": true,
+     "pos": [
+      -0.404,
+      0.03400002,
+      0.0
+     ],
+     "scale": [
+      0.7961595,
+      0.7961595
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       0.34532374,
+       0.35971224
+      ],
+      "layer": 1,
+      "order": -1,
+      "enabled": true,
+      "key": "RedRibbonBack"
+     }
+    },
+    {
+     "name": "Front",
+     "parent": 16,
+     "active": true,
+     "pos": [
+      0.0,
+      -0.078,
+      0.0
+     ],
+     "scale": [
+      0.6585363,
+      0.6578921
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       0.5539568,
+       0.5179856
+      ],
+      "layer": 1,
+      "order": 1,
+      "enabled": true,
+      "key": "LevelWinRibbonFront"
+     }
+    },
+    {
+     "name": "Left",
+     "parent": 15,
+     "active": true,
+     "pos": [
+      0.0,
+      -0.258,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "Back",
+     "parent": 19,
+     "active": true,
+     "pos": [
+      -0.404,
+      0.034,
+      0.0
+     ],
+     "scale": [
+      0.7961595,
+      0.7961595
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       0.34532374,
+       0.35971224
+      ],
+      "layer": 1,
+      "order": -1,
+      "enabled": true,
+      "key": "RedRibbonBack"
+     }
+    },
+    {
+     "name": "Front",
+     "parent": 19,
+     "active": true,
+     "pos": [
+      0.0,
+      -0.078,
+      0.0
+     ],
+     "scale": [
+      0.6585363,
+      0.6578921
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       0.5539568,
+       0.5179856
+      ],
+      "layer": 1,
+      "order": 1,
+      "enabled": true,
+      "key": "LevelWinRibbonFront"
+     }
+    },
+    {
+     "name": "Time",
+     "parent": 4,
+     "active": true,
+     "pos": [
+      -0.2537,
+      -0.82,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "Text",
+     "parent": 22,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       1.6354,
+       0.4089
+      ],
+      "anchored": [
+       0.0,
+       0.0
+      ],
+      "layer": 1,
+      "order": 0,
+      "style": "Dark Blue Outline 3"
+     }
+    },
+    {
+     "name": "Clock",
+     "parent": 22,
+     "active": true,
+     "pos": [
+      -0.2733,
+      0.042,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       0.3705036,
+       0.4532374
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "LevelWinTimerIcon"
+     }
+    },
+    {
+     "name": "ContinueButton",
+     "parent": 4,
+     "active": false,
+     "pos": [
+      0.0,
+      -2.12,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "group": {
+      "layer": 1,
+      "order": 0
+     }
+    },
+    {
+     "name": "BackgroundLeft",
+     "parent": 25,
+     "active": true,
+     "pos": [
+      0.0,
+      0.025000095,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       1.15,
+       0.9532374
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "PlayButtonBackground"
+     }
+    },
+    {
+     "name": "BackgroundRight",
+     "parent": 25,
+     "active": true,
+     "pos": [
+      0.0,
+      0.025,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       1.15,
+       0.9532374
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "PlayButtonBackground"
+     }
+    },
+    {
+     "name": "FrameLeft",
+     "parent": 25,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       1.24,
+       1.18705
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "PlayButtonFrame"
+     }
+    },
+    {
+     "name": "FrameRight",
+     "parent": 25,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       1.24,
+       1.18705
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "PlayButtonFrame"
+     }
+    },
+    {
+     "name": "Button",
+     "parent": 25,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "PressDownTransform",
+     "parent": 30,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "BaseTopLeft",
+     "parent": 31,
+     "active": true,
+     "pos": [
+      0.0,
+      0.019,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       1.14,
+       0.9748201
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "PlayButton"
+     }
+    },
+    {
+     "name": "BaseTopRight",
+     "parent": 31,
+     "active": true,
+     "pos": [
+      0.0,
+      0.019000053,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       1.14,
+       0.9748201
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "PlayButton"
+     }
+    },
+    {
+     "name": "BaseText",
+     "parent": 31,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       2.3949,
+       0.6826
+      ],
+      "anchored": [
+       0.0,
+       0.022
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Dark Green Outline 1"
+     }
+    }
+   ],
+   "offset": 0.0
+  }
+ },
+ "sprites": {
+  "White_0": {
+   "ppu": 1.0,
+   "pivot": [
+    0.5,
+    0.5
+   ],
+   "border": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "width": 1,
+   "height": 1,
+   "jpg": false
+  },
+  "CoinPile256": {
+   "ppu": 278.0,
+   "pivot": [
+    0.5,
+    0.5
+   ],
+   "border": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "width": 256,
+   "height": 256,
+   "jpg": false
+  },
+  "RedRibbonBack": {
+   "ppu": 278.0,
+   "pivot": [
+    1.0,
+    0.5
+   ],
+   "border": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "width": 96,
+   "height": 100,
+   "jpg": false
+  },
+  "LevelWinRibbonFront": {
+   "ppu": 278.0,
+   "pivot": [
+    1.0,
+    0.5
+   ],
+   "border": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "width": 257,
+   "height": 204,
+   "jpg": false
+  },
+  "LevelWinTimerIcon": {
+   "ppu": 278.0,
+   "pivot": [
+    0.5,
+    0.5
+   ],
+   "border": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "width": 103,
+   "height": 126,
+   "jpg": false
+  },
+  "PlayButtonBackground": {
+   "ppu": 278.0,
+   "pivot": [
+    1.0,
+    0.5
+   ],
+   "border": [
+    306.0,
+    0.0,
+    1.0,
+    0.0
+   ],
+   "width": 308,
+   "height": 265,
+   "jpg": false
+  },
+  "PlayButtonFrame": {
+   "ppu": 278.0,
+   "pivot": [
+    1.0,
+    0.5
+   ],
+   "border": [
+    337.0,
+    1.0,
+    1.0,
+    1.0
+   ],
+   "width": 339,
+   "height": 330,
+   "jpg": false
+  },
+  "PlayButton": {
+   "ppu": 278.0,
+   "pivot": [
+    1.0,
+    0.5
+   ],
+   "border": [
+    309.0,
+    0.0,
+    1.0,
+    0.0
+   ],
+   "width": 311,
+   "height": 271,
+   "jpg": false
+  }
+ },
+ "styles": {
+  "Default Bold": {
+   "name": "Bango Pro SDF - Default Bold",
+   "face": [
+    1.0,
+    1.0,
+    1.0,
+    1.0
+   ],
+   "outline": null,
+   "outlineWidth": 0.0,
+   "underlay": null,
+   "underlayOffset": [
+    0.0,
+    -1.0
+   ],
+   "dilate": 0.637
+  },
+  "Orange Header": {
+   "name": "Bango Pro SDF - Orange Header",
+   "face": [
+    0.9765,
+    0.9608,
+    0.9176,
+    1.0
+   ],
+   "outline": [
+    0.7255,
+    0.3412,
+    0.0078,
+    1.0
+   ],
+   "outlineWidth": 0.1,
+   "underlay": [
+    0.6039,
+    0.2275,
+    0.0,
+    1.0
+   ],
+   "underlayOffset": [
+    0.0,
+    -0.273
+   ],
+   "dilate": 0.0
+  },
+  "Dark Red Outline": {
+   "name": "Bango Pro SDF - Dark Red Outline",
+   "face": [
+    0.9765,
+    0.9597,
+    0.9179,
+    1.0
+   ],
+   "outline": [
+    0.6706,
+    0.0627,
+    0.0627,
+    1.0
+   ],
+   "outlineWidth": 0.15,
+   "underlay": [
+    0.502,
+    0.0745,
+    0.0745,
+    1.0
+   ],
+   "underlayOffset": [
+    0.0,
+    -0.33
+   ],
+   "dilate": 0.0
+  },
+  "Dark Blue Outline 3": {
+   "name": "Bango Pro SDF - Dark Blue Outline 3",
+   "face": [
+    0.9765,
+    0.9597,
+    0.9179,
+    1.0
+   ],
+   "outline": [
+    0.0,
+    0.0706,
+    0.3569,
+    1.0
+   ],
+   "outlineWidth": 0.15,
+   "underlay": [
+    0.0039,
+    0.051,
+    0.2706,
+    1.0
+   ],
+   "underlayOffset": [
+    0.0,
+    -0.33
+   ],
+   "dilate": 0.09
+  },
+  "Dark Green Outline 1": {
+   "name": "Bango Pro SDF - Dark Green Outline 1",
+   "face": [
+    0.9765,
+    0.9597,
+    0.9179,
+    1.0
+   ],
+   "outline": [
+    0.0824,
+    0.549,
+    0.0549,
+    1.0
+   ],
+   "outlineWidth": 0.15,
+   "underlay": [
+    0.0588,
+    0.4,
+    0.0392,
+    1.0
+   ],
+   "underlayOffset": [
+    0.0,
+    -0.33
+   ],
+   "dilate": 0.0
+  },
+  "Default": {
+   "name": "Default",
+   "face": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "outline": [
+    0.0627,
+    0.235,
+    0.6706,
+    1
+   ],
+   "outlineWidth": 0.2,
+   "underlay": null,
+   "underlayOffset": [
+    0,
+    0
+   ],
+   "dilate": 0
+  }
+ }
+}

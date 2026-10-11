@@ -78,7 +78,12 @@ namespace UnityEngine
         public Color(float r, float g, float b) { this.r = r; this.g = g; this.b = b; a = 1; }
         public Color linear { get { return this; } }
         public static Color operator *(Color a, Color b) { return new Color(a.r * b.r, a.g * b.g, a.b * b.b, a.a * b.a); }
+        public static bool operator ==(Color a, Color b) { return a.r == b.r && a.g == b.g && a.b == b.b && a.a == b.a; }
+        public static bool operator !=(Color a, Color b) { return !(a == b); }
+        public override bool Equals(object o) { return o is Color && (Color)o == this; }
+        public override int GetHashCode() { return 0; }
         public static Color white { get { return new Color(); } }
+        public static Color black { get { return new Color(); } }
         public static Color magenta { get { return new Color(); } }
         public static Color clear { get { return new Color(); } }
         public static Color Lerp(Color a, Color b, float t) { return a; }
@@ -112,6 +117,10 @@ namespace UnityEngine
     {
         public const float PI = 3.14159f;
         public static float Max(float a, float b) { return a; }
+        public static float Max(params float[] v) { return 0; }
+        public static bool Approximately(float a, float b) { return a == b; }
+        public static float GammaToLinearSpace(float v) { return v; }
+        public static float LinearToGammaSpace(float v) { return v; }
         public static int Max(int a, int b) { return a; }
         public static float Min(float a, float b) { return a; }
         public static int Min(int a, int b) { return a; }
@@ -152,6 +161,7 @@ namespace UnityEngine
         public static T Load<T>(string path) where T : Object { return null; }
         public static T GetBuiltinResource<T>(string path) where T : Object { return null; }
         public static Object[] FindObjectsOfTypeAll(Type t) { return new Object[0]; }
+        public static T[] FindObjectsOfTypeAll<T>() where T : Object { return new T[0]; }
         public static T[] LoadAll<T>(string path) where T : Object { return new T[0]; }
     }
     public enum RenderTextureFormat { ARGB32 }
@@ -160,6 +170,7 @@ namespace UnityEngine
     {
         public static RenderTexture active;
         public RenderTexture(int w, int h, int d, RenderTextureFormat f) { }
+        public RenderTexture(int w, int h, int d, RenderTextureFormat f, RenderTextureReadWrite rw) { }
         public static RenderTexture GetTemporary(int w, int h, int d, RenderTextureFormat f, RenderTextureReadWrite rw) { return null; }
         public static void ReleaseTemporary(RenderTexture rt) { }
     }
@@ -185,13 +196,17 @@ namespace UnityEngine
     {
         public Vector4 border;
         public Bounds bounds;
+        public Rect rect;
+        public Texture2D texture;
+        public float pixelsPerUnit;
+        public Vector2 pivot;
         public static Sprite Create(Texture2D t, Rect r, Vector2 pivot, float ppu) { return null; }
         public static Sprite Create(Texture2D t, Rect r, Vector2 pivot, float ppu, uint extrude, SpriteMeshType mt) { return null; }
         public static Sprite Create(Texture2D t, Rect r, Vector2 pivot, float ppu, uint extrude, SpriteMeshType mt, Vector4 border) { return null; }
     }
     public class Shader : Object { public static Shader Find(string n) { return null; } }
     public class TextAsset : Object { public string text; }
-    public class Material : Object { public Material(Shader s) { } }
+    public class Material : Object { public Material(Shader s) { } public Material(Material m) { } public Texture mainTexture; }
     public class Font : Object { public Material material; public void RequestCharactersInTexture(string s, int size) { } public bool GetCharacterInfo(char c, out CharacterInfo ci, int size) { ci = new CharacterInfo(); return false; } }
     public class Component : Object
     {
@@ -230,11 +245,21 @@ namespace UnityEngine
     }
     public class Renderer : Component
     {
-        public int sortingOrder;
+        public int sortingOrder, sortingLayerID;
         public bool enabled;
         public Material sharedMaterial;
     }
     public class MeshRenderer : Renderer { }
+    public class Mesh : Object
+    {
+        public Vector3[] vertices;
+        public Vector2[] uv;
+        public Color[] colors;
+        public int[] triangles;
+        public void Clear() { }
+        public void RecalculateBounds() { }
+    }
+    public class MeshFilter : Component { public Mesh sharedMesh; }
     public enum SpriteDrawMode { Simple, Sliced, Tiled }
     public class SpriteRenderer : Renderer
     {
@@ -264,6 +289,7 @@ namespace UnityEngine
         public bool orthographic;
         public float orthographicSize, nearClipPlane, farClipPlane;
         public RenderTexture targetTexture;
+        public UnityEngine.SceneManagement.Scene scene;
         public void Render() { }
         public CameraClearFlags clearFlags;
         public Color backgroundColor;
@@ -298,6 +324,7 @@ namespace UnityEngine
         public TextAnchor alignment;
         public int fontSize;
         public GUIStyleState normal = new GUIStyleState();
+        public Vector2 CalcSize(GUIContent c) { return new Vector2(); }
     }
     public class GUIContent
     {
@@ -319,6 +346,7 @@ namespace UnityEngine
         public static bool Button(GUIContent t, GUIStyle s, params GUILayoutOption[] o) { return false; }
         public static void Label(string t, params GUILayoutOption[] o) { }
         public static void Label(GUIContent c, params GUILayoutOption[] o) { }
+        public static void Label(GUIContent c, GUIStyle s, params GUILayoutOption[] o) { }
         public static void Label(string t, GUIStyle s, params GUILayoutOption[] o) { }
         public static void Box(GUIContent c, params GUILayoutOption[] o) { }
         public static bool Toggle(bool v, string t, GUIStyle s, params GUILayoutOption[] o) { return v; }
@@ -365,6 +393,7 @@ namespace UnityEngine.SceneManagement
     {
         public static Scene GetActiveScene() { return new Scene(); }
         public static bool SetActiveScene(Scene s) { return true; }
+        public static void MoveGameObjectToScene(UnityEngine.GameObject g, Scene s) { }
     }
 }
 
@@ -492,6 +521,9 @@ namespace UnityEditor
     {
         public static string GetString(string k, string d) { return d; }
         public static void SetString(string k, string v) { }
+        public static int GetInt(string k, int d) { return d; }
+        public static void SetInt(string k, int v) { }
+        public static void DeleteKey(string k) { }
     }
     public class EditorWindow : ScriptableObject
     {
@@ -507,7 +539,7 @@ namespace UnityEditor
     public static class EditorStyles
     {
         public static GUIStyle toolbar, toolbarButton, toolbarDropDown, toolbarSearchField, miniBoldLabel, miniLabel, boldLabel,
-            wordWrappedMiniLabel, miniButton, miniButtonLeft, miniButtonMid, miniButtonRight, helpBox, centeredGreyMiniLabel;
+            wordWrappedMiniLabel, toolbarPopup, miniButton, miniButtonLeft, miniButtonMid, miniButtonRight, helpBox, centeredGreyMiniLabel;
     }
     public static class EditorGUI
     {
@@ -530,6 +562,7 @@ namespace UnityEditor
         public static string TextField(string label, string v) { return v; }
         public static string TextField(string v, GUIStyle s, params GUILayoutOption[] o) { return v; }
         public static int Popup(string label, int i, string[] options) { return i; }
+        public static int Popup(int i, string[] options, GUIStyle s, params GUILayoutOption[] o) { return i; }
         public static int IntField(string label, int v) { return v; }
         public static int IntField(int v, params GUILayoutOption[] o) { return v; }
         public static float FloatField(string label, float v) { return v; }
@@ -567,6 +600,7 @@ namespace UnityEditor
         public static string GUIDToAssetPath(string guid) { return ""; }
         public static string GetAssetPath(Object o) { return ""; }
         public static void ImportAsset(string p) { }
+        public static bool DeleteAsset(string p) { return true; }
         public static void CreateAsset(Object o, string p) { }
         public static void SaveAssets() { }
         public static void Refresh() { }
@@ -626,6 +660,8 @@ namespace UnityEditor.SceneManagement
         public static Scene OpenScene(string p) { return new Scene(); }
         public static bool CloseScene(Scene s, bool remove) { return true; }
         public static bool SaveCurrentModifiedScenesIfUserWantsTo() { return true; }
+        public static Scene NewPreviewScene() { return new Scene(); }
+        public static bool ClosePreviewScene(Scene s) { return true; }
     }
 }
 

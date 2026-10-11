@@ -31,6 +31,8 @@ namespace Sortex.EditorTools
         public const string TestLevelKey = "Sortex.TestLevel";
         const string LastLevelKey = "Sortex.Editor.LastLevel";
         const float SW = Board.SlotWidth;
+        // the game draws the level's x at half scale (BoardView.XS): the canvas does the same, so it looks like the game
+        const float XS = Sortex.Game.BoardView.XS;
         const float SnapX = Board.SlotWidth * 0.5f;
         const float SnapY = 0.25f;
 
@@ -180,6 +182,8 @@ namespace Sortex.EditorTools
         void Update()
         {
             if (mysteryQueue.Count > 0) BuildMysteryIcons();
+            if (hudWanted != null && hudWanted != hudKey && !EditorApplication.isPlayingOrWillChangePlaymode && !EditorApplication.isCompiling)
+                BuildHudTexture();
             if (worker != null)
             {
                 Repaint();
@@ -419,6 +423,8 @@ namespace Sortex.EditorTools
             wrapLabel = new GUIStyle(EditorStyles.wordWrappedMiniLabel);
             centerLabel = new GUIStyle(EditorStyles.boldLabel) { alignment = TextAnchor.MiddleCenter, fontSize = 18 };
             centerLabel.normal.textColor = Color.white;
+            centerMini = new GUIStyle(EditorStyles.miniBoldLabel) { alignment = TextAnchor.MiddleCenter };
+            centerMini.normal.textColor = new Color(1f, 1f, 1f, 0.8f);
         }
 
         void OnGUI()
@@ -520,6 +526,17 @@ namespace Sortex.EditorTools
                 if (!string.IsNullOrEmpty(p)) Load(p);
             });
             menu.AddItem(new GUIContent("Refresh item palette"), false, RefreshCatalog);
+            if (levelPath != null && CanDelete(levelPath))
+            {
+                menu.AddSeparator("");
+                string doomed = levelPath;
+                menu.AddItem(new GUIContent("Delete \"" + Path.GetFileNameWithoutExtension(doomed) + "\"…"), false, () =>
+                {
+                    if (EditorUtility.DisplayDialog("Sortex", "Delete " + Path.GetFileName(doomed) + "? It leaves the game menu and, with the next " +
+                                                    "Publish, the README table.", "Delete", "Cancel"))
+                        DeleteLevel(doomed);
+                });
+            }
             menu.ShowAsContext();
         }
 
@@ -1183,6 +1200,10 @@ namespace Sortex.EditorTools
             }
             tool = picked;
             GUILayout.FlexibleSpace();
+            GUILayout.Label(new GUIContent("Game screen", "Shows what the game's camera shows for this board: the phone screen, the top bar and the boosters, " +
+                "and the dashed area where shelves keep their normal size."), EditorStyles.miniLabel);
+            int mode = EditorGUILayout.Popup(ScreenMode, ScreenModeNames, EditorStyles.toolbarPopup, GUILayout.Width(150));
+            if (mode != ScreenMode) { ScreenMode = mode; needsFrame = true; }
             if (GUILayout.Button("Frame (F)", EditorStyles.toolbarButton)) needsFrame = true;
             EditorGUILayout.EndHorizontal();
 
@@ -1220,19 +1241,19 @@ namespace Sortex.EditorTools
 
         Vector2 ToScreen(Rect canvas, float x, float y)
         {
-            return new Vector2(canvas.center.x + pan.x + x * zoom, canvas.center.y + pan.y - y * zoom);
+            return new Vector2(canvas.center.x + pan.x + x * XS * zoom, canvas.center.y + pan.y - y * zoom);
         }
 
         Vector2 ToWorld(Rect canvas, Vector2 p)
         {
-            return new Vector2((p.x - canvas.center.x - pan.x) / zoom, -(p.y - canvas.center.y - pan.y) / zoom);
+            return new Vector2((p.x - canvas.center.x - pan.x) / (zoom * XS), -(p.y - canvas.center.y - pan.y) / zoom);
         }
 
         Rect ShelfRect(Rect canvas, ShelfData s)
         {
             float w = s.width * SW;
             var tl = ToScreen(canvas, s.x - w * 0.5f, s.y + 0.5f);
-            return new Rect(tl.x, tl.y, w * zoom, zoom);
+            return new Rect(tl.x, tl.y, w * XS * zoom, zoom);
         }
 
         void FrameBoard(Rect canvas)
@@ -1245,8 +1266,17 @@ namespace Sortex.EditorTools
             }
             float minX = level.shelves.Min(s => s.x - s.width * SW * 0.5f), maxX = level.shelves.Max(s => s.x + s.width * SW * 0.5f);
             float minY = level.shelves.Min(s => s.y - 0.5f), maxY = level.shelves.Max(s => s.y + 0.5f);
-            zoom = Mathf.Clamp(Mathf.Min(canvas.width / (maxX - minX + 2f), canvas.height / (maxY - minY + 2f)), 20f, 140f);
-            pan = new Vector2(-(minX + maxX) * 0.5f * zoom, (minY + maxY) * 0.5f * zoom);
+            // with the game screen shown, frame that (it is a little larger than the shelves)
+            Rect frame;
+            if (GameFrame(out frame))
+            {
+                minX = Mathf.Min(minX, frame.xMin / XS);
+                maxX = Mathf.Max(maxX, frame.xMax / XS);
+                minY = Mathf.Min(minY, frame.yMin);
+                maxY = Mathf.Max(maxY, frame.yMax);
+            }
+            zoom = Mathf.Clamp(Mathf.Min(canvas.width / ((maxX - minX) * XS + 1f), canvas.height / (maxY - minY + 1f)), 20f, 140f);
+            pan = new Vector2(-(minX + maxX) * 0.5f * XS * zoom, (minY + maxY) * 0.5f * zoom);
         }
 
         static readonly Color Bg = new Color(0.07f, 0.1f, 0.18f);
@@ -1280,6 +1310,7 @@ namespace Sortex.EditorTools
                 EditorGUI.DrawRect(new Rect(0, sy, local.width, 1), new Color(1, 1, 1, 0.06f));
             }
 
+            DrawGameBackground(local);
             var rim = TierRim();
             for (int si = 0; si < level.shelves.Count; si++)
             {
@@ -1298,7 +1329,7 @@ namespace Sortex.EditorTools
                 bool hasRow = row < s.layers.Count;
                 for (int k = 0; k < s.width; k++)
                 {
-                    var cr = new Rect(r.x + k * SW * zoom, r.y, SW * zoom, r.height);
+                    var cr = new Rect(r.x + k * SW * XS * zoom, r.y, SW * XS * zoom, r.height);
                     if (k > 0) EditorGUI.DrawRect(new Rect(cr.x, cr.y + 2, 1, cr.height - 4), new Color(1, 1, 1, 0.08f));
                     if (!hasRow)
                     {
@@ -1384,6 +1415,7 @@ namespace Sortex.EditorTools
             }
 
             DrawScreenEdges(local);
+            DrawGameScreen(local);
 
             // ghost of the moving row about to be added
             if (tool == Tool.MovingRow)
@@ -1406,6 +1438,322 @@ namespace Sortex.EditorTools
                 DrawBorder(gr, blocked ? new Color(1, 0.3f, 0.3f, 0.8f) : new Color(1, 1, 1, 0.6f), 2);
             }
             GUI.EndClip();
+        }
+
+        // ================================================================== game screen template
+        // What the game's camera shows for this board (SortexGame.FitBoard): the phone screen, the level HUD on it (rendered
+        // from the game's own LevelHud), and the dashed area where the shelves keep their normal size. The game centres
+        // the board between the top bar and the boosters and zooms out until every shelf fits; a board wider than three
+        // 3-slot shelves or taller than the screen's rows is shown smaller.
+        static readonly string[] ScreenModeNames = { "Off", "9:16 (web link, desktop)", "9:19.5 (phone)" };
+        static readonly float[] ScreenAspects = { 0f, 9f / 16f, 9f / 19.5f };
+        const string ScreenModeKey = "Sortex.Editor.ScreenMode";
+        const float RefWidth = 4.616601f;            // the game's UI reference width (PrefabScreen)
+        const float MarginX = 0.2f, MarginY = 0.3f;  // SortexGame.FitBoard
+        static readonly float StandardWidth = 3 * 3 * Board.SlotWidth * XS;   // three 3-slot shelves side by side
+
+        static int ScreenMode
+        {
+            get { return Mathf.Clamp(EditorPrefs.GetInt(ScreenModeKey, 1), 0, ScreenModeNames.Length - 1); }
+            set { EditorPrefs.SetInt(ScreenModeKey, value); }
+        }
+
+        /// <summary>The shelves' rectangle in game units (x at half scale), like BoardView.Bounds.</summary>
+        bool BoardBounds(out Rect bounds)
+        {
+            bounds = new Rect();
+            if (level == null || level.shelves.Count == 0) return false;
+            float minX = float.MaxValue, maxX = float.MinValue, minY = float.MaxValue, maxY = float.MinValue;
+            bool moving = false;
+            foreach (var s in level.shelves)
+            {
+                float hw = s.width * SW * XS * 0.5f;
+                if (s.moving) moving = true;
+                else
+                {
+                    minX = Mathf.Min(minX, s.x * XS - hw);
+                    maxX = Mathf.Max(maxX, s.x * XS + hw);
+                }
+                minY = Mathf.Min(minY, s.y - 0.5f);
+                maxY = Mathf.Max(maxY, s.y + 0.5f);
+            }
+            if (moving)
+            {
+                float half = Conveyor.VisibleHalfWidth(level.shelves.Select(s => s.x).ToList(), level.shelves.Select(s => s.width).ToList(),
+                    level.shelves.Select(s => s.moving).ToList());
+                minX = Mathf.Min(minX, -half * XS);
+                maxX = Mathf.Max(maxX, half * XS);
+            }
+            bounds = Rect.MinMaxRect(minX, minY, maxX, maxY);
+            return true;
+        }
+
+        struct GameView
+        {
+            public float Aspect, Size, RefH, Standard;
+            public Vector2 Center;
+            public Rect Board, Frame, Safe;
+        }
+
+        bool ComputeGameView(out GameView v)
+        {
+            v = new GameView { Aspect = ScreenAspects[ScreenMode] };
+            if (v.Aspect <= 0f || !BoardBounds(out v.Board)) return false;
+            v.RefH = RefWidth / v.Aspect;
+            Sortex.Game.SortexGame.FitBoard(v.Board, v.Aspect, v.RefH, out v.Size, out v.Center);
+            v.Frame = new Rect(v.Center.x - v.Size * v.Aspect, v.Center.y - v.Size, 2f * v.Size * v.Aspect, 2f * v.Size);
+            // the camera for a standard board (three 3-slot shelves across): shelves inside its board area keep that size
+            float avail = Mathf.Max(0.3f, 1f - (Sortex.Game.LevelHud.BoardTop + Sortex.Game.LevelHud.BoardBottom) / v.RefH);
+            v.Standard = Mathf.Max(v.RefH * 0.5f, (StandardWidth + 2f * MarginX) / (2f * v.Aspect));
+            float hw = v.Standard * v.Aspect - MarginX, hh = v.Standard * avail - MarginY;
+            v.Safe = new Rect(v.Board.center.x - hw, v.Board.center.y - hh, 2f * hw, 2f * hh);
+            return true;
+        }
+
+        bool GameFrame(out Rect frame)
+        {
+            GameView v;
+            frame = new Rect();
+            if (!ComputeGameView(out v)) return false;
+            frame = v.Frame;
+            return true;
+        }
+
+        /// <summary>A rectangle in game units (x at half scale) on the canvas.</summary>
+        Rect GameToCanvas(Rect local, Rect g)
+        {
+            var tl = ToScreen(local, g.xMin / XS, g.yMax);
+            var br = ToScreen(local, g.xMax / XS, g.yMin);
+            return Rect.MinMaxRect(tl.x, tl.y, br.x, br.y);
+        }
+
+        /// <summary>The game's background behind the shelves, inside the screen.</summary>
+        void DrawGameBackground(Rect local)
+        {
+            Rect frame;
+            if (!GameFrame(out frame)) return;
+            var r = GameToCanvas(local, frame);
+            var bg = ArtTexture("bg_gradient");
+            if (bg != null) GUI.DrawTexture(r, bg, ScaleMode.StretchToFill, false);
+            else EditorGUI.DrawRect(r, new Color(0.16f, 0.29f, 0.66f));
+        }
+
+        void DrawGameScreen(Rect local)
+        {
+            GameView v;
+            if (!ComputeGameView(out v)) return;
+            var fr = GameToCanvas(local, v.Frame);
+            // outside the screen: dimmed
+            var dim = new Color(0.02f, 0.03f, 0.08f, 0.62f);
+            EditorGUI.DrawRect(Rect.MinMaxRect(0, 0, local.width, fr.yMin), dim);
+            EditorGUI.DrawRect(Rect.MinMaxRect(0, fr.yMax, local.width, local.height), dim);
+            EditorGUI.DrawRect(Rect.MinMaxRect(0, fr.yMin, fr.xMin, fr.yMax), dim);
+            EditorGUI.DrawRect(Rect.MinMaxRect(fr.xMax, fr.yMin, local.width, fr.yMax), dim);
+
+            // the level HUD: the game's own (rendered in Update), bands until it is ready
+            float k = 2f * v.Size * v.Aspect / RefWidth;     // game units per unit of the UI's reference screen
+            float topH = Sortex.Game.LevelHud.BoardTop * k, botH = Sortex.Game.LevelHud.BoardBottom * k;
+            var top = GameToCanvas(local, new Rect(v.Frame.xMin, v.Frame.yMax - topH, v.Frame.width, topH));
+            var bottom = GameToCanvas(local, new Rect(v.Frame.xMin, v.Frame.yMin, v.Frame.width, botH));
+            hudAspect = v.Aspect;
+            hudTag = level.difficultyTag;
+            hudNumber = LevelNumber();
+            hudSeconds = level.timeLimit;
+            hudWanted = HudKey(hudAspect, hudTag, hudNumber, hudSeconds);
+            if (hudTexture != null && hudKey == hudWanted) GUI.DrawTexture(fr, hudTexture, ScaleMode.StretchToFill, true);
+            else
+            {
+                EditorGUI.DrawRect(top, new Color(0.05f, 0.08f, 0.2f, 0.5f));
+                EditorGUI.DrawRect(bottom, new Color(0.05f, 0.08f, 0.2f, 0.5f));
+                GUI.Label(top, "top bar: level · timer · pause", centerMini);
+                GUI.Label(bottom, "boosters", centerMini);
+            }
+            var line = new Color(1f, 1f, 1f, 0.28f);
+            EditorGUI.DrawRect(new Rect(fr.x, top.yMax, fr.width, 1), line);
+            EditorGUI.DrawRect(new Rect(fr.x, bottom.yMin, fr.width, 1), line);
+            DrawBorder(new Rect(fr.x - 2, fr.y - 2, fr.width + 4, fr.height + 4), new Color(0.92f, 0.95f, 1f, 0.9f), 2);
+
+            // where shelves keep their normal size
+            float pct = v.Standard / v.Size;
+            bool fits = pct > 0.985f;
+            var safeColor = fits ? new Color(0.45f, 1f, 0.55f, 0.85f) : new Color(1f, 0.62f, 0.2f, 0.95f);
+            DrawDashed(GameToCanvas(local, v.Safe), safeColor);
+            string what = v.Board.width > v.Safe.width + 0.01f && v.Board.height > v.Safe.height + 0.01f ? "wide and tall"
+                : v.Board.width > v.Safe.width + 0.01f ? "wide" : "tall";
+            string text = ScreenModeNames[ScreenMode] + ":  " + (fits
+                ? "every shelf fits, items at full size" + (pct > 1.02f ? " (" + Mathf.RoundToInt(pct * 100f) + "%, small board)" : "")
+                : "the board is too " + what + ": the game zooms out to " + Mathf.RoundToInt(pct * 100f) +
+                  "% (smaller items). Keep the shelves inside the dashed area.");
+            var size = EditorStyles.miniBoldLabel.CalcSize(new GUIContent(text));
+            var lr = new Rect(fr.x, fr.y - 20 >= 2 ? fr.y - 20 : fr.y + 2, size.x + 10, 17);
+            EditorGUI.DrawRect(lr, new Color(0f, 0f, 0f, 0.65f));
+            var old = GUI.color;
+            GUI.color = fits ? new Color(0.75f, 1f, 0.8f) : new Color(1f, 0.8f, 0.5f);
+            GUI.Label(new Rect(lr.x + 5, lr.y, lr.width, lr.height), text, EditorStyles.miniBoldLabel);
+            GUI.color = old;
+        }
+
+        static void DrawDashed(Rect r, Color c)
+        {
+            const float dash = 7f, gap = 5f;
+            for (float x = r.xMin; x < r.xMax; x += dash + gap)
+            {
+                float w = Mathf.Min(dash, r.xMax - x);
+                EditorGUI.DrawRect(new Rect(x, r.yMin, w, 2), c);
+                EditorGUI.DrawRect(new Rect(x, r.yMax - 2, w, 2), c);
+            }
+            for (float y = r.yMin; y < r.yMax; y += dash + gap)
+            {
+                float h = Mathf.Min(dash, r.yMax - y);
+                EditorGUI.DrawRect(new Rect(r.xMin, y, 2, h), c);
+                EditorGUI.DrawRect(new Rect(r.xMax - 2, y, 2, h), c);
+            }
+        }
+
+        int LevelNumber()
+        {
+            string digits = new string((level.name ?? "").Where(char.IsDigit).ToArray());
+            int n;
+            return digits.Length > 0 && digits.Length < 6 && int.TryParse(digits, out n) ? n : 1;
+        }
+
+        // the HUD picture: the game's LevelHud built in a preview scene and rendered over black and over white, which
+        // gives its colours and its transparency
+        [NonSerialized] Texture2D hudTexture;
+        [NonSerialized] string hudKey, hudWanted;
+        float hudAspect;
+        int hudTag, hudNumber, hudSeconds;
+        GUIStyle centerMini;
+
+        static string HudKey(float aspect, int tag, int number, int seconds)
+        {
+            return aspect.ToString("0.0000", System.Globalization.CultureInfo.InvariantCulture) + "|" + tag + "|" + number + "|" + seconds;
+        }
+
+        void BuildHudTexture()
+        {
+            hudKey = hudWanted;    // also after a failure: no retry every frame
+            Texture2D t = null;
+            try { t = RenderHud(hudAspect, hudNumber, hudTag, hudSeconds); }
+            catch (Exception e)
+            {
+                Debug.LogWarning("Sortex: could not draw the game HUD in the editor (" + e.Message + "); showing its outline instead.");
+            }
+            if (t == null) return;
+            if (hudTexture != null) DestroyImmediate(hudTexture);
+            hudTexture = t;
+            Repaint();
+        }
+
+        /// <summary>The game's level HUD (LevelHud) on a screen of the given aspect, transparent around it; null when
+        /// nothing could be rendered. Built in a preview scene, rendered over black and over white: the two pictures
+        /// give the colours and the transparency.</summary>
+        public static Texture2D RenderHud(float aspect, int number, int tag, int seconds, int width = 420)
+        {
+            var scene = EditorSceneManager.NewPreviewScene();
+            var holder = new GameObject("SortexEditorHud");
+            UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(holder, scene);
+            RenderTexture rt = null;
+            Texture2D read = null;
+            try
+            {
+                var camGo = new GameObject("Camera");
+                camGo.transform.SetParent(holder.transform, false);
+                var cam = camGo.AddComponent<Camera>();
+                cam.scene = scene;
+                cam.orthographic = true;
+                cam.orthographicSize = RefWidth / aspect * 0.5f;
+                cam.transform.position = new Vector3(0f, 0f, -10f);
+                cam.nearClipPlane = 0.1f;
+                cam.farClipPlane = 100f;
+                cam.clearFlags = CameraClearFlags.SolidColor;
+                var hud = new Sortex.Game.LevelHud(holder.transform);
+                if (!hud.Ready) return null;
+                hud.SetLevel(number, tag);
+                hud.SetBoosters(3, 3, 3, 3);
+                hud.SetTime(seconds, seconds, false);
+                hud.SetVisible(true);
+                hud.Follow(cam, aspect);
+
+                int w = width, h = Mathf.RoundToInt(width / aspect);
+                rt = new RenderTexture(w, h, 24, RenderTextureFormat.ARGB32, RenderTextureReadWrite.sRGB);
+                read = new Texture2D(w, h, TextureFormat.RGBA32, false);
+                var overBlack = RenderOver(cam, rt, read, Color.black);
+                var overWhite = RenderOver(cam, rt, read, Color.white);
+                var px = new Color32[w * h];
+                bool any = false;
+                for (int i = 0; i < px.Length; i++)
+                {
+                    // linear light: over black = c * a, over white = c * a + (1 - a)
+                    float br = Mathf.GammaToLinearSpace(overBlack[i].r / 255f), bg = Mathf.GammaToLinearSpace(overBlack[i].g / 255f),
+                          bb = Mathf.GammaToLinearSpace(overBlack[i].b / 255f);
+                    float wr = Mathf.GammaToLinearSpace(overWhite[i].r / 255f), wg = Mathf.GammaToLinearSpace(overWhite[i].g / 255f),
+                          wb = Mathf.GammaToLinearSpace(overWhite[i].b / 255f);
+                    float a = Mathf.Clamp01(1f - ((wr - br) + (wg - bg) + (wb - bb)) / 3f);
+                    if (a < 0.004f) { px[i] = new Color32(0, 0, 0, 0); continue; }
+                    any = true;
+                    px[i] = new Color32((byte)Mathf.RoundToInt(Mathf.LinearToGammaSpace(Mathf.Clamp01(br / a)) * 255f),
+                                        (byte)Mathf.RoundToInt(Mathf.LinearToGammaSpace(Mathf.Clamp01(bg / a)) * 255f),
+                                        (byte)Mathf.RoundToInt(Mathf.LinearToGammaSpace(Mathf.Clamp01(bb / a)) * 255f),
+                                        (byte)Mathf.RoundToInt(a * 255f));
+                }
+                if (!any) return null;
+                var t = new Texture2D(w, h, TextureFormat.RGBA32, false) { hideFlags = HideFlags.HideAndDontSave };
+                t.SetPixels32(px);
+                t.Apply();
+                return t;
+            }
+            finally
+            {
+                DestroyImmediate(holder);
+                EditorSceneManager.ClosePreviewScene(scene);
+                if (rt != null) DestroyImmediate(rt);
+                if (read != null) DestroyImmediate(read);
+            }
+        }
+
+        static Color32[] RenderOver(Camera cam, RenderTexture rt, Texture2D read, Color background)
+        {
+            cam.backgroundColor = background;
+            cam.targetTexture = rt;
+            cam.Render();
+            var previous = RenderTexture.active;
+            RenderTexture.active = rt;
+            read.ReadPixels(new Rect(0, 0, rt.width, rt.height), 0, 0);
+            read.Apply();
+            RenderTexture.active = previous;
+            cam.targetTexture = null;
+            return read.GetPixels32();
+        }
+
+        // ================================================================== delete
+        static readonly string[] CaseLevelNames = { "Easy", "Medium", "Hard" };
+
+        /// <summary>Own levels in Resources/Sortex/Levels can be deleted; the three case levels and report.json cannot.</summary>
+        public static bool CanDelete(string path)
+        {
+            path = ToAssetPath(path);
+            if (!path.EndsWith(".json", StringComparison.OrdinalIgnoreCase)) return false;
+            string dir = (Path.GetDirectoryName(path) ?? "").Replace('\\', '/');
+            string name = Path.GetFileNameWithoutExtension(path);
+            return dir == LevelsDir && name != "report" && Array.IndexOf(CaseLevelNames, name) < 0;
+        }
+
+        public static bool DeleteLevel(string path)
+        {
+            path = ToAssetPath(path);
+            if (!CanDelete(path) || !File.Exists(path)) return false;
+            if (!AssetDatabase.DeleteAsset(path)) return false;
+            if (ToAssetPath(EditorPrefs.GetString(LastLevelKey, "")) == path) EditorPrefs.DeleteKey(LastLevelKey);
+            foreach (var w in Resources.FindObjectsOfTypeAll<SortexLevelEditor>())
+            {
+                if (w.levelPath == null || ToAssetPath(w.levelPath) != path) continue;
+                w.NewLevel();
+                w.status = "Deleted " + Path.GetFileName(path) + ". This is a new, unsaved level.";
+                w.Repaint();
+            }
+            Debug.Log("Sortex: deleted " + path);
+            return true;
         }
 
         /// <summary>With moving shelves: dims what is outside the game screen (inside the pipes).</summary>
@@ -1772,6 +2120,50 @@ namespace Sortex.EditorTools
             BeginEdit();
             level.shelves.Add(copy);
             selected = level.shelves.Count - 1;
+        }
+    }
+
+    /// <summary>
+    /// Deletes own levels on request while Unity is in the background: Logs/SortexDelete.request with one level name per
+    /// line ("Level 1"). Only files in Resources/Sortex/Levels, never the case levels. Result in Logs/SortexDelete.log.
+    /// </summary>
+    [InitializeOnLoad]
+    static class SortexLevelRequests
+    {
+        static double nextPoll;
+
+        static SortexLevelRequests()
+        {
+            EditorApplication.update += Tick;
+        }
+
+        static void Tick()
+        {
+            if (EditorApplication.timeSinceStartup < nextPoll) return;
+            nextPoll = EditorApplication.timeSinceStartup + 2.0;
+            if (EditorApplication.isCompiling || EditorApplication.isUpdating || EditorApplication.isPlayingOrWillChangePlaymode) return;
+            string logs = Path.Combine(Directory.GetParent(Application.dataPath).FullName, "Logs");
+            string request = Path.Combine(logs, "SortexDelete.request");
+            if (!File.Exists(request)) return;
+            string[] names;
+            try
+            {
+                names = File.ReadAllLines(request);
+                File.Delete(request);
+            }
+            catch (Exception)
+            {
+                return;
+            }
+            var log = new System.Text.StringBuilder();
+            foreach (var raw in names)
+            {
+                string name = raw.Trim();
+                if (name.Length == 0) continue;
+                string path = SortexLevelEditor.LevelsDir + "/" + name + ".json";
+                log.Append(SortexLevelEditor.DeleteLevel(path) ? "deleted " : "not deleted ").Append(path).Append('\n');
+            }
+            File.WriteAllText(Path.Combine(logs, "SortexDelete.log"), log.ToString());
         }
     }
 }

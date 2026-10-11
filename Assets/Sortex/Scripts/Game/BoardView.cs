@@ -200,11 +200,6 @@ namespace Sortex.Game
                 sv.Root.localPosition = new Vector3(VX(s.X), s.Y, 0f);
                 float iw = InnerWidth(s);
 
-                // cabinet body behind the shelf: one plate per shelf so any shape (cross, diamond...) works
-                var plate = SortexArt.NewSliced("Cabinet", sv.Root, SortexArt.Panel, new Vector2(iw + 0.34f, 1.30f), -5);
-                plate.transform.localPosition = new Vector3(0f, -0.02f, 0f);
-                plate.color = SortexArt.Cabinet;
-
                 // the game's own shelf model (BaseShelf.prefab), pre-rendered: inside behind the items, rim in front
                 // static shelves share one frame of bars (BuildFrame); a moving shelf carries its own rim
                 var inside = SortexArt.NewSprite("Inside", sv.Root, SortexArt.ShelfInside(s.Width), 0);
@@ -313,6 +308,47 @@ namespace Sortex.Game
                 var bar = SortexArt.NewSliced("Plank", frame, SortexArt.ShelfTube, new Vector2(seg.z - seg.y + t, t), 31);
                 bar.transform.localPosition = new Vector3((seg.y + seg.z) * 0.5f, seg.x, 0f);
             }
+            // the cabinet's top face: a gray-blue band above every stretch of a top edge with no shelf standing on it
+            const float ch = SortexArt.CabinetTopHeight;
+            foreach (var seg in MergeSegments(ExposedTops()))
+            {
+                var band = SortexArt.NewSliced("CabinetTop", frame, SortexArt.CabinetTop, new Vector2(seg.z - seg.y + t, ch), 29);
+                band.transform.localPosition = new Vector3((seg.y + seg.z) * 0.5f, seg.x + ch * 0.5f, 0f);
+            }
+        }
+
+        /// <summary>(y, x0, x1) of the parts of the static shelves' top edges that no shelf above covers.</summary>
+        List<Vector3> ExposedTops()
+        {
+            const float eps = 0.02f;
+            var result = new List<Vector3>();
+            var pieces = new List<Vector2>();
+            var next = new List<Vector2>();
+            foreach (var s in board.Shelves)
+            {
+                if (s.Moving) continue;
+                float top = s.Y + 0.5f, hw = InnerWidth(s) * 0.5f;
+                pieces.Clear();
+                pieces.Add(new Vector2(VX(s.X) - hw, VX(s.X) + hw));
+                foreach (var o in board.Shelves)
+                {
+                    if (o == s || o.Moving || Mathf.Abs(o.Y - 0.5f - top) > eps) continue;
+                    float ohw = InnerWidth(o) * 0.5f;
+                    float c0 = VX(o.X) - ohw, c1 = VX(o.X) + ohw;
+                    next.Clear();
+                    foreach (var p in pieces)
+                    {
+                        if (c1 <= p.x || c0 >= p.y) { next.Add(p); continue; }
+                        if (c0 > p.x) next.Add(new Vector2(p.x, c0));
+                        if (c1 < p.y) next.Add(new Vector2(c1, p.y));
+                    }
+                    pieces.Clear();
+                    pieces.AddRange(next);
+                }
+                foreach (var p in pieces)
+                    if (p.y - p.x > eps) result.Add(new Vector3(top, p.x, p.y));
+            }
+            return result;
         }
 
         /// <summary>Merges segments (line, start, end) on the same line that overlap or touch.</summary>

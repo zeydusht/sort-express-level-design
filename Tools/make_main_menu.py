@@ -65,6 +65,28 @@ SCREENS = {
         source='Sort Express LevelPauseDialog.prefab',
         parts={'dialog': ('LevelPauseDialog', 'center')},
         container=None, extra=[], skip={'Particles'}, inject={}),
+    # level end: won / out of space or time (the last-chance offer) / failed
+    'win': dict(
+        prefab='LevelWinDialog.prefab', json='win.json', jpg=set(),
+        source='Sort Express LevelWinDialog.prefab',
+        parts={'dialog': ('LevelWinDialog', 'center')},
+        container=None, extra=[],
+        skip={'Particles', 'LogoAnimation', 'BottomContainer', 'DialogMultiplierTag', 'DoubleReward', 'SingleReward'},
+        inject={}),
+    'nomore': dict(
+        prefab='NoMoreMatchesPanel.prefab', json='nomore.json', jpg=set(),
+        source='Sort Express NoMoreMatchesPanel.prefab',
+        parts={'dialog': ('NoMoreMatchesPanel', 'center')},
+        container=None, extra=['HourglassIcon256'],
+        skip={'Particles', 'Offer', 'FreeEgoTutorial', 'Peek', 'FirstPage', 'SecondPage', 'LightRays'},
+        inject={}),
+    'lose': dict(
+        prefab='LevelLoseDialog.prefab', json='lose.json', jpg=set(),
+        source='Sort Express LevelLoseDialog.prefab',
+        parts={'dialog': ('LevelLoseDialog', 'center')},
+        container=None, extra=[],
+        skip={'Particles', 'BottomContainer', 'LightRays', 'InfiniteHeart', 'LoseText'},
+        inject={}),
 }
 SKIP = set()
 
@@ -269,6 +291,11 @@ def main():
             s = n.get('sprite')
             if s and s.get('guid') in index:
                 info = read_sprite(os.path.join(export, index[s['guid']]))
+                # two sprite assets can share a name (PlusIcon.asset / PlusIcon_0.asset are different pictures):
+                # the asset's file name keeps them apart in a folder that several screens share
+                stem = os.path.basename(index[s['guid']])[:-len('.asset')]
+                if stem != info['name']:
+                    info['name'] = stem
                 s['key'] = info['name']
                 if info['name'] not in sprites:
                     keep(info['name'], info, crop_sprite(export, index, atlases, info))
@@ -325,6 +352,20 @@ TEXTS = {
         'LevelPauseDialog/Root/ContinueButton/Button/PressDownTransform/BaseText': 'Continue',
         'LevelPauseDialog/Root/QuitButton/Button/PressDownTransform/BaseText': 'Quit',
     },
+    'win': dict([('LevelWinDialog/Root/Base/BigTitleName/' + k, 'Level Completed!') for k in ('Bottom2', 'Bottom1', 'Center', 'Main')] + [
+        ('LevelWinDialog/Root/Base/Reward/Coin/Root/Text', '20'),
+        ('LevelWinDialog/Root/Base/Time/Text', '1:24'),
+        ('LevelWinDialog/Root/Base/ContinueButton/Button/PressDownTransform/BaseText', 'Continue')]),
+    'nomore': dict([('NoMoreMatchesPanel/Root/Top/TitleRoot/InfoText/' + k, 'Out of Space!') for k in ('Bottom2', 'Bottom1', 'Center', 'Main')] + [
+        ('NoMoreMatchesPanel/Root/Top/CoinsButton/Button/PressDownTransform/Text', '1000'),
+        ('NoMoreMatchesPanel/Root/Center/LastChance/Root/EGO/EGOText', 'Shuffle the items with a Magic Hat!'),
+        ('NoMoreMatchesPanel/Root/PlayOn/PlayOnButton/Button/PressDownTransform/BaseText', 'Play On'),
+        ('NoMoreMatchesPanel/Root/PlayOn/PlayOnButton/Button/PressDownTransform/CostText', '900')]),
+    'lose': dict([('LevelLoseDialog/Root/Panel/InfoText/' + k, 'Level Failed') for k in ('Bottom2', 'Bottom1', 'Center', 'Main')] + [
+        ('LevelLoseDialog/Root/PreLevelBoosterButtons/SelectText', 'Select boosters:'),
+        ('LevelLoseDialog/Root/PreLevelBoosterButtons/PreLevelBoosterHourglassButton/Badge/Counter/Text', '1'),
+        ('LevelLoseDialog/Root/PreLevelBoosterButtons/PreLevelBoosterMagnetButton/Badge/Counter/Text', '1'),
+        ('LevelLoseDialog/Root/TryAgainButton/Button/PressDownTransform/BaseText', 'Try Again')]),
 }
 HIDDEN = {'TopUI/LivesButton/Button/PressDownTransform/LifeTimerContainer/TimerText'}
 

@@ -369,6 +369,26 @@ def shelf_tube():
 
 
 
+def cabinet_top():
+    """The top of the shelf cabinet: the game's shelves stand in a 3D cabinet whose top face shows as a gray-blue band
+    above every top edge that has no shelf on it (colours sampled from a screenshot: body (90, 113, 146), darker rim
+    (68, 89, 128)). 50 px = 0.125 world units (400 ppu): from the middle of the frame bar (which covers the lower part)
+    to 0.085 above the bar. Rounded top corners; 9-sliced horizontally."""
+    W, H, R = 120, 50, 20
+    img = canvas(W, H)
+    body = vgrad(W * SS, H * SS, (84, 106, 141, 255), (97, 121, 156, 255))
+    mask = Image.new('L', (W * SS, H * SS), 0)
+    d = ImageDraw.Draw(mask)
+    d.rounded_rectangle((0, 0, W * SS - 1, H * SS + R * SS), R * SS, fill=255)
+    paste_masked(img, body, mask)
+    rim = Image.new('L', (W * SS, H * SS), 0)
+    dr = ImageDraw.Draw(rim)
+    dr.rounded_rectangle((0, 0, W * SS - 1, H * SS + R * SS), R * SS, fill=255)
+    dr.rounded_rectangle((2 * SS, 3 * SS, W * SS - 1 - 2 * SS, H * SS + R * SS), (R - 2) * SS, fill=0)
+    paste_masked(img, Image.new('RGBA', (W * SS, H * SS), (68, 89, 128, 255)), rim)
+    return down(img)
+
+
 if __name__ == '__main__':
     out = sys.argv[1]
     os.makedirs(out, exist_ok=True)
@@ -388,4 +408,5 @@ if __name__ == '__main__':
     cargo_door().save(os.path.join(out, 'cargo_door.png'))
     bg_gradient().save(os.path.join(out, 'bg_gradient.png'))
     shelf_tube().save(os.path.join(out, 'shelf_tube.png'))
+    cabinet_top().save(os.path.join(out, 'cabinet_top.png'))
     print('sprites written to', out)

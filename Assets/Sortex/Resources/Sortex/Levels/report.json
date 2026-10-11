@@ -58,24 +58,5 @@
   "timeLimit":200,
   "seed":317,
   "players":1000
- },
- "level 1":{
-  "name":"Level 1",
-  "items":24,
-  "types":8,
-  "shelves":11,
-  "badTypes":0,
-  "solvable":true,
-  "solverMoves":18,
-  "solverNodes":0,
-  "winRate":0.821,
-  "winRelaxedTimer":0.972,
-  "stuck":0,
-  "timeout":0.179,
-  "avgMovesWin":50.267,
-  "avgTimeWin":35.418,
-  "avgProgressLoss":0.98,
-  "timeLimit":100,
-  "players":1000
  }
 }

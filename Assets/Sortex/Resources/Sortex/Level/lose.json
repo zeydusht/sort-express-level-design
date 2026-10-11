@@ -1,0 +1,5087 @@
+{
+ "source": "Sort Express LevelLoseDialog.prefab",
+ "refWidth": 4.616601,
+ "refHeight": 10.0,
+ "font": "Bango Pro",
+ "parts": {
+  "dialog": {
+   "anchor": "center",
+   "nodes": [
+    {
+     "name": "LevelLoseDialog",
+     "parent": -1,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "group": {
+      "layer": 3,
+      "order": 100
+     }
+    },
+    {
+     "name": "Foreground",
+     "parent": 0,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.1
+     ],
+     "scale": [
+      4.62203,
+      10.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "SpriteRenderer",
+     "parent": 1,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       0.0,
+       0.0,
+       0.0,
+       0.9882
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       1.0,
+       1.0
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "White_0"
+     }
+    },
+    {
+     "name": "Root",
+     "parent": 0,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "Panel",
+     "parent": 3,
+     "active": true,
+     "pos": [
+      0.0,
+      1.47,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "InfoText",
+     "parent": 4,
+     "active": true,
+     "pos": [
+      0.0,
+      1.57,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "group": {
+      "layer": 1,
+      "order": 0
+     }
+    },
+    {
+     "name": "Bottom2",
+     "parent": 5,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       3.5,
+       3.74
+      ],
+      "anchored": [
+       0.0,
+       0.325
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Default Bold"
+     }
+    },
+    {
+     "name": "Bottom1",
+     "parent": 5,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       3.5,
+       3.74
+      ],
+      "anchored": [
+       0.0,
+       0.366
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Default Bold"
+     }
+    },
+    {
+     "name": "Center",
+     "parent": 5,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       3.5,
+       3.74
+      ],
+      "anchored": [
+       0.0,
+       0.38800156
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Default Bold"
+     }
+    },
+    {
+     "name": "Main",
+     "parent": 5,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       3.5,
+       3.74
+      ],
+      "anchored": [
+       0.0,
+       0.39900112
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Blue Header"
+     }
+    },
+    {
+     "name": "Icon",
+     "parent": 4,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "GlowBack",
+     "parent": 10,
+     "active": true,
+     "pos": [
+      0.0,
+      0.391,
+      0.0
+     ],
+     "scale": [
+      2.9499998,
+      2.9499998
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       0.0784,
+       0.0784,
+       0.0392
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       1.5251799,
+       1.5395683
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "fx_glow_small"
+     }
+    },
+    {
+     "name": "GlowTop",
+     "parent": 10,
+     "active": true,
+     "pos": [
+      0.0,
+      0.391,
+      0.0
+     ],
+     "scale": [
+      0.63,
+      0.63
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       0.0,
+       0.0,
+       0.0275
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       1.5251799,
+       1.5395683
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "CardFrame08_Glow_1"
+     }
+    },
+    {
+     "name": "LoseImage",
+     "parent": 10,
+     "active": true,
+     "pos": [
+      0.0,
+      0.22,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       1.5251799,
+       1.5395683
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "BrokenHeartLevelEnd"
+     }
+    },
+    {
+     "name": "PreLevelBoosterButtons",
+     "parent": 3,
+     "active": true,
+     "pos": [
+      0.0,
+      0.27000004,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "SelectText",
+     "parent": 14,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       3.4546,
+       0.5257
+      ],
+      "anchored": [
+       0.0201,
+       0.07
+      ],
+      "layer": 1,
+      "order": 0,
+      "style": "Dark Blue Outline 3"
+     }
+    },
+    {
+     "name": "PreLevelBoosterHourglassButton",
+     "parent": 14,
+     "active": true,
+     "pos": [
+      0.6666,
+      -0.84,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "group": {
+      "layer": 1,
+      "order": 1
+     }
+    },
+    {
+     "name": "Frame",
+     "parent": 16,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "FrameLeft",
+     "parent": 17,
+     "active": true,
+     "pos": [
+      0.0,
+      -0.024800062,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.58633095,
+       1.1798561
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "BoosterButtonFrame"
+     }
+    },
+    {
+     "name": "FrameRight",
+     "parent": 17,
+     "active": true,
+     "pos": [
+      0.0,
+      -0.024800062,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.58633095,
+       1.1798561
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "BoosterButtonFrame"
+     }
+    },
+    {
+     "name": "Button",
+     "parent": 16,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "ActiveButton",
+     "parent": 20,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "BaseLeft",
+     "parent": 21,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.48920864,
+       0.971223
+      ],
+      "layer": 1,
+      "order": -1,
+      "enabled": true,
+      "key": "BoosterButtonGreenBackground"
+     }
+    },
+    {
+     "name": "BaseRight",
+     "parent": 21,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.48920864,
+       0.971223
+      ],
+      "layer": 1,
+      "order": -1,
+      "enabled": true,
+      "key": "BoosterButtonGreenBackground"
+     }
+    },
+    {
+     "name": "Button",
+     "parent": 21,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "PressDownTransform",
+     "parent": 24,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "ActiveButton",
+     "parent": 25,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "BaseLeft",
+     "parent": 26,
+     "active": true,
+     "pos": [
+      0.0,
+      -0.009,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.49280575,
+       0.97482014
+      ],
+      "layer": 1,
+      "order": 1,
+      "enabled": true,
+      "key": "BoosterButtonGreen"
+     }
+    },
+    {
+     "name": "BaseRight",
+     "parent": 26,
+     "active": true,
+     "pos": [
+      0.0,
+      -0.009,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.49280575,
+       0.97482014
+      ],
+      "layer": 1,
+      "order": 1,
+      "enabled": true,
+      "key": "BoosterButtonGreen"
+     }
+    },
+    {
+     "name": "Icon",
+     "parent": 26,
+     "active": true,
+     "pos": [
+      0.0,
+      -0.016,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       0.6294964,
+       0.73741007
+      ],
+      "layer": 1,
+      "order": 1,
+      "enabled": true,
+      "key": "PreLevelHourglassButtonIcon"
+     }
+    },
+    {
+     "name": "InactiveButton",
+     "parent": 20,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "BaseLeft",
+     "parent": 30,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.4892086,
+       0.971223
+      ],
+      "layer": 1,
+      "order": -1,
+      "enabled": true,
+      "key": "BoosterButtonYellowBackground"
+     }
+    },
+    {
+     "name": "BaseRight",
+     "parent": 30,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.4892086,
+       0.971223
+      ],
+      "layer": 1,
+      "order": -1,
+      "enabled": true,
+      "key": "BoosterButtonYellowBackground"
+     }
+    },
+    {
+     "name": "Button",
+     "parent": 30,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "PressDownTransform",
+     "parent": 33,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "InactiveButton",
+     "parent": 34,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "BaseLeft",
+     "parent": 35,
+     "active": true,
+     "pos": [
+      0.0,
+      -0.009,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.49280575,
+       0.97482014
+      ],
+      "layer": 1,
+      "order": 1,
+      "enabled": true,
+      "key": "BoosterButtonYellow"
+     }
+    },
+    {
+     "name": "BaseRight",
+     "parent": 35,
+     "active": true,
+     "pos": [
+      0.0,
+      -0.009,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.49280575,
+       0.97482014
+      ],
+      "layer": 1,
+      "order": 1,
+      "enabled": true,
+      "key": "BoosterButtonYellow"
+     }
+    },
+    {
+     "name": "Icon",
+     "parent": 35,
+     "active": true,
+     "pos": [
+      0.0,
+      -0.016,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       0.6294964,
+       0.73741007
+      ],
+      "layer": 1,
+      "order": 1,
+      "enabled": true,
+      "key": "PreLevelHourglassButtonIcon"
+     }
+    },
+    {
+     "name": "DeactiveButton",
+     "parent": 20,
+     "active": false,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "BaseLeft",
+     "parent": 39,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.4892086,
+       0.971223
+      ],
+      "layer": 1,
+      "order": -1,
+      "enabled": true,
+      "key": "BoosterButtonBlueBackground"
+     }
+    },
+    {
+     "name": "BaseRight",
+     "parent": 39,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.4892086,
+       0.971223
+      ],
+      "layer": 1,
+      "order": -1,
+      "enabled": true,
+      "key": "BoosterButtonBlueBackground"
+     }
+    },
+    {
+     "name": "Button",
+     "parent": 39,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "PressDownTransform",
+     "parent": 42,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "DeactiveButton",
+     "parent": 43,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "BaseLeft",
+     "parent": 44,
+     "active": true,
+     "pos": [
+      0.0,
+      -0.009,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.49280575,
+       0.97482014
+      ],
+      "layer": 1,
+      "order": 1,
+      "enabled": true,
+      "key": "BoosterButtonBlue"
+     }
+    },
+    {
+     "name": "BaseRight",
+     "parent": 44,
+     "active": true,
+     "pos": [
+      0.0,
+      -0.009,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.49280575,
+       0.97482014
+      ],
+      "layer": 1,
+      "order": 1,
+      "enabled": true,
+      "key": "BoosterButtonBlue"
+     }
+    },
+    {
+     "name": "Icon",
+     "parent": 44,
+     "active": true,
+     "pos": [
+      0.0,
+      -0.016,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       0.6294964,
+       0.73741007
+      ],
+      "layer": 1,
+      "order": 1,
+      "enabled": true,
+      "key": "PreLevelHourglassButtonIconDeactive"
+     }
+    },
+    {
+     "name": "Lock",
+     "parent": 39,
+     "active": true,
+     "pos": [
+      0.0,
+      -0.39,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "group": {
+      "layer": 1,
+      "order": 2
+     }
+    },
+    {
+     "name": "BaseLeft",
+     "parent": 48,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.58633095,
+       0.4208633
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "BoosterButtonTimerGray"
+     }
+    },
+    {
+     "name": "BaseRight",
+     "parent": 48,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.58633095,
+       0.4208633
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "BoosterButtonTimerGray"
+     }
+    },
+    {
+     "name": "Text",
+     "parent": 48,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       0.6704,
+       0.2529
+      ],
+      "anchored": [
+       0.0,
+       0.016
+      ],
+      "layer": 1,
+      "order": 0,
+      "style": "Dark Blue Outline 4"
+     }
+    },
+    {
+     "name": "Icon",
+     "parent": 48,
+     "active": true,
+     "pos": [
+      0.53,
+      -0.087,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       0.61,
+       0.85
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "LockIcon"
+     }
+    },
+    {
+     "name": "Badge",
+     "parent": 16,
+     "active": true,
+     "pos": [
+      0.4679,
+      -0.4426,
+      0.0
+     ],
+     "scale": [
+      1.2,
+      1.2
+     ],
+     "rot": 0.0,
+     "group": {
+      "layer": 1,
+      "order": 2
+     }
+    },
+    {
+     "name": "Counter",
+     "parent": 53,
+     "active": true,
+     "pos": [
+      0.0,
+      -0.045,
+      0.0
+     ],
+     "scale": [
+      0.8333332,
+      0.8333332
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "Base",
+     "parent": 54,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "BaseLeft",
+     "parent": 55,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       0.2,
+       0.2
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "PreLevelBoosterOrangeBadge"
+     }
+    },
+    {
+     "name": "BaseRight",
+     "parent": 55,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       0.2,
+       0.2
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "PreLevelBoosterOrangeBadge"
+     }
+    },
+    {
+     "name": "Text",
+     "parent": 54,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       0.2844,
+       0.3178
+      ],
+      "anchored": [
+       0.0,
+       0.008
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Dark Red Outline"
+     }
+    },
+    {
+     "name": "Add",
+     "parent": 53,
+     "active": false,
+     "pos": [
+      0.0,
+      -0.045,
+      0.0
+     ],
+     "scale": [
+      0.8333332,
+      0.8333332
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "Base",
+     "parent": 59,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "BaseLeft",
+     "parent": 60,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       0.2,
+       0.2
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "PreLevelBoosterGreenBadge"
+     }
+    },
+    {
+     "name": "BaseRight",
+     "parent": 60,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       0.2,
+       0.2
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "PreLevelBoosterGreenBadge"
+     }
+    },
+    {
+     "name": "Icon",
+     "parent": 60,
+     "active": true,
+     "pos": [
+      0.0,
+      0.02,
+      0.0
+     ],
+     "scale": [
+      1.4243,
+      1.4243
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       0.2,
+       0.2
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "PlusIcon_0"
+     }
+    },
+    {
+     "name": "Active",
+     "parent": 53,
+     "active": false,
+     "pos": [
+      0.0,
+      -0.045,
+      0.0
+     ],
+     "scale": [
+      0.8333332,
+      0.8333332
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "Base",
+     "parent": 64,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "BaseLeft",
+     "parent": 65,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       0.2,
+       0.2
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "PreLevelBoosterGreenBadge"
+     }
+    },
+    {
+     "name": "BaseRight",
+     "parent": 65,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       0.2,
+       0.2
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "PreLevelBoosterGreenBadge"
+     }
+    },
+    {
+     "name": "Icon",
+     "parent": 65,
+     "active": true,
+     "pos": [
+      0.0,
+      0.02,
+      0.0
+     ],
+     "scale": [
+      0.9208208,
+      0.9208208
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       0.2,
+       0.2
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "CheckIcon"
+     }
+    },
+    {
+     "name": "Free",
+     "parent": 53,
+     "active": false,
+     "pos": [
+      -0.392,
+      0.042,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "BaseLeft",
+     "parent": 69,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      0.8333332,
+      0.8333332
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.586331,
+       0.4208633
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "BoosterButtonTimerGreen"
+     }
+    },
+    {
+     "name": "BaseRight",
+     "parent": 69,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      0.8333332,
+      0.8333332
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.586331,
+       0.4208633
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "BoosterButtonTimerGreen"
+     }
+    },
+    {
+     "name": "FreeText",
+     "parent": 69,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      0.8333332,
+      0.8333332
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       0.9295,
+       0.3377
+      ],
+      "anchored": [
+       0.00537014,
+       0.012
+      ],
+      "layer": 1,
+      "order": 15,
+      "style": "Dark Green Outline 1"
+     }
+    },
+    {
+     "name": "InifiteBadge",
+     "parent": 53,
+     "active": false,
+     "pos": [
+      -0.392,
+      0.042,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "BaseLeft",
+     "parent": 73,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      0.8333332,
+      0.8333332
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.586331,
+       0.4208633
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "BoosterButtonTimerBlue"
+     }
+    },
+    {
+     "name": "BaseRight",
+     "parent": 73,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      0.8333332,
+      0.8333332
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.586331,
+       0.4208633
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "BoosterButtonTimerBlue"
+     }
+    },
+    {
+     "name": "Countdown",
+     "parent": 73,
+     "active": true,
+     "pos": [
+      0.127,
+      0.011,
+      0.0
+     ],
+     "scale": [
+      0.6,
+      0.6
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "SubHourTextParent",
+     "parent": 76,
+     "active": false,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "InfinityText",
+     "parent": 77,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       0.3785,
+       0.3388
+      ],
+      "anchored": [
+       -0.45999998,
+       0.016666777
+      ],
+      "layer": 1,
+      "order": 15,
+      "style": "Dark Blue Outline 3"
+     }
+    },
+    {
+     "name": "MinuteText",
+     "parent": 77,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       0.3785,
+       0.3388
+      ],
+      "anchored": [
+       -0.04955716,
+       0.0
+      ],
+      "layer": 1,
+      "order": 15,
+      "style": "Dark Blue Outline 3"
+     }
+    },
+    {
+     "name": ":",
+     "parent": 77,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       0.5835,
+       0.3388
+      ],
+      "anchored": [
+       0.0,
+       0.0
+      ],
+      "layer": 1,
+      "order": 15,
+      "style": "Dark Blue Outline 3"
+     }
+    },
+    {
+     "name": "SecondsText",
+     "parent": 77,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       0.5064,
+       0.3388
+      ],
+      "anchored": [
+       0.03814282,
+       0.0
+      ],
+      "layer": 1,
+      "order": 15,
+      "style": "Dark Blue Outline 3"
+     }
+    },
+    {
+     "name": "LongTextParent",
+     "parent": 76,
+     "active": false,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "InfinityText",
+     "parent": 82,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       0.3785,
+       0.3388
+      ],
+      "anchored": [
+       -0.606,
+       0.01666665
+      ],
+      "layer": 1,
+      "order": 15,
+      "style": "Dark Blue Outline 3"
+     }
+    },
+    {
+     "name": "Text",
+     "parent": 82,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       0.3785,
+       0.3388
+      ],
+      "anchored": [
+       -0.078,
+       0.0
+      ],
+      "layer": 1,
+      "order": 15,
+      "style": "Dark Blue Outline 3"
+     }
+    },
+    {
+     "name": "FinishedTextParent",
+     "parent": 76,
+     "active": false,
+     "pos": [
+      -0.2,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "Text",
+     "parent": 85,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       0.3785,
+       0.3388
+      ],
+      "anchored": [
+       0.0,
+       0.0
+      ],
+      "layer": 1,
+      "order": 15,
+      "style": "Dark Blue Outline 3"
+     }
+    },
+    {
+     "name": "PreLevelBoosterMagnetButton",
+     "parent": 14,
+     "active": true,
+     "pos": [
+      -0.6666,
+      -0.84000003,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "group": {
+      "layer": 1,
+      "order": 1
+     }
+    },
+    {
+     "name": "Frame",
+     "parent": 87,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "FrameLeft",
+     "parent": 88,
+     "active": true,
+     "pos": [
+      0.0,
+      -0.024800062,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.58633095,
+       1.1798561
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "BoosterButtonFrame"
+     }
+    },
+    {
+     "name": "FrameRight",
+     "parent": 88,
+     "active": true,
+     "pos": [
+      0.0,
+      -0.024800062,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.58633095,
+       1.1798561
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "BoosterButtonFrame"
+     }
+    },
+    {
+     "name": "Button",
+     "parent": 87,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "ActiveButton",
+     "parent": 91,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "BaseLeft",
+     "parent": 92,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.48920864,
+       0.971223
+      ],
+      "layer": 1,
+      "order": -1,
+      "enabled": true,
+      "key": "BoosterButtonGreenBackground"
+     }
+    },
+    {
+     "name": "BaseRight",
+     "parent": 92,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.48920864,
+       0.971223
+      ],
+      "layer": 1,
+      "order": -1,
+      "enabled": true,
+      "key": "BoosterButtonGreenBackground"
+     }
+    },
+    {
+     "name": "Button",
+     "parent": 92,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "PressDownTransform",
+     "parent": 95,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "ActiveButton",
+     "parent": 96,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "BaseLeft",
+     "parent": 97,
+     "active": true,
+     "pos": [
+      0.0,
+      -0.009,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.49280575,
+       0.97482014
+      ],
+      "layer": 1,
+      "order": 1,
+      "enabled": true,
+      "key": "BoosterButtonGreen"
+     }
+    },
+    {
+     "name": "BaseRight",
+     "parent": 97,
+     "active": true,
+     "pos": [
+      0.0,
+      -0.009,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.49280575,
+       0.97482014
+      ],
+      "layer": 1,
+      "order": 1,
+      "enabled": true,
+      "key": "BoosterButtonGreen"
+     }
+    },
+    {
+     "name": "Icon",
+     "parent": 97,
+     "active": true,
+     "pos": [
+      0.0,
+      -0.016,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       0.67266184,
+       0.72302157
+      ],
+      "layer": 1,
+      "order": 1,
+      "enabled": true,
+      "key": "PreLevelMagnetButtonIcon"
+     }
+    },
+    {
+     "name": "InactiveButton",
+     "parent": 91,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "BaseLeft",
+     "parent": 101,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.4892086,
+       0.971223
+      ],
+      "layer": 1,
+      "order": -1,
+      "enabled": true,
+      "key": "BoosterButtonYellowBackground"
+     }
+    },
+    {
+     "name": "BaseRight",
+     "parent": 101,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.4892086,
+       0.971223
+      ],
+      "layer": 1,
+      "order": -1,
+      "enabled": true,
+      "key": "BoosterButtonYellowBackground"
+     }
+    },
+    {
+     "name": "Button",
+     "parent": 101,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "PressDownTransform",
+     "parent": 104,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "InactiveButton",
+     "parent": 105,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "BaseLeft",
+     "parent": 106,
+     "active": true,
+     "pos": [
+      0.0,
+      -0.009,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.49280575,
+       0.97482014
+      ],
+      "layer": 1,
+      "order": 1,
+      "enabled": true,
+      "key": "BoosterButtonYellow"
+     }
+    },
+    {
+     "name": "BaseRight",
+     "parent": 106,
+     "active": true,
+     "pos": [
+      0.0,
+      -0.009,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.49280575,
+       0.97482014
+      ],
+      "layer": 1,
+      "order": 1,
+      "enabled": true,
+      "key": "BoosterButtonYellow"
+     }
+    },
+    {
+     "name": "Icon",
+     "parent": 106,
+     "active": true,
+     "pos": [
+      0.0,
+      -0.016,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       0.67266184,
+       0.72302157
+      ],
+      "layer": 1,
+      "order": 1,
+      "enabled": true,
+      "key": "PreLevelMagnetButtonIcon"
+     }
+    },
+    {
+     "name": "DeactiveButton",
+     "parent": 91,
+     "active": false,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "BaseLeft",
+     "parent": 110,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.4892086,
+       0.971223
+      ],
+      "layer": 1,
+      "order": -1,
+      "enabled": true,
+      "key": "BoosterButtonBlueBackground"
+     }
+    },
+    {
+     "name": "BaseRight",
+     "parent": 110,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.4892086,
+       0.971223
+      ],
+      "layer": 1,
+      "order": -1,
+      "enabled": true,
+      "key": "BoosterButtonBlueBackground"
+     }
+    },
+    {
+     "name": "Button",
+     "parent": 110,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "PressDownTransform",
+     "parent": 113,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "DeactiveButton",
+     "parent": 114,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "BaseLeft",
+     "parent": 115,
+     "active": true,
+     "pos": [
+      0.0,
+      -0.009,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.49280575,
+       0.97482014
+      ],
+      "layer": 1,
+      "order": 1,
+      "enabled": true,
+      "key": "BoosterButtonBlue"
+     }
+    },
+    {
+     "name": "BaseRight",
+     "parent": 115,
+     "active": true,
+     "pos": [
+      0.0,
+      -0.009,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.49280575,
+       0.97482014
+      ],
+      "layer": 1,
+      "order": 1,
+      "enabled": true,
+      "key": "BoosterButtonBlue"
+     }
+    },
+    {
+     "name": "Icon",
+     "parent": 115,
+     "active": true,
+     "pos": [
+      0.0,
+      -0.016,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       0.67266184,
+       0.72302157
+      ],
+      "layer": 1,
+      "order": 1,
+      "enabled": true,
+      "key": "PreLevelMagnetButtonIconDeactive"
+     }
+    },
+    {
+     "name": "Lock",
+     "parent": 110,
+     "active": true,
+     "pos": [
+      0.0,
+      -0.39,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "group": {
+      "layer": 1,
+      "order": 2
+     }
+    },
+    {
+     "name": "BaseLeft",
+     "parent": 119,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.58633095,
+       0.4208633
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "BoosterButtonTimerGray"
+     }
+    },
+    {
+     "name": "BaseRight",
+     "parent": 119,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.58633095,
+       0.4208633
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "BoosterButtonTimerGray"
+     }
+    },
+    {
+     "name": "Text",
+     "parent": 119,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       0.6704,
+       0.2529
+      ],
+      "anchored": [
+       0.0,
+       0.016
+      ],
+      "layer": 1,
+      "order": 0,
+      "style": "Dark Blue Outline 4"
+     }
+    },
+    {
+     "name": "Icon",
+     "parent": 119,
+     "active": true,
+     "pos": [
+      0.53,
+      -0.087,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       0.61,
+       0.85
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "LockIcon"
+     }
+    },
+    {
+     "name": "Badge",
+     "parent": 87,
+     "active": true,
+     "pos": [
+      0.4679,
+      -0.4426,
+      0.0
+     ],
+     "scale": [
+      1.2,
+      1.2
+     ],
+     "rot": 0.0,
+     "group": {
+      "layer": 1,
+      "order": 2
+     }
+    },
+    {
+     "name": "Counter",
+     "parent": 124,
+     "active": true,
+     "pos": [
+      0.0,
+      -0.045,
+      0.0
+     ],
+     "scale": [
+      0.8333332,
+      0.8333332
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "Base",
+     "parent": 125,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "BaseLeft",
+     "parent": 126,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       0.2,
+       0.2
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "PreLevelBoosterOrangeBadge"
+     }
+    },
+    {
+     "name": "BaseRight",
+     "parent": 126,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       0.2,
+       0.2
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "PreLevelBoosterOrangeBadge"
+     }
+    },
+    {
+     "name": "Text",
+     "parent": 125,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       0.2844,
+       0.3178
+      ],
+      "anchored": [
+       0.0,
+       0.008
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Dark Red Outline"
+     }
+    },
+    {
+     "name": "Add",
+     "parent": 124,
+     "active": false,
+     "pos": [
+      0.0,
+      -0.045,
+      0.0
+     ],
+     "scale": [
+      0.8333332,
+      0.8333332
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "Base",
+     "parent": 130,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "BaseLeft",
+     "parent": 131,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       0.2,
+       0.2
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "PreLevelBoosterGreenBadge"
+     }
+    },
+    {
+     "name": "BaseRight",
+     "parent": 131,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       0.2,
+       0.2
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "PreLevelBoosterGreenBadge"
+     }
+    },
+    {
+     "name": "Icon",
+     "parent": 131,
+     "active": true,
+     "pos": [
+      0.0,
+      0.02,
+      0.0
+     ],
+     "scale": [
+      1.4243,
+      1.4243
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       0.2,
+       0.2
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "PlusIcon_0"
+     }
+    },
+    {
+     "name": "Active",
+     "parent": 124,
+     "active": false,
+     "pos": [
+      0.0,
+      -0.045,
+      0.0
+     ],
+     "scale": [
+      0.8333332,
+      0.8333332
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "Base",
+     "parent": 135,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "BaseLeft",
+     "parent": 136,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       0.2,
+       0.2
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "PreLevelBoosterGreenBadge"
+     }
+    },
+    {
+     "name": "BaseRight",
+     "parent": 136,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       0.2,
+       0.2
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "PreLevelBoosterGreenBadge"
+     }
+    },
+    {
+     "name": "Icon",
+     "parent": 136,
+     "active": true,
+     "pos": [
+      0.0,
+      0.02,
+      0.0
+     ],
+     "scale": [
+      0.9208208,
+      0.9208208
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       0.2,
+       0.2
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "CheckIcon"
+     }
+    },
+    {
+     "name": "Free",
+     "parent": 124,
+     "active": false,
+     "pos": [
+      -0.392,
+      0.042,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "BaseLeft",
+     "parent": 140,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      0.8333332,
+      0.8333332
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.586331,
+       0.4208633
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "BoosterButtonTimerGreen"
+     }
+    },
+    {
+     "name": "BaseRight",
+     "parent": 140,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      0.8333332,
+      0.8333332
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.586331,
+       0.4208633
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "BoosterButtonTimerGreen"
+     }
+    },
+    {
+     "name": "FreeText",
+     "parent": 140,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      0.8333332,
+      0.8333332
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       0.9295,
+       0.3377
+      ],
+      "anchored": [
+       0.00537014,
+       0.012
+      ],
+      "layer": 1,
+      "order": 15,
+      "style": "Dark Green Outline 1"
+     }
+    },
+    {
+     "name": "InifiteBadge",
+     "parent": 124,
+     "active": false,
+     "pos": [
+      -0.392,
+      0.042,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "BaseLeft",
+     "parent": 144,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      0.8333332,
+      0.8333332
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.586331,
+       0.4208633
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "BoosterButtonTimerBlue"
+     }
+    },
+    {
+     "name": "BaseRight",
+     "parent": 144,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      0.8333332,
+      0.8333332
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.586331,
+       0.4208633
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "BoosterButtonTimerBlue"
+     }
+    },
+    {
+     "name": "Countdown",
+     "parent": 144,
+     "active": true,
+     "pos": [
+      0.127,
+      0.011,
+      0.0
+     ],
+     "scale": [
+      0.6,
+      0.6
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "SubHourTextParent",
+     "parent": 147,
+     "active": false,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "InfinityText",
+     "parent": 148,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       0.3785,
+       0.3388
+      ],
+      "anchored": [
+       -0.45999998,
+       0.016666777
+      ],
+      "layer": 1,
+      "order": 15,
+      "style": "Dark Blue Outline 3"
+     }
+    },
+    {
+     "name": "MinuteText",
+     "parent": 148,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       0.3785,
+       0.3388
+      ],
+      "anchored": [
+       -0.04955716,
+       0.0
+      ],
+      "layer": 1,
+      "order": 15,
+      "style": "Dark Blue Outline 3"
+     }
+    },
+    {
+     "name": ":",
+     "parent": 148,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       0.5835,
+       0.3388
+      ],
+      "anchored": [
+       0.0,
+       0.0
+      ],
+      "layer": 1,
+      "order": 15,
+      "style": "Dark Blue Outline 3"
+     }
+    },
+    {
+     "name": "SecondsText",
+     "parent": 148,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       0.5064,
+       0.3388
+      ],
+      "anchored": [
+       0.03814282,
+       0.0
+      ],
+      "layer": 1,
+      "order": 15,
+      "style": "Dark Blue Outline 3"
+     }
+    },
+    {
+     "name": "LongTextParent",
+     "parent": 147,
+     "active": false,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "InfinityText",
+     "parent": 153,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       0.3785,
+       0.3388
+      ],
+      "anchored": [
+       -0.606,
+       0.01666665
+      ],
+      "layer": 1,
+      "order": 15,
+      "style": "Dark Blue Outline 3"
+     }
+    },
+    {
+     "name": "Text",
+     "parent": 153,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       0.3785,
+       0.3388
+      ],
+      "anchored": [
+       -0.078,
+       0.0
+      ],
+      "layer": 1,
+      "order": 15,
+      "style": "Dark Blue Outline 3"
+     }
+    },
+    {
+     "name": "FinishedTextParent",
+     "parent": 147,
+     "active": false,
+     "pos": [
+      -0.2,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "Text",
+     "parent": 156,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       0.3785,
+       0.3388
+      ],
+      "anchored": [
+       0.0,
+       0.0
+      ],
+      "layer": 1,
+      "order": 15,
+      "style": "Dark Blue Outline 3"
+     }
+    },
+    {
+     "name": "TryAgainButton",
+     "parent": 3,
+     "active": true,
+     "pos": [
+      0.0,
+      -2.1,
+      0.0
+     ],
+     "scale": [
+      1.1106616,
+      1.1106616
+     ],
+     "rot": 0.0,
+     "group": {
+      "layer": 1,
+      "order": 0
+     }
+    },
+    {
+     "name": "BackgroundLeft",
+     "parent": 158,
+     "active": true,
+     "pos": [
+      0.0,
+      0.021,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       1.15,
+       0.9532374
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "PlayButtonBackground"
+     }
+    },
+    {
+     "name": "BackgroundRight",
+     "parent": 158,
+     "active": true,
+     "pos": [
+      0.0,
+      0.021,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       1.15,
+       0.9532374
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "PlayButtonBackground"
+     }
+    },
+    {
+     "name": "FrameLeft",
+     "parent": 158,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       1.24,
+       1.18705
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "PlayButtonFrame"
+     }
+    },
+    {
+     "name": "FrameRight",
+     "parent": 158,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       1.24,
+       1.18705
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "PlayButtonFrame"
+     }
+    },
+    {
+     "name": "Button",
+     "parent": 158,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "PressDownTransform",
+     "parent": 163,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "BaseTopLeft",
+     "parent": 164,
+     "active": true,
+     "pos": [
+      0.0,
+      0.019,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       1.14,
+       0.9748201
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "PlayButton"
+     }
+    },
+    {
+     "name": "BaseTopRight",
+     "parent": 164,
+     "active": true,
+     "pos": [
+      0.0,
+      0.019000053,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       1.14,
+       0.9748201
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "PlayButton"
+     }
+    },
+    {
+     "name": "BaseText",
+     "parent": 164,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       1.9765,
+       0.6826
+      ],
+      "anchored": [
+       0.0,
+       0.022
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Dark Green Outline 1"
+     }
+    },
+    {
+     "name": "CloseButton",
+     "parent": 3,
+     "active": true,
+     "pos": [
+      1.87,
+      4.15,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "Button",
+     "parent": 168,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "PressDownTransform",
+     "parent": 169,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "BaseLeft",
+     "parent": 170,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       0.20503597,
+       0.41366908
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "PanelCloseButton"
+     }
+    },
+    {
+     "name": "BaseRight",
+     "parent": 170,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       0.20503597,
+       0.41366908
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "PanelCloseButton"
+     }
+    },
+    {
+     "name": "CloseIcon",
+     "parent": 170,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       0.23381294,
+       0.24820144
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "PanelCloseIcon"
+     }
+    }
+   ],
+   "offset": 0.0
+  }
+ },
+ "sprites": {
+  "White_0": {
+   "ppu": 1.0,
+   "pivot": [
+    0.5,
+    0.5
+   ],
+   "border": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "width": 1,
+   "height": 1,
+   "jpg": false
+  },
+  "fx_glow_small": {
+   "ppu": 100.0,
+   "pivot": [
+    0.5,
+    0.5
+   ],
+   "border": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "width": 128,
+   "height": 128,
+   "jpg": false
+  },
+  "CardFrame08_Glow_1": {
+   "ppu": 100.0,
+   "pivot": [
+    0.5,
+    0.5
+   ],
+   "border": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "width": 401,
+   "height": 401,
+   "jpg": false
+  },
+  "BrokenHeartLevelEnd": {
+   "ppu": 278.0,
+   "pivot": [
+    0.5,
+    0.5
+   ],
+   "border": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "width": 705,
+   "height": 584,
+   "jpg": false
+  },
+  "BoosterButtonFrame": {
+   "ppu": 278.0,
+   "pivot": [
+    1.0,
+    0.5
+   ],
+   "border": [
+    161.0,
+    163.0,
+    1.0,
+    163.0
+   ],
+   "width": 163,
+   "height": 328,
+   "jpg": false
+  },
+  "BoosterButtonGreenBackground": {
+   "ppu": 278.0,
+   "pivot": [
+    1.0,
+    0.5
+   ],
+   "border": [
+    134.0,
+    134.0,
+    1.0,
+    134.0
+   ],
+   "width": 136,
+   "height": 270,
+   "jpg": false
+  },
+  "BoosterButtonGreen": {
+   "ppu": 278.0,
+   "pivot": [
+    1.0,
+    0.5
+   ],
+   "border": [
+    135.0,
+    135.0,
+    1.0,
+    135.0
+   ],
+   "width": 137,
+   "height": 271,
+   "jpg": false
+  },
+  "PreLevelHourglassButtonIcon": {
+   "ppu": 278.0,
+   "pivot": [
+    0.5,
+    0.5
+   ],
+   "border": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "width": 175,
+   "height": 205,
+   "jpg": false
+  },
+  "BoosterButtonYellowBackground": {
+   "ppu": 278.0,
+   "pivot": [
+    1.0,
+    0.5
+   ],
+   "border": [
+    134.0,
+    134.0,
+    1.0,
+    134.0
+   ],
+   "width": 136,
+   "height": 270,
+   "jpg": false
+  },
+  "BoosterButtonYellow": {
+   "ppu": 278.0,
+   "pivot": [
+    1.0,
+    0.5
+   ],
+   "border": [
+    135.0,
+    135.0,
+    1.0,
+    135.0
+   ],
+   "width": 137,
+   "height": 271,
+   "jpg": false
+  },
+  "BoosterButtonBlueBackground": {
+   "ppu": 278.0,
+   "pivot": [
+    1.0,
+    0.5
+   ],
+   "border": [
+    134.0,
+    134.0,
+    1.0,
+    134.0
+   ],
+   "width": 136,
+   "height": 270,
+   "jpg": false
+  },
+  "BoosterButtonBlue": {
+   "ppu": 278.0,
+   "pivot": [
+    1.0,
+    0.5
+   ],
+   "border": [
+    135.0,
+    135.0,
+    1.0,
+    135.0
+   ],
+   "width": 137,
+   "height": 271,
+   "jpg": false
+  },
+  "PreLevelHourglassButtonIconDeactive": {
+   "ppu": 278.0,
+   "pivot": [
+    0.5,
+    0.5
+   ],
+   "border": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "width": 175,
+   "height": 205,
+   "jpg": false
+  },
+  "BoosterButtonTimerGray": {
+   "ppu": 278.0,
+   "pivot": [
+    1.0,
+    0.5
+   ],
+   "border": [
+    161.0,
+    0.0,
+    1.0,
+    0.0
+   ],
+   "width": 163,
+   "height": 117,
+   "jpg": false
+  },
+  "LockIcon": {
+   "ppu": 278.0,
+   "pivot": [
+    0.5,
+    0.5
+   ],
+   "border": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "width": 119,
+   "height": 149,
+   "jpg": false
+  },
+  "PreLevelBoosterOrangeBadge": {
+   "ppu": 278.0,
+   "pivot": [
+    1.0,
+    0.5
+   ],
+   "border": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "width": 74,
+   "height": 148,
+   "jpg": false
+  },
+  "PreLevelBoosterGreenBadge": {
+   "ppu": 278.0,
+   "pivot": [
+    1.0,
+    0.5
+   ],
+   "border": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "width": 74,
+   "height": 148,
+   "jpg": false
+  },
+  "PlusIcon_0": {
+   "ppu": 278.0,
+   "pivot": [
+    0.5,
+    0.5
+   ],
+   "border": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "width": 40,
+   "height": 45,
+   "jpg": false
+  },
+  "CheckIcon": {
+   "ppu": 278.0,
+   "pivot": [
+    0.5,
+    0.5
+   ],
+   "border": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "width": 73,
+   "height": 65,
+   "jpg": false
+  },
+  "BoosterButtonTimerGreen": {
+   "ppu": 278.0,
+   "pivot": [
+    1.0,
+    0.5
+   ],
+   "border": [
+    161.0,
+    0.0,
+    1.0,
+    0.0
+   ],
+   "width": 163,
+   "height": 117,
+   "jpg": false
+  },
+  "BoosterButtonTimerBlue": {
+   "ppu": 278.0,
+   "pivot": [
+    1.0,
+    0.5
+   ],
+   "border": [
+    161.0,
+    0.0,
+    1.0,
+    0.0
+   ],
+   "width": 163,
+   "height": 117,
+   "jpg": false
+  },
+  "PreLevelMagnetButtonIcon": {
+   "ppu": 278.0,
+   "pivot": [
+    0.5,
+    0.5
+   ],
+   "border": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "width": 187,
+   "height": 201,
+   "jpg": false
+  },
+  "PreLevelMagnetButtonIconDeactive": {
+   "ppu": 278.0,
+   "pivot": [
+    0.5,
+    0.5
+   ],
+   "border": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "width": 187,
+   "height": 201,
+   "jpg": false
+  },
+  "PlayButtonBackground": {
+   "ppu": 278.0,
+   "pivot": [
+    1.0,
+    0.5
+   ],
+   "border": [
+    306.0,
+    0.0,
+    1.0,
+    0.0
+   ],
+   "width": 308,
+   "height": 265,
+   "jpg": false
+  },
+  "PlayButtonFrame": {
+   "ppu": 278.0,
+   "pivot": [
+    1.0,
+    0.5
+   ],
+   "border": [
+    337.0,
+    1.0,
+    1.0,
+    1.0
+   ],
+   "width": 339,
+   "height": 330,
+   "jpg": false
+  },
+  "PlayButton": {
+   "ppu": 278.0,
+   "pivot": [
+    1.0,
+    0.5
+   ],
+   "border": [
+    309.0,
+    0.0,
+    1.0,
+    0.0
+   ],
+   "width": 311,
+   "height": 271,
+   "jpg": false
+  },
+  "PanelCloseButton": {
+   "ppu": 278.0,
+   "pivot": [
+    1.0,
+    0.5
+   ],
+   "border": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "width": 63,
+   "height": 126,
+   "jpg": false
+  },
+  "PanelCloseIcon": {
+   "ppu": 278.0,
+   "pivot": [
+    0.5,
+    0.5
+   ],
+   "border": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "width": 60,
+   "height": 63,
+   "jpg": false
+  }
+ },
+ "styles": {
+  "Default Bold": {
+   "name": "Bango Pro SDF - Default Bold",
+   "face": [
+    1.0,
+    1.0,
+    1.0,
+    1.0
+   ],
+   "outline": null,
+   "outlineWidth": 0.0,
+   "underlay": null,
+   "underlayOffset": [
+    0.0,
+    -1.0
+   ],
+   "dilate": 0.637
+  },
+  "Blue Header": {
+   "name": "Bango Pro SDF - Blue Header",
+   "face": [
+    0.9765,
+    0.9608,
+    0.9176,
+    1.0
+   ],
+   "outline": [
+    0.0627,
+    0.235,
+    0.6706,
+    1.0
+   ],
+   "outlineWidth": 0.1,
+   "underlay": [
+    0.0745,
+    0.2099,
+    0.502,
+    1.0
+   ],
+   "underlayOffset": [
+    0.0,
+    -0.273
+   ],
+   "dilate": 0.0
+  },
+  "Dark Blue Outline 3": {
+   "name": "Bango Pro SDF - Dark Blue Outline 3",
+   "face": [
+    0.9765,
+    0.9597,
+    0.9179,
+    1.0
+   ],
+   "outline": [
+    0.0,
+    0.0706,
+    0.3569,
+    1.0
+   ],
+   "outlineWidth": 0.15,
+   "underlay": [
+    0.0039,
+    0.051,
+    0.2706,
+    1.0
+   ],
+   "underlayOffset": [
+    0.0,
+    -0.33
+   ],
+   "dilate": 0.09
+  },
+  "Dark Blue Outline 4": {
+   "name": "Bango Pro SDF - Dark Blue Outline 4",
+   "face": [
+    0.9765,
+    0.9597,
+    0.9179,
+    1.0
+   ],
+   "outline": [
+    0.0,
+    0.0745,
+    0.349,
+    1.0
+   ],
+   "outlineWidth": 0.247,
+   "underlay": [
+    0.0,
+    0.0627,
+    0.2706,
+    1.0
+   ],
+   "underlayOffset": [
+    0.0,
+    -0.53
+   ],
+   "dilate": 0.19
+  },
+  "Dark Red Outline": {
+   "name": "Bango Pro SDF - Dark Red Outline",
+   "face": [
+    0.9765,
+    0.9597,
+    0.9179,
+    1.0
+   ],
+   "outline": [
+    0.6706,
+    0.0627,
+    0.0627,
+    1.0
+   ],
+   "outlineWidth": 0.15,
+   "underlay": [
+    0.502,
+    0.0745,
+    0.0745,
+    1.0
+   ],
+   "underlayOffset": [
+    0.0,
+    -0.33
+   ],
+   "dilate": 0.0
+  },
+  "Dark Green Outline 1": {
+   "name": "Bango Pro SDF - Dark Green Outline 1",
+   "face": [
+    0.9765,
+    0.9597,
+    0.9179,
+    1.0
+   ],
+   "outline": [
+    0.0824,
+    0.549,
+    0.0549,
+    1.0
+   ],
+   "outlineWidth": 0.15,
+   "underlay": [
+    0.0588,
+    0.4,
+    0.0392,
+    1.0
+   ],
+   "underlayOffset": [
+    0.0,
+    -0.33
+   ],
+   "dilate": 0.0
+  },
+  "Default": {
+   "name": "Default",
+   "face": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "outline": [
+    0.0627,
+    0.235,
+    0.6706,
+    1
+   ],
+   "outlineWidth": 0.2,
+   "underlay": null,
+   "underlayOffset": [
+    0,
+    0
+   ],
+   "dilate": 0
+  }
+ }
+}

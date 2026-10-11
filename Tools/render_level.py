@@ -157,14 +157,6 @@ def render(level_path, out_path, res):
         x, y = px(cx, cy)
         layer.alpha_composite(s, (x - s.width // 2, y - s.height // 2))
 
-    # cabinet: one light plate per shelf (any cabinet shape)
-    for sh in shelves:
-        iw = sh['sicw'] * SW
-        plate = nine_slice(panel_src, int((iw + 0.34) * PPU), int(1.30 * PPU), 34, 34, 34, 34)
-        plate = tint(plate, (0x7F / 255, 0x9F / 255, 0xD3 / 255))
-        x0, y0 = px(sh['pos']['x'] - (iw + 0.34) / 2, sh['pos']['y'] - 0.02 + 0.65)
-        img.alpha_composite(plate, (x0, y0))
-
     layers = {k: Image.new('RGBA', (W, H), (0, 0, 0, 0)) for k in ('back', 'items_back', 'items', 'frame', 'door')}
     icon_cache = {}
 
@@ -242,6 +234,35 @@ def render(level_path, out_path, res):
         hs += [(Y + 0.5, X - iw / 2, X + iw / 2), (Y - 0.5, X - iw / 2, X + iw / 2)]
         vs += [(X - iw / 2, Y - 0.5, Y + 0.5), (X + iw / 2, Y - 0.5, Y + 0.5)]
     th = max(2, int(round(T * PPU)))
+    # the cabinet's top face (BoardView.ExposedTops): a gray-blue band above top edges no shelf stands on
+    cab_src = Image.open(os.path.join(art, 'cabinet_top.png')).convert('RGBA')
+    CH = 0.125
+    tops = []
+    for sh in shelves:
+        X, Y, iw = sh['pos']['x'], sh['pos']['y'], sh['sicw'] * SW
+        pieces = [(X - iw / 2, X + iw / 2)]
+        for o in shelves:
+            if o is sh or abs(o['pos']['y'] - 0.5 - (Y + 0.5)) > 0.02:
+                continue
+            c0, c1 = o['pos']['x'] - o['sicw'] * SW / 2, o['pos']['x'] + o['sicw'] * SW / 2
+            nxt = []
+            for a, b in pieces:
+                if c1 <= a or c0 >= b:
+                    nxt.append((a, b))
+                    continue
+                if c0 > a:
+                    nxt.append((a, c0))
+                if c1 < b:
+                    nxt.append((c1, b))
+            pieces = nxt
+        tops += [(Y + 0.5, a, b) for a, b in pieces if b - a > 0.02]
+    ch_px = max(2, int(round(CH * PPU)))
+    f = ch_px / cab_src.height
+    cab_src = cab_src.resize((max(2, int(round(cab_src.width * f))), ch_px), Image.LANCZOS)
+    for line, a, b in merge(tops):
+        band = nine_slice(cab_src, int(round((b - a + T) * PPU)), ch_px, int(24 * f), 0, int(24 * f), 0)
+        x, y = px((a + b) / 2, line + CH / 2)
+        layers['back'].alpha_composite(band, (x - band.width // 2, y - band.height // 2))
     for line, a, b in merge(vs):
         length = int(round((b - a + T) * PPU))
         bar = horizontal_tube(tube_src, length, th).rotate(90, expand=True)

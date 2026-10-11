@@ -161,11 +161,9 @@ Tahta sabitken her seferinde tek bir kolu değiştirip simülasyonla ölçtüm (
 Level Editor'de kaydedilen her level oyunun menüsünde **MY LEVELS** altında oynanabiliyor. Aşağıdaki tablo yayınlama sırasında (Sortex → 3. Publish to GitHub) her level 1000 simüle oyuncuyla oynatılarak otomatik yazılıyor; kazanılamayan (3'ün katı olmayan) levellar yayınlanmıyor.
 
 <!-- MY-LEVELS:START -->
-_Bu tablo **Sortex → 3. Publish to GitHub** ile otomatik güncelleniyor (son: 2026-10-11 13:49)._
+_Bu tablo **Sortex → 3. Publish to GitHub** ile otomatik güncelleniyor (son: 2026-10-11 15:45)._
 
-| Level | Tier | Raf | Item | Tür | Süre | Engeller | Simüle kazanma (1000 oyuncu) | Hedef bant | Kayıp: süre / hamle kalmadı | Çözücü |
-|---|---|---|---|---|---|---|---|---|---|---|
-| Level 1 | Normal | 11 | 24 | 8 | 100 sn (4,17 sn/item) | shutter 1, cargo door 1, moving 5, geniş raf 1, frozen 1, mystery 1 | **%82** | %88–100 (daha zor) | %18 / %0 | ✔ 18 hamle |
+Henüz editörle kaydedilmiş level yok.
 <!-- MY-LEVELS:END -->
 
 ## 4. Doğrulama: çözücü + simüle oyuncu
@@ -209,17 +207,23 @@ Açılış ekranı, oyunun `MainScene.prefab` dosyasından birebir kuruluyor (`T
 ### Level ekranı (oyunun kendisinden)
 - **Ölçek:** Level dosyaları 3 slotlu rafları 3,13, satırları 1 birim aralıkla koyuyor; oyun yatay ekseni yarı ölçekte çiziyor (3 slotlu raf ekranda ≈ 1,6 × 1). Bu oran oyunun ekran görüntüsünden ölçüldü (satır aralığı / raf aralığı) ve `BoardView.XS = 0.5` ile uygulanıyor. Model ve simülasyon level dosyasındaki sayılarla çalışmaya devam ediyor; yalnızca çizim sıkışıyor. Raf sprite'ları oyunun `BaseShelf.prefab` modelinden bu oranla yeniden üretildi (`Tools/render_shelf.py`).
 - **Kamera:** Oyundaki gibi en az 4,6166 birim genişliği gösteriyor ve raflar üst bar ile booster'lar arasına sığana kadar uzaklaşıyor. Raflar ekranın genişliğini ince bir payla dolduruyor.
-- **Raf çerçevesi:** Oyunda yan yana ve üst üste gelen raflar tek bir çıtayı paylaşıyor (iki bölme arasında tek çizgi, satırların birleştiği yerde T birleşimi). Burada da sabit rafların kenarları birleştirilip tek çıta olarak çiziliyor (`BoardView.BuildFrame`); çıta kalınlığı ve renk profili oyunun ekran görüntüsünden ölçüldü. Hareketli raflar kendi çerçevesini taşıyor.
+- **Raf çerçevesi:** Oyunda yan yana ve üst üste gelen raflar tek bir çıtayı paylaşıyor (iki bölme arasında tek çizgi, satırların birleştiği yerde T birleşimi). Burada da sabit rafların kenarları birleştirilip tek çıta olarak çiziliyor (`BoardView.BuildFrame`); çıta kalınlığı ve renk profili oyunun ekran görüntüsünden ölçüldü. Hareketli raflar kendi çerçevesini taşıyor. Dolabın üst yüzü oyundaki gibi, üstünde raf olmayan her üst kenarın üstünde gri-mavi bir şerit olarak görünüyor (en üst sıra ve basamaklar; renkler ekran görüntüsünden).
 - **Arka plan:** Oyunun level arka planı: üstte ve altta koyu lacivert, ortada parlak mavi, hafif çapraz ışık huzmeleri (renkler ekran görüntüsünden).
 - **Eşleşme:** Üçüncü item bırakıldığında önce boş slota oturuyor, sonra üçü birden patlıyor ve arkadaki sıra öne geliyor.
-- **Üst bar ve booster'lar:** `LevelSceneUI.prefab`'dan (`Resources/Sortex/Level/level.json`, `Scripts/Game/LevelHud.cs`): tier'a göre lacivert / kırmızı / mor "Level N" plakası, yeşil çerçeveli süre (son 10 saniyede kırmızı, uyarı ışığı yanıp söner) ve pause butonu. Alttaki dört booster (vakum, sihirli şapka, boya tabancası, dondurucu) oyunda 3D model; burada oyunun ikonlarıyla duruyor ve prototipin parçası değil (dokununca bilgi verir). Sürenin yeşil halkası (oyunda shader) ve booster rafı (oyunda 3D) sprite olarak yeniden çizildi.
+- **Üst bar ve booster'lar:** `LevelSceneUI.prefab`'dan (`Resources/Sortex/Level/level.json`, `Scripts/Game/LevelHud.cs`): tier'a göre lacivert / kırmızı / mor "Level N" plakası, süre ve pause butonu. Sürenin etrafındaki yeşil halka kalan süreyle birlikte saat yönünde azalıyor, son 30 saniyede kırmızıya dönüyor, son 10 saniyede uyarı ışığı yanıp sönüyor. Alttaki dört booster (vakum, sihirli şapka, boya tabancası, dondurucu) oyunda 3D model; burada oyunun ikonlarıyla duruyor ve prototipin parçası değil (dokununca bilgi verir). Sürenin yeşil halkası (oyunda shader) ve booster rafı (oyunda 3D) sprite olarak yeniden çizildi.
 - **Pause penceresi:** `LevelPauseDialog.prefab`'dan (`Resources/Sortex/Level/pause.json`, `Scripts/Game/PauseDialog.cs`): "Paused" şeridi, müzik / ses / titreşim / ipucu düğmeleri, **Continue** ve **Quit**. Pause açıkken süre durur.
-- Üç ekranı da (`menu`, `level`, `pause`) aynı kod kuruyor: `Scripts/Game/PrefabScreen.cs`.
+- **Level sonu:** oyunun kendi pencereleri (`Scripts/Game/LevelEndDialogs.cs`):
+  - Kazanınca `LevelWinDialog.prefab`: katmanlı "Level Completed!" başlığı, kırmızı kurdeleli coin ödülü, bitirme süresi ve **Continue** (ana menüye döner, yeşil buton sıradaki leveli gösterir).
+  - Kaybedince önce `NoMoreMatchesPanel.prefab`, yani oyunun son şans penceresi. Raflar dolup hamle kalmayınca **"Out of Space!"** (sihirli şapka, karıştırma teklifi), süre bitince **"Out of Time!"** (kum saati, +60 saniye teklifi). **Play On** süre bitiminde levele 60 saniye ekleyip devam ettirir; karıştırma booster olduğu için prototipte yok. Sağ üstteki **X** bir sonraki pencereye geçer.
+  - Sonra `LevelLoseDialog.prefab`: kırık kalpli "Level Failed", bir sonraki deneme için booster seçimi (prototipte bilgi verir), **Try Again** (leveli baştan açar) ve **X** (ana menü).
+  - Prefab'larda yazı olmadığı için (oyun onları koddan, dile göre dolduruyor) başlıklar ve teklif cümleleri prototipin kendi metni. Kazanma penceresindeki reklamlı ikinci buton ve seri (streak) paneli yok.
+- Bütün ekranları (`menu`, `level`, `pause`, `win`, `nomore`, `lose`) aynı kod kuruyor: `Scripts/Game/PrefabScreen.cs`.
 
 ### Level Editor (Unity içinde)
 **Sortex → Level Editor** (Ctrl+Shift+L) ile açılıyor. Leveller oyunun kendi JSON formatında kaydediliyor.
 
-- **Dolap:** `+ 3-Shelf`, `+ Single`, `+ Wide` araçlarıyla tıklayarak raf eklenir. Raflar gerçek oyundaki konum ızgarasına oturur (yarım slot × 0,25 satır). Select aracıyla sürüklenir, Del ile silinir.
+- **Dolap:** `+ 3-Shelf`, `+ Single`, `+ Wide` araçlarıyla tıklayarak raf eklenir. Raflar gerçek oyundaki konum ızgarasına oturur (yarım slot × 0,25 satır). Select aracıyla sürüklenir, Del ile silinir. Tuval tahtayı oyundaki oranla çiziyor (yatay eksen yarı ölçekte), yani editörde gördüğün şekil oyundakiyle aynı.
+- **Oyun ekranı şablonu:** tuvalin üstündeki **Game screen** menüsünden *9:16 (web link, masaüstü)* ya da *9:19.5 (telefon)* seçilince, oyunun kamerasının bu tahta için göstereceği ekran canlı çiziliyor: oyunun level arka planı, ekranın çerçevesi (dışı karartılır), oyunun kendi üst barı ve booster'ları (`LevelHud` editörde render ediliyor) ve kesikli bir alan. Kesikli alan, rafların normal boyutta kaldığı bölge: yan yana üç 3'lü raf genişliği, üst bar ile booster'lar arasındaki yükseklik (9:16'da 4 sıra, telefonda 6 sıra). Raflar bu alanı aşınca oyun uzaklaşıyor; şablonun üstündeki yazı ne kadar küçüleceğini söylüyor ("zooms out to 86%") ve alan turuncuya dönüyor. Kamera oyundaki gibi tahtanın ortasına odaklanıyor, raf eklenip taşındıkça şablon da güncelleniyor.
 - **Moving row:** `+ Moving row` level 11'deki gibi 5 rafı tek sıra halinde ekler. Ekranda ortadaki 3 raf görünür, dıştakiler borunun içinde bekler. Sıra yana kayar, bir kenardan boruya girip öbür kenardan çıkar. Yön ve hız sağ panelden ayarlanır (oyunda çoğunlukla 1 birim/sn).
 - **Raf ayarları:** sıra sayısı (row sekmelerinin yanındaki `+ Row` / `− Row`), Lock (kaç eşleşmede açılır), Shutter, Cargo Door, Moving, Rotating Door, Iris (*Starts closed* ile kapalı başlar), Fuse Box (paletten seçili itemi `+` ile hedef olarak ekler, en fazla 3), slot sayısı (tekli / 3 / geniş).
 - **Itemler:** paletten seçilip (projedeki tüm `item_*.png`) slota boyanır. Sıralar arasında 1–9 tuşlarıyla geçilir, Shift+tık bir rafın sırasını tümden doldurur. Frozen ve Mystery araçları itemi işaretler. **Piñata** aracı seçilen renkte bir piñata koyar, içine paletteki itemi yerleştirir (köşedeki küçük ikon). **Egg** aracı ejderha yumurtası koyar. Paletteki kırmızı sayaç 3'ün katı olmayan türleri gösterir (piñata renkleri ve içlerindeki itemler dahil).
@@ -229,6 +233,7 @@ Açılış ekranı, oyunun `MainScene.prefab` dosyasından birebir kuruluyor (`T
 - **▶ Play level:** leveli doğrudan Play modunda açar. Kaydetmek gerekmez. Game sekmesi otomatik olarak 1080×1920 dikey telefon ekranına geçer.
 - **Save:** yeni level `Level 1`, `Level 2`… adıyla `Resources/Sortex/Levels` içine kaydedilir. Oyunun menüsünde **MY LEVELS** başlığı altında sırayla listelenir.
 - **⬆ Publish:** kaydedilen levelları simüle eder, README'deki "Editörle tasarladığım levellar" tablosunu yazar, WebGL'i derler ve GitHub'a gönderir (bölüm 6, Çalıştırma 4).
+- **Silmek:** `Open ▾ → Delete "Level N"…` açık olan kendi levelini siler (Easy / Medium / Hard silinemez). Bir sonraki Publish README tablosunu ve menüyü günceller.
 - **Kayıtlı leveli açmak:** `Open ▾` menüsü kayıtlı levelleri listeler. Project penceresinde bir level `.json` dosyasına sağ tıklayıp **Open in Sortex Level Editor** de olur (çift tıklamak dosyayı metin olarak açar). Açtıktan sonra `▶ Play level`.
 - **Oyunun orijinal levelleri:** `Open ▾ → From file…` ile APK'dan çıkan `Level00091_0.json` gibi bir dosya seçilir ve `▶ Play level` ile oynanır. Item generator'lı levellerde üretilen slotlar editörde **G** olarak görünür, itemler level başlarken dağıtılır. `Save As…` ile `Levels` klasörüne kaydedilen level MY LEVELS'a da girer.
 
@@ -285,8 +290,8 @@ Orijinal levellerin simülasyonu (60 oyuncu, booster yok): L4, 6, 11, 31, 81, 91
 | `sim/Sim.cs` | Komut satırından simülasyon. Çözücü ve oyuncu modeli `Assets/Sortex/Scripts/Core/Simulator.cs` içinde, editörle ortak (`mcs -optimize+ -out:Tools/sim/sim.exe Assets/Sortex/Scripts/Core/*.cs Tools/sim/Sim.cs`) |
 | `sensitivity.py`, `plot_levers.py` | Kol duyarlılık çalışması ve grafiği |
 | `render_level.py` | Level JSON'ını oyundaki görünümüyle PNG'ye çizer |
-| `make_main_menu.py`, `unity_yaml.py` | Oyunun prefab'larından ekranları çıkarır (düğüm ağacı, sprite'lar, yazı stilleri) ve bir önizleme PNG'si çizer: `--screen=menu` (`MainScene.prefab`), `--screen=level` (`LevelSceneUI.prefab`), `--screen=pause` (`LevelPauseDialog.prefab`). GUID → dosya eşlemesi için Unity'de **Sortex → Tools → Index Asset Export** |
-| `make_sprites.py`, `meshrender.py` | Raf, kilit, buz, shutter ve cargo door sprite'ları. Kilit kapısı APK'daki `obstacle_lock_main_*` mesh'lerinden. |
+| `make_main_menu.py`, `unity_yaml.py` | Oyunun prefab'larından ekranları çıkarır (düğüm ağacı, sprite'lar, yazı stilleri) ve bir önizleme PNG'si çizer: `--screen=menu` (`MainScene.prefab`), `--screen=level` (`LevelSceneUI.prefab`), `--screen=pause` (`LevelPauseDialog.prefab`), `--screen=win` / `nomore` / `lose` (level sonu pencereleri). GUID → dosya eşlemesi için Unity'de **Sortex → Tools → Index Asset Export** |
+| `make_sprites.py`, `meshrender.py` | Raf çıtası, dolabın üst yüzü, kilit, buz, shutter ve cargo door sprite'ları. Kilit kapısı APK'daki `obstacle_lock_main_*` mesh'lerinden. |
 | `make_obstacles.py` | Piñata, yumurta, döner kapı, iris ve fuse box sprite'ları (oyunun tutorial görsellerinden kesilip temizlenir) |
 | `render_shelf.py`, `prefab_dump.py` | Oyunun kendi `BaseShelf.prefab` modelinden raf sprite'ları (slot = level aralığının yarısı) |
 | `tests/CoreTests.cs` | Kural kodu için regresyon testleri (JSON gidiş-dönüş, shutter, frozen, kilit, raf içi kaydırma, hareketli raf, piñata, fuse box, iris, döner kapı, yumurta, geniş raf, item generator, auto-fill) |

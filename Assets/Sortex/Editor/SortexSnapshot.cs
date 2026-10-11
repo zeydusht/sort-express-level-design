@@ -6,6 +6,8 @@
 //     "width height level difficultyTag"              the home screen
 //     "width height level difficultyTag level:Easy"   Levels/Easy.json on the board with the level HUD
 //     "width height level difficultyTag pause:Easy"   the same with the pause dialog open
+//     time:Easy (25 s left: the red ring), win:Easy, space:Easy, timeup:Easy, lose:Easy (the level end dialogs)
+//     "width height level difficultyTag editorhud"     the HUD picture of the Level Editor's game-screen template
 using System;
 using System.IO;
 using Sortex.Game;
@@ -61,6 +63,19 @@ namespace Sortex.EditorTools
 
         public static void Snapshot(int width, int height, int level, int difficultyTag, string path, string screen = "menu")
         {
+            if (screen == "editorhud")
+            {
+                // the Level Editor's game-screen template: the HUD picture it draws over the board
+                var hud = SortexLevelEditor.RenderHud((float)width / height, level, difficultyTag, 100, width);
+                if (hud == null) File.WriteAllText(Path.ChangeExtension(path, ".error.txt"), "editor HUD: nothing rendered");
+                else
+                {
+                    File.WriteAllBytes(path, hud.EncodeToPNG());
+                    UnityEngine.Object.DestroyImmediate(hud);
+                    Debug.Log("Sortex: editor HUD snapshot written to " + path);
+                }
+                return;
+            }
             var holder = new GameObject("SortexSnapshot");
             RenderTexture rt = null;
             Texture2D tex = null;
@@ -76,8 +91,9 @@ namespace Sortex.EditorTools
                 cam.farClipPlane = 100f;
 
                 float aspect = (float)width / height;
-                if (screen.StartsWith("level:") || screen.StartsWith("pause:"))
-                    BuildLevel(holder.transform, cam, aspect, level, difficultyTag, screen.Substring(6), screen.StartsWith("pause:"));
+                int colon = screen.IndexOf(':');
+                if (colon > 0)
+                    BuildLevel(holder.transform, cam, aspect, level, difficultyTag, screen.Substring(colon + 1), screen.Substring(0, colon));
                 else
                 {
                     var menu = new MainMenuView(holder.transform);
@@ -116,7 +132,7 @@ namespace Sortex.EditorTools
         }
 
         /// <summary>A level as the game shows it: board, background, level HUD (and the pause dialog).</summary>
-        static void BuildLevel(Transform holder, Camera cam, float aspect, int number, int tag, string file, bool pause)
+        static void BuildLevel(Transform holder, Camera cam, float aspect, int number, int tag, string file, string mode)
         {
             var ta = Resources.Load<TextAsset>(SortexArt.Root + "Levels/" + file);
             if (ta == null) throw new Exception("Resources/Sortex/Levels/" + file + ".json is missing");
@@ -127,7 +143,7 @@ namespace Sortex.EditorTools
             if (!hud.Ready) throw new Exception("Resources/Sortex/Level/level.json is missing");
             hud.SetLevel(number, tag);
             hud.SetBoosters(3, 3, 3, 3);
-            hud.SetTime(lv.timeLimit, false);
+            hud.SetTime(mode == "time" ? 25f : lv.timeLimit, lv.timeLimit, false);
             hud.SetVisible(true);
             float size;
             Vector2 center;
@@ -142,12 +158,32 @@ namespace Sortex.EditorTools
             }
             bg.transform.position = new Vector3(center.x, center.y, 0f);
             hud.Follow(cam, aspect);
-            if (pause)
+            if (mode == "pause")
             {
                 var dialog = new PauseDialog(holder);
                 dialog.SetVisible(true);
                 dialog.Layout(cam, aspect);
             }
+            LevelDialog end = null;
+            if (mode == "win")
+            {
+                var win = new WinDialog(holder);
+                win.Show(20, 84f);
+                end = win;
+            }
+            else if (mode == "space" || mode == "timeup")
+            {
+                var outOf = new OutOfDialog(holder);
+                outOf.Show(mode == "timeup", 1000);
+                end = outOf;
+            }
+            else if (mode == "lose")
+            {
+                var lose = new LoseDialog(holder);
+                lose.Show();
+                end = lose;
+            }
+            if (end != null) end.Layout(cam, aspect);
         }
     }
 }
