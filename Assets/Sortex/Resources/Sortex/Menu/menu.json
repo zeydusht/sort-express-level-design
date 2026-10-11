@@ -1,0 +1,4922 @@
+{
+ "source": "Sort Express MainScene.prefab (HomePage + NavigationBar)",
+ "refWidth": 4.616601,
+ "refHeight": 10.0,
+ "font": "Bango Pro",
+ "parts": {
+  "background": {
+   "anchor": "center",
+   "nodes": [
+    {
+     "name": "MainSceneBackground",
+     "parent": -1,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "Root",
+     "parent": 0,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "Placeholder",
+     "parent": 1,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       9.828941,
+       7.3669066
+      ],
+      "layer": 0,
+      "order": 0,
+      "enabled": true,
+      "key": "MainSceneBackground"
+     }
+    },
+    {
+     "name": "CFXR3 Ambient Glows",
+     "parent": 2,
+     "active": true,
+     "pos": [
+      2.134,
+      -1.061,
+      -0.408
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 180.0
+    },
+    {
+     "name": "KillTrigger",
+     "parent": 3,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    }
+   ],
+   "container": {
+    "name": "MainMenuContentContainer",
+    "group": {
+     "layer": 1,
+     "order": 10
+    }
+   },
+   "offset": 0.0
+  },
+  "levelButton": {
+   "anchor": "bottom",
+   "nodes": [
+    {
+     "name": "LoadLevelButton",
+     "parent": -1,
+     "active": true,
+     "pos": [
+      0.0,
+      -2.754,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "group": {
+      "layer": 1,
+      "order": 0
+     }
+    },
+    {
+     "name": "Root",
+     "parent": 0,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "BackgroundLeft",
+     "parent": 1,
+     "active": true,
+     "pos": [
+      0.0,
+      0.021,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       1.15,
+       0.9532374
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "PlayButtonBackground"
+     }
+    },
+    {
+     "name": "BackgroundRight",
+     "parent": 1,
+     "active": true,
+     "pos": [
+      0.0,
+      0.021,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       1.15,
+       0.9532374
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "PlayButtonBackground"
+     }
+    },
+    {
+     "name": "FrameLeft",
+     "parent": 1,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       1.24,
+       1.1870503
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "PlayButtonFrame"
+     }
+    },
+    {
+     "name": "FrameRight",
+     "parent": 1,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       1.24,
+       1.1870503
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "PlayButtonFrame"
+     }
+    },
+    {
+     "name": "Button",
+     "parent": 1,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "PressDownTransform",
+     "parent": 6,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "BaseLeft",
+     "parent": 7,
+     "active": true,
+     "pos": [
+      0.0,
+      0.021,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       1.14,
+       0.97482014
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "PlayButton"
+     }
+    },
+    {
+     "name": "BaseRight",
+     "parent": 7,
+     "active": true,
+     "pos": [
+      0.0,
+      0.021,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       1.14,
+       0.97482014
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "PlayButton"
+     }
+    },
+    {
+     "name": "DefaultText",
+     "parent": 7,
+     "active": true,
+     "pos": [
+      0.0,
+      -0.029,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "ShadowText",
+     "parent": 10,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       1.8536,
+       0.69
+      ],
+      "anchored": [
+       0.0,
+       0.025
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Play Button Bold"
+     }
+    },
+    {
+     "name": "BaseText",
+     "parent": 10,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       1.8536,
+       0.69
+      ],
+      "anchored": [
+       0.0,
+       0.06399983
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Play Button Default"
+     }
+    },
+    {
+     "name": "HardText",
+     "parent": 7,
+     "active": false,
+     "pos": [
+      0.0,
+      -0.029,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "ShadowText",
+     "parent": 13,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       1.8536,
+       0.364
+      ],
+      "anchored": [
+       0.0,
+       0.172
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Play Button Bold"
+     }
+    },
+    {
+     "name": "BaseText",
+     "parent": 13,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       1.8536,
+       0.364
+      ],
+      "anchored": [
+       0.0,
+       0.1926
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Play Button Hard"
+     }
+    },
+    {
+     "name": "HardLevelText",
+     "parent": 13,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "ShadowText",
+     "parent": 16,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       1.8536,
+       0.3221
+      ],
+      "anchored": [
+       0.0,
+       -0.159
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Play Button Bold"
+     }
+    },
+    {
+     "name": "BaseText",
+     "parent": 16,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       1.8536,
+       0.3221
+      ],
+      "anchored": [
+       0.0,
+       -0.1407
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Play Button Hard"
+     }
+    },
+    {
+     "name": "SuperHardLevel",
+     "parent": 7,
+     "active": false,
+     "pos": [
+      0.0,
+      -0.029,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "ShadowText",
+     "parent": 19,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       1.8536,
+       0.364
+      ],
+      "anchored": [
+       0.0,
+       0.172
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Play Button Bold"
+     }
+    },
+    {
+     "name": "BaseText",
+     "parent": 19,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       1.8536,
+       0.364
+      ],
+      "anchored": [
+       0.0,
+       0.1926
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Play Button Super Hard"
+     }
+    },
+    {
+     "name": "SuperHardText",
+     "parent": 19,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "ShadowText",
+     "parent": 22,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       1.8536,
+       0.3221
+      ],
+      "anchored": [
+       0.0,
+       -0.159
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Play Button Bold"
+     }
+    },
+    {
+     "name": "BaseText",
+     "parent": 22,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       1.8536,
+       0.3221
+      ],
+      "anchored": [
+       0.0,
+       -0.1407
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Play Button Super Hard"
+     }
+    },
+    {
+     "name": "PackLevel",
+     "parent": 7,
+     "active": false,
+     "pos": [
+      0.0,
+      -0.029,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "ShadowText",
+     "parent": 25,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       1.8536,
+       0.364
+      ],
+      "anchored": [
+       0.0,
+       0.172
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Play Button Bold"
+     }
+    },
+    {
+     "name": "BaseText",
+     "parent": 25,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       1.8536,
+       0.364
+      ],
+      "anchored": [
+       0.0,
+       0.1926
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Play Button Pack"
+     }
+    },
+    {
+     "name": "PackNameText",
+     "parent": 25,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "ShadowText",
+     "parent": 28,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       1.8536,
+       0.3221
+      ],
+      "anchored": [
+       0.0,
+       -0.159
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Play Button Bold"
+     }
+    },
+    {
+     "name": "BaseText",
+     "parent": 28,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       1.8536,
+       0.3221
+      ],
+      "anchored": [
+       0.0,
+       -0.1407
+      ],
+      "layer": 1,
+      "order": 1,
+      "style": "Play Button Pack"
+     }
+    }
+   ],
+   "container": {
+    "name": "MainMenuContentContainer",
+    "group": {
+     "layer": 1,
+     "order": 10
+    }
+   },
+   "offset": 2.246
+  },
+  "topUI": {
+   "anchor": "top",
+   "nodes": [
+    {
+     "name": "TopUI",
+     "parent": -1,
+     "active": true,
+     "pos": [
+      0.0,
+      4.1,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "LivesButton",
+     "parent": 0,
+     "active": true,
+     "pos": [
+      -0.353,
+      0.017000198,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "group": {
+      "layer": 1,
+      "order": 0
+     }
+    },
+    {
+     "name": "Button",
+     "parent": 1,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "PressDownTransform",
+     "parent": 2,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "BackgroundLeft",
+     "parent": 3,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.62,
+       0.4388489
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "GoldIndicator"
+     }
+    },
+    {
+     "name": "BackgroundRight",
+     "parent": 3,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.62,
+       0.4388489
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "GoldIndicator"
+     }
+    },
+    {
+     "name": "LifeTimerContainer",
+     "parent": 3,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "Icon",
+     "parent": 6,
+     "active": true,
+     "pos": [
+      -0.551,
+      -0.005,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       0.82,
+       0.99
+      ],
+      "layer": 1,
+      "order": 1,
+      "enabled": true,
+      "key": "MainMenuHeart256"
+     }
+    },
+    {
+     "name": "Shadow",
+     "parent": 7,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       0.0,
+       0.0,
+       0.0,
+       0.502
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       0.92086333,
+       0.92086333
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "MainMenuHeartShadow256"
+     }
+    },
+    {
+     "name": "IconText",
+     "parent": 7,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       0.3482875,
+       0.38395995
+      ],
+      "anchored": [
+       0.0,
+       0.0
+      ],
+      "layer": 1,
+      "order": 2,
+      "style": "Dark Red Outline"
+     }
+    },
+    {
+     "name": "PlusIcon",
+     "parent": 7,
+     "active": false,
+     "pos": [
+      0.202,
+      -0.21200013,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "BaseLeft",
+     "parent": 10,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       5.07,
+       2.16
+      ],
+      "layer": 1,
+      "order": 3,
+      "enabled": true,
+      "key": "CoinGreenBadge"
+     }
+    },
+    {
+     "name": "BaseRight",
+     "parent": 10,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       5.07,
+       2.16
+      ],
+      "layer": 1,
+      "order": 3,
+      "enabled": true,
+      "key": "CoinGreenBadge"
+     }
+    },
+    {
+     "name": "Icon",
+     "parent": 10,
+     "active": true,
+     "pos": [
+      0.001,
+      0.001,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       5.07,
+       2.16
+      ],
+      "layer": 1,
+      "order": 3,
+      "enabled": true,
+      "key": "PlusIcon"
+     }
+    },
+    {
+     "name": "TimerText",
+     "parent": 6,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       0.7773,
+       0.3085
+      ],
+      "anchored": [
+       0.185,
+       0.01
+      ],
+      "layer": 1,
+      "order": 10,
+      "style": "Dark Blue Default"
+     }
+    },
+    {
+     "name": "FullText",
+     "parent": 6,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       0.7699,
+       0.2934
+      ],
+      "anchored": [
+       0.14,
+       0.0056
+      ],
+      "layer": 1,
+      "order": 10,
+      "style": "Dark Blue Default"
+     }
+    },
+    {
+     "name": "InfiniteLifeTimerContainer",
+     "parent": 3,
+     "active": false,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "Icon",
+     "parent": 16,
+     "active": true,
+     "pos": [
+      -0.594,
+      -0.0089998245,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       0.82,
+       0.99
+      ],
+      "layer": 1,
+      "order": 1,
+      "enabled": true,
+      "key": "MainMenuHeart256"
+     }
+    },
+    {
+     "name": "Shadow",
+     "parent": 17,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       0.0,
+       0.0,
+       0.0,
+       0.502
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       0.92086333,
+       0.92086333
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "MainMenuHeartShadow256"
+     }
+    },
+    {
+     "name": "InfinityIcon",
+     "parent": 16,
+     "active": true,
+     "pos": [
+      -0.594,
+      0.015999794,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       0.82,
+       0.99
+      ],
+      "layer": 1,
+      "order": 10,
+      "enabled": true,
+      "key": "InfinityIcon"
+     }
+    },
+    {
+     "name": "InfiniteTimerText",
+     "parent": 16,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       0.7287,
+       0.2985
+      ],
+      "anchored": [
+       0.14,
+       0.0113
+      ],
+      "layer": 1,
+      "order": 10,
+      "style": "Dark Blue Default"
+     }
+    },
+    {
+     "name": "CoinsButton",
+     "parent": 0,
+     "active": true,
+     "pos": [
+      1.319,
+      0.017,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "group": {
+      "layer": 1,
+      "order": 0
+     }
+    },
+    {
+     "name": "Button",
+     "parent": 21,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "PressDownTransform",
+     "parent": 22,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "BackgroundLeft",
+     "parent": 23,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.62,
+       0.4388489
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "GoldIndicator"
+     }
+    },
+    {
+     "name": "BackgroundRight",
+     "parent": 23,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.62,
+       0.4388489
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "GoldIndicator"
+     }
+    },
+    {
+     "name": "Text",
+     "parent": 23,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       0.8422,
+       0.3571
+      ],
+      "anchored": [
+       0.112,
+       -0.012
+      ],
+      "layer": 1,
+      "order": 0,
+      "style": "Dark Blue Default"
+     }
+    },
+    {
+     "name": "Icon",
+     "parent": 23,
+     "active": true,
+     "pos": [
+      -0.594,
+      -0.003,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       0.5971223,
+       0.58992803
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "CoinIcon"
+     }
+    },
+    {
+     "name": "PlusIcon",
+     "parent": 27,
+     "active": true,
+     "pos": [
+      0.219,
+      -0.217,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "BaseLeft",
+     "parent": 28,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       5.07,
+       2.16
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "CoinGreenBadge"
+     }
+    },
+    {
+     "name": "BaseRight",
+     "parent": 28,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       5.07,
+       2.16
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "CoinGreenBadge"
+     }
+    },
+    {
+     "name": "Icon",
+     "parent": 28,
+     "active": true,
+     "pos": [
+      0.001,
+      0.001,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       5.07,
+       2.16
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "PlusIcon"
+     }
+    },
+    {
+     "name": "Icons",
+     "parent": 0,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "ProfileAvatarButton",
+     "parent": 32,
+     "active": true,
+     "pos": [
+      -1.764,
+      0.09,
+      0.0
+     ],
+     "scale": [
+      0.65,
+      0.65
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "Frame",
+     "parent": 33,
+     "active": true,
+     "pos": [
+      0.0,
+      -0.015,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "Left",
+     "parent": 34,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       0.60431653,
+       1.2338129
+      ],
+      "layer": 1,
+      "order": 1,
+      "enabled": true,
+      "key": "ProfileFrameBlue"
+     }
+    },
+    {
+     "name": "Right",
+     "parent": 34,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       0.60431653,
+       1.2338129
+      ],
+      "layer": 1,
+      "order": 1,
+      "enabled": true,
+      "key": "ProfileFrameBlue"
+     }
+    },
+    {
+     "name": "Avatar",
+     "parent": 33,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       1.0251799,
+       1.0215827
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "AvatarIconDuck"
+     }
+    }
+   ],
+   "container": {
+    "name": "MainMenuContentContainer",
+    "group": {
+     "layer": 1,
+     "order": 10
+    }
+   },
+   "offset": -0.9
+  },
+  "navigation": {
+   "anchor": "bottom",
+   "nodes": [
+    {
+     "name": "NavigationBar",
+     "parent": -1,
+     "active": true,
+     "pos": [
+      0.0,
+      -5.0,
+      -1.0
+     ],
+     "scale": [
+      1.0658,
+      1.0658
+     ],
+     "rot": 0.0,
+     "group": {
+      "layer": 1,
+      "order": 30
+     }
+    },
+    {
+     "name": "Root",
+     "parent": 0,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "NavigationPanelBackground",
+     "parent": 1,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "BaseLeft",
+     "parent": 2,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       72.46754,
+       1.017
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "NavigationBarDefault"
+     }
+    },
+    {
+     "name": "BaseRight",
+     "parent": 2,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       72.46754,
+       1.017
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "NavigationBarDefault"
+     }
+    },
+    {
+     "name": "ShopButton",
+     "parent": 1,
+     "active": true,
+     "pos": [
+      -1.9310002,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "group": {
+      "layer": 1,
+      "order": 40
+     }
+    },
+    {
+     "name": "Default",
+     "parent": 5,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "BaseLeft",
+     "parent": 6,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.454,
+       1.0143884
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "NavigationBarDefault"
+     }
+    },
+    {
+     "name": "BaseRight",
+     "parent": 6,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.454,
+       1.0143884
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "NavigationBarDefault"
+     }
+    },
+    {
+     "name": "LeftConcealer",
+     "parent": 6,
+     "active": false,
+     "pos": [
+      -0.817,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.4,
+       1.017
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "NavigationBarDefault"
+     }
+    },
+    {
+     "name": "RightConcealer",
+     "parent": 6,
+     "active": false,
+     "pos": [
+      0.817,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.4,
+       1.017
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "NavigationBarDefault"
+     }
+    },
+    {
+     "name": "Selected",
+     "parent": 5,
+     "active": false,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "BaseLeft",
+     "parent": 11,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.7805755,
+       1.381295
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "NavigationBarSelected"
+     }
+    },
+    {
+     "name": "BaseRight",
+     "parent": 11,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.7805755,
+       1.381295
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "NavigationBarSelected"
+     }
+    },
+    {
+     "name": "LeftFrame",
+     "parent": 11,
+     "active": true,
+     "pos": [
+      -0.7805,
+      1.0593,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       15.0,
+       0.14028777
+      ],
+      "layer": 1,
+      "order": 35,
+      "enabled": true,
+      "key": "NavigationBarLine"
+     }
+    },
+    {
+     "name": "RightFrame",
+     "parent": 11,
+     "active": true,
+     "pos": [
+      0.7805,
+      1.0593,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       15.0,
+       0.14028777
+      ],
+      "layer": 1,
+      "order": 35,
+      "enabled": true,
+      "key": "NavigationBarLine"
+     }
+    },
+    {
+     "name": "Icon",
+     "parent": 5,
+     "active": true,
+     "pos": [
+      0.0,
+      0.55,
+      0.0
+     ],
+     "scale": [
+      0.8,
+      0.8
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       1.0,
+       1.0
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "ShopIcon"
+     }
+    },
+    {
+     "name": "Text",
+     "parent": 5,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       1.0964,
+       0.2
+      ],
+      "anchored": [
+       0.0,
+       -0.2
+      ],
+      "layer": 1,
+      "order": 0,
+      "style": "Default"
+     }
+    },
+    {
+     "name": "LeaderboardButton",
+     "parent": 1,
+     "active": true,
+     "pos": [
+      -1.0590003,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "group": {
+      "layer": 1,
+      "order": 40
+     }
+    },
+    {
+     "name": "Default",
+     "parent": 18,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "BaseLeft",
+     "parent": 19,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.454,
+       1.0143884
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "NavigationBarDefault"
+     }
+    },
+    {
+     "name": "BaseRight",
+     "parent": 19,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.454,
+       1.0143884
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "NavigationBarDefault"
+     }
+    },
+    {
+     "name": "LeftConcealer",
+     "parent": 19,
+     "active": false,
+     "pos": [
+      -0.817,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.4,
+       1.017
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "NavigationBarDefault"
+     }
+    },
+    {
+     "name": "RightConcealer",
+     "parent": 19,
+     "active": false,
+     "pos": [
+      0.817,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.4,
+       1.017
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "NavigationBarDefault"
+     }
+    },
+    {
+     "name": "Selected",
+     "parent": 18,
+     "active": false,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "BaseLeft",
+     "parent": 24,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.7805755,
+       1.381295
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "NavigationBarSelected"
+     }
+    },
+    {
+     "name": "BaseRight",
+     "parent": 24,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.7805755,
+       1.381295
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "NavigationBarSelected"
+     }
+    },
+    {
+     "name": "LeftFrame",
+     "parent": 24,
+     "active": true,
+     "pos": [
+      -0.7805,
+      1.0593,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       15.0,
+       0.14028777
+      ],
+      "layer": 1,
+      "order": 35,
+      "enabled": true,
+      "key": "NavigationBarLine"
+     }
+    },
+    {
+     "name": "RightFrame",
+     "parent": 24,
+     "active": true,
+     "pos": [
+      0.7805,
+      1.0593,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       15.0,
+       0.14028777
+      ],
+      "layer": 1,
+      "order": 35,
+      "enabled": true,
+      "key": "NavigationBarLine"
+     }
+    },
+    {
+     "name": "Icon",
+     "parent": 18,
+     "active": true,
+     "pos": [
+      0.0,
+      0.55,
+      0.0
+     ],
+     "scale": [
+      0.8,
+      0.8
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       1.0,
+       1.0
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "LeaderboardIcon"
+     }
+    },
+    {
+     "name": "Text",
+     "parent": 18,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       1.0964,
+       0.2
+      ],
+      "anchored": [
+       0.0,
+       -0.2
+      ],
+      "layer": 1,
+      "order": 0,
+      "style": "Default"
+     }
+    },
+    {
+     "name": "HomeButton",
+     "parent": 1,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "group": {
+      "layer": 1,
+      "order": 40
+     }
+    },
+    {
+     "name": "Default",
+     "parent": 31,
+     "active": false,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "BaseLeft",
+     "parent": 32,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.454,
+       1.0143884
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "NavigationBarDefault"
+     }
+    },
+    {
+     "name": "BaseRight",
+     "parent": 32,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.454,
+       1.0143884
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "NavigationBarDefault"
+     }
+    },
+    {
+     "name": "LeftConcealer",
+     "parent": 32,
+     "active": false,
+     "pos": [
+      -0.817,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.4,
+       1.017
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "NavigationBarDefault"
+     }
+    },
+    {
+     "name": "RightConcealer",
+     "parent": 32,
+     "active": false,
+     "pos": [
+      0.817,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.4,
+       1.017
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "NavigationBarDefault"
+     }
+    },
+    {
+     "name": "Selected",
+     "parent": 31,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "BaseLeft",
+     "parent": 37,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.7805755,
+       1.381295
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "NavigationBarSelected"
+     }
+    },
+    {
+     "name": "BaseRight",
+     "parent": 37,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.7805755,
+       1.381295
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "NavigationBarSelected"
+     }
+    },
+    {
+     "name": "LeftFrame",
+     "parent": 37,
+     "active": true,
+     "pos": [
+      -0.7805,
+      1.0593,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       15.0,
+       0.14028777
+      ],
+      "layer": 1,
+      "order": 35,
+      "enabled": true,
+      "key": "NavigationBarLine"
+     }
+    },
+    {
+     "name": "RightFrame",
+     "parent": 37,
+     "active": true,
+     "pos": [
+      0.7805,
+      1.0593,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       15.0,
+       0.14028777
+      ],
+      "layer": 1,
+      "order": 35,
+      "enabled": true,
+      "key": "NavigationBarLine"
+     }
+    },
+    {
+     "name": "Icon",
+     "parent": 31,
+     "active": true,
+     "pos": [
+      0.0,
+      0.755,
+      0.0
+     ],
+     "scale": [
+      1.1,
+      1.1
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       1.0,
+       1.0
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "HomeIcon"
+     }
+    },
+    {
+     "name": "Text",
+     "parent": 31,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       1.0964,
+       0.2
+      ],
+      "anchored": [
+       0.0,
+       0.275
+      ],
+      "layer": 1,
+      "order": 0,
+      "style": "Default"
+     }
+    },
+    {
+     "name": "TeamsButton",
+     "parent": 1,
+     "active": false,
+     "pos": [
+      1.072657,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "group": {
+      "layer": 1,
+      "order": 40
+     }
+    },
+    {
+     "name": "Default",
+     "parent": 44,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "BaseLeft",
+     "parent": 45,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.454,
+       1.0143884
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "NavigationBarDefault"
+     }
+    },
+    {
+     "name": "BaseRight",
+     "parent": 45,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.454,
+       1.0143884
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "NavigationBarDefault"
+     }
+    },
+    {
+     "name": "LeftConcealer",
+     "parent": 45,
+     "active": false,
+     "pos": [
+      -0.817,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.4,
+       1.017
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "NavigationBarDefault"
+     }
+    },
+    {
+     "name": "RightConcealer",
+     "parent": 45,
+     "active": false,
+     "pos": [
+      0.817,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.4,
+       1.017
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "NavigationBarDefault"
+     }
+    },
+    {
+     "name": "Selected",
+     "parent": 44,
+     "active": false,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "BaseLeft",
+     "parent": 50,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.7805755,
+       1.381295
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "NavigationBarSelected"
+     }
+    },
+    {
+     "name": "BaseRight",
+     "parent": 50,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.7805755,
+       1.381295
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "NavigationBarSelected"
+     }
+    },
+    {
+     "name": "LeftFrame",
+     "parent": 50,
+     "active": true,
+     "pos": [
+      -0.7805,
+      1.0593,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       15.0,
+       0.14028777
+      ],
+      "layer": 1,
+      "order": 35,
+      "enabled": true,
+      "key": "NavigationBarLine"
+     }
+    },
+    {
+     "name": "RightFrame",
+     "parent": 50,
+     "active": true,
+     "pos": [
+      0.7805,
+      1.0593,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       15.0,
+       0.14028777
+      ],
+      "layer": 1,
+      "order": 35,
+      "enabled": true,
+      "key": "NavigationBarLine"
+     }
+    },
+    {
+     "name": "Icon",
+     "parent": 44,
+     "active": true,
+     "pos": [
+      0.0,
+      0.45,
+      0.0
+     ],
+     "scale": [
+      0.8,
+      0.8
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       1.0,
+       1.0
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "TeamsIcon"
+     }
+    },
+    {
+     "name": "Text",
+     "parent": 44,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       1.0964,
+       0.2
+      ],
+      "anchored": [
+       0.0,
+       -0.2
+      ],
+      "layer": 1,
+      "order": 0,
+      "style": "Default"
+     }
+    },
+    {
+     "name": "PacksButton",
+     "parent": 1,
+     "active": true,
+     "pos": [
+      1.0589998,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "group": {
+      "layer": 1,
+      "order": 40
+     }
+    },
+    {
+     "name": "Default",
+     "parent": 57,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "BaseLeft",
+     "parent": 58,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.454,
+       1.0143884
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "NavigationBarDefault"
+     }
+    },
+    {
+     "name": "BaseRight",
+     "parent": 58,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.454,
+       1.0143884
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "NavigationBarDefault"
+     }
+    },
+    {
+     "name": "LeftConcealer",
+     "parent": 58,
+     "active": false,
+     "pos": [
+      -0.817,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.4,
+       1.017
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "NavigationBarDefault"
+     }
+    },
+    {
+     "name": "RightConcealer",
+     "parent": 58,
+     "active": false,
+     "pos": [
+      0.817,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.4,
+       1.017
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "NavigationBarDefault"
+     }
+    },
+    {
+     "name": "Selected",
+     "parent": 57,
+     "active": false,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "BaseLeft",
+     "parent": 63,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.7805755,
+       1.381295
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "NavigationBarSelected"
+     }
+    },
+    {
+     "name": "BaseRight",
+     "parent": 63,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.7805755,
+       1.381295
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "NavigationBarSelected"
+     }
+    },
+    {
+     "name": "LeftFrame",
+     "parent": 63,
+     "active": true,
+     "pos": [
+      -0.7805,
+      1.0593,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       15.0,
+       0.14028777
+      ],
+      "layer": 1,
+      "order": 35,
+      "enabled": true,
+      "key": "NavigationBarLine"
+     }
+    },
+    {
+     "name": "RightFrame",
+     "parent": 63,
+     "active": true,
+     "pos": [
+      0.7805,
+      1.0593,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       15.0,
+       0.14028777
+      ],
+      "layer": 1,
+      "order": 35,
+      "enabled": true,
+      "key": "NavigationBarLine"
+     }
+    },
+    {
+     "name": "Icon",
+     "parent": 57,
+     "active": true,
+     "pos": [
+      0.0,
+      0.55,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       1.0,
+       1.0
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "PacksIcon"
+     }
+    },
+    {
+     "name": "Text",
+     "parent": 57,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       1.0964,
+       0.2
+      ],
+      "anchored": [
+       0.0,
+       -0.2
+      ],
+      "layer": 1,
+      "order": 0,
+      "style": "Default"
+     }
+    },
+    {
+     "name": "SettingsButton",
+     "parent": 1,
+     "active": true,
+     "pos": [
+      1.9309999,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "group": {
+      "layer": 1,
+      "order": 40
+     }
+    },
+    {
+     "name": "Default",
+     "parent": 70,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "BaseLeft",
+     "parent": 71,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.454,
+       1.0143884
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "NavigationBarDefault"
+     }
+    },
+    {
+     "name": "BaseRight",
+     "parent": 71,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.454,
+       1.0143884
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "NavigationBarDefault"
+     }
+    },
+    {
+     "name": "LeftConcealer",
+     "parent": 71,
+     "active": false,
+     "pos": [
+      -0.817,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.4,
+       1.017
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "NavigationBarDefault"
+     }
+    },
+    {
+     "name": "RightConcealer",
+     "parent": 71,
+     "active": false,
+     "pos": [
+      0.817,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.4,
+       1.017
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "NavigationBarDefault"
+     }
+    },
+    {
+     "name": "Selected",
+     "parent": 70,
+     "active": false,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0
+    },
+    {
+     "name": "BaseLeft",
+     "parent": 76,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.7805755,
+       1.381295
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "NavigationBarSelected"
+     }
+    },
+    {
+     "name": "BaseRight",
+     "parent": 76,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       0.7805755,
+       1.381295
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "NavigationBarSelected"
+     }
+    },
+    {
+     "name": "LeftFrame",
+     "parent": 76,
+     "active": true,
+     "pos": [
+      -0.7805,
+      1.0593,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": true,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       15.0,
+       0.14028777
+      ],
+      "layer": 1,
+      "order": 35,
+      "enabled": true,
+      "key": "NavigationBarLine"
+     }
+    },
+    {
+     "name": "RightFrame",
+     "parent": 76,
+     "active": true,
+     "pos": [
+      0.7805,
+      1.0593,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 1,
+      "size": [
+       15.0,
+       0.14028777
+      ],
+      "layer": 1,
+      "order": 35,
+      "enabled": true,
+      "key": "NavigationBarLine"
+     }
+    },
+    {
+     "name": "Icon",
+     "parent": 70,
+     "active": true,
+     "pos": [
+      0.0,
+      0.55,
+      0.0
+     ],
+     "scale": [
+      0.8,
+      0.8
+     ],
+     "rot": 0.0,
+     "sprite": {
+      "color": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "flipX": false,
+      "flipY": false,
+      "drawMode": 0,
+      "size": [
+       1.0,
+       1.0
+      ],
+      "layer": 1,
+      "order": 0,
+      "enabled": true,
+      "key": "SettingsIcon"
+     }
+    },
+    {
+     "name": "Text",
+     "parent": 70,
+     "active": true,
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0
+     ],
+     "rot": 0.0,
+     "text": {
+      "size": [
+       1.0964,
+       0.2
+      ],
+      "anchored": [
+       0.0,
+       -0.2
+      ],
+      "layer": 1,
+      "order": 0,
+      "style": "Default"
+     }
+    }
+   ],
+   "offset": 0.0
+  }
+ },
+ "sprites": {
+  "MainSceneBackground": {
+   "ppu": 278.0,
+   "pivot": [
+    0.5,
+    0.5
+   ],
+   "border": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "width": 2048,
+   "height": 2048,
+   "jpg": true
+  },
+  "PlayButtonBackground": {
+   "ppu": 278.0,
+   "pivot": [
+    1.0,
+    0.5
+   ],
+   "border": [
+    306.0,
+    0.0,
+    1.0,
+    0.0
+   ],
+   "width": 308,
+   "height": 265,
+   "jpg": false
+  },
+  "PlayButtonFrame": {
+   "ppu": 278.0,
+   "pivot": [
+    1.0,
+    0.5
+   ],
+   "border": [
+    337.0,
+    1.0,
+    1.0,
+    1.0
+   ],
+   "width": 339,
+   "height": 330,
+   "jpg": false
+  },
+  "PlayButton": {
+   "ppu": 278.0,
+   "pivot": [
+    1.0,
+    0.5
+   ],
+   "border": [
+    309.0,
+    0.0,
+    1.0,
+    0.0
+   ],
+   "width": 311,
+   "height": 271,
+   "jpg": false
+  },
+  "GoldIndicator": {
+   "ppu": 278.0,
+   "pivot": [
+    1.0,
+    0.5
+   ],
+   "border": [
+    142.0,
+    1.0,
+    1.0,
+    1.0
+   ],
+   "width": 144,
+   "height": 122,
+   "jpg": false
+  },
+  "MainMenuHeart256": {
+   "ppu": 278.0,
+   "pivot": [
+    0.5,
+    0.5
+   ],
+   "border": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "width": 256,
+   "height": 256,
+   "jpg": false
+  },
+  "MainMenuHeartShadow256": {
+   "ppu": 278.0,
+   "pivot": [
+    0.5,
+    0.5
+   ],
+   "border": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "width": 256,
+   "height": 256,
+   "jpg": false
+  },
+  "CoinGreenBadge": {
+   "ppu": 278.0,
+   "pivot": [
+    1.0,
+    0.5
+   ],
+   "border": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "width": 46,
+   "height": 93,
+   "jpg": false
+  },
+  "PlusIcon": {
+   "ppu": 278.0,
+   "pivot": [
+    0.5,
+    0.5
+   ],
+   "border": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "width": 40,
+   "height": 45,
+   "jpg": false
+  },
+  "InfinityIcon": {
+   "ppu": 278.0,
+   "pivot": [
+    0.5,
+    0.5
+   ],
+   "border": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "width": 112,
+   "height": 55,
+   "jpg": false
+  },
+  "CoinIcon": {
+   "ppu": 278.0,
+   "pivot": [
+    0.5,
+    0.5
+   ],
+   "border": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "width": 162,
+   "height": 163,
+   "jpg": false
+  },
+  "ProfileFrameBlue": {
+   "ppu": 278.0,
+   "pivot": [
+    1.0,
+    0.5
+   ],
+   "border": [
+    166.0,
+    171.0,
+    1.0,
+    171.0
+   ],
+   "width": 181,
+   "height": 362,
+   "jpg": false
+  },
+  "AvatarIconDuck": {
+   "ppu": 278.0,
+   "pivot": [
+    0.5,
+    0.5
+   ],
+   "border": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "width": 285,
+   "height": 284,
+   "jpg": false
+  },
+  "NavigationBarDefault": {
+   "ppu": 278.0,
+   "pivot": [
+    1.0,
+    0.0
+   ],
+   "border": [
+    20.0,
+    1.0,
+    1.0,
+    1.0
+   ],
+   "width": 22,
+   "height": 282,
+   "jpg": false
+  },
+  "NavigationBarSelected": {
+   "ppu": 278.0,
+   "pivot": [
+    1.0,
+    0.0
+   ],
+   "border": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "width": 217,
+   "height": 384,
+   "jpg": false
+  },
+  "NavigationBarLine": {
+   "ppu": 278.0,
+   "pivot": [
+    0.0,
+    0.5
+   ],
+   "border": [
+    1.0,
+    0.0,
+    1.0,
+    0.0
+   ],
+   "width": 10,
+   "height": 39,
+   "jpg": false
+  },
+  "ShopIcon": {
+   "ppu": 278.0,
+   "pivot": [
+    0.54,
+    0.5
+   ],
+   "border": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "width": 209,
+   "height": 179,
+   "jpg": false
+  },
+  "LeaderboardIcon": {
+   "ppu": 278.0,
+   "pivot": [
+    0.5,
+    0.5
+   ],
+   "border": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "width": 180,
+   "height": 222,
+   "jpg": false
+  },
+  "HomeIcon": {
+   "ppu": 278.0,
+   "pivot": [
+    0.5,
+    0.5
+   ],
+   "border": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "width": 208,
+   "height": 194,
+   "jpg": false
+  },
+  "TeamsIcon": {
+   "ppu": 278.0,
+   "pivot": [
+    0.5,
+    0.5
+   ],
+   "border": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "width": 230,
+   "height": 209,
+   "jpg": false
+  },
+  "PacksIcon": {
+   "ppu": 278.0,
+   "pivot": [
+    0.5,
+    0.5
+   ],
+   "border": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "width": 192,
+   "height": 188,
+   "jpg": false
+  },
+  "SettingsIcon": {
+   "ppu": 278.0,
+   "pivot": [
+    0.5,
+    0.5
+   ],
+   "border": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "width": 212,
+   "height": 228,
+   "jpg": false
+  },
+  "PlayButtonHardLevel": {
+   "ppu": 278.0,
+   "pivot": [
+    1.0,
+    0.5
+   ],
+   "border": [
+    310.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "width": 311,
+   "height": 271,
+   "jpg": false
+  },
+  "PlayButtonHardLevelBackground": {
+   "ppu": 278.0,
+   "pivot": [
+    1.0,
+    0.5
+   ],
+   "border": [
+    307.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "width": 308,
+   "height": 265,
+   "jpg": false
+  },
+  "PlayButtonSuperHardLevel": {
+   "ppu": 278.0,
+   "pivot": [
+    1.0,
+    0.5
+   ],
+   "border": [
+    310.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "width": 311,
+   "height": 271,
+   "jpg": false
+  },
+  "PlayButtonSuperHardLevelBackground": {
+   "ppu": 278.0,
+   "pivot": [
+    1.0,
+    0.5
+   ],
+   "border": [
+    307.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "width": 308,
+   "height": 265,
+   "jpg": false
+  }
+ },
+ "styles": {
+  "Play Button Bold": {
+   "name": "Bango Pro SDF - Play Button Bold",
+   "face": [
+    1.0,
+    1.0,
+    1.0,
+    1.0
+   ],
+   "outline": null,
+   "outlineWidth": 0.0,
+   "underlay": null,
+   "underlayOffset": [
+    0.0,
+    -1.0
+   ],
+   "dilate": 0.238
+  },
+  "Play Button Default": {
+   "name": "Bango Pro SDF - Play Button Default",
+   "face": [
+    0.9765,
+    0.9597,
+    0.9179,
+    1.0
+   ],
+   "outline": [
+    0.0824,
+    0.549,
+    0.0549,
+    1.0
+   ],
+   "outlineWidth": 0.2,
+   "underlay": null,
+   "underlayOffset": [
+    0.0,
+    -0.4
+   ],
+   "dilate": 0.0
+  },
+  "Play Button Hard": {
+   "name": "Bango Pro SDF - Play Button Hard",
+   "face": [
+    0.9765,
+    0.9597,
+    0.9179,
+    1.0
+   ],
+   "outline": [
+    0.5529,
+    0.0588,
+    0.0588,
+    1.0
+   ],
+   "outlineWidth": 0.2,
+   "underlay": null,
+   "underlayOffset": [
+    0.0,
+    -0.4
+   ],
+   "dilate": 0.0
+  },
+  "Play Button Super Hard": {
+   "name": "Bango Pro SDF - Play Button Super Hard",
+   "face": [
+    0.9765,
+    0.9597,
+    0.9179,
+    1.0
+   ],
+   "outline": [
+    0.3647,
+    0.0549,
+    0.549,
+    1.0
+   ],
+   "outlineWidth": 0.2,
+   "underlay": null,
+   "underlayOffset": [
+    0.0,
+    -0.4
+   ],
+   "dilate": 0.0
+  },
+  "Play Button Pack": {
+   "name": "Bango Pro SDF - Play Button Pack",
+   "face": [
+    0.9765,
+    0.9597,
+    0.9179,
+    1.0
+   ],
+   "outline": [
+    0.0902,
+    0.5569,
+    0.8,
+    1.0
+   ],
+   "outlineWidth": 0.2,
+   "underlay": null,
+   "underlayOffset": [
+    0.0,
+    -0.4
+   ],
+   "dilate": 0.0
+  },
+  "Dark Red Outline": {
+   "name": "Bango Pro SDF - Dark Red Outline",
+   "face": [
+    0.9765,
+    0.9597,
+    0.9179,
+    1.0
+   ],
+   "outline": [
+    0.6706,
+    0.0627,
+    0.0627,
+    1.0
+   ],
+   "outlineWidth": 0.15,
+   "underlay": [
+    0.502,
+    0.0745,
+    0.0745,
+    1.0
+   ],
+   "underlayOffset": [
+    0.0,
+    -0.33
+   ],
+   "dilate": 0.0
+  },
+  "Dark Blue Default": {
+   "name": "Bango Pro SDF - Dark Blue Default",
+   "face": [
+    0.0745,
+    0.2122,
+    0.5,
+    1.0
+   ],
+   "outline": null,
+   "outlineWidth": 0.0,
+   "underlay": null,
+   "underlayOffset": [
+    0.0,
+    -0.514
+   ],
+   "dilate": 0.0
+  },
+  "Default": {
+   "name": "Default",
+   "face": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "outline": [
+    0.0627,
+    0.235,
+    0.6706,
+    1
+   ],
+   "outlineWidth": 0.2,
+   "underlay": null,
+   "underlayOffset": [
+    0,
+    0
+   ],
+   "dilate": 0
+  }
+ }
+}

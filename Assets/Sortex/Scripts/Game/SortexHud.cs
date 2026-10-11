@@ -37,6 +37,7 @@ namespace Sortex.Game
         Button resultPrimary;
         Text resultPrimaryLabel;
         float toastTime;
+        float toastBase = BottomHeight + 40f;
         Action onMenu, onRetry, onNext;
 
         public SortexHud(Transform parent)
@@ -149,8 +150,21 @@ namespace Sortex.Game
             return SortexArt.Get("UI/" + name, 100f);
         }
 
-        // ================================================================== menu
-        public void ShowMenu(List<LevelCardInfo> cards)
+        // ================================================================== home (the game's own home screen is drawn by MainMenuView)
+        public void ShowHome()
+        {
+            Hide();
+            game = Node("Home", root).gameObject;
+            var rt = game.GetComponent<RectTransform>();
+            Stretch(rt);
+            toastBase = 760f;
+            toastText = Txt(rt, "Toast", "", 44, Color.white, TextAnchor.MiddleCenter);
+            Place(toastText.rectTransform, new Vector2(0.5f, 0f), new Vector2(0f, toastBase), new Vector2(1000f, 80f));
+            toastText.gameObject.AddComponent<Outline>().effectColor = new Color(0.05f, 0.08f, 0.25f, 1f);
+        }
+
+        // ================================================================== level list (Packs)
+        public void ShowMenu(List<LevelCardInfo> cards, Action onHome = null)
         {
             Hide();
             menu = Node("Menu", root).gameObject;
@@ -177,13 +191,19 @@ namespace Sortex.Game
             scroll.viewport = viewport;
             scroll.content = col;
 
+            if (onHome != null)
+            {
+                Text homeLabel;
+                var home = Btn(rt, "Home", SortexArt.Blue, new Vector2(250f, 100f), 40, onHome, out homeLabel);
+                Place(home.GetComponent<RectTransform>(), new Vector2(0f, 1f), new Vector2(160f, -70f), new Vector2(250f, 100f));
+            }
             var title = Txt(col, "Title", "SORT EXPRESS", 92, Color.white, TextAnchor.MiddleCenter);
-            Place(title.rectTransform, new Vector2(0.5f, 1f), new Vector2(0f, -110f), new Vector2(1000f, 120f));
+            Place(title.rectTransform, new Vector2(0.5f, 1f), new Vector2(0f, -190f), new Vector2(1000f, 120f));
             title.gameObject.AddComponent<Outline>().effectColor = new Color(0.1f, 0.15f, 0.35f, 1f);
             var sub = Txt(col, "Subtitle", "Level Design Case  ·  Easy / Medium / Hard", 40, SortexArt.Orange, TextAnchor.MiddleCenter);
-            Place(sub.rectTransform, new Vector2(0.5f, 1f), new Vector2(0f, -200f), new Vector2(1000f, 60f));
+            Place(sub.rectTransform, new Vector2(0.5f, 1f), new Vector2(0f, -280f), new Vector2(1000f, 60f));
 
-            float y = -400f;
+            float y = -480f;
             bool ownHeader = false;
             foreach (var c in cards)
             {
@@ -314,6 +334,7 @@ namespace Sortex.Game
             hintText.rectTransform.anchoredPosition = new Vector2(0f, 18f);
             hintText.gameObject.AddComponent<Shadow>().effectColor = new Color(0f, 0f, 0f, 0.6f);
 
+            toastBase = BottomHeight + 40f;
             toastText = Txt(rt, "Toast", "", 44, SortexArt.Orange, TextAnchor.MiddleCenter);
             Place(toastText.rectTransform, new Vector2(0.5f, 0f), new Vector2(0f, BottomHeight + 40f), new Vector2(1000f, 80f));
             toastText.gameObject.AddComponent<Outline>().effectColor = new Color(0.05f, 0.05f, 0.15f, 1f);
@@ -356,7 +377,7 @@ namespace Sortex.Game
             var c = toastText.color;
             c.a = Mathf.Clamp01(toastTime / 0.4f);
             toastText.color = c;
-            toastText.rectTransform.anchoredPosition = new Vector2(0f, BottomHeight + 40f + (1.6f - Mathf.Max(0f, toastTime)) * 30f);
+            toastText.rectTransform.anchoredPosition = new Vector2(0f, toastBase + (1.6f - Mathf.Max(0f, toastTime)) * 30f);
         }
 
         // ================================================================== result card

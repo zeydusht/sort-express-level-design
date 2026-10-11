@@ -30,6 +30,8 @@ namespace Sortex.Game
         Board board;
         BoardView view;
         SortexHud hud;
+        MainMenuView home;      // the game's own home screen (MainScene.prefab), the first thing a visitor sees
+        bool levelList;         // the case level list (opened from the Packs tab) instead of the home screen
         Camera cam;
         Transform world;
         SpriteRenderer background, shade;
@@ -86,6 +88,16 @@ namespace Sortex.Game
             shade.color = new Color(0.05f, 0.07f, 0.15f, 0.0f);
 
             hud = new SortexHud(transform);
+            home = new MainMenuView(transform);
+            home.SetVisible(false);
+            home.OnClick("Play", PlayNext);
+            home.OnClick("Packs", ShowLevels);
+            home.OnClick("Home", () => { });
+            foreach (var other in new[] { "Shop", "Leaderboard", "Settings", "Lives", "Coins", "Profile" })
+            {
+                string label = other;
+                home.OnClick(other, () => hud.Toast(label + " is not part of this prototype. Packs lists every level.", Color.white));
+            }
 #if UNITY_EDITOR
             // a level sent from Sortex > Level Editor (▶ Play level)
             string test = UnityEditor.SessionState.GetString("Sortex.TestLevel", "");
@@ -179,9 +191,46 @@ namespace Sortex.Game
         }
 
         // ================================================================== screens
+        /// <summary>The level the home button plays: the first one not won yet (Easy, Medium, Hard, then the editor's levels).</summary>
+        int NextLevel
+        {
+            get
+            {
+                int n = Mathf.Max(1, Mathf.Min(levels.Count, menuLevels));
+                return Mathf.Clamp(PlayerPrefs.GetInt(ProgressKey, 0), 0, n - 1);
+            }
+        }
+
+        const string ProgressKey = "Sortex.NextLevel";
+
+        void PlayNext()
+        {
+            StartLevel(NextLevel);
+        }
+
         void ShowMenu()
         {
+            if (!home.Ready)
+            {
+                ShowLevels();
+                return;
+            }
             state = State.Menu;
+            levelList = false;
+            ClearBoard();
+            hud.ShowHome();
+            int next = NextLevel;
+            home.SetLevel(next + 1, levels[next].difficultyTag);
+            home.SetWallet(5, 1000);
+            home.SetVisible(true);
+            FitCamera();
+        }
+
+        void ShowLevels()
+        {
+            state = State.Menu;
+            levelList = true;
+            home.SetVisible(false);
             ClearBoard();
             var cards = new List<LevelCardInfo>();
             for (int i = 0; i < Mathf.Min(levels.Count, menuLevels); i++)
@@ -205,7 +254,7 @@ namespace Sortex.Game
                     OnPlay = () => StartLevel(index)
                 });
             }
-            hud.ShowMenu(cards);
+            hud.ShowMenu(cards, home.Ready ? (System.Action)ShowMenu : null);
             FitCamera();
         }
 
@@ -318,6 +367,8 @@ namespace Sortex.Game
 
         void StartLevel(int index)
         {
+            home.SetVisible(false);
+            levelList = false;
             current = Mathf.Clamp(index, 0, levels.Count - 1);
             level = levels[current];
             ClearBoard();
@@ -352,6 +403,11 @@ namespace Sortex.Game
             timerRunning = false;
             if (held != null) CancelHold();
             int cleared = board.TotalItems - board.RemainingItems;
+            if (win && current == NextLevel && current < menuLevels)
+            {
+                PlayerPrefs.SetInt(ProgressKey, current + 1 < Mathf.Min(levels.Count, menuLevels) ? current + 1 : 0);
+                PlayerPrefs.Save();
+            }
             if (win)
             {
                 string body = "Cleared " + board.TotalItems + " items in " + Mathf.CeilToInt(timeUsed) + " s\n" +
@@ -374,6 +430,16 @@ namespace Sortex.Game
             float dt = Time.deltaTime;
             FitCamera();   // cheap; keeps the board framed when the browser window or the UI scale changes
 
+            if (state == State.Menu && !levelList && home.Ready)
+            {
+                var p = Pointer.current;
+                if (p != null)
+                {
+                    Vector2 sp = p.position.ReadValue();
+                    Vector3 wp = cam.ScreenToWorldPoint(new Vector3(sp.x, sp.y, 10f));
+                    home.Pointer(p.press.wasPressedThisFrame, p.press.isPressed, p.press.wasReleasedThisFrame, wp, dt);
+                }
+            }
             if (state == State.Playing)
             {
                 HandleInput();
@@ -403,6 +469,11 @@ namespace Sortex.Game
         {
             lastScreen = new Vector2Int(Screen.width, Screen.height);
             hud.UpdateScaler();
+            if (state == State.Menu && !levelList && home.Ready)
+            {
+                home.Layout(cam);
+                return;
+            }
             float aspect = Mathf.Max(0.3f, (float)Screen.width / Mathf.Max(1, Screen.height));
             float size;
             Vector2 center;

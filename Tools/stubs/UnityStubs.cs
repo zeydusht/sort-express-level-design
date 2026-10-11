@@ -28,6 +28,10 @@ namespace UnityEngine
         public static Vector2 operator *(Vector2 a, float b) { return a; }
         public static Vector2 operator /(Vector2 a, float b) { return a; }
         public static Vector2 operator -(Vector2 a) { return a; }
+        public static bool operator ==(Vector2 a, Vector2 b) { return a.x == b.x && a.y == b.y; }
+        public static bool operator !=(Vector2 a, Vector2 b) { return !(a == b); }
+        public override bool Equals(object o) { return o is Vector2 && (Vector2)o == this; }
+        public override int GetHashCode() { return 0; }
         public Vector2 normalized { get { return this; } }
         public static float Dot(Vector2 a, Vector2 b) { return 0; }
         public static implicit operator Vector3(Vector2 v) { return new Vector3(v.x, v.y, 0); }
@@ -71,6 +75,7 @@ namespace UnityEngine
         public Color(float r, float g, float b) { this.r = r; this.g = g; this.b = b; a = 1; }
         public static Color white { get { return new Color(); } }
         public static Color magenta { get { return new Color(); } }
+        public static Color clear { get { return new Color(); } }
         public static Color Lerp(Color a, Color b, float t) { return a; }
         public static Color operator *(Color a, float b) { return a; }
     }
@@ -94,7 +99,10 @@ namespace UnityEngine
         public bool Contains(Vector2 p) { return true; }
         public static Rect MinMaxRect(float a, float b, float c, float d) { return new Rect(); }
     }
-    public struct Bounds { public Vector3 size; }
+    public struct Bounds { public Vector3 size, center; public void Encapsulate(Bounds b) { } public bool Contains(Vector3 p) { return false; } }
+    public static class PlayerPrefs { public static int GetInt(string k, int d) { return d; } public static void SetInt(string k, int v) { } public static void Save() { } }
+    public struct Quaternion { public static Quaternion Euler(float x, float y, float z) { return new Quaternion(); } public static Quaternion identity { get { return new Quaternion(); } } }
+    public struct CharacterInfo { public int advance; }
     public static class Mathf
     {
         public const float PI = 3.14159f;
@@ -146,11 +154,12 @@ namespace UnityEngine
     public class RenderTexture : Texture
     {
         public static RenderTexture active;
+        public RenderTexture(int w, int h, int d, RenderTextureFormat f) { }
         public static RenderTexture GetTemporary(int w, int h, int d, RenderTextureFormat f, RenderTextureReadWrite rw) { return null; }
         public static void ReleaseTemporary(RenderTexture rt) { }
     }
     public static class Graphics { public static void Blit(Texture src, RenderTexture dst) { } }
-    public enum TextureFormat { RGBA32 }
+    public enum TextureFormat { RGBA32, RGB24 }
     public enum FullScreenMode { ExclusiveFullScreen, FullScreenWindow, MaximizedWindow, Windowed }
     public enum TextureWrapMode { Repeat, Clamp }
     public class Texture : Object { public int width, height; public TextureWrapMode wrapMode; }
@@ -160,6 +169,7 @@ namespace UnityEngine
         public Texture2D(int w, int h, TextureFormat f, bool mips) { }
         public void SetPixels(Color[] c) { }
         public void SetPixels32(Color32[] c) { }
+        public byte[] EncodeToPNG() { return new byte[0]; }
         public Color32[] GetPixels32() { return null; }
         public void ReadPixels(Rect r, int x, int y) { }
         public void Apply() { }
@@ -177,7 +187,7 @@ namespace UnityEngine
     public class Shader : Object { public static Shader Find(string n) { return null; } }
     public class TextAsset : Object { public string text; }
     public class Material : Object { public Material(Shader s) { } }
-    public class Font : Object { public Material material; }
+    public class Font : Object { public Material material; public void RequestCharactersInTexture(string s, int size) { } public bool GetCharacterInfo(char c, out CharacterInfo ci, int size) { ci = new CharacterInfo(); return false; } }
     public class Component : Object
     {
         public GameObject gameObject;
@@ -190,7 +200,8 @@ namespace UnityEngine
     public class MonoBehaviour : Behaviour { }
     public class Transform : Component
     {
-        public Vector3 position, localPosition, localScale;
+        public Vector3 position, localPosition, localScale, lossyScale;
+        public Quaternion localRotation, rotation;
         public Transform parent;
         public void SetParent(Transform p, bool w) { }
         public void Rotate(float x, float y, float z) { }
@@ -207,7 +218,7 @@ namespace UnityEngine
         public GameObject(string n, params Type[] t) { }
         public Transform transform;
         public string tag;
-        public bool activeSelf;
+        public bool activeSelf, activeInHierarchy;
         public void SetActive(bool b) { }
         public T AddComponent<T>() where T : Component { return null; }
         public T GetComponent<T>() { return default(T); }
@@ -224,7 +235,8 @@ namespace UnityEngine
     {
         public Sprite sprite;
         public Color color;
-        public bool flipX;
+        public bool flipX, flipY;
+        public Bounds bounds;
         public SpriteDrawMode drawMode;
         public Vector2 size;
     }
@@ -245,7 +257,9 @@ namespace UnityEngine
     {
         public static Camera main;
         public bool orthographic;
-        public float orthographicSize;
+        public float orthographicSize, nearClipPlane, farClipPlane;
+        public RenderTexture targetTexture;
+        public void Render() { }
         public CameraClearFlags clearFlags;
         public Color backgroundColor;
         public Vector3 ScreenToWorldPoint(Vector3 p) { return p; }
@@ -538,6 +552,7 @@ namespace UnityEditor
         public static bool DisplayDialog(string a, string b, string c, string d) { return true; }
         public static string SaveFilePanelInProject(string title, string name, string ext, string message, string path) { return ""; }
         public static string OpenFilePanel(string title, string dir, string ext) { return ""; }
+        public static string OpenFolderPanel(string title, string dir, string name) { return ""; }
         public static void RevealInFinder(string p) { }
     }
     public static class AssetDatabase
@@ -607,4 +622,9 @@ namespace UnityEditor.SceneManagement
         public static bool CloseScene(Scene s, bool remove) { return true; }
         public static bool SaveCurrentModifiedScenesIfUserWantsTo() { return true; }
     }
+}
+
+namespace UnityEngine.Rendering
+{
+    public class SortingGroup : UnityEngine.Behaviour { public int sortingOrder; public int sortingLayerID; }
 }
